@@ -34,9 +34,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //[_progressBar setProgress:(CGFloat)progress animated:(BOOL)animated];
     [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
         return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * 4];
+        
+        
     }];
+    
+    
     
     //[_progressBar setProgress:(CGFloat)progress animated:(BOOL)animated];
     // Do any additional setup after loading the view.
@@ -45,6 +50,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)aspects {
+    [_progressBar setProgressBarWidth:1];
 }
 
 /*

@@ -42,10 +42,11 @@
         <scene sceneID="42I-OK-CfC">
             <objects>
                 <viewController id="agp-Wa-ws8" customClass="HomeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qdq-QB-XdI" customClass="CircleProgressBar">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="qdq-QB-XdI" customClass="CircleProgressBar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="contentStretch" x="1" y="1" width="0.5" height="0.5"/>
                         <viewLayoutGuide key="safeArea" id="v6q-QM-by8"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
@@ -57,6 +58,7 @@
                             <userDefinedRuntimeAttribute type="color" keyPath="hintViewBackgroundColor">
                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="hintHidden" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" id="zTZ-rP-elu"/>
