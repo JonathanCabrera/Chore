@@ -18,6 +18,10 @@
 		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
 		1E5C36B620FD49DD002979BA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B520FD49DD002979BA /* User.m */; };
 		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
+		1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */; };
+		1E5C36BE20FD500E002979BA /* group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36BD20FD500E002979BA /* group.storyboard */; };
+		1E5C36C020FD51E2002979BA /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36BF20FD51E2002979BA /* login.storyboard */; };
+		1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C220FD51F2002979BA /* LoginViewController.m */; };
 		938B80B4015F360CCACBB932 /* Pods_ChoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC3449CABFF3792C34AC94 /* Pods_ChoreTests.framework */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		AF49A26956DEA99F568FB5A4 /* Pods_ChoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0DDEA61162787A731F970C /* Pods_ChoreUITests.framework */; };
@@ -66,6 +70,12 @@
 		1E5C36B520FD49DD002979BA /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		1E5C36B720FD4A10002979BA /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		1E5C36B820FD4A10002979BA /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOptionsViewController.h; sourceTree = "<group>"; };
+		1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupOptionsViewController.m; sourceTree = "<group>"; };
+		1E5C36BD20FD500E002979BA /* group.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = group.storyboard; sourceTree = "<group>"; };
+		1E5C36BF20FD51E2002979BA /* login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
+		1E5C36C120FD51F2002979BA /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1E5C36C220FD51F2002979BA /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		27CC3449CABFF3792C34AC94 /* Pods_ChoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		5004E2CC5659C68EDA6618EE /* Pods_Chore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +151,8 @@
 				1E1E3C1C20FD40DA003C87B4 /* LaunchScreen.storyboard */,
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
 				1E1E3C2020FD40DA003C87B4 /* main.m */,
+				1E5C36BD20FD500E002979BA /* group.storyboard */,
+				1E5C36BF20FD51E2002979BA /* login.storyboard */,
 			);
 			path = Chore;
 			sourceTree = "<group>";
@@ -191,6 +203,10 @@
 			children = (
 				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
 				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
+				1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */,
+				1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */,
+				1E5C36C120FD51F2002979BA /* LoginViewController.h */,
+				1E5C36C220FD51F2002979BA /* LoginViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -315,8 +331,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5C36BE20FD500E002979BA /* group.storyboard in Resources */,
 				1E1E3C1E20FD40DA003C87B4 /* LaunchScreen.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
+				1E5C36C020FD51E2002979BA /* login.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,8 +446,10 @@
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
 				1E5C36B620FD49DD002979BA /* User.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
+				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
+				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +626,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Chore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Choreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -624,7 +644,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Chore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Choreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
