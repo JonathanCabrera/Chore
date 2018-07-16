@@ -1,0 +1,6 @@
+framework module Pods_ChoreTests {
+  umbrella header "Pods-ChoreTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
