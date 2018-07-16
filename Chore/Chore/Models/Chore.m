@@ -7,6 +7,7 @@
 //
 
 #import "Chore.h"
+#import "User.h"
 
 @implementation Chore
 
