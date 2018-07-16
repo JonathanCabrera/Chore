@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
-#import "User.h"
 
 
 @interface AppDelegate ()
@@ -29,9 +28,9 @@
     
     [Parse initializeWithConfiguration:config];
     
-    User *user = [User currentUser];
+    PFUser *user = [PFUser currentUser];
     if (user != nil) {
-        NSLog(@"Welcome back %@ 😀", user.name);
+        NSLog(@"Welcome back %@ 😀", user.username);
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *launchController = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];

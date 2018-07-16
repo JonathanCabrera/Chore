@@ -7,7 +7,6 @@
 //
 
 #import "Chore.h"
-#import "User.h"
 
 @implementation Chore
 
@@ -17,7 +16,7 @@
     return @"Chore";
 }
 
-+ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withUser: (User * _Nullable)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withUser: (PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     Chore *newChore = [Chore new];
     

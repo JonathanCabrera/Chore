@@ -16,7 +16,6 @@
 		1E1E3C2B20FD40DA003C87B4 /* ChoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2A20FD40DA003C87B4 /* ChoreTests.m */; };
 		1E1E3C3620FD40DA003C87B4 /* ChoreUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */; };
 		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
-		1E5C36B620FD49DD002979BA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B520FD49DD002979BA /* User.m */; };
 		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
 		1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */; };
 		1E5C36BE20FD500E002979BA /* group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36BD20FD500E002979BA /* group.storyboard */; };
@@ -72,8 +71,6 @@
 		1E1E3C3720FD40DA003C87B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E1E3C4320FD43A3003C87B4 /* Chore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chore.h; sourceTree = "<group>"; };
 		1E1E3C4420FD43A3003C87B4 /* Chore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chore.m; sourceTree = "<group>"; };
-		1E5C36B420FD49DD002979BA /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		1E5C36B520FD49DD002979BA /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		1E5C36B720FD4A10002979BA /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		1E5C36B820FD4A10002979BA /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOptionsViewController.h; sourceTree = "<group>"; };
@@ -198,8 +195,6 @@
 			children = (
 				1E1E3C4320FD43A3003C87B4 /* Chore.h */,
 				1E1E3C4420FD43A3003C87B4 /* Chore.m */,
-				1E5C36B420FD49DD002979BA /* User.h */,
-				1E5C36B520FD49DD002979BA /* User.m */,
 				1E5C36B720FD4A10002979BA /* Group.h */,
 				1E5C36B820FD4A10002979BA /* Group.m */,
 			);
@@ -468,7 +463,6 @@
 				1E1E3C1620FD40DA003C87B4 /* ViewController.m in Sources */,
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
-				1E5C36B620FD49DD002979BA /* User.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,
