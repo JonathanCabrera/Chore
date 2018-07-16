@@ -15,6 +15,7 @@
 		1E1E3C2120FD40DA003C87B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2020FD40DA003C87B4 /* main.m */; };
 		1E1E3C2B20FD40DA003C87B4 /* ChoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2A20FD40DA003C87B4 /* ChoreTests.m */; };
 		1E1E3C3620FD40DA003C87B4 /* ChoreUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */; };
+		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
 		938B80B4015F360CCACBB932 /* Pods_ChoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CC3449CABFF3792C34AC94 /* Pods_ChoreTests.framework */; };
 		AF49A26956DEA99F568FB5A4 /* Pods_ChoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0DDEA61162787A731F970C /* Pods_ChoreUITests.framework */; };
 		BF8DD90B57E74C8549DF956B /* Pods_Chore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5004E2CC5659C68EDA6618EE /* Pods_Chore.framework */; };
@@ -56,6 +57,8 @@
 		1E1E3C3120FD40DA003C87B4 /* ChoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreUITests.m; sourceTree = "<group>"; };
 		1E1E3C3720FD40DA003C87B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E1E3C4320FD43A3003C87B4 /* Chore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chore.h; sourceTree = "<group>"; };
+		1E1E3C4420FD43A3003C87B4 /* Chore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chore.m; sourceTree = "<group>"; };
 		27CC3449CABFF3792C34AC94 /* Pods_ChoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		5004E2CC5659C68EDA6618EE /* Pods_Chore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +130,8 @@
 				1E1E3C1C20FD40DA003C87B4 /* LaunchScreen.storyboard */,
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
 				1E1E3C2020FD40DA003C87B4 /* main.m */,
+				1E1E3C4320FD43A3003C87B4 /* Chore.h */,
+				1E1E3C4420FD43A3003C87B4 /* Chore.m */,
 			);
 			path = Chore;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				1E1E3C1620FD40DA003C87B4 /* ViewController.m in Sources */,
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
+				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
