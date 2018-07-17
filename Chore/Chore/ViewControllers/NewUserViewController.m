@@ -9,6 +9,7 @@
 #import "NewUserViewController.h"
 #import "GroupCell.h"
 #import "Group.h"
+#import "HomeViewController.h"
 
 @interface NewUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -57,7 +58,7 @@
 - (IBAction)didTapEnter:(id)sender {
     
     
-    [Group makeGroup:self.nameField.text withCompletion:^(BOOL succeeded, NSError  * _Nullable error) {
+    self.createdGroup = [Group makeGroup:self.nameField.text withCompletion:^(BOOL succeeded, NSError  * _Nullable error) {
         if (succeeded) {
             NSLog(@"Made group!");
         } else {
@@ -65,7 +66,15 @@
         }
     }];
     
+    [self.createdGroup addMember:self.createdGroup withUser:[PFUser currentUser] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"added user to group");
+        } else {
+            NSLog(@"Error adding user to group: %@", error.localizedDescription);
+        }
+    }];
     
+    [self performSegueWithIdentifier:@"newToHomeSegue" sender:self.createdGroup];
     
 }
 
@@ -73,15 +82,23 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if([segue.identifier isEqualToString:@"newToHomeSegue"]) {
+        
+        UITabBarController *tabBar = (UITabBarController *)[segue destinationViewController];
+        UINavigationController *navController = (UINavigationController *)[tabBar.viewControllers objectAtIndex:0];
+        HomeViewController *homeController = (HomeViewController *)navController.topViewController;
+        homeController.currentGroup = sender;
+        
+    }
+    
 }
-*/
+
 
 
 

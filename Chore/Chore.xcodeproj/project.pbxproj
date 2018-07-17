@@ -258,6 +258,8 @@
 				1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */,
 				1E5C36D520FE93F5002979BA /* GroupCell.h */,
 				1E5C36D620FE93F5002979BA /* GroupCell.m */,
+				9E9FB06620FE8DA3003F458E /* UpcomingChoresCell.h */,
+				9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -428,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */,
+				1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */,
 				1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */,
 				1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */,
 				E8750C0020FEA68900D0B13D /* choreInformation.storyboard in Resources */,
