@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
+typedef enum : NSUInteger {
+    CustomizationStateDefault = 0,
+    CustomizationStateCustom,
+    CustomizationStateCustomAttributed,
+} CustomizationState;
 
 @interface HomeViewController : UIViewController
 
