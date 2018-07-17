@@ -8,23 +8,27 @@
 
 #import "HomeViewController.h"
 #import <UIKit/UIKit.h>
-//#import <QuartzCore/QuartzCore.h"
-//#import "Parse.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "Parse.h"
+#import "ParseUI.h"
 #import "CircleProgressBar.h"
 
 
 
 @interface HomeViewController ()
 @property (nonatomic) CGFloat progressBarWidth;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
 @property (nonatomic) UIColor *progressBarProgressColor;
 @property (nonatomic) UIColor *progressBarTrackColor;
 @property (nonatomic) CGFloat startAngle;
-@property (weak, nonatomic) IBOutlet UIButton *button;
-@property (weak, nonatomic) IBOutlet UIButton *otherButton;
+@property (weak, nonatomic) IBOutlet UIButton *incrementButton;
+@property (weak, nonatomic) IBOutlet UIButton *zeroProgressButton;
+- (IBAction)onTapIncrement:(id)sender;
 
-- (IBAction)onTapButton:(id)sender;
-- (IBAction)onTapOther:(id)sender;
+- (IBAction)onTapZero:(id)sender;
+- (IBAction)onTapLogOut:(id)sender;
 
 
 // Hint View Customization (inside progress bar)
@@ -101,11 +105,23 @@
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:100 animated:YES duration:5];
 }
-- (IBAction)onTapButton:(id)sender {
+
+
+
+- (IBAction)onTapIncrement:(id)sender {
     [_progressBar setProgress:(_progressBar.progress + 0.10f) animated:YES];
 }
-
-- (IBAction)onTapOther:(id)sender {
+- (IBAction)onTapZero:(id)sender {
     [_progressBar setProgress:0 animated:NO];
+}
+
+- (IBAction)onTapLogOut:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        appDelegate.window.rootViewController = loginViewController;
+    }];
 }
 @end
