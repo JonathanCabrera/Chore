@@ -11,7 +11,6 @@
 		1E1E3C1620FD40DA003C87B4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1520FD40DA003C87B4 /* ViewController.m */; };
 		1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1720FD40DA003C87B4 /* Main.storyboard */; };
 		1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */; };
-		1E1E3C1E20FD40DA003C87B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1C20FD40DA003C87B4 /* LaunchScreen.storyboard */; };
 		1E1E3C2120FD40DA003C87B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2020FD40DA003C87B4 /* main.m */; };
 		1E1E3C2B20FD40DA003C87B4 /* ChoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2A20FD40DA003C87B4 /* ChoreTests.m */; };
 		1E1E3C3620FD40DA003C87B4 /* ChoreUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */; };
@@ -31,6 +30,7 @@
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
 		AF49A26956DEA99F568FB5A4 /* Pods_ChoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0DDEA61162787A731F970C /* Pods_ChoreUITests.framework */; };
 		BF8DD90B57E74C8549DF956B /* Pods_Chore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5004E2CC5659C68EDA6618EE /* Pods_Chore.framework */; };
+		E8750BEA20FE57E600D0B13D /* choresDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8750BE920FE57E600D0B13D /* choresDetails.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,6 @@
 		1E1E3C1520FD40DA003C87B4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1E1E3C1820FD40DA003C87B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1E1E3C1D20FD40DA003C87B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E1E3C1F20FD40DA003C87B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E1E3C2020FD40DA003C87B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1E1E3C2620FD40DA003C87B4 /* ChoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +93,7 @@
 		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.debug.xcconfig"; sourceTree = "<group>"; };
 		E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E8750BE920FE57E600D0B13D /* choresDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = choresDetails.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +163,7 @@
 				1E1E3C1520FD40DA003C87B4 /* ViewController.m */,
 				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */,
-				1E1E3C1C20FD40DA003C87B4 /* LaunchScreen.storyboard */,
+				E8750BE920FE57E600D0B13D /* choresDetails.storyboard */,
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
 				1E1E3C2020FD40DA003C87B4 /* main.m */,
 				1E5C36BD20FD500E002979BA /* group.storyboard */,
@@ -351,10 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E5C36BE20FD500E002979BA /* group.storyboard in Resources */,
-				1E1E3C1E20FD40DA003C87B4 /* LaunchScreen.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E5C36C020FD51E2002979BA /* login.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
+				E8750BEA20FE57E600D0B13D /* choresDetails.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,14 +509,6 @@
 				1E1E3C1820FD40DA003C87B4 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		1E1E3C1C20FD40DA003C87B4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1E1E3C1D20FD40DA003C87B4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
