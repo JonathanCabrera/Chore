@@ -54,21 +54,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UvP-nY-ZXf">
-                                <rect key="frame" x="52" y="582" width="181" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju3-QD-77o">
-                                <rect key="frame" x="253" y="582" width="81" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="make group"/>
-                                <connections>
-                                    <action selector="didTapMake:" destination="MLS-qJ-HNn" eventType="touchUpInside" id="f41-lc-FQL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-0H-sdr">
                                 <rect key="frame" x="102" y="101" width="171" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -83,8 +68,6 @@
                     <navigationItem key="navigationItem" title="Group" id="BE4-H0-cpJ"/>
                     <connections>
                         <outlet property="groupNameLabel" destination="3Mc-0H-sdr" id="tVw-RT-WJN"/>
-                        <outlet property="makeGroupButton" destination="Ju3-QD-77o" id="2Ld-2s-A2q"/>
-                        <outlet property="makeGroupField" destination="UvP-nY-ZXf" id="9g3-Kq-wla"/>
                         <outlet property="seeChoresView" destination="W00-PP-NQN" id="cQJ-Jf-Z1b"/>
                         <outlet property="seeGroupView" destination="D8k-5a-gPm" id="bmJ-of-ky5"/>
                         <segue destination="LZ1-Ud-76n" kind="show" identifier="groupInfoSegue" id="gbZ-OH-8Vg"/>

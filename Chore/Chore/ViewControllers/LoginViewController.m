@@ -85,6 +85,7 @@
             NSLog(@"User logged in successfully");
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }
     }];

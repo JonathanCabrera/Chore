@@ -13,8 +13,6 @@
 @interface GroupOptionsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *seeGroupView;
 @property (weak, nonatomic) IBOutlet UIView *seeChoresView;
-@property (weak, nonatomic) IBOutlet UITextField *makeGroupField;
-@property (weak, nonatomic) IBOutlet UIButton *makeGroupButton;
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 
 
@@ -45,20 +43,6 @@
     [self performSegueWithIdentifier:@"groupInfoSegue" sender:self.groupName];
     
 }
-
-
-- (IBAction)didTapMake:(id)sender {
-    
-    [Group makeGroup:self.makeGroupField.text withCompletion:^(BOOL succeeded, NSError  * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"Made group!");
-        } else {
-            NSLog(@"Error making group: %@", error.localizedDescription);
-        }
-    }];
-    
-}
-
 
 
 

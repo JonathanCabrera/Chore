@@ -15,15 +15,18 @@
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 
+@property (weak, nonatomic) NSArray *upcomingChores;
+
 @end
 
 @implementation ProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.upcomingTableView.delegate = self;
-    //self.upcomingTableView.dataSource = self;
+   
     [self viewWillAppear:true];
+    //[self fetchData];
+    //self.userNameLabel.text = PFUser.currentUser.username;
      
      
     // Do any additional setup after loading the view.
@@ -49,6 +52,10 @@
     
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
+
+
+
+
 
 /*
 #pragma mark - Navigation
