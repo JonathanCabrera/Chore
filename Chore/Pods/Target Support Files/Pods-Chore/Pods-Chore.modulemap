@@ -1,4 +1,4 @@
-framework module Pods_Chore {
+module Pods_Chore {
   umbrella header "Pods-Chore-umbrella.h"
 
   export *

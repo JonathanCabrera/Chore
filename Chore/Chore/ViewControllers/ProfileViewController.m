@@ -23,10 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.upcomingTableView.delegate = self;
-    //self.upcomingTableView.dataSource = self;
+   
     [self viewWillAppear:true];
-    self.userNameLabel.text = PFUser.currentUser.username;
+    //[self fetchData];
+    //self.userNameLabel.text = PFUser.currentUser.username;
      
      
     // Do any additional setup after loading the view.
@@ -53,31 +53,9 @@
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
 
-- (void) fetchData{
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"author" equalTo:PFUser.currentUser];
-    [query orderByDescending:@"createdAt"];
-    query.limit = 20;
-    self.userNameLabel.text = PFUser.currentUser.username;
-    
-    
-    [query includeKeys:@[@"author", @"createdAt"]];
-    //[query orderByDescending:@"createdAt"];
-    
-    // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            //             do something with the array of object returned by the call
-//            self.feedArray = posts;
-//            [self.collectionView reloadData];
-//            [self.refreshControl endRefreshing];
-            
-            
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-}
+
+
+
 
 /*
 #pragma mark - Navigation
