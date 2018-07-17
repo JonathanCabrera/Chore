@@ -16,13 +16,25 @@
     return @"Group";
 }
 
-+ (void) makeGroup: (NSString * _Nullable)name withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (Group *) makeGroup: (NSString * _Nullable)name withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     Group *newGroup = [Group new];
     newGroup.name = name;
     newGroup.members = [NSMutableArray new];
     
     [newGroup saveInBackgroundWithBlock:completion];
+    
+    return newGroup;
+    
+}
+
+
+- (void) addMember: (Group *)group withUser: (PFUser *)user withCompletion: (PFBooleanResultBlock _Nullable)completion {
+    
+    [group.members addObject:user];
+    
+    [group saveInBackgroundWithBlock:completion];
+    
     
 }
 
