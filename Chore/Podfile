@@ -9,6 +9,7 @@ target 'Chore' do
 	pod 'CircleProgressBar', '~> 0.32’
 	pod 'Parse'
 	pod 'ParseUI'
+	pod 'MBProgressHUD'
 
   target 'ChoreTests' do
     inherit! :search_paths

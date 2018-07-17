@@ -53,9 +53,25 @@
                                     <action selector="onTapProgressButton:" destination="agp-Wa-ws8" eventType="touchUpInside" id="mhs-pu-awE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bp-Y4-a1g">
+                                <rect key="frame" x="16" y="573" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onTapButton:" destination="agp-Wa-ws8" eventType="touchUpInside" id="TOF-eo-u7H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kui-Ci-qjC">
+                                <rect key="frame" x="134" y="573" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="other"/>
+                                <connections>
+                                    <action selector="onTapOther:" destination="agp-Wa-ws8" eventType="touchUpInside" id="8np-XX-UGl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <rect key="contentStretch" x="1" y="1" width="0.5" height="0.5"/>
+                        <rect key="contentStretch" x="1" y="1" width="0.0" height="0.0"/>
                         <viewLayoutGuide key="safeArea" id="v6q-QM-by8"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
@@ -72,6 +88,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="zTZ-rP-elu"/>
                     <connections>
+                        <outlet property="button" destination="3Bp-Y4-a1g" id="jda-TL-YUl"/>
+                        <outlet property="otherButton" destination="Kui-Ci-qjC" id="YL5-3o-32L"/>
                         <outlet property="progressBar" destination="qdq-QB-XdI" id="k5b-iB-Egp"/>
                         <outlet property="progressButton" destination="7PS-9F-4if" id="1xg-tg-3Z9"/>
                     </connections>

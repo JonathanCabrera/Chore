@@ -13,19 +13,22 @@
 #import "CircleProgressBar.h"
 
 
+
 @interface HomeViewController ()
 @property (nonatomic) CGFloat progressBarWidth;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
 @property (nonatomic) UIColor *progressBarProgressColor;
 @property (nonatomic) UIColor *progressBarTrackColor;
 @property (nonatomic) CGFloat startAngle;
+@property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UIButton *otherButton;
+
+- (IBAction)onTapButton:(id)sender;
+- (IBAction)onTapOther:(id)sender;
+
 
 // Hint View Customization (inside progress bar)
-@property (nonatomic) BOOL hintHidden;
-@property (nonatomic) CGFloat hintViewSpacing;
-@property (nonatomic) UIColor *hintViewBackgroundColor;
-@property (nonatomic) UIFont *hintTextFont;
-@property (nonatomic) UIColor *hintTextColor;
+
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
 - (IBAction)onTapProgressButton:(id)sender;
 
@@ -43,10 +46,13 @@
     //[_progressBar setProgress:(CGFloat)progress animated:(BOOL)animated];
     [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
         return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * 10];
-        
+   
+   
         
         
     }];
+    
+    
     
 
     
@@ -64,11 +70,13 @@
     [_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = backgroundColor;
     [_progressBar setStartAngle:270];
+    //[_progressBar drawProgressBar]
     
     
     
     //[_progressBar setProgress:(CGFloat)progress animated:(BOOL)animated];
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,5 +100,12 @@
 - (IBAction)onTapProgressButton:(id)sender {
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:100 animated:YES duration:5];
+}
+- (IBAction)onTapButton:(id)sender {
+    [_progressBar setProgress:(_progressBar.progress + 0.10f) animated:YES];
+}
+
+- (IBAction)onTapOther:(id)sender {
+    [_progressBar setProgress:0 animated:NO];
 }
 @end

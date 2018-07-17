@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface LoginViewController : UIViewController
+
++(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController;
 
 @end
