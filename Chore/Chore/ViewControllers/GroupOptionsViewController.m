@@ -7,8 +7,15 @@
 //
 
 #import "GroupOptionsViewController.h"
+#import "Group.h"
 
 @interface GroupOptionsViewController ()
+@property (weak, nonatomic) IBOutlet UIView *seeGroupView;
+@property (weak, nonatomic) IBOutlet UIView *seeChoresView;
+
+@property (weak, nonatomic) IBOutlet UITextField *makeGroupField;
+@property (weak, nonatomic) IBOutlet UIButton *makeGroupButton;
+
 
 @end
 
@@ -16,13 +23,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+     
+    UITapGestureRecognizer *seeGroupRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeGroup)];
+    [self.seeGroupView addGestureRecognizer:seeGroupRecognizer];
+    
+    //UITapGestureRecognizer *seeChoresRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeChores:)];
+     
+     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)didTapSeeGroup {
+    
+    [self performSegueWithIdentifier:@"groupInfoSegue" sender:self.groupName];
+    
+}
+
+
+- (IBAction)didTapMake:(id)sender {
+    
+    [Group makeGroup:self.makeGroupField.text withCompletion:^(BOOL succeeded, NSError  * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Made group!");
+        } else {
+            NSLog(@"Error making group: %@", error.localizedDescription);
+        }
+    }];
+    
+}
+
+
 
 /*
 #pragma mark - Navigation

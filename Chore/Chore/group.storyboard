@@ -65,18 +65,37 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UvP-nY-ZXf">
+                                <rect key="frame" x="52" y="582" width="181" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju3-QD-77o">
+                                <rect key="frame" x="253" y="582" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="make group"/>
+                                <connections>
+                                    <action selector="didTapMake:" destination="MLS-qJ-HNn" eventType="touchUpInside" id="f41-lc-FQL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="8Ih-cn-AOy"/>
                     </view>
                     <navigationItem key="navigationItem" id="BE4-H0-cpJ"/>
                     <connections>
+                        <outlet property="makeGroupButton" destination="Ju3-QD-77o" id="2Ld-2s-A2q"/>
+                        <outlet property="makeGroupField" destination="UvP-nY-ZXf" id="9g3-Kq-wla"/>
+                        <outlet property="seeChoresView" destination="W00-PP-NQN" id="cQJ-Jf-Z1b"/>
+                        <outlet property="seeGroupView" destination="D8k-5a-gPm" id="bmJ-of-ky5"/>
                         <segue destination="AJF-pd-Zf3" kind="show" identifier="groupInfoSegue" id="pNu-Jk-zGh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9i-I5-R1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1191" y="-89"/>
+            <point key="canvasLocation" x="1189.5999999999999" y="-89.505247376311857"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="SV0-Zf-VYd">
