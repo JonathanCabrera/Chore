@@ -65,7 +65,7 @@
         } else {
             NSLog(@"User registered successfully");
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            [self performSegueWithIdentifier:@"newUserSegue" sender:nil];
         }
     }];
 }
@@ -85,7 +85,14 @@
             NSLog(@"User logged in successfully");
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            
+            if(user[@"groupName"] == nil) {
+                [self performSegueWithIdentifier:@"newUserSegue" sender:nil];
+                
+            } else {
+                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            }
+            
         }
     }];
 }

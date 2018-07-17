@@ -7,8 +7,10 @@
 //
 
 #import "ChoreDetailsViewController.h"
+#import "ProfileViewController.h"
+//#import "ChoreInformationViewController.h"
 
-@interface ChoreDetailsViewController ()
+@interface ChoreDetailsViewController () <ProfileViewControllerDelegate>
 
 @end
 
@@ -16,12 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setupafter loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)didTapeDone:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

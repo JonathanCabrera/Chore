@@ -11,6 +11,6 @@
 
 @interface GroupOptionsViewController : UIViewController
 
-@property (nonatomic, strong) NSString *groupName;
+@property (nonatomic, strong) Group *currentGroup;
 
 @end

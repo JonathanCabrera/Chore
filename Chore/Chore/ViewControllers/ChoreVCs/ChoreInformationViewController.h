@@ -1,5 +1,5 @@
 //
-//  ChoreDetailsViewController.h
+//  ChoreInformationViewController.h
 //  Chore
 //
 //  Created by Jonathan Cabrera on 7/17/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChoreDetailsViewController : UIViewController
+@interface ChoreInformationViewController : UIViewController
 
 @end

@@ -10,8 +10,6 @@ target 'Chore' do
 	pod 'Parse'
 	pod 'ParseUI'
 	pod 'MBProgressHUD'
-	pod 'UICircularProgressRing', '~> 3.0'
-	pod 'GTProgressBar', '~> 0.3'
 	
 
   target 'ChoreTests' do
