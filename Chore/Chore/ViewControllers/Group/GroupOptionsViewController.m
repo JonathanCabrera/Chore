@@ -8,13 +8,14 @@
 
 #import "GroupOptionsViewController.h"
 #import "Group.h"
+#import "GroupInfoViewController.h"
 
 @interface GroupOptionsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *seeGroupView;
 @property (weak, nonatomic) IBOutlet UIView *seeChoresView;
-
 @property (weak, nonatomic) IBOutlet UITextField *makeGroupField;
 @property (weak, nonatomic) IBOutlet UIButton *makeGroupButton;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 
 
 @end
@@ -23,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.groupNameLabel.text = self.groupName;
      
     UITapGestureRecognizer *seeGroupRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeGroup)];
     [self.seeGroupView addGestureRecognizer:seeGroupRecognizer];
@@ -58,14 +61,22 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    UINavigationController *nextController = [segue destinationViewController];
+    
+    if([segue.identifier isEqualToString:@"groupInfoSegue"]) {
+        
+        GroupInfoViewController *groupInfoController = (GroupInfoViewController *)nextController;
+        groupInfoController.groupName = self.groupName;
+        
+    }
+    
 }
-*/
+
 
 @end
