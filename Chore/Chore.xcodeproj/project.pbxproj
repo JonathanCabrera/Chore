@@ -38,6 +38,9 @@
 		9E9FB06820FE8DA3003F458E /* UpcomingChoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */; };
 		E8750BEA20FE57E600D0B13D /* choresDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8750BE920FE57E600D0B13D /* choresDetails.storyboard */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
+		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
+		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
+		E8750C0020FEA68900D0B13D /* choreInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8750BFF20FEA68900D0B13D /* choreInformation.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,11 @@
 		E8750BE920FE57E600D0B13D /* choresDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = choresDetails.storyboard; sourceTree = "<group>"; };
 		E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreDetailsViewController.h; sourceTree = "<group>"; };
 		E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreDetailsViewController.m; sourceTree = "<group>"; };
+		E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationViewController.h; sourceTree = "<group>"; };
+		E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationViewController.m; sourceTree = "<group>"; };
+		E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationCell.h; sourceTree = "<group>"; };
+		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; };
+		E8750BFF20FEA68900D0B13D /* choreInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = choreInformation.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,7 @@
 				9E9C172520FD464A007F0F31 /* ViewControllers */,
 				1E1E3C1120FD40DA003C87B4 /* AppDelegate.h */,
 				1E1E3C1220FD40DA003C87B4 /* AppDelegate.m */,
+				E8750BFF20FEA68900D0B13D /* choreInformation.storyboard */,
 				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				1E5C36BD20FD500E002979BA /* groupOptions.storyboard */,
 				1E5C36C620FE615B002979BA /* groupInfo.storyboard */,
@@ -223,6 +232,8 @@
 				1E5C36B820FD4A10002979BA /* Group.m */,
 				9E9FB06620FE8DA3003F458E /* UpcomingChoresCell.h */,
 				9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */,
+				E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */,
+				E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,9 +282,8 @@
 		9E9C172520FD464A007F0F31 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8750BF020FEA37C00D0B13D /* ChoreVCs */,
 				1E5C36CB20FE822A002979BA /* Group */,
-				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
-				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
 				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
 				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
 				1E5C36C120FD51F2002979BA /* LoginViewController.h */,
@@ -297,6 +307,17 @@
 				049FFABB26823251BB9485F5 /* Pods-ChoreUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E8750BF020FEA37C00D0B13D /* ChoreVCs */ = {
+			isa = PBXGroup;
+			children = (
+				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
+				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
+				E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */,
+				E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */,
+			);
+			path = ChoreVCs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,8 +428,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */,
-				1E5C36BE20FD500E002979BA /* group.storyboard in Resources */,
 				1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */,
+				1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */,
+				E8750C0020FEA68900D0B13D /* choreInformation.storyboard in Resources */,
 				1E5C36D420FE92BE002979BA /* createGroup.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E5C36C020FD51E2002979BA /* login.storyboard in Resources */,
@@ -522,6 +544,7 @@
 			files = (
 				1E5C36CF20FE830E002979BA /* GroupMemberCell.m in Sources */,
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
+				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
 				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
@@ -529,6 +552,7 @@
 				1E5C36CA20FE821B002979BA /* GroupInfoViewController.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,
+				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
 				1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
