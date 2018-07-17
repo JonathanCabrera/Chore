@@ -24,6 +24,9 @@
 		1E5C36CA20FE821B002979BA /* GroupInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C920FE821B002979BA /* GroupInfoViewController.m */; };
 		1E5C36CF20FE830E002979BA /* GroupMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36CE20FE830E002979BA /* GroupMemberCell.m */; };
 		1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */; };
+		1E5C36D420FE92BE002979BA /* createGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36D320FE92BE002979BA /* createGroup.storyboard */; };
+		1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D620FE93F5002979BA /* GroupCell.m */; };
+		1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D920FE940D002979BA /* NewUserViewController.m */; };
 		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
 		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
@@ -84,6 +87,11 @@
 		1E5C36CE20FE830E002979BA /* GroupMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupMemberCell.m; sourceTree = "<group>"; };
 		1E5C36D020FE857C002979BA /* AddGroupMemberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberCell.h; sourceTree = "<group>"; };
 		1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGroupMemberCell.m; sourceTree = "<group>"; };
+		1E5C36D320FE92BE002979BA /* createGroup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = createGroup.storyboard; sourceTree = "<group>"; };
+		1E5C36D520FE93F5002979BA /* GroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
+		1E5C36D620FE93F5002979BA /* GroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
+		1E5C36D820FE940D002979BA /* NewUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
+		1E5C36D920FE940D002979BA /* NewUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
 		32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A93700C70BDE40ED83451BB /* Pods-Chore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 				1E5C36BD20FD500E002979BA /* groupOptions.storyboard */,
 				1E5C36C620FE615B002979BA /* groupInfo.storyboard */,
 				1E5C36BF20FD51E2002979BA /* login.storyboard */,
+				1E5C36D320FE92BE002979BA /* createGroup.storyboard */,
 				1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */,
 				E8750BE920FE57E600D0B13D /* choresDetails.storyboard */,
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
@@ -225,6 +234,8 @@
 				1E5C36CE20FE830E002979BA /* GroupMemberCell.m */,
 				1E5C36D020FE857C002979BA /* AddGroupMemberCell.h */,
 				1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */,
+				1E5C36D520FE93F5002979BA /* GroupCell.h */,
+				1E5C36D620FE93F5002979BA /* GroupCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +267,8 @@
 				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
 				1E5C36C120FD51F2002979BA /* LoginViewController.h */,
 				1E5C36C220FD51F2002979BA /* LoginViewController.m */,
+				1E5C36D820FE940D002979BA /* NewUserViewController.h */,
+				1E5C36D920FE940D002979BA /* NewUserViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -381,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */,
+				1E5C36D420FE92BE002979BA /* createGroup.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E5C36C020FD51E2002979BA /* login.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
@@ -494,6 +508,7 @@
 				1E5C36CF20FE830E002979BA /* GroupMemberCell.m in Sources */,
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
+				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
 				1E5C36CA20FE821B002979BA /* GroupInfoViewController.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
@@ -501,6 +516,7 @@
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
 				1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
+				1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */,
 				E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
