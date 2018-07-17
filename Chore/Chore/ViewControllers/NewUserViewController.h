@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Group.h"
 
 @interface NewUserViewController : UIViewController
+
+@property (strong, nonatomic) Group *createdGroup;
+
 
 @end

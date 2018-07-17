@@ -10,4 +10,9 @@
 
 @interface GroupCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *selectButton;
+
+
+
 @end
