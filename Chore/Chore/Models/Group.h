@@ -6,9 +6,10 @@
 //  Copyright © 2018 JAK. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface Group : PFObject
+@interface Group : PFObject <PFSubclassing>
 
 @property (nonatomic, strong, nonnull) NSString *name;
 @property (nonatomic, strong, nonnull) NSMutableArray *members;

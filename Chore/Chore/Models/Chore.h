@@ -6,12 +6,13 @@
 //  Copyright © 2018 JAK. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
 @interface Chore : PFObject <PFSubclassing>
 
 @property (nonatomic, strong, nonnull) NSString *name;
-@property (nonatomic, strong, nonnull) NSString *description;
+@property (nonatomic, strong, nonnull) NSString *info;
 @property (nonatomic, strong, nonnull) PFUser *user;
 @property (nonatomic) int points;
 @property (nonatomic, strong, nonnull) PFFile *photo;

@@ -10,18 +10,18 @@
 
 @implementation Chore
 
-@dynamic name, description, user, points, photo;
+@dynamic name, info, user, points, photo;
 
 + (nonnull NSString *)parseClassName {
     return @"Chore";
 }
 
-+ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withUser: (PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)info withUser: (PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     Chore *newChore = [Chore new];
     
     newChore.name = name;
-    newChore.description = description;
+    newChore.info = info;
     newChore.user = user;
     newChore.points = 0;
     

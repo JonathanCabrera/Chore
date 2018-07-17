@@ -33,7 +33,7 @@
         NSLog(@"Welcome back %@ 😀", user.username);
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *launchController = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
+        UIViewController *launchController = [storyboard instantiateViewControllerWithIdentifier:@"tabController"];
         self.window.rootViewController = launchController;
     }
     
