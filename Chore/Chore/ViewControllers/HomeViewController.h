@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Group.h"
 
-typedef enum : NSUInteger {
-    CustomizationStateDefault = 0,
-    CustomizationStateCustom,
-    CustomizationStateCustomAttributed,
-} CustomizationState;
+
 
 @interface HomeViewController : UIViewController
 
-
+@property (strong, nonatomic) Group *currentGroup;
 @end

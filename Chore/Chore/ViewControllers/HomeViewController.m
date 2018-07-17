@@ -27,7 +27,7 @@
 @property (nonatomic) CGFloat startAngle;
 @property (weak, nonatomic) IBOutlet UIButton *incrementButton;
 @property (weak, nonatomic) IBOutlet UIButton *zeroProgressButton;
-@property (strong, nonatomic) Group *currentGroup;
+
 - (IBAction)onTapIncrement:(id)sender;
 
 - (IBAction)onTapZero:(id)sender;
