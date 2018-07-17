@@ -32,8 +32,11 @@
 - (void) addMember: (Group *)group withUser: (PFUser *)user withCompletion: (PFBooleanResultBlock _Nullable)completion {
     
     [group.members addObject:user];
-    
+    [group setObject:group.members forKey:@"members"];
     [group saveInBackgroundWithBlock:completion];
+    
+    [user setObject:group.name forKey:@"groupName"];
+    [user saveInBackgroundWithBlock:completion];
     
     
 }
