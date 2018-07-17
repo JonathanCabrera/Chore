@@ -11,7 +11,7 @@
 #import "Group.h"
 #import "HomeViewController.h"
 
-@interface NewUserViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NewUserViewController () <UITableViewDelegate, UITableViewDataSource, GroupCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *groupArray;
 
@@ -29,6 +29,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self fetchGroups];
+    
     
 }
 
@@ -38,12 +40,35 @@
 }
 
 
-
+- (void)fetchGroups {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+    [query includeKey:@"name"];
+    [query orderByDescending:@"name"];
+    query.limit = 20;
+    
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            
+            self.groupArray = (NSMutableArray *)posts;
+            [self.tableView reloadData];
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
+    
+}
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     GroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
+    
+    [cell setCell:self.groupArray[indexPath.row]];
+    cell.delegate = self;
     
     return cell;
     
@@ -78,26 +103,24 @@
     
 }
 
+- (void)selectCell:(GroupCell *)groupCell didSelect:(Group *)group {
+    [self performSegueWithIdentifier:@"newToHomeSegue" sender:group];
+}
 
 
 
 
 
 #pragma mark - Navigation
-
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    if([segue.identifier isEqualToString:@"newToHomeSegue"]) {
-        
-        UITabBarController *tabBar = (UITabBarController *)[segue destinationViewController];
-        UINavigationController *navController = (UINavigationController *)[tabBar.viewControllers objectAtIndex:0];
-        HomeViewController *homeController = (HomeViewController *)navController.topViewController;
-        homeController.currentGroup = sender;
-        
-    }
+
     
 }
+*/
+
 
 
 

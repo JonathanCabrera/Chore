@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "Group.h"
 
 @interface GroupInfoViewController : UIViewController
 
-@property (nonatomic, strong) NSString *groupName;
+@property (nonatomic, strong) Group *currentGroup;
 
 @end

@@ -55,7 +55,7 @@
     query.limit = 10;
     
     //get users in current group
-    [query whereKey:@"groupName" equalTo:self.groupName];
+    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {

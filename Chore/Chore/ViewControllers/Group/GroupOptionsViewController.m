@@ -23,7 +23,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.groupNameLabel.text = self.groupName;
+    
+    
+    //fetch the user's group
+    NSString *usersGroup = [PFUser currentUser][@"groupName"];
+    if(usersGroup != nil) {
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        query.limit = 1;
+        [query whereKey:@"name" equalTo:usersGroup];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.currentGroup = posts[0];
+                self.groupNameLabel.text = self.currentGroup.name;
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else {
+        NSLog(@"user has no group");
+    }
      
     UITapGestureRecognizer *seeGroupRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeGroup)];
     [self.seeGroupView addGestureRecognizer:seeGroupRecognizer];
@@ -40,7 +60,7 @@
 
 - (void)didTapSeeGroup {
     
-    [self performSegueWithIdentifier:@"groupInfoSegue" sender:self.groupName];
+    [self performSegueWithIdentifier:@"groupInfoSegue" sender:self.currentGroup];
     
 }
 
@@ -56,7 +76,7 @@
     if([segue.identifier isEqualToString:@"groupInfoSegue"]) {
         
         GroupInfoViewController *groupInfoController = (GroupInfoViewController *)nextController;
-        groupInfoController.groupName = self.groupName;
+        groupInfoController.currentGroup = self.currentGroup;
         
     }
     

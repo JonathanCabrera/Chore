@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,19 +68,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="314" height="82.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZl-fx-Fba">
-                                                    <rect key="frame" x="15" y="31" width="204" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZl-fx-Fba">
+                                                    <rect key="frame" x="15" y="21" width="202" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4w5-ZE-PSj">
-                                                    <rect key="frame" x="254" y="26" width="44" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4w5-ZE-PSj">
+                                                    <rect key="frame" x="255" y="26" width="44" height="30"/>
                                                     <state key="normal" title="Select"/>
+                                                    <connections>
+                                                        <action selector="didTapSelect:" destination="BLt-xo-VaC" eventType="touchUpInside" id="EMp-gF-0hv"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4w5-ZE-PSj" secondAttribute="trailing" id="4IJ-jN-pZD"/>
+                                                <constraint firstItem="4w5-ZE-PSj" firstAttribute="centerY" secondItem="wZl-fx-Fba" secondAttribute="centerY" id="X0c-G1-2KF"/>
+                                                <constraint firstItem="wZl-fx-Fba" firstAttribute="leading" secondItem="FXE-I3-EAZ" secondAttribute="leadingMargin" id="ZH6-Dx-lW5"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wZl-fx-Fba" secondAttribute="bottom" constant="10" id="nri-2d-1Jw"/>
+                                                <constraint firstItem="wZl-fx-Fba" firstAttribute="top" secondItem="FXE-I3-EAZ" secondAttribute="topMargin" constant="10" id="yce-5r-Rqd"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="groupNameLabel" destination="wZl-fx-Fba" id="3TY-Ed-9Ej"/>
