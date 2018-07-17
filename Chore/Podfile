@@ -3,12 +3,13 @@
 
 target 'Chore' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-   use_frameworks!
+  # use_frameworks!
 
   # Pods for Chore
 	pod 'CircleProgressBar', '~> 0.32’
 	pod 'Parse'
 	pod 'ParseUI'
+	pod 'MBProgressHUD'
 
   target 'ChoreTests' do
     inherit! :search_paths
