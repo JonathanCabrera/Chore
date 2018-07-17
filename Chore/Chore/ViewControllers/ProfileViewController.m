@@ -9,9 +9,11 @@
 #import "ProfileViewController.h"
 #import "Parse.h"
 #import "ParseUI.h"
+#import "UpcomingChoresCell.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 
 @end
 
@@ -19,6 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.upcomingTableView.delegate = self;
+    //self.upcomingTableView.dataSource = self;
+    [self viewWillAppear:true];
+     
+     
     // Do any additional setup after loading the view.
 }
 

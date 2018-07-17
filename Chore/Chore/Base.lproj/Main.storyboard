@@ -22,11 +22,22 @@
                     <connections>
                         <segue destination="pYx-ZX-OjP" kind="relationship" relationship="viewControllers" id="Dwt-1P-hs8"/>
                         <segue destination="dpM-qq-lKC" kind="relationship" relationship="viewControllers" id="Rug-fF-zma"/>
+                        <segue destination="daB-MR-fzC" kind="relationship" relationship="viewControllers" id="5T7-Cc-sLa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXP-Hl-4dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1494" y="-933"/>
+        </scene>
+        <!--profile-->
+        <scene sceneID="YqD-cg-HuQ">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="profile.storyboard" storyboardName="profile" id="daB-MR-fzC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="8xK-As-ZVW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lhv-gW-3bs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2127" y="-976"/>
         </scene>
         <!--groupOptions-->
         <scene sceneID="btG-PA-lg6">

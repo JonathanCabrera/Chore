@@ -14,13 +14,13 @@
 
 @interface ProfileViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (nonatomic, strong) PFFile *image;
+//@property (nonatomic, strong) PFFile *image;
 
 - (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 
 
-@property (nonatomic, strong) id<ProfileViewControllerDelegate> delegate;
+//@property (nonatomic, strong) id<ProfileViewControllerDelegate> delegate;
 
 @end
 
