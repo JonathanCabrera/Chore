@@ -27,9 +27,8 @@
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
-		AF49A26956DEA99F568FB5A4 /* Pods_ChoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0DDEA61162787A731F970C /* Pods_ChoreUITests.framework */; };
-		BF8DD90B57E74C8549DF956B /* Pods_Chore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5004E2CC5659C68EDA6618EE /* Pods_Chore.framework */; };
 		E8750BEA20FE57E600D0B13D /* choresDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8750BE920FE57E600D0B13D /* choresDetails.storyboard */; };
+		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +93,8 @@
 		B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.debug.xcconfig"; sourceTree = "<group>"; };
 		E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8750BE920FE57E600D0B13D /* choresDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = choresDetails.storyboard; sourceTree = "<group>"; };
+		E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreDetailsViewController.h; sourceTree = "<group>"; };
+		E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +219,8 @@
 		9E9C172520FD464A007F0F31 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
+				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
 				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
 				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
 				1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */,
@@ -466,6 +469,7 @@
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
+				E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
