@@ -71,11 +71,20 @@
                         <outlet property="seeChoresView" destination="W00-PP-NQN" id="cQJ-Jf-Z1b"/>
                         <outlet property="seeGroupView" destination="D8k-5a-gPm" id="bmJ-of-ky5"/>
                         <segue destination="LZ1-Ud-76n" kind="show" identifier="groupInfoSegue" id="gbZ-OH-8Vg"/>
+                        <segue destination="m1G-ae-QoE" kind="show" identifier="choreInfoSegue" id="glH-AK-h8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9i-I5-R1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1189.5999999999999" y="-89.505247376311857"/>
+        </scene>
+        <!--choreInformation-->
+        <scene sceneID="Tql-pH-0KJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="choreInformation" id="m1G-ae-QoE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXF-ZM-JXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1810" y="55"/>
         </scene>
         <!--groupInfo-->
         <scene sceneID="fau-Te-tH6">

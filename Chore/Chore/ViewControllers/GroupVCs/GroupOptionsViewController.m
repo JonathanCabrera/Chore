@@ -48,7 +48,8 @@
     UITapGestureRecognizer *seeGroupRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeGroup)];
     [self.seeGroupView addGestureRecognizer:seeGroupRecognizer];
     
-    //UITapGestureRecognizer *seeChoresRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeChores:)];
+    UITapGestureRecognizer *seeChoresRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapSeeChores)];
+    [self.seeChoresView addGestureRecognizer:seeChoresRecognizer];
      
      
 }
@@ -62,6 +63,11 @@
     
     [self performSegueWithIdentifier:@"groupInfoSegue" sender:self.currentGroup];
     
+}
+
+- (void)didTapSeeChores {
+    
+    [self performSegueWithIdentifier:@"choreInfoSegue" sender:self.currentGroup];
 }
 
 
