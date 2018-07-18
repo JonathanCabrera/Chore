@@ -7,13 +7,14 @@
 //
 
 #import "ChoreInformationViewController.h"
+#import "ChoreDetailsViewController.h"
 #import "ChoreInformationCell.h"
-#import "Chore.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray<Chore*> *chores;
+@property NSArray<Chore *> *chores;
+@property NSInteger current_index;
 
 @end
 
@@ -21,33 +22,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
+        ChoreDetailsViewController *controller = (ChoreDetailsViewController *)segue.destinationViewController;
+        controller.chore = self.chores[self.current_index];
+    }
 }
-*/
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    
+    self.current_index = indexPath.row;
     return choreCell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return [self.chores count];
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.chores.count;
 }
+
+
+
+
 
 @end

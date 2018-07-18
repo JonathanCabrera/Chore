@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PpC-AV-sPm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Chore Details View Controller-->
         <scene sceneID="ZC8-GN-a2l">
             <objects>
-                <viewController id="PpC-AV-sPm" customClass="ChoreDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoreDetailsViewController" id="PpC-AV-sPm" customClass="ChoreDetailsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H2O-Af-qWm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,12 +94,14 @@
                         <viewLayoutGuide key="safeArea" id="z5K-V5-fRn"/>
                     </view>
                     <connections>
-                        <outlet property="deadlineLabel" destination="Jpx-Hj-RvQ" id="P2j-Uu-eg7"/>
+                        <outlet property="choreNameLabel" destination="2wZ-v3-X1l" id="zyN-K6-iIK"/>
+                        <outlet property="deadlineLabel" destination="u6K-z2-NwT" id="8nP-3X-3sp"/>
                         <outlet property="doneButton" destination="Rz9-XC-UoT" id="yUw-Cf-oOJ"/>
                         <outlet property="infoLabel" destination="DZP-qX-qce" id="7BG-Lu-GbL"/>
-                        <outlet property="informationLabel" destination="xiN-CC-KaT" id="na3-Dy-XIE"/>
-                        <outlet property="pointLabel" destination="Nhc-To-mMa" id="T3u-ul-k60"/>
+                        <outlet property="informationLabel" destination="xiN-CC-KaT" id="T2u-8X-hmt"/>
+                        <outlet property="pointLabel" destination="Nhc-To-mMa" id="S7T-qx-ES9"/>
                         <outlet property="userLabel" destination="k6x-GN-MH2" id="ddR-lc-gLA"/>
+                        <outlet property="userNameLabel" destination="k6x-GN-MH2" id="W05-vq-c8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fC-Ds-m1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
