@@ -17,14 +17,10 @@
 		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
 		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
 		1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */; };
-		1E5C36BE20FD500E002979BA /* groupOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36BD20FD500E002979BA /* groupOptions.storyboard */; };
-		1E5C36C020FD51E2002979BA /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36BF20FD51E2002979BA /* login.storyboard */; };
 		1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C220FD51F2002979BA /* LoginViewController.m */; };
-		1E5C36C720FE615B002979BA /* groupInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36C620FE615B002979BA /* groupInfo.storyboard */; };
 		1E5C36CA20FE821B002979BA /* GroupInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C920FE821B002979BA /* GroupInfoViewController.m */; };
 		1E5C36CF20FE830E002979BA /* GroupMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36CE20FE830E002979BA /* GroupMemberCell.m */; };
 		1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */; };
-		1E5C36D420FE92BE002979BA /* createGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C36D320FE92BE002979BA /* createGroup.storyboard */; };
 		1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D620FE93F5002979BA /* GroupCell.m */; };
 		1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D920FE940D002979BA /* NewUserViewController.m */; };
 		1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */; };
@@ -44,7 +40,6 @@
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
 		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
-		E8750C0020FEA68900D0B13D /* choreInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8750BFF20FEA68900D0B13D /* choreInformation.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,19 +80,15 @@
 		1E5C36B820FD4A10002979BA /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOptionsViewController.h; sourceTree = "<group>"; };
 		1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupOptionsViewController.m; sourceTree = "<group>"; tabWidth = 5; };
-		1E5C36BD20FD500E002979BA /* groupOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = groupOptions.storyboard; sourceTree = "<group>"; };
-		1E5C36BF20FD51E2002979BA /* login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		1E5C36C120FD51F2002979BA /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1E5C36C220FD51F2002979BA /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1E5C36C420FD62FF002979BA /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E5C36C620FE615B002979BA /* groupInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = groupInfo.storyboard; sourceTree = "<group>"; };
 		1E5C36C820FE821B002979BA /* GroupInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupInfoViewController.h; sourceTree = "<group>"; };
 		1E5C36C920FE821B002979BA /* GroupInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupInfoViewController.m; sourceTree = "<group>"; };
 		1E5C36CD20FE830E002979BA /* GroupMemberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupMemberCell.h; sourceTree = "<group>"; };
 		1E5C36CE20FE830E002979BA /* GroupMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupMemberCell.m; sourceTree = "<group>"; };
 		1E5C36D020FE857C002979BA /* AddGroupMemberCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberCell.h; sourceTree = "<group>"; };
 		1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGroupMemberCell.m; sourceTree = "<group>"; };
-		1E5C36D320FE92BE002979BA /* createGroup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = createGroup.storyboard; sourceTree = "<group>"; };
 		1E5C36D520FE93F5002979BA /* GroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
 		1E5C36D620FE93F5002979BA /* GroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		1E5C36D820FE940D002979BA /* NewUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
@@ -129,14 +120,12 @@
 		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.debug.xcconfig"; sourceTree = "<group>"; };
 		E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		E8750BE920FE57E600D0B13D /* choresDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = choresDetails.storyboard; sourceTree = "<group>"; };
 		E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreDetailsViewController.h; sourceTree = "<group>"; };
 		E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreDetailsViewController.m; sourceTree = "<group>"; };
 		E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationViewController.h; sourceTree = "<group>"; };
 		E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationViewController.m; sourceTree = "<group>"; };
 		E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationCell.h; sourceTree = "<group>"; };
 		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; };
-		E8750BFF20FEA68900D0B13D /* choreInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = choreInformation.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,10 +230,8 @@
 			children = (
 				1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */,
 				1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */,
-				1E5C36BD20FD500E002979BA /* groupOptions.storyboard */,
 				1E5C36C820FE821B002979BA /* GroupInfoViewController.h */,
 				1E5C36C920FE821B002979BA /* GroupInfoViewController.m */,
-				1E5C36C620FE615B002979BA /* groupInfo.storyboard */,
 				1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */,
 				1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */,
 				1E9738E420FFA53300EE46B9 /* addMember.storyboard */,
@@ -269,8 +256,6 @@
 				1E5C36C220FD51F2002979BA /* LoginViewController.m */,
 				1E5C36D820FE940D002979BA /* NewUserViewController.h */,
 				1E5C36D920FE940D002979BA /* NewUserViewController.m */,
-				1E5C36BF20FD51E2002979BA /* login.storyboard */,
-				1E5C36D320FE92BE002979BA /* createGroup.storyboard */,
 			);
 			path = LoginVCs;
 			sourceTree = "<group>";
@@ -362,8 +347,6 @@
 				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
 				E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */,
 				E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */,
-				E8750BFF20FEA68900D0B13D /* choreInformation.storyboard */,
-				E8750BE920FE57E600D0B13D /* choresDetails.storyboard */,
 			);
 			path = ChoreVCs;
 			sourceTree = "<group>";
@@ -484,10 +467,7 @@
 				E8750C0020FEA68900D0B13D /* choreInformation.storyboard in Resources */,
 				1E5C36D420FE92BE002979BA /* createGroup.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
-				1E5C36C020FD51E2002979BA /* login.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
-				1E5C36C720FE615B002979BA /* groupInfo.storyboard in Resources */,
-				E8750BEA20FE57E600D0B13D /* choresDetails.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

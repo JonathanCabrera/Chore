@@ -10,10 +10,13 @@
 #import "Chore.h"
 
 @interface ChoreDetailsViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UILabel *choreNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointLabel;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
+
+@property (nonatomic, weak) Chore *chore;
+
 
 @end

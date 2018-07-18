@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong, nonnull) NSString *name;
 @property (nonatomic, strong, nonnull) NSString *info;
+@property (nonatomic, strong, nonnull) NSString *deadline;
 @property (nonatomic, strong, nonnull) PFUser *user;
 @property (nonatomic) int points;
 @property (nonatomic, strong, nonnull) PFFile *photo;

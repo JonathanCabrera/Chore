@@ -19,57 +19,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ruw-x7-skt">
-                                <rect key="frame" x="0.0" y="87" width="375" height="580"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z7S-qG-vTd">
-                                    <size key="itemSize" width="172" height="162"/>
+                                    <size key="itemSize" width="185" height="162"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddGroupMemberCell" id="PJm-wE-yYS" customClass="AddGroupMemberCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="162"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DS1-lu-I8W">
                                                     <rect key="frame" x="0.0" y="0.0" width="170" height="162"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="user-placeholder"/>
                                                     <connections>
                                                         <action selector="didTapAdd:" destination="PJm-wE-yYS" eventType="touchUpInside" id="jnx-TU-Ocb"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add member" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dym-Kt-llu">
-                                                    <rect key="frame" x="34" y="126" width="102" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <size key="customSize" width="170" height="162"/>
-                                        <connections>
-                                            <outlet property="addButton" destination="DS1-lu-I8W" id="vF4-qS-sV4"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GroupMemberCell" id="B5z-5i-k4h" customClass="GroupMemberCell">
-                                        <rect key="frame" x="180" y="0.0" width="195" height="162"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="195" height="162"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-G9-oGT" customClass="PFImageView">
-                                                    <rect key="frame" x="12" y="0.0" width="170" height="162"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Rs4-eY-K1s" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-gt-IAp">
-                                                    <rect key="frame" x="43" y="129" width="102" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add member" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dym-Kt-llu">
+                                                    <rect key="frame" x="40" y="131" width="102" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -78,12 +56,42 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="Rs4-eY-K1s" firstAttribute="leading" secondItem="PJm-wE-yYS" secondAttribute="leading" id="Mnb-P6-ah9"/>
+                                            <constraint firstAttribute="bottom" secondItem="Rs4-eY-K1s" secondAttribute="bottom" id="T2d-sC-Ncr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rs4-eY-K1s" secondAttribute="trailing" id="YLb-5T-FdD"/>
+                                            <constraint firstItem="Rs4-eY-K1s" firstAttribute="top" secondItem="PJm-wE-yYS" secondAttribute="top" id="rIl-31-lf8"/>
+                                        </constraints>
+                                        <size key="customSize" width="182" height="162"/>
+                                        <connections>
+                                            <outlet property="addButton" destination="DS1-lu-I8W" id="vF4-qS-sV4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GroupMemberCell" id="B5z-5i-k4h" customClass="GroupMemberCell">
+                                        <rect key="frame" x="193" y="0.0" width="182" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-gt-IAp">
+                                                    <rect key="frame" x="43" y="129" width="102" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-G9-oGT" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
                                             <constraint firstItem="Mtb-G9-oGT" firstAttribute="top" secondItem="B5z-5i-k4h" secondAttribute="top" id="7nM-cU-Trj"/>
                                             <constraint firstAttribute="bottom" secondItem="Mtb-G9-oGT" secondAttribute="bottom" id="GF0-pz-vak"/>
                                             <constraint firstItem="Mtb-G9-oGT" firstAttribute="leading" secondItem="B5z-5i-k4h" secondAttribute="leading" id="Xwf-mI-aJh"/>
                                             <constraint firstAttribute="trailing" secondItem="Mtb-G9-oGT" secondAttribute="trailing" id="u7l-Vv-jUa"/>
                                         </constraints>
-                                        <size key="customSize" width="195" height="162"/>
+                                        <size key="customSize" width="182" height="162"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="lQw-gt-IAp" id="Ftb-6z-fsj"/>
                                             <outlet property="profilePic" destination="Mtb-G9-oGT" id="aNG-53-PB4"/>
