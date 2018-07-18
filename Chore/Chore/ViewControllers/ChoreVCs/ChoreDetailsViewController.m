@@ -30,7 +30,6 @@
 }
 
 - (void)setChoreDetails {
-    
     self.choreNameLabel.text = self.chore.name;
     self.userNameLabel.text = self.chore.user.username;
     self.deadlineLabel.text = self.chore.deadline;

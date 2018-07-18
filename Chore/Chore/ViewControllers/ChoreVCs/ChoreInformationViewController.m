@@ -30,16 +30,12 @@
     [super didReceiveMemoryWarning];
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
         ChoreDetailsViewController *controller = (ChoreDetailsViewController *)segue.destinationViewController;
         controller.chore = self.chores[self.current_index];
-
     }
 }
-
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
