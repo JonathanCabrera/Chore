@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sdK-8W-SJO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -44,12 +44,21 @@
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="sWK-yv-glH" id="5zy-y3-em2"/>
+                        <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>
+                        <segue destination="jel-sq-Go7" kind="presentation" identifier="choreDetailsSegue" id="hYJ-kZ-NZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sp6-Gi-PHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="224.80000000000001" y="121.88905547226388"/>
+        </scene>
+        <!--choresDetails-->
+        <scene sceneID="ORf-g2-KO9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="choresDetails" id="jel-sq-Go7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81H-JS-a2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="207" y="555"/>
         </scene>
     </scenes>
 </document>
