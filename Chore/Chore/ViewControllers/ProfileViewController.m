@@ -10,11 +10,20 @@
 #import "Parse.h"
 #import "ParseUI.h"
 
-@interface ProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@protocol profileViewControllerDelegate;
+
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
+- (IBAction)onTapEditProfile:(id)sender;
+
 
 @property (weak, nonatomic) NSArray *upcomingChores;
+//
+@property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 
 @end
 
@@ -22,8 +31,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
    
     [self viewWillAppear:true];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    _profilePicture = [PFUser currentUser][@"profilePic"];
     //[self fetchData];
     //self.userNameLabel.text = PFUser.currentUser.username;
      
@@ -36,21 +48,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image {
-    
-    // check if image is not nil
-    if (!image) {
-        return nil;
-    }
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    // get image data and check if that is not nil
-    if (!imageData) {
-        return nil;
-    }
-    
-    return [PFFile fileWithName:@"image.png" data:imageData];
-}
+
 
 
 
@@ -66,4 +64,7 @@
 }
 */
 
+
+- (IBAction)onTapEditProfile:(id)sender {
+}
 @end

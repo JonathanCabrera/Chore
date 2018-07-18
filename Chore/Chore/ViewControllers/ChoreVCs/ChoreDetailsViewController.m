@@ -10,7 +10,7 @@
 #import "ProfileViewController.h"
 //#import "ChoreInformationViewController.h"
 
-@interface ChoreDetailsViewController () <ProfileViewControllerDelegate>
+@interface ChoreDetailsViewController () //<ProfileViewControllerDelegate>
 
 @end
 
