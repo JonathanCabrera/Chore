@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Chore.h"
+
 
 @interface ChoreInformationViewController : UIViewController
 

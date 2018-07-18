@@ -8,9 +8,9 @@
 
 #import "ChoreDetailsViewController.h"
 #import "ProfileViewController.h"
-//#import "ChoreInformationViewController.h"
+#import "ChoreInformationViewController.h"
 
-@interface ChoreDetailsViewController () <ProfileViewControllerDelegate>
+@interface ChoreDetailsViewController ()
 
 @end
 
@@ -28,6 +28,16 @@
 - (IBAction)didTapeDone:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)setChoreDetails {
+    
+    userLabel.text = ;
+    deadlineLabel.text = ;
+    infoLabel.text = ;
+    pointLabel.text = ;
+    informationLabel.text = ;
+}
+
 
 /*
 #pragma mark - Navigation
