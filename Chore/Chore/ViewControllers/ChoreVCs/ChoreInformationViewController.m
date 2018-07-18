@@ -8,6 +8,7 @@
 
 #import "ChoreInformationViewController.h"
 #import "ChoreInformationCell.h"
+#import "Chore.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -39,13 +40,14 @@
 */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ChoreInformationCell *choreCell = [[tableView dequeueReusableCellWithIdentifier:"@ChoreInformationCell"] forIndexPath:indexPath];
+    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     
     return choreCell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
+    return [self.chores count];
 }
 
 @end

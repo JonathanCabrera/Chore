@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AddGroupMemberCellDelegate;
+
 @interface AddGroupMemberCell : UICollectionViewCell
 
+@property (nonatomic, weak) id<AddGroupMemberCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+
+@end
+
+
+@protocol AddGroupMemberCellDelegate
+
+- (void)addMember:(AddGroupMemberCell *)addGroupMemberCell;
 
 @end

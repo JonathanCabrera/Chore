@@ -8,6 +8,15 @@
 
 #import "AddGroupMemberCell.h"
 
+
 @implementation AddGroupMemberCell
+
+- (IBAction)didTapAdd:(id)sender {
+    
+    [self.delegate addMember:self];
+    
+}
+
+
 
 @end

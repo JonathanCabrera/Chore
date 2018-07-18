@@ -56,6 +56,9 @@
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
     
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"user-placeholder"], 1);
+    newUser[@"profilePic"] = [PFFile fileWithData:imageData];
+    
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
