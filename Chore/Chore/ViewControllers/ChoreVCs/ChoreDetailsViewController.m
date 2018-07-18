@@ -31,13 +31,12 @@
 
 - (void)setChoreDetails {
     
-    userLabel.text = ;
-    deadlineLabel.text = ;
-    infoLabel.text = ;
-    pointLabel.text = ;
-    informationLabel.text = ;
+    self.choreNameLabel.text = self.chore.name;
+    self.userNameLabel.text = self.chore.user.username;
+    self.deadlineLabel.text = self.chore.deadline;
+    self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
+    self.informationLabel.text = self.chore.info;
 }
-
 
 /*
 #pragma mark - Navigation
