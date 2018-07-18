@@ -53,12 +53,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3S-a5-iYq">
+                                <rect key="frame" x="16" y="84" width="105" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onTapEditProfile:" destination="6mG-8N-NEe" eventType="touchUpInside" id="yN2-sK-6SM"/>
+                                    <segue destination="Dou-hr-MlD" kind="presentation" id="ndS-dz-4hf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Wjf-Gw-E9r"/>
                     </view>
                     <navigationItem key="navigationItem" id="6aO-wZ-WGN"/>
                     <connections>
+                        <outlet property="editProfileButton" destination="V3S-a5-iYq" id="9JK-rK-4an"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="7Wk-rY-5cp"/>
                         <outlet property="userNameLabel" destination="sSH-VM-3rP" id="JX3-Sz-8k3"/>
@@ -67,6 +77,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tb-46-VoO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="132.68365817091455"/>
+        </scene>
+        <!--editProfile-->
+        <scene sceneID="R5c-XK-aPR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="editProfile" id="Dou-hr-MlD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tlV-MW-cSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="48"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fkh-DL-pSA">

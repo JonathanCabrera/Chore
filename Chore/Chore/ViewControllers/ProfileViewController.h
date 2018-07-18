@@ -9,18 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Parse.h"
 
-@protocol ProfileViewControllerDelegate
-@end
+@protocol profileViewControllerDelegate;
 
 @interface ProfileViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
-//@property (nonatomic, strong) PFFile *image;
 
-- (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image;
-
-
-
-//@property (nonatomic, strong) id<ProfileViewControllerDelegate> delegate;
 
 @end
 
