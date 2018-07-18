@@ -9,7 +9,6 @@
 #import "ProfileViewController.h"
 #import "Parse.h"
 #import "ParseUI.h"
-#import "UpcomingChoresCell.h"
 
 @interface ProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;

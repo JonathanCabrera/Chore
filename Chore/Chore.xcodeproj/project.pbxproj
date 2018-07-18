@@ -35,7 +35,6 @@
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
 		9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB05F20FE890A003F458E /* ProfileViewController.m */; };
 		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
-		9E9FB06820FE8DA3003F458E /* UpcomingChoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */; };
 		E8750BEA20FE57E600D0B13D /* choresDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8750BE920FE57E600D0B13D /* choresDetails.storyboard */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
@@ -112,8 +111,6 @@
 		9E9FB05E20FE890A003F458E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		9E9FB05F20FE890A003F458E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
-		9E9FB06620FE8DA3003F458E /* UpcomingChoresCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpcomingChoresCell.h; sourceTree = "<group>"; };
-		9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpcomingChoresCell.m; sourceTree = "<group>"; };
 		AD7C64C32F624343DAC51904 /* libPods-Chore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -230,8 +227,6 @@
 				1E1E3C4420FD43A3003C87B4 /* Chore.m */,
 				1E5C36B720FD4A10002979BA /* Group.h */,
 				1E5C36B820FD4A10002979BA /* Group.m */,
-				9E9FB06620FE8DA3003F458E /* UpcomingChoresCell.h */,
-				9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */,
 				E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */,
 				E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */,
 			);
@@ -258,8 +253,6 @@
 				1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */,
 				1E5C36D520FE93F5002979BA /* GroupCell.h */,
 				1E5C36D620FE93F5002979BA /* GroupCell.m */,
-				9E9FB06620FE8DA3003F458E /* UpcomingChoresCell.h */,
-				9E9FB06720FE8DA3003F458E /* UpcomingChoresCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -561,7 +554,6 @@
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
 				1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */,
 				E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */,
-				9E9FB06820FE8DA3003F458E /* UpcomingChoresCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
