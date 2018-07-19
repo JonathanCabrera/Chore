@@ -30,8 +30,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chore name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1B-Jb-kcv">
-                                                    <rect key="frame" x="15" y="31" width="255" height="88"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chore name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1B-Jb-kcv">
+                                                    <rect key="frame" x="15" y="31" width="93" height="88"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -42,18 +42,35 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfA-h2-mOH">
+                                                    <rect key="frame" x="15" y="124" width="53" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxU-Xn-wVs">
+                                                    <rect key="frame" x="71" y="126" width="27" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="O1B-Jb-kcv" firstAttribute="leading" secondItem="wc3-nj-aSS" secondAttribute="leadingMargin" id="1cB-H9-JBg"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="O1B-Jb-kcv" secondAttribute="bottom" constant="20" id="9aW-eL-Zkc"/>
+                                                <constraint firstItem="IfA-h2-mOH" firstAttribute="leading" secondItem="O1B-Jb-kcv" secondAttribute="leading" id="EFf-TT-FGQ"/>
                                                 <constraint firstItem="ZRV-vU-SsV" firstAttribute="centerY" secondItem="O1B-Jb-kcv" secondAttribute="centerY" id="JfD-6I-drQ"/>
+                                                <constraint firstItem="GxU-Xn-wVs" firstAttribute="centerY" secondItem="IfA-h2-mOH" secondAttribute="centerY" id="O98-8T-LNT"/>
                                                 <constraint firstItem="O1B-Jb-kcv" firstAttribute="top" secondItem="wc3-nj-aSS" secondAttribute="topMargin" constant="20" id="aYH-RZ-WhL"/>
+                                                <constraint firstItem="GxU-Xn-wVs" firstAttribute="leading" secondItem="IfA-h2-mOH" secondAttribute="trailing" constant="3" id="aqi-yw-h8j"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ZRV-vU-SsV" secondAttribute="trailing" id="pjK-sd-QO4"/>
+                                                <constraint firstItem="IfA-h2-mOH" firstAttribute="top" secondItem="O1B-Jb-kcv" secondAttribute="bottom" constant="5" id="ujc-3C-TOc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="choreNameLabel" destination="O1B-Jb-kcv" id="sf3-j0-kGo"/>
                                             <outlet property="choreView" destination="wc3-nj-aSS" id="gaw-pq-WKh"/>
+                                            <outlet property="deadlineLabel" destination="GxU-Xn-wVs" id="DfU-89-2ZY"/>
                                             <outlet property="pointsLabel" destination="ZRV-vU-SsV" id="c3E-XW-lWI"/>
                                         </connections>
                                     </tableViewCell>
