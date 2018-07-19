@@ -66,13 +66,8 @@
 }
 
 - (IBAction)didTapAddChore:(id)sender {
-    
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
 }
-
-
-
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
