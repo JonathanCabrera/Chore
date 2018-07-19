@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Group.h"
 
 @interface AddChoreViewController : UIViewController
+
+@property (strong, nonatomic) Group *currentGroup;
 
 @end

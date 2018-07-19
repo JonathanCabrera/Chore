@@ -59,6 +59,10 @@
     NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"user-placeholder"], 1);
     newUser[@"profilePic"] = [PFFile fileWithData:imageData];
     
+    newUser[@"points"] = [NSNumber numberWithInteger:0];
+    newUser[@"completedChores"] = [NSMutableArray new];
+    newUser[@"uncompletedChores"] = [NSMutableArray new];
+    
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);

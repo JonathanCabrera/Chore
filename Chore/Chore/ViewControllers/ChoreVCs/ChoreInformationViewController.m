@@ -9,12 +9,15 @@
 #import "ChoreInformationViewController.h"
 #import "ChoreDetailsViewController.h"
 #import "ChoreInformationCell.h"
+#import "AddChoreViewController.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray<Chore *> *chores;
-@property NSInteger current_index;
+@property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
+
+
 
 @end
 
@@ -70,10 +73,26 @@
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
+- (IBAction)didTapAddChore:(id)sender {
+    
+    [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
+}
+
+
+
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    UINavigationController *controller = [segue destinationViewController];
+    
     if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
-        ChoreDetailsViewController *controller = (ChoreDetailsViewController *)segue.destinationViewController;
-        controller.chore = sender;
+        ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
+        detailsController.chore = sender;
+    } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
+        AddChoreViewController *addChoreController = (AddChoreViewController *)controller.topViewController;
+        addChoreController.currentGroup = sender;
+        
     }
 }
 

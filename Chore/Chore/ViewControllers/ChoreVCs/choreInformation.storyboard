@@ -65,6 +65,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="+ Add Chore"/>
+                                <connections>
+                                    <action selector="didTapAddChore:" destination="sdK-8W-SJO" eventType="touchUpInside" id="M3S-QB-WSw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
                                 <rect key="frame" x="270" y="58" width="89" height="30"/>
@@ -79,8 +82,10 @@
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
                     <connections>
+                        <outlet property="addChoreButton" destination="feq-eg-LOL" id="Aq2-Ik-Sj3"/>
                         <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>
                         <segue destination="L4Z-CK-YYS" kind="show" identifier="choreDetailsSegue" id="Z6F-bb-cAp"/>
+                        <segue destination="Wir-Hx-zov" kind="presentation" identifier="addChoreSegue" id="orj-Ws-mml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sp6-Gi-PHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,13 +100,21 @@
             </objects>
             <point key="canvasLocation" x="135" y="554"/>
         </scene>
+        <!--addChore-->
+        <scene sceneID="cd5-wJ-Lh9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="addChore" id="Wir-Hx-zov" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="anX-YD-STy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823" y="-429"/>
+        </scene>
         <!--createChore-->
         <scene sceneID="R91-CX-hHw">
             <objects>
                 <viewControllerPlaceholder storyboardName="createChore" id="aVo-Eo-Hz3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Eu-BJ-GF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="13"/>
+            <point key="canvasLocation" x="810" y="272"/>
         </scene>
     </scenes>
 </document>

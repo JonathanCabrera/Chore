@@ -31,6 +31,8 @@
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore;
 
 @end
+
+
     
     
     
