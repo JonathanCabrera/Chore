@@ -25,7 +25,6 @@
     
     _user = user;
     self.userNameLabel.text = user.username;
-    self.userPointLabel.text = [NSString stringWithFormat:@"%@", user[@"points"]];
     
 }
 

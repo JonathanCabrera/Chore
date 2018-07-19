@@ -14,7 +14,6 @@
 @property (nonatomic, strong, nonnull) NSString *name;
 @property (nonatomic, strong, nonnull) NSString *info;
 @property (nonatomic, strong, nonnull) NSDate *deadline;
-@property (nonatomic, strong, nonnull) NSMutableArray *users;
 @property (nonatomic) int points;
 @property (nonatomic, strong, nonnull) PFFile *photo;
 
