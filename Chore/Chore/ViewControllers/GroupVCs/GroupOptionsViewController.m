@@ -9,6 +9,7 @@
 #import "GroupOptionsViewController.h"
 #import "Group.h"
 #import "GroupInfoViewController.h"
+#import "ChoreInformationViewController.h"
 
 @interface GroupOptionsViewController ()
 @property (weak, nonatomic) IBOutlet UIView *seeGroupView;
@@ -83,6 +84,11 @@
         
         GroupInfoViewController *groupInfoController = (GroupInfoViewController *)nextController;
         groupInfoController.currentGroup = self.currentGroup;
+        
+    } else if([segue.identifier isEqualToString:@"choreInfoSegue"]) {
+        
+        ChoreInformationViewController *choreInfoController = (ChoreInformationViewController *)nextController;
+        choreInfoController.currentGroup = self.currentGroup;
         
     }
     

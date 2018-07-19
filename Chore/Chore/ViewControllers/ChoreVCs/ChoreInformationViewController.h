@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Chore.h"
-
+#import "Group.h"
 
 @interface ChoreInformationViewController : UIViewController
+
+@property (nonatomic, strong) Group *currentGroup;
 
 @end

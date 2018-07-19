@@ -95,11 +95,12 @@
     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"Saved edit!");
+            [self dismissViewControllerAnimated:true completion:nil];
         } else {
             NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
-     [self dismissViewControllerAnimated:true completion:nil];
+    
    
 }
 @end

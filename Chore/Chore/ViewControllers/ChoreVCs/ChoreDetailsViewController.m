@@ -19,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setupafter loading the view.
+    [self setChoreDetails];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,10 +33,13 @@
 
 - (void)setChoreDetails {
     self.choreNameLabel.text = self.chore.name;
-    self.userNameLabel.text = self.chore.user.username;
-    self.deadlineLabel.text = self.chore.deadline;
+    //self.userNameLabel.text = self.chore.user.username;
+    self.deadlineLabel.text = [NSString stringWithFormat:@"%@", self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
+    self.chorePic.file = self.chore.photo;
+    [self.chorePic loadInBackground];
+
 }
 
 /*

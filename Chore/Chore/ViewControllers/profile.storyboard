@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="1935" y="48"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="fkh-DL-pSA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJB-va-zeB" sceneMemberID="viewController">
+                <navigationController title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="bJB-va-zeB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lIj-hZ-Lt6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

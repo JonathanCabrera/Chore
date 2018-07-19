@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Chore.h"
+#import "ParseUI.h"
 
 @interface ChoreDetailsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *choreNameLabel;
@@ -15,8 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointLabel;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *chorePic;
 
-@property (nonatomic, weak) Chore *chore;
+@property (nonatomic, strong) Chore *chore;
 
 
 @end

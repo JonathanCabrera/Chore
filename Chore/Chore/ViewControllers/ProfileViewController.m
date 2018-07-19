@@ -32,16 +32,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
-    [self viewWillAppear:true];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    _profilePicture = [PFUser currentUser][@"profilePic"];
-    //[self fetchData];
-    //self.userNameLabel.text = PFUser.currentUser.username;
-     
-     
-    // Do any additional setup after loading the view.
+    self.profilePicture.file = [PFUser currentUser][@"profilePic"];
+    [self.profilePicture loadInBackground];
+
 }
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    self.profilePicture.file = [PFUser currentUser][@"profilePic"];
+    NSLog(@"check");
+    [self.profilePicture loadInBackground];
+    
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
