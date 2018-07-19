@@ -28,6 +28,25 @@
     [newAssignment saveInBackgroundWithBlock: completion];
 }
 
++ (void) assignChore: (NSString * _Nullable)userName withChore: (Chore *)chore withCompletion: (PFBooleanResultBlock _Nullable)completion {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    [query whereKey:@"userName" equalTo:userName];
+    query.limit = 1;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            ChoreAssignment *currentAssignment = posts[0];
+            [currentAssignment.uncompletedChores addObject:chore];
+            [currentAssignment setObject:currentAssignment.uncompletedChores forKey:@"uncompletedChores"];
+            [currentAssignment saveInBackground];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+
 
 @end
 

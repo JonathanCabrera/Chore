@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Chore.h"
 
 @interface ChoreAssignment : PFObject <PFSubclassing>
 
@@ -19,5 +20,6 @@
 
 + (void) makeChoreAssignment: (NSString * _Nullable)userName withGroupName: (NSString * _Nullable)groupName withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
++ (void) assignChore: (NSString * _Nullable)userName withChore: (Chore *)chore withCompletion: (PFBooleanResultBlock _Nullable)completion;
 
 @end

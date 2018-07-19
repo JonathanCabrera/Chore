@@ -23,10 +23,15 @@
 
 
 - (void)setCell: (Chore *)chore {
-    
     _chore = chore;
     self.choreNameLabel.text = chore.name;
     self.chorePointLabel.text = [NSString stringWithFormat:@"%d", chore.points];
+}
+
+- (IBAction)didTapCheck:(id)sender {
+    
+    [self.checkButton setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+    [self.delegate selectChore:self withChore:self.chore];
     
 }
 

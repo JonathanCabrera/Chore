@@ -28,5 +28,12 @@
     
 }
 
+- (IBAction)didTapCheck:(id)sender {
+    
+    [self.checkButton setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+    [self.delegate selectUser:self withUserName:self.user.username];
+    
+}
+
 
 @end
