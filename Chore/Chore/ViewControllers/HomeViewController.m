@@ -52,9 +52,6 @@
         return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * 10];
         
     }];
-    
-    
-    NSLog(@"user's group: %@", self.currentGroup.name);
 
     [_progressBar setProgress:100 animated:YES duration:5];
     UIColor *unfinished = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
