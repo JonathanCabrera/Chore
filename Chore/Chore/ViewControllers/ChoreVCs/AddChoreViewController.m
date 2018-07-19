@@ -9,8 +9,9 @@
 #import "AddChoreViewController.h"
 #import "AddChoreCell.h"
 #import "AssignUserCell.h"
+#import "ChoreAssignment.h"
 
-@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AddChoreCellDelegate, AssignUserCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *choreTableView;
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
@@ -18,6 +19,8 @@
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
+@property (nonatomic, strong) NSString *userToAssign;
+@property (nonatomic, strong) Chore *choreToAssign;
 
 
 @end
@@ -83,14 +86,14 @@
         
         AddChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AddChoreCell" forIndexPath:indexPath];
         [choreCell setCell:self.allChores[indexPath.row]];
-        //choreCell.delegate = self;
+        choreCell.delegate = self;
         
         return choreCell;
     } else {
 
         AssignUserCell *userCell = [tableView dequeueReusableCellWithIdentifier:@"AssignUserCell" forIndexPath:indexPath];
         [userCell setCell:self.userArray[indexPath.row]];
-        //userCell.delegate = self;
+        userCell.delegate = self;
         
         return userCell;
     }
@@ -112,8 +115,27 @@
 }
 
 
+- (void)selectChore:(AddChoreCell *)choreCell withChore:(Chore *)chore {
+    self.choreToAssign = chore;
+}
 
+- (void)selectUser:(AssignUserCell *)userCell withUserName:(NSString *)userName {
+    
+    self.userToAssign = userName;
+}
 
+- (IBAction)saveAssignment:(id)sender {
+    
+    [ChoreAssignment assignChore:self.userToAssign withChore:self.choreToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            NSLog(@"Assigned chore!");
+        } else {
+            NSLog(@"Error assigning chore: %@", error.localizedDescription);
+        }
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 /*
@@ -125,5 +147,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end
