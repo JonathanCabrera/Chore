@@ -12,6 +12,7 @@
 @protocol profileViewControllerDelegate;
 
 @interface ProfileViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 - (void)setName:(PFUser *)user;
 @end

@@ -16,6 +16,7 @@
 @interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
 @property (strong, nonatomic) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
+@property (weak, nonatomic) IBOutlet UITableView *pastTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -41,6 +42,10 @@
     [self fetchUpcomingChores];
     
     [self setName:[PFUser currentUser]];
+    UIColor *backgroundColor = [UIColor colorWithRed:0.63 green:0.87 blue:1.00 alpha:1.0];
+    self.view.backgroundColor = backgroundColor;
+    self.upcomingTableView.backgroundColor = backgroundColor;
+    self.pastTableView.backgroundColor = backgroundColor;
 
 }
 

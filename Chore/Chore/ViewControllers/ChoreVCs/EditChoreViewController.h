@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
 @property (weak, nonatomic) IBOutlet UIButton *takeAPictureButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
-@property (strong, nonatomic) UIImage* chorePicture;
+@property (strong, nonatomic) UIImage *chorePicture;
 - (IBAction)onTapCancel:(id)sender;
 - (IBAction)onTapPost:(id)sender;
 - (IBAction)onTapTakePic:(id)sender;

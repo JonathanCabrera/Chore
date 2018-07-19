@@ -69,7 +69,7 @@
 - (IBAction)onTapPost:(id)sender {
     if (self.chorePicture != nil){
         NSData *data = UIImagePNGRepresentation(self.chorePicture);
-        [PFUser currentUser][@"chorePic"] = [PFFile fileWithData:data];
+        [PFUser currentUser][@"chorePicture"] = [PFFile fileWithData:data];
         
     }
     
