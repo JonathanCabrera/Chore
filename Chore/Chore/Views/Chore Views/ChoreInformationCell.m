@@ -26,12 +26,13 @@
     _chore = chore;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
+
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd-YYYY"];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
     NSString *dateString = [dateFormatter stringFromDate:chore.deadline];
     self.deadlineLabel.text = dateString;
-    
+
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
     [self.choreView addGestureRecognizer:tapRecognizer];
     

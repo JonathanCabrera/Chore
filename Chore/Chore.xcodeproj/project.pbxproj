@@ -41,6 +41,8 @@
 		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
 		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
+		9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A95B2100FF79001FF108 /* EditChoreViewController.m */; };
+		9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A95D2100FF8A001FF108 /* editChore.storyboard */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
@@ -131,6 +133,9 @@
 		9E14378420FD51FE0007E6A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9E1C600F20FD50FB0076B4D5 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E1C601120FD51030076B4D5 /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E50A95A2100FF79001FF108 /* EditChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
+		9E50A95B2100FF79001FF108 /* EditChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
+		9E50A95D2100FF8A001FF108 /* editChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editChore.storyboard; sourceTree = "<group>"; };
 		9E9C172220FD4646007F0F31 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9E9C172320FD4646007F0F31 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9E9C172620FD4DD0007F0F31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -255,15 +260,15 @@
 		1E5C36CB20FE822A002979BA /* GroupVCs */ = {
 			isa = PBXGroup;
 			children = (
-				1E9738ED20FFECB400EE46B9 /* groupInfo.storyboard */,
 				1E9738EC20FFECB400EE46B9 /* groupOptions.storyboard */,
 				1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */,
 				1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */,
+				1E9738ED20FFECB400EE46B9 /* groupInfo.storyboard */,
 				1E5C36C820FE821B002979BA /* GroupInfoViewController.h */,
 				1E5C36C920FE821B002979BA /* GroupInfoViewController.m */,
+				1E9738E420FFA53300EE46B9 /* addMember.storyboard */,
 				1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */,
 				1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */,
-				1E9738E420FFA53300EE46B9 /* addMember.storyboard */,
 			);
 			path = GroupVCs;
 			sourceTree = "<group>";
@@ -349,14 +354,14 @@
 				1E9738E020FFA3E200EE46B9 /* LoginVCs */,
 				E8750BF020FEA37C00D0B13D /* ChoreVCs */,
 				1E5C36CB20FE822A002979BA /* GroupVCs */,
-				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
 				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
+				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
+				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
 				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
+				9E9FB06120FE8B22003F458E /* profile.storyboard */,
 				9E9FB07520FFA61D003F458E /* EditProfileViewController.h */,
 				9E9FB07620FFA61D003F458E /* EditProfileViewController.m */,
-				9E9FB06120FE8B22003F458E /* profile.storyboard */,
-				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				9E9FB07820FFA8D5003F458E /* editProfile.storyboard */,
 			);
 			path = ViewControllers;
@@ -383,13 +388,18 @@
 				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
 				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
 				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
+				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
 				E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */,
 				E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */,
+				1E9738FB20FFF54000EE46B9 /* addChore.storyboard */,
 				1E9738F820FFF51E00EE46B9 /* AddChoreViewController.h */,
 				1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */,
 				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
 				1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */,
 				1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */,
+				9E50A95A2100FF79001FF108 /* EditChoreViewController.h */,
+				9E50A95B2100FF79001FF108 /* EditChoreViewController.m */,
+				9E50A95D2100FF8A001FF108 /* editChore.storyboard */,
 			);
 			path = ChoreVCs;
 			sourceTree = "<group>";
@@ -513,6 +523,7 @@
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E9738EF20FFECB400EE46B9 /* groupInfo.storyboard in Resources */,
 				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
+				9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +632,7 @@
 			files = (
 				1E5C36CF20FE830E002979BA /* GroupMemberCell.m in Sources */,
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
+				9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */,
 				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
 				1E200B352100FED000945BD6 /* AddChoreCell.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,

@@ -1,35 +1,25 @@
+
+
 //
-//  EditProfileViewController.m
+//  EditChoreViewController.m
 //  Chore
 //
-//  Created by Katie Kwan on 7/18/18.
+//  Created by Katie Kwan on 7/19/18.
 //  Copyright © 2018 JAK. All rights reserved.
 //
 
-#import "EditProfileViewController.h"
+#import "EditChoreViewController.h"
 #import "Parse.h"
 #import "ParseUI.h"
 
-@interface EditProfileViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *postButton;
-- (IBAction)onTapCancelButton:(id)sender;
-- (IBAction)onTapPostButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *takeAPictureButton;
-@property (weak, nonatomic) IBOutlet UIButton *cameraRollButton;
-- (IBAction)onTapTakeAPic:(id)sender;
-- (IBAction)onTapCameraRoll:(id)sender;
-
-
-
+@interface EditChoreViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
-@implementation EditProfileViewController
+@implementation EditChoreViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
     // Do any additional setup after loading the view.
 }
 
@@ -38,12 +28,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+/*
+#pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    self.profilePic = editedImage;
+    self.chorePicture = editedImage;
     CGSize size = CGSizeMake(250, 250);
-    self.profilePic = [self resizeImage:self.profilePic withSize:size];
+    self.chorePicture = [self resizeImage:self.chorePicture withSize:size];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -62,27 +62,17 @@
     return newImage;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)onTapCancelButton:(id)sender {
+- (IBAction)onTapCancel:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)onTapPostButton:(id)sender {
-    if (self.profilePic != nil){
-        NSData *data = UIImagePNGRepresentation(self.profilePic);
-        [PFUser currentUser][@"profilePic"] = [PFFile fileWithData:data];
-
+- (IBAction)onTapPost:(id)sender {
+    if (self.chorePicture != nil){
+        NSData *data = UIImagePNGRepresentation(self.chorePicture);
+        [PFUser currentUser][@"chorePic"] = [PFFile fileWithData:data];
+        
     }
-
+    
     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"Saved edit!");
@@ -91,10 +81,9 @@
             NSLog(@"Error: %@", error.localizedDescription);
         }
     }];
-    
-   
 }
-- (IBAction)onTapTakeAPic:(id)sender {
+
+- (IBAction)onTapTakePic:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
@@ -109,7 +98,6 @@
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
 }
-
 - (IBAction)onTapCameraRoll:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;

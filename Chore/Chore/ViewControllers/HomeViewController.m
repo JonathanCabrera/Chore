@@ -34,8 +34,6 @@
 - (IBAction)onTapLogOut:(id)sender;
 
 
-// Hint View Customization (inside progress bar)
-
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
 - (IBAction)onTapProgressButton:(id)sender;
 
@@ -49,14 +47,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    //[_progressBar setProgress:(CGFloat)progress animated:(BOOL)animated];
+
     [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
         return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * 10];
         
     }];
     
-    //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     if(usersGroup != nil) {
         
@@ -66,7 +62,7 @@
         
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
-                self.currentGroup = posts[0];
+                //self.currentGroup = posts[0];
                 NSLog(@"user's group: %@", self.currentGroup.name);
             } else {
                 NSLog(@"%@", error.localizedDescription);
@@ -76,9 +72,6 @@
         NSLog(@"user has no group");
     }
 
-    
-    
-    //[_progressBar setProgressBarWidth:25];
     [_progressBar setProgress:100 animated:YES duration:5];
     UIColor *unfinished = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.46 green:0.56 blue:0.80 alpha:1.0];
@@ -90,12 +83,7 @@
     [_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = backgroundColor;
     [_progressBar setStartAngle:270];
-    //[_progressBar drawProgressBar]
     
-    
-    
-    //[_progressBar setProgress:(CGFloat)progress animated:(BOOL)animated];
-    // Do any additional setup after loading the view.
     
 }
 
