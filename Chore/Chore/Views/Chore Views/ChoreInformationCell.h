@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Chore.h"
 
+
 @protocol ChoreInformationCellDelegate;
 
 @interface ChoreInformationCell : UITableViewCell
@@ -18,8 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *choreNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIView *choreView;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 
 - (void)setCell: (Chore *)chore;
 

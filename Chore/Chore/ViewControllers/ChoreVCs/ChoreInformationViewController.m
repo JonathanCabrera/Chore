@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
 
 
-
 @end
 
 @implementation ChoreInformationViewController
@@ -35,27 +34,20 @@
     [super didReceiveMemoryWarning];
 }
 
-
 - (void)fetchChores {
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
-    [query orderByDescending:@"name"];
+    [query orderByDescending:@"points"];
     query.limit = 20;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            
             self.chores = (NSMutableArray *)posts;
             [self.tableView reloadData];
-            
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
-    
 }
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -95,7 +87,5 @@
         
     }
 }
-
-
 
 @end
