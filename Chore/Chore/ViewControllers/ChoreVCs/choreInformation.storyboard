@@ -19,9 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
-                                <rect key="frame" x="0.0" y="184" width="375" height="483"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
+                                <rect key="frame" x="0.0" y="142" width="375" height="525"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="150" id="R11-b3-5jg" customClass="ChoreInformationCell">
@@ -60,22 +59,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feq-eg-LOL">
-                                <rect key="frame" x="106" y="91" width="163" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="+ Add Chore"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
-                                <rect key="frame" x="270" y="58" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
+                                <rect key="frame" x="216" y="70" width="139" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Create chore"/>
                                 <connections>
                                     <segue destination="aVo-Eo-Hz3" kind="show" id="wCX-HK-cQv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feq-eg-LOL">
+                                <rect key="frame" x="20" y="70" width="116" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Add Chore"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="feq-eg-LOL" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="50" id="6cx-cF-mBl"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="trailing" secondItem="tOz-xs-xdk" secondAttribute="trailing" id="DQk-7o-UfE"/>
+                            <constraint firstItem="feq-eg-LOL" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="20" id="Lzd-k7-AVT"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="feq-eg-LOL" secondAttribute="bottom" constant="30" id="OAe-ku-Few"/>
+                            <constraint firstItem="tOz-xs-xdk" firstAttribute="trailing" secondItem="7DQ-mK-8Mm" secondAttribute="trailing" constant="20" id="OcP-xR-BBq"/>
+                            <constraint firstItem="7DQ-mK-8Mm" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="50" id="ShR-ei-S5t"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" id="cv2-Pv-DGL"/>
+                            <constraint firstItem="7DQ-mK-8Mm" firstAttribute="centerY" secondItem="feq-eg-LOL" secondAttribute="centerY" id="d6g-cg-EWM"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="bottom" secondItem="tOz-xs-xdk" secondAttribute="bottom" id="gA9-g4-q5j"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
                     <connections>

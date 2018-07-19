@@ -33,7 +33,7 @@
 
 - (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
-    [query orderByDescending:@"name"];
+    [query orderByDescending:@"points"];
     query.limit = 20;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
