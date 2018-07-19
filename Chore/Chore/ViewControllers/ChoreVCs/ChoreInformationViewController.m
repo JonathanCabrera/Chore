@@ -17,7 +17,6 @@
 @property NSArray<Chore *> *chores;
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
 
-
 @end
 
 @implementation ChoreInformationViewController
