@@ -20,13 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setChoreDetails];
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)didTapeDone:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -39,7 +38,6 @@
     self.informationLabel.text = self.chore.info;
     self.chorePic.file = self.chore.photo;
     [self.chorePic loadInBackground];
-
 }
 
 /*

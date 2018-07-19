@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSArray<Chore *> *chores;
-@property NSInteger current_index;
 
 @end
 
@@ -32,27 +31,20 @@
     [super didReceiveMemoryWarning];
 }
 
-
 - (void)fetchChores {
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
     [query orderByDescending:@"name"];
     query.limit = 20;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            
             self.chores = (NSMutableArray *)posts;
             [self.tableView reloadData];
-            
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
-    
 }
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -76,7 +68,5 @@
         controller.chore = sender;
     }
 }
-
-
 
 @end

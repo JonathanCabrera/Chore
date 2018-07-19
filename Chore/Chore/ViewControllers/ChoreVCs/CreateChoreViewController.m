@@ -12,7 +12,6 @@
 @interface CreateChoreViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UITextField *pointField;
 @property (weak, nonatomic) IBOutlet UITextField *dateField;
@@ -23,17 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
 - (IBAction)didTapCreate:(id)sender {
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMddyyyy"];
     NSDate *date = [formatter dateFromString:self.dateField.text];
@@ -50,16 +46,7 @@
     self.descriptionField.text = @"";
     self.pointField.text = @"";
     self.dateField.text = @"";
-    
-    
 }
-
-
-
-
-
-
-
 
 /*
 #pragma mark - Navigation
