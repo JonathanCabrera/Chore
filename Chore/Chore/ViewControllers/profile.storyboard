@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChoreCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreCell" rowHeight="74" id="Wze-OD-nxR" customClass="ChoreInformationCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreCell" rowHeight="74" id="Wze-OD-nxR" customClass="ChoreInformationCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wze-OD-nxR" id="0Qk-et-Q9Z">
@@ -96,7 +96,7 @@
                         <outlet property="editProfileButton" destination="V3S-a5-iYq" id="9JK-rK-4an"/>
                         <outlet property="pastTableView" destination="QzQ-Lk-JFA" id="3kx-fh-s1J"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
-                        <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="7Wk-rY-5cp"/>
+                        <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>
                         <outlet property="userNameLabel" destination="sSH-VM-3rP" id="JX3-Sz-8k3"/>
                         <outlet property="view" destination="4rT-it-zID" id="iMZ-Xh-Gbc"/>
                     </connections>

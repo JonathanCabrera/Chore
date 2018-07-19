@@ -36,6 +36,7 @@
 
 - (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
+
     [query orderByDescending:@"points"];
     query.limit = 20;
     

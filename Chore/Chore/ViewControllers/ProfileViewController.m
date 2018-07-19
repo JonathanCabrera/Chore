@@ -40,7 +40,6 @@
     self.profilePicture.file = [PFUser currentUser][@"profilePic"];
     [self.profilePicture loadInBackground];
     [self fetchUpcomingChores];
-    
     [self setName:[PFUser currentUser]];
     UIColor *backgroundColor = [UIColor colorWithRed:0.63 green:0.87 blue:1.00 alpha:1.0];
     self.view.backgroundColor = backgroundColor;
@@ -64,7 +63,7 @@
 
 - (void)fetchUpcomingChores{
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
-    [query orderByDescending:@"name"];
+    [query orderByDescending:@"points"];
     query.limit = 20;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
