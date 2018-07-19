@@ -10,7 +10,7 @@
 
 @implementation Chore
 
-    @dynamic name, info, users, points, photo, deadline;
+    @dynamic name, info, points, photo, deadline;
 
 + (nonnull NSString *)parseClassName {
     return @"Chore";
@@ -22,7 +22,6 @@
     
     newChore.name = name;
     newChore.info = description;
-    newChore.users = [NSMutableArray new];
     newChore.points = points;
     newChore.deadline = date;
     
