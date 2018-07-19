@@ -18,6 +18,7 @@
 		1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E200B312100FA4700945BD6 /* addChore.storyboard */; };
 		1E200B352100FED000945BD6 /* AddChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B342100FED000945BD6 /* AddChoreCell.m */; };
 		1E200B382100FEE700945BD6 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B372100FEE700945BD6 /* AssignUserCell.m */; };
+		1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B3A210129F800945BD6 /* ChoreAssignment.m */; };
 		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
 		1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */; };
 		1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C220FD51F2002979BA /* LoginViewController.m */; };
@@ -94,6 +95,8 @@
 		1E200B342100FED000945BD6 /* AddChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddChoreCell.m; sourceTree = "<group>"; };
 		1E200B362100FEE700945BD6 /* AssignUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignUserCell.h; sourceTree = "<group>"; };
 		1E200B372100FEE700945BD6 /* AssignUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignUserCell.m; sourceTree = "<group>"; };
+		1E200B39210129F800945BD6 /* ChoreAssignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreAssignment.h; sourceTree = "<group>"; };
+		1E200B3A210129F800945BD6 /* ChoreAssignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreAssignment.m; sourceTree = "<group>"; };
 		1E5C36B720FD4A10002979BA /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		1E5C36B820FD4A10002979BA /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOptionsViewController.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				1E1E3C4420FD43A3003C87B4 /* Chore.m */,
 				1E5C36B720FD4A10002979BA /* Group.h */,
 				1E5C36B820FD4A10002979BA /* Group.m */,
+				1E200B39210129F800945BD6 /* ChoreAssignment.h */,
+				1E200B3A210129F800945BD6 /* ChoreAssignment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -383,7 +388,6 @@
 		E8750BF020FEA37C00D0B13D /* ChoreVCs */ = {
 			isa = PBXGroup;
 			children = (
-				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
 				1E200B312100FA4700945BD6 /* addChore.storyboard */,
 				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
 				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
@@ -391,7 +395,6 @@
 				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
 				E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */,
 				E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */,
-				1E9738FB20FFF54000EE46B9 /* addChore.storyboard */,
 				1E9738F820FFF51E00EE46B9 /* AddChoreViewController.h */,
 				1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */,
 				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
@@ -650,6 +653,7 @@
 				1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */,
 				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
+				1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */,
 				1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
 				1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */,

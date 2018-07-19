@@ -58,7 +58,6 @@
     
     NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"user-placeholder"], 1);
     newUser[@"profilePic"] = [PFFile fileWithData:imageData];
-
     
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
