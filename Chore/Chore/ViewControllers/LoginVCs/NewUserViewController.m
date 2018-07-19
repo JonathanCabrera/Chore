@@ -10,6 +10,7 @@
 #import "GroupCell.h"
 #import "Group.h"
 #import "HomeViewController.h"
+#import "ChoreAssignment.h"
 
 @interface NewUserViewController () <UITableViewDelegate, UITableViewDataSource, GroupCellDelegate>
 
@@ -93,9 +94,18 @@
     
     [self.createdGroup addMember:self.createdGroup withUser:[PFUser currentUser] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            NSLog(@"added user to group");
+            NSLog(@"Added user to group");
         } else {
             NSLog(@"Error adding user to group: %@", error.localizedDescription);
+        }
+    }];
+    
+    
+    [ChoreAssignment makeChoreAssignment:[PFUser currentUser].username withGroupName:self.createdGroup.name withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            NSLog(@"Made chore assignment");
+        } else {
+            NSLog(@"Error making chore assignment: %@", error.localizedDescription);
         }
     }];
     
@@ -104,6 +114,15 @@
 }
 
 - (void)selectCell:(GroupCell *)groupCell didSelect:(Group *)group {
+    
+    [ChoreAssignment makeChoreAssignment:[PFUser currentUser].username withGroupName:group.name withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            NSLog(@"Made chore assignment");
+        } else {
+            NSLog(@"Error making chore assignment: %@", error.localizedDescription);
+        }
+    }];
+    
     [self performSegueWithIdentifier:@"newToHomeSegue" sender:group];
 }
 
@@ -112,14 +131,22 @@
 
 
 #pragma mark - Navigation
-/*
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    if([segue.identifier isEqualToString:@"newToHomeSegue"]) {
+        
+        UITabBarController *tabBar = (UITabBarController *)[segue destinationViewController];
+        UINavigationController *navController = (UINavigationController *)[tabBar.viewControllers objectAtIndex:0];
+        HomeViewController *homeController = (HomeViewController *)navController.topViewController;
+        homeController.currentGroup = sender;
+        
+    }
 
     
 }
-*/
+
 
 
 
