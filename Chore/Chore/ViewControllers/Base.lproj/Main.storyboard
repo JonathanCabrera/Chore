@@ -23,6 +23,7 @@
                         <segue destination="pYx-ZX-OjP" kind="relationship" relationship="viewControllers" id="Dwt-1P-hs8"/>
                         <segue destination="dpM-qq-lKC" kind="relationship" relationship="viewControllers" id="Rug-fF-zma"/>
                         <segue destination="daB-MR-fzC" kind="relationship" relationship="viewControllers" id="5T7-Cc-sLa"/>
+                        <segue destination="daB-MR-fzC" kind="show" identifier="profileSegue" id="hLn-vC-oBz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXP-Hl-4dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -136,4 +137,7 @@
             <point key="canvasLocation" x="965.60000000000002" y="-28.335832083958024"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hLn-vC-oBz"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -19,9 +19,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOL-FX-Uvh">
-                                <rect key="frame" x="115" y="118" width="125" height="124"/>
+                                <rect key="frame" x="125" y="431" width="125" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r62-Fw-5oM">
+                                <rect key="frame" x="49" y="219" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take a Picture "/>
+                                <connections>
+                                    <action selector="onTapTakeAPic:" destination="08B-Tp-CaH" eventType="touchUpInside" id="gy6-rw-3CH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQR-Uo-gFs">
+                                <rect key="frame" x="249" y="219" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Camera Roll"/>
+                                <connections>
+                                    <action selector="onTapCameraRoll:" destination="08B-Tp-CaH" eventType="touchUpInside" id="Zzc-nh-cV2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Vos-mb-sSE"/>
@@ -39,8 +55,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraRollButton" destination="IQR-Uo-gFs" id="yDY-h8-GtG"/>
                         <outlet property="cancelButton" destination="HCz-9d-cyr" id="Qsb-TU-LQU"/>
                         <outlet property="postButton" destination="xL1-N8-au2" id="LEY-i4-Tdr"/>
+                        <outlet property="takeAPictureButton" destination="r62-Fw-5oM" id="Xm0-O9-V3Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ty6-iJ-R6P" userLabel="First Responder" sceneMemberID="firstResponder"/>

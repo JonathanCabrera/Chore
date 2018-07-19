@@ -9,20 +9,22 @@
 #import "ProfileViewController.h"
 #import "Parse.h"
 #import "ParseUI.h"
+#import "ChoreInformationCell.h"
 
 @protocol profileViewControllerDelegate;
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
+@property (strong, nonatomic) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
+
 - (IBAction)onTapEditProfile:(id)sender;
 
 
 @property (weak, nonatomic) NSArray *upcomingChores;
-//
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 
 @end
@@ -31,22 +33,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.upcomingTableView.delegate = self;
+    self.upcomingTableView.dataSource = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.profilePicture.file = [PFUser currentUser][@"profilePic"];
     [self.profilePicture loadInBackground];
+    [self fetchUpcomingChores];
+    
+    [self setName:[PFUser currentUser]];
 
+}
+
+- (void)setName:(PFUser *)user{
+    _currentUser = user;
+     self.userNameLabel.text = self.currentUser.username;
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     
     self.profilePicture.file = [PFUser currentUser][@"profilePic"];
-    NSLog(@"check");
     [self.profilePicture loadInBackground];
+
+}
+
+- (void)fetchUpcomingChores{
+    PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
+    [query orderByDescending:@"name"];
+    query.limit = 20;
     
-    
-    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            
+            self.upcomingChores = (NSMutableArray *)posts;
+            [self.upcomingTableView reloadData];
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 
@@ -56,22 +81,30 @@
 }
 
 
-
-
-
-
-
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+  */
+ 
+
 
 
 - (IBAction)onTapEditProfile:(id)sender {
 }
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+    [choreCell setCell: self.upcomingChores[indexPath.row]];
+    choreCell.delegate = self;
+    return choreCell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.upcomingChores.count;
+}
+
+- (void)seeChore:(ChoreInformationCell *)cell withChore:(Chore *)chore {
+    [self performSegueWithIdentifier:@"profileSegue" sender:chore];
+    
+}
+
+
 @end

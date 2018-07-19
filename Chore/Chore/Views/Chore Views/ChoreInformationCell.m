@@ -26,6 +26,7 @@
     _chore = chore;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
+
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-YYYY"];

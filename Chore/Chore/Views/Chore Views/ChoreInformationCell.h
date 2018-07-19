@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *choreView;
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 
+
 - (void)setCell: (Chore *)chore;
 
 @end

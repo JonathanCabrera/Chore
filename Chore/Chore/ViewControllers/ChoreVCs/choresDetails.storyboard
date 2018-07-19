@@ -93,13 +93,23 @@
                                 <rect key="frame" x="117" y="178" width="140" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-uv-lOX">
+                                <rect key="frame" x="117" y="178" width="140" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add A Picture"/>
+                                <connections>
+                                    <action selector="onTapAddPic:" destination="PpC-AV-sPm" eventType="touchUpInside" id="DF6-WZ-JRi"/>
+                                    <segue destination="6nG-g6-sda" kind="presentation" id="xfK-7J-qDR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="z5K-V5-fRn"/>
                     </view>
                     <connections>
+                        <outlet property="addPictureButton" destination="2Vb-uv-lOX" id="6sw-vS-oFr"/>
                         <outlet property="choreNameLabel" destination="2wZ-v3-X1l" id="n7h-NV-TAw"/>
-                        <outlet property="chorePic" destination="HNM-5q-4oN" id="9Mc-nx-ZQB"/>
+                        <outlet property="chorePic" destination="HNM-5q-4oN" id="qxK-q8-nHK"/>
                         <outlet property="deadlineLabel" destination="u6K-z2-NwT" id="8nP-3X-3sp"/>
                         <outlet property="informationLabel" destination="xiN-CC-KaT" id="T2u-8X-hmt"/>
                         <outlet property="pointLabel" destination="Nhc-To-mMa" id="S7T-qx-ES9"/>
@@ -109,6 +119,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fC-Ds-m1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4036" y="-2950.0749625187409"/>
+        </scene>
+        <!--editChore-->
+        <scene sceneID="HND-8r-ZqH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="editChore" id="6nG-g6-sda" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Axe-cU-bhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3791" y="-2423"/>
         </scene>
     </scenes>
 </document>

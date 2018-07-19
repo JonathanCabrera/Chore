@@ -11,7 +11,9 @@
 #import "ChoreInformationViewController.h"
 
 
-@interface ChoreDetailsViewController ()
+@interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -20,6 +22,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setChoreDetails];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.chorePic.file = [PFUser currentUser][@"chorePicture"];
+    [self.chorePic loadInBackground];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    self.chorePic.file = [PFUser currentUser][@"chorePicture"];
+    [self.chorePic loadInBackground];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,7 +44,6 @@
 
 - (void)setChoreDetails {
     self.choreNameLabel.text = self.chore.name;
-    //self.userNameLabel.text = self.chore.user.username;
     self.deadlineLabel.text = [NSString stringWithFormat:@"%@", self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
@@ -49,5 +60,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)onTapAddPic:(id)sender {
+}
 
 @end
