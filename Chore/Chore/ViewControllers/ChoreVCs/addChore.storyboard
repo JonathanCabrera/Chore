@@ -34,6 +34,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y53-N0-J4r">
                                                     <rect key="frame" x="15" y="21" width="32" height="29"/>
                                                     <state key="normal" image="unchecked"/>
+                                                    <connections>
+                                                        <action selector="didTapCheck:" destination="VSI-Gy-2cR" eventType="touchUpInside" id="BQ6-pr-mFo"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" misplaced="YES" text="Chore name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-cA-zdE">
                                                     <rect key="frame" x="67" y="25" width="218" height="21"/>
@@ -93,6 +96,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wg-wj-fzT">
                                                     <rect key="frame" x="15" y="10" width="32" height="35.5"/>
                                                     <state key="normal" image="unchecked"/>
+                                                    <connections>
+                                                        <action selector="didTapCheck:" destination="iTf-wo-Ihs" eventType="touchUpInside" id="uO3-u2-8bq"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -151,7 +157,11 @@
                                 <action selector="didTapCancel:" destination="oi3-R3-5xY" id="ahr-kk-oEC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="yhv-MG-T3X"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="yhv-MG-T3X">
+                            <connections>
+                                <action selector="saveAssignment:" destination="oi3-R3-5xY" id="NI8-JD-amX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="choreTableView" destination="t3B-qG-7am" id="XAs-dt-Tk2"/>

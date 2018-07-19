@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+@protocol AssignUserCellDelegate;
+
 @interface AssignUserCell : UITableViewCell
 
+@property (nonatomic, weak) id<AssignUserCellDelegate> delegate;
 @property (nonatomic, strong) PFUser *user;
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -18,5 +21,11 @@
 
 
 - (void) setCell:(PFUser *)user;
+
+@end
+
+@protocol AssignUserCellDelegate
+
+- (void)selectUser: (AssignUserCell *)userCell withUserName: (NSString *)userName;
 
 @end
