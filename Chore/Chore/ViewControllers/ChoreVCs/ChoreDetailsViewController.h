@@ -22,6 +22,7 @@
 
 
 @property (nonatomic, strong) Chore *chore;
+@property (nonatomic, strong) NSString *userName;
 
 
 @end
