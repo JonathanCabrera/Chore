@@ -108,7 +108,7 @@
     [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (objects != nil){
-            [choreCell setCell: objects[0]];
+            [choreCell setCell: objects[0] withName:[PFUser currentUser].username];
         }
     }];
     

@@ -24,6 +24,7 @@
 - (void)setCell: (Chore *)chore withName: (NSString *)userName {
     
     _chore = chore;
+    _userName = userName;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
     self.userNameLabel.text = userName;
@@ -40,7 +41,7 @@
 
 - (void)didTapChore {
     
-    [self.delegate seeChore:self withChore:self.chore];
+    [self.delegate seeChore:self withChore:self.chore withName:self.userName];
     
     
 }

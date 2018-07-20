@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableArray *allAssignments;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) NSMutableArray *userNames;
+@property (strong, nonatomic) NSString *userNameToSend;
 
 
 @end
@@ -46,15 +47,15 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             
-            int count = 0;
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
+            self.userNames = [NSMutableArray array];
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
-                self.userNames[count] = currAssignment.userName;
-                count++;
+                for (Chore *currChore in currAssignment.uncompletedChores) {
+                    [self.userNames addObject:currAssignment.userName];
+                }
             }
-            
             [self.tableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
@@ -86,7 +87,8 @@
     return [self.chores count];
 }
 
-- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore {
+- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
+    self.userNameToSend = userName;
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
@@ -96,9 +98,6 @@
 }
 
 
-
-
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     UINavigationController *controller = [segue destinationViewController];
@@ -106,6 +105,7 @@
     if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
         detailsController.chore = sender;
+        detailsController.userName = self.userNameToSend;
     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
         AddChoreViewController *addChoreController = (AddChoreViewController *)controller.topViewController;
         addChoreController.currentGroup = sender;

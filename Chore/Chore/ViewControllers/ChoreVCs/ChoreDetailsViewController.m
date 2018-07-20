@@ -43,6 +43,7 @@
 }
 
 - (void)setChoreDetails {
+    self.userNameLabel.text = self.userName;
     self.choreNameLabel.text = self.chore.name;
     self.deadlineLabel.text = [NSString stringWithFormat:@"%@", self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
