@@ -109,10 +109,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3S-a5-iYq">
                                 <rect key="frame" x="16" y="84" width="105" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="onTapEditProfile:" destination="6mG-8N-NEe" eventType="touchUpInside" id="yN2-sK-6SM"/>
-                                    <segue destination="Dou-hr-MlD" kind="presentation" id="ndS-dz-4hf"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSH-VM-3rP">
                                 <rect key="frame" x="181" y="84" width="165" height="49"/>
@@ -125,9 +121,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Wjf-Gw-E9r"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6aO-wZ-WGN"/>
+                    <navigationItem key="navigationItem" id="6aO-wZ-WGN">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="aif-fk-10j">
+                            <connections>
+                                <action selector="didTapEdit:" destination="6mG-8N-NEe" id="Sdx-vx-SLH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="editProfileButton" destination="V3S-a5-iYq" id="9JK-rK-4an"/>
                         <outlet property="pastTableView" destination="QzQ-Lk-JFA" id="3kx-fh-s1J"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>

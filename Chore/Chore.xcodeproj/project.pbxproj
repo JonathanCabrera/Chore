@@ -49,8 +49,6 @@
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
 		9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB05F20FE890A003F458E /* ProfileViewController.m */; };
 		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
-		9E9FB07720FFA61D003F458E /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB07620FFA61D003F458E /* EditProfileViewController.m */; };
-		9E9FB07920FFA8D5003F458E /* editProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB07820FFA8D5003F458E /* editProfile.storyboard */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
 		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
@@ -147,9 +145,6 @@
 		9E9FB05E20FE890A003F458E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		9E9FB05F20FE890A003F458E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
-		9E9FB07520FFA61D003F458E /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
-		9E9FB07620FFA61D003F458E /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
-		9E9FB07820FFA8D5003F458E /* editProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editProfile.storyboard; sourceTree = "<group>"; };
 		AD7C64C32F624343DAC51904 /* libPods-Chore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -377,9 +372,6 @@
 				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
 				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
 				9E9FB06120FE8B22003F458E /* profile.storyboard */,
-				9E9FB07520FFA61D003F458E /* EditProfileViewController.h */,
-				9E9FB07620FFA61D003F458E /* EditProfileViewController.m */,
-				9E9FB07820FFA8D5003F458E /* editProfile.storyboard */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -530,7 +522,6 @@
 				1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */,
 				1E9738EE20FFECB400EE46B9 /* groupOptions.storyboard in Resources */,
 				9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */,
-				9E9FB07920FFA8D5003F458E /* editProfile.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E9738EF20FFECB400EE46B9 /* groupInfo.storyboard in Resources */,
 				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
@@ -653,7 +644,6 @@
 				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,
 				1E200B382100FEE700945BD6 /* AssignUserCell.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
-				9E9FB07720FFA61D003F458E /* EditProfileViewController.m in Sources */,
 				1E5C36CA20FE821B002979BA /* GroupInfoViewController.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,

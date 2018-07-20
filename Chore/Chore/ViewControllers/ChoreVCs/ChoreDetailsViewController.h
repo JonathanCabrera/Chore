@@ -19,10 +19,9 @@
 @property (weak, nonatomic) IBOutlet PFImageView *chorePic;
 @property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
 
-
-
 @property (nonatomic, strong) Chore *chore;
 @property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) UIImage *photo;
 
 
 @end
