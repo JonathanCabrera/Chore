@@ -27,6 +27,8 @@
 		1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D120FE857C002979BA /* AddGroupMemberCell.m */; };
 		1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D620FE93F5002979BA /* GroupCell.m */; };
 		1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D920FE940D002979BA /* NewUserViewController.m */; };
+		1E829453210280640086EB80 /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E829452210280640086EB80 /* Signup.storyboard */; };
+		1E829456210280800086EB80 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E829455210280800086EB80 /* SignupViewController.m */; };
 		1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */; };
 		1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738E420FFA53300EE46B9 /* addMember.storyboard */; };
 		1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E920FFA69400EE46B9 /* AddUserCell.m */; };
@@ -112,6 +114,9 @@
 		1E5C36D620FE93F5002979BA /* GroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
 		1E5C36D820FE940D002979BA /* NewUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
 		1E5C36D920FE940D002979BA /* NewUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
+		1E829452210280640086EB80 /* Signup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
+		1E829454210280800086EB80 /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		1E829455210280800086EB80 /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
 		1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
 		1E9738E420FFA53300EE46B9 /* addMember.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addMember.storyboard; sourceTree = "<group>"; };
@@ -304,6 +309,9 @@
 				1E5C36C220FD51F2002979BA /* LoginViewController.m */,
 				1E5C36D820FE940D002979BA /* NewUserViewController.h */,
 				1E5C36D920FE940D002979BA /* NewUserViewController.m */,
+				1E829452210280640086EB80 /* Signup.storyboard */,
+				1E829454210280800086EB80 /* SignupViewController.h */,
+				1E829455210280800086EB80 /* SignupViewController.m */,
 			);
 			path = LoginVCs;
 			sourceTree = "<group>";
@@ -514,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E829453210280640086EB80 /* Signup.storyboard in Resources */,
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
 				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,
@@ -651,6 +660,7 @@
 				1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */,
 				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
+				1E829456210280800086EB80 /* SignupViewController.m in Sources */,
 				1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */,
 				1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
