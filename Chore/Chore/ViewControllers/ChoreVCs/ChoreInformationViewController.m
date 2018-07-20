@@ -36,17 +36,14 @@
 }
 
 - (void)fetchChores {
+
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.assignment = posts[0];
-            NSLog(@"assignment's group name: %@", self.assignment.groupName);
-            NSLog(@"chore num: %lu", [self.assignment.uncompletedChores count]);
             self.chores = self.assignment.uncompletedChores;
-            
             [self.tableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
