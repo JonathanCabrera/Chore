@@ -66,6 +66,27 @@
     [_progressBar setStartAngle:270];
     
     
+    //fetch the user's group
+    NSString *usersGroup = [PFUser currentUser][@"groupName"];
+    if(usersGroup != nil) {
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        query.limit = 1;
+        [query whereKey:@"name" equalTo:usersGroup];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.currentGroup = posts[0];
+                NSLog(@"user's group: %@", self.currentGroup.name);
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else {
+        NSLog(@"user has no group");
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
