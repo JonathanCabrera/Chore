@@ -16,20 +16,22 @@
 
 @property (nonatomic, weak) id<ChoreInformationCellDelegate> delegate;
 @property (strong, nonatomic) Chore *chore;
+@property (strong, nonatomic) NSString *userName;
 @property (weak, nonatomic) IBOutlet UILabel *choreNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIView *choreView;
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 
-- (void)setCell: (Chore *)chore;
+- (void)setCell: (Chore *)chore withName: (NSString *)userName;
 
 @end
 
 
 @protocol ChoreInformationCellDelegate
 
-- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore;
+- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName;
 
 @end
 

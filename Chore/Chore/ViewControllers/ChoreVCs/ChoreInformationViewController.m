@@ -17,7 +17,11 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *chores;
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
+@property (strong, nonatomic) NSMutableArray *allAssignments;
 @property (strong, nonatomic) ChoreAssignment *assignment;
+@property (strong, nonatomic) NSMutableArray *userNames;
+@property (strong, nonatomic) NSString *userNameToSend;
+
 
 @end
 
@@ -27,6 +31,27 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    
+    //fetch the user's group
+    NSString *usersGroup = [PFUser currentUser][@"groupName"];
+    if(usersGroup != nil) {
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        query.limit = 1;
+        [query whereKey:@"name" equalTo:usersGroup];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.currentGroup = posts[0];
+                NSLog(@"user's group: %@", self.currentGroup.name);
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else {
+        NSLog(@"user has no group");
+    }
     
     [self fetchChores];
 }
@@ -38,12 +63,20 @@
 - (void)fetchChores {
 
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    query.limit = 1;
+    query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.assignment = posts[0];
-            self.chores = self.assignment.uncompletedChores;
+            
+            self.allAssignments = (NSMutableArray *)posts;
+            self.chores = [NSMutableArray array];
+            self.userNames = [NSMutableArray array];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
+                for (Chore *currChore in currAssignment.uncompletedChores) {
+                    [self.userNames addObject:currAssignment.userName];
+                }
+            }
             [self.tableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
@@ -61,7 +94,7 @@
 
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [choreCell setCell:posts[0]];
+            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row]];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }
@@ -75,7 +108,8 @@
     return [self.chores count];
 }
 
-- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore {
+- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
+    self.userNameToSend = userName;
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
@@ -85,9 +119,6 @@
 }
 
 
-
-
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     UINavigationController *controller = [segue destinationViewController];
@@ -95,6 +126,7 @@
     if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
         detailsController.chore = sender;
+        detailsController.userName = self.userNameToSend;
     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
         AddChoreViewController *addChoreController = (AddChoreViewController *)controller.topViewController;
         addChoreController.currentGroup = sender;
