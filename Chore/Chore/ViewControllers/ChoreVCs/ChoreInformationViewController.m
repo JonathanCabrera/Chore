@@ -17,7 +17,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *chores;
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
+@property (strong, nonatomic) NSMutableArray *allAssignments;
 @property (strong, nonatomic) ChoreAssignment *assignment;
+@property (strong, nonatomic) NSMutableArray *userNames;
+
 
 @end
 
@@ -38,12 +41,20 @@
 - (void)fetchChores {
 
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    query.limit = 1;
+    query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.assignment = posts[0];
-            self.chores = self.assignment.uncompletedChores;
+            
+            int count = 0;
+            self.allAssignments = (NSMutableArray *)posts;
+            self.chores = [NSMutableArray array];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
+                self.userNames[count] = currAssignment.userName;
+                count++;
+            }
+            
             [self.tableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
@@ -61,7 +72,7 @@
 
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [choreCell setCell:posts[0]];
+            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row]];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }

@@ -20,9 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIView *choreView;
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 
-- (void)setCell: (Chore *)chore;
+- (void)setCell: (Chore *)chore withName: (NSString *)userName;
 
 @end
 
