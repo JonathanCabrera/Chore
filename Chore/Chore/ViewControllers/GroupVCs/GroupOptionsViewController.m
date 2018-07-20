@@ -24,8 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     if(usersGroup != nil) {

@@ -106,6 +106,15 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gx-8f-4ES">
+                                <rect key="frame" x="120" y="111" width="136" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add a Picture"/>
+                                <connections>
+                                    <action selector="onTapAddPic:" destination="PpC-AV-sPm" eventType="touchUpInside" id="cgh-GM-dbz"/>
+                                    <segue destination="S9d-rz-2d6" kind="presentation" id="p2f-cF-07Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -135,6 +144,7 @@
                         <viewLayoutGuide key="safeArea" id="z5K-V5-fRn"/>
                     </view>
                     <connections>
+                        <outlet property="addPictureButton" destination="3gx-8f-4ES" id="WAA-3X-vuH"/>
                         <outlet property="choreNameLabel" destination="2wZ-v3-X1l" id="n7h-NV-TAw"/>
                         <outlet property="chorePic" destination="HNM-5q-4oN" id="qxK-q8-nHK"/>
                         <outlet property="deadlineLabel" destination="u6K-z2-NwT" id="8nP-3X-3sp"/>
@@ -148,12 +158,12 @@
             <point key="canvasLocation" x="-4036" y="-2950.0749625187409"/>
         </scene>
         <!--editChore-->
-        <scene sceneID="HND-8r-ZqH">
+        <scene sceneID="adi-6K-ka7">
             <objects>
-                <viewControllerPlaceholder storyboardName="editChore" id="6nG-g6-sda" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Axe-cU-bhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="editChore" id="S9d-rz-2d6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="snM-eb-XMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3791" y="-2423"/>
+            <point key="canvasLocation" x="-3764" y="-2463"/>
         </scene>
     </scenes>
 </document>

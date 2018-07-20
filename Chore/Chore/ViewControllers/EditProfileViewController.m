@@ -82,6 +82,8 @@
         [PFUser currentUser][@"profilePic"] = [PFFile fileWithData:data];
 
     }
+    
+    
 
     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {

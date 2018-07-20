@@ -10,12 +10,14 @@
 #import "ChoreDetailsViewController.h"
 #import "ChoreInformationCell.h"
 #import "AddChoreViewController.h"
+#import "ChoreAssignment.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property NSArray<Chore *> *chores;
+@property (strong, nonatomic) NSMutableArray *chores;
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
+@property (strong, nonatomic) ChoreAssignment *assignment;
 
 @end
 
@@ -34,30 +36,43 @@
 }
 
 - (void)fetchChores {
-    PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
-    [query orderByDescending:@"points"];
-    query.limit = 20;
-    
+
+    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    query.limit = 1;
+    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.chores = (NSMutableArray *)posts;
+            self.assignment = posts[0];
+            self.chores = self.assignment.uncompletedChores;
             [self.tableView reloadData];
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@" %@", error.localizedDescription);
         }
     }];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    [choreCell setCell:self.chores[indexPath.row]];
-    choreCell.delegate = self;
+    Chore *myChore = self.chores[indexPath.row];
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+    choreQuery.limit = 1;
+    [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
+
+    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            [choreCell setCell:posts[0]];
+        } else {
+            NSLog(@"nil post %@", error.localizedDescription);
+        }
+    }];
     
+    choreCell.delegate = self;
     return choreCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.chores.count;
+    return [self.chores count];
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore {
@@ -78,7 +93,6 @@
     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
         AddChoreViewController *addChoreController = (AddChoreViewController *)controller.topViewController;
         addChoreController.currentGroup = sender;
-        
     }
 }
 
