@@ -93,7 +93,7 @@
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             self.pastAssignment = posts[0];
-            self.pastChores = self.pastAssignment.completedChores;
+            self.pastChores = self.pastAssignment.uncompletedChores;
             [self.pastTableView reloadData];
             
         } else {
@@ -124,7 +124,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    
+    if ([tableView isEqual:self.upcomingTableView]){
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
         Chore *myChore = self.upcomingChores[indexPath.row];
         
@@ -133,17 +133,35 @@
         [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
-                [choreCell setCell: objects[0]];
+                [choreCell setCell:objects[0] withName:@"UpcomingCell"];
             }
         }];
         
         choreCell.delegate = self;
         return choreCell;
+    } else {
+            ChoreInformationCell *pastChoreCell = [tableView dequeueReusableCellWithIdentifier:@"PastChoreCell" forIndexPath:indexPath];
+            Chore *myPastChore = self.pastChores[indexPath.row];
+            
+            PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+            choreQuery.limit = 1;
+            [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
+            [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                if (objects != nil){
+                    [pastChoreCell setCell:objects[0] withName:@"PastCell"];
+                }
+            }];
+            
+            pastChoreCell.delegate = self;
+            return pastChoreCell;
+        
+    }
     
  
     
   
 }
+
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.upcomingChores.count;
