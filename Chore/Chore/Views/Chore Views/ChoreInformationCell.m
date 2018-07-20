@@ -12,17 +12,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     //[super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
-- (void)setCell: (Chore *)chore withName: (NSString *)userName {
-    
+- (void)setCell:(Chore *)chore withName:(NSString *)userName {
     _chore = chore;
     _userName = userName;
     self.choreNameLabel.text = chore.name;
@@ -36,17 +33,10 @@
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
     [self.choreView addGestureRecognizer:tapRecognizer];
-    
 }
 
 - (void)didTapChore {
-    
     [self.delegate seeChore:self withChore:self.chore withName:self.userName];
-    
-    
 }
-
-
-
 
 @end

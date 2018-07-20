@@ -27,9 +27,6 @@
 @property (strong, nonatomic) ChoreAssignment *pastAssignment;
 
 
-- (IBAction)onTapEditProfile:(id)sender;
-
-
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
 @property (weak, nonatomic) NSMutableArray *pastChores;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
@@ -54,7 +51,6 @@
     self.view.backgroundColor = backgroundColor;
     self.upcomingTableView.backgroundColor = backgroundColor;
     self.pastTableView.backgroundColor = backgroundColor;
-
 }
 
 - (void)setName:(PFUser *)user{
@@ -64,26 +60,23 @@
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    
     self.profilePicture.file = [PFUser currentUser][@"profilePic"];
     [self.profilePicture loadInBackground];
-
 }
 
 - (void)fetchUpcomingChores{
-    
-        PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-        query.limit = 1;
-        [query whereKey:@"userName" equalTo:[PFUser currentUser].username];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts != nil) {
-                self.assignment = posts[0];
-                self.upcomingChores = self.assignment.uncompletedChores;
-                [self.upcomingTableView reloadData];
-            } else {
-                NSLog(@" %@", error.localizedDescription);
-            }
-        }];
+    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    query.limit = 1;
+    [query whereKey:@"userName" equalTo:[PFUser currentUser].username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.assignment = posts[0];
+            self.upcomingChores = self.assignment.uncompletedChores;
+            [self.upcomingTableView reloadData];
+        } else {
+            NSLog(@" %@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void) fetchPastChores{
@@ -95,32 +88,16 @@
             self.pastAssignment = posts[0];
             self.pastChores = self.pastAssignment.uncompletedChores;
             [self.pastTableView reloadData];
-            
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
-        
     }];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-/*
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  */
- 
-
-
-
-- (IBAction)onTapEditProfile:(id)sender {
-}
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if ([tableView isEqual:self.upcomingTableView]){
@@ -135,7 +112,6 @@
                 [choreCell setCell:objects[0] withName:@"UpcomingCell"];
             }
         }];
-        
         choreCell.delegate = self;
         return choreCell;
     } else {
@@ -150,17 +126,10 @@
                     [pastChoreCell setCell:objects[0] withName:@"PastCell"];
                 }
             }];
-            
             pastChoreCell.delegate = self;
             return pastChoreCell;
-        
     }
-    
- 
-    
-  
 }
-
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.upcomingChores.count;
@@ -168,8 +137,10 @@
 
 - (void)seeChore:(ChoreInformationCell *)cell withChore:(Chore *)chore {
     [self performSegueWithIdentifier:@"profileSegue" sender:chore];
-    
 }
 
+/*
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ */
 
 @end

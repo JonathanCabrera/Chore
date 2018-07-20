@@ -288,6 +288,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1E829451210262310086EB80 /* Chore Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1E200B312100FA4700945BD6 /* addChore.storyboard */,
+				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
+				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
+				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
+				9E50A95D2100FF8A001FF108 /* editChore.storyboard */,
+			);
+			path = "Chore Storyboards";
+			sourceTree = "<group>";
+		};
 		1E9738E020FFA3E200EE46B9 /* LoginVCs */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,21 +400,17 @@
 		E8750BF020FEA37C00D0B13D /* ChoreVCs */ = {
 			isa = PBXGroup;
 			children = (
-				1E200B312100FA4700945BD6 /* addChore.storyboard */,
-				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
+				1E829451210262310086EB80 /* Chore Storyboards */,
 				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
 				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
-				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
 				E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */,
 				E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */,
 				1E9738F820FFF51E00EE46B9 /* AddChoreViewController.h */,
 				1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */,
-				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
 				1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */,
 				1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */,
 				9E50A95A2100FF79001FF108 /* EditChoreViewController.h */,
 				9E50A95B2100FF79001FF108 /* EditChoreViewController.m */,
-				9E50A95D2100FF8A001FF108 /* editChore.storyboard */,
 			);
 			path = ChoreVCs;
 			sourceTree = "<group>";
