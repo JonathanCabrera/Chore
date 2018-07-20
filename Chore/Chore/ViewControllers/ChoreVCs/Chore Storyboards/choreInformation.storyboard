@@ -36,12 +36,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRV-vU-SsV">
-                                                    <rect key="frame" x="312" y="64.5" width="48" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfA-h2-mOH">
                                                     <rect key="frame" x="15" y="124" width="53" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -54,16 +48,30 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5y-Ai-vii">
+                                                    <rect key="frame" x="323.5" y="65" width="36.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRV-vU-SsV">
+                                                    <rect key="frame" x="330" y="126" width="30" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="O1B-Jb-kcv" firstAttribute="leading" secondItem="wc3-nj-aSS" secondAttribute="leadingMargin" id="1cB-H9-JBg"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="O1B-Jb-kcv" secondAttribute="bottom" constant="20" id="9aW-eL-Zkc"/>
                                                 <constraint firstItem="IfA-h2-mOH" firstAttribute="leading" secondItem="O1B-Jb-kcv" secondAttribute="leading" id="EFf-TT-FGQ"/>
-                                                <constraint firstItem="ZRV-vU-SsV" firstAttribute="centerY" secondItem="O1B-Jb-kcv" secondAttribute="centerY" id="JfD-6I-drQ"/>
                                                 <constraint firstItem="GxU-Xn-wVs" firstAttribute="centerY" secondItem="IfA-h2-mOH" secondAttribute="centerY" id="O98-8T-LNT"/>
+                                                <constraint firstItem="ZRV-vU-SsV" firstAttribute="centerY" secondItem="IfA-h2-mOH" secondAttribute="centerY" id="RAB-LK-5ju"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="h5y-Ai-vii" secondAttribute="trailing" id="S5L-xb-I1d"/>
                                                 <constraint firstItem="O1B-Jb-kcv" firstAttribute="top" secondItem="wc3-nj-aSS" secondAttribute="topMargin" constant="20" id="aYH-RZ-WhL"/>
                                                 <constraint firstItem="GxU-Xn-wVs" firstAttribute="leading" secondItem="IfA-h2-mOH" secondAttribute="trailing" constant="3" id="aqi-yw-h8j"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ZRV-vU-SsV" secondAttribute="trailing" id="pjK-sd-QO4"/>
+                                                <constraint firstItem="h5y-Ai-vii" firstAttribute="centerY" secondItem="O1B-Jb-kcv" secondAttribute="centerY" id="twu-GI-jWE"/>
                                                 <constraint firstItem="IfA-h2-mOH" firstAttribute="top" secondItem="O1B-Jb-kcv" secondAttribute="bottom" constant="5" id="ujc-3C-TOc"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -72,6 +80,7 @@
                                             <outlet property="choreView" destination="wc3-nj-aSS" id="gaw-pq-WKh"/>
                                             <outlet property="deadlineLabel" destination="GxU-Xn-wVs" id="DfU-89-2ZY"/>
                                             <outlet property="pointsLabel" destination="ZRV-vU-SsV" id="c3E-XW-lWI"/>
+                                            <outlet property="userNameLabel" destination="h5y-Ai-vii" id="b3a-tz-caD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
