@@ -23,12 +23,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) Group *currentGroup;
+@property (strong, nonatomic) ChoreAssignment *assignment;
 
 
 - (IBAction)onTapEditProfile:(id)sender;
 
 
-@property (weak, nonatomic) NSArray *upcomingChores;
+@property (weak, nonatomic) NSMutableArray *upcomingChores;
+@property (weak, nonatomic) NSMutableArray *pastChores;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 
 @end
@@ -65,20 +67,19 @@
 }
 
 - (void)fetchUpcomingChores{
-    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    query.limit = 1;
-    [query whereKey:@"userName" equalTo:self.currentGroup.name];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *chores, NSError *error) {
-        if (chores != nil) {
-            
-            self.upcomingChores = (NSMutableArray *)chores;
-            [self.upcomingTableView reloadData];
-            
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+        PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+        query.limit = 1;
+        [query whereKey:@"userName" equalTo:[PFUser currentUser].username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.assignment = posts[0];
+                self.upcomingChores = self.assignment.uncompletedChores;
+                [self.upcomingTableView reloadData];
+            } else {
+                NSLog(@" %@", error.localizedDescription);
+            }
+        }];
 }
 
 
@@ -101,7 +102,16 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-    [choreCell setCell: self.upcomingChores[indexPath.row]];
+    Chore *myChore = self.upcomingChores[indexPath.row];
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+    choreQuery.limit = 1;
+    [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
+    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (objects != nil){
+            [choreCell setCell: objects[0]];
+        }
+    }];
+    
     choreCell.delegate = self;
     return choreCell;
 }
