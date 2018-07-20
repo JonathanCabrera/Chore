@@ -26,7 +26,6 @@
     _chore = chore;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
-
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
@@ -41,7 +40,6 @@
 - (void)didTapChore {
     
     [self.delegate seeChore:self withChore:self.chore];
-    
     
 }
 
