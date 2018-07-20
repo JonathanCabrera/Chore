@@ -50,6 +50,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="choreNameLabel" destination="Ppg-Dh-qAR" id="CVt-hX-Zg0"/>
+                                            <outlet property="pointsLabel" destination="27l-sO-v2R" id="SMH-Zx-W0Q"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

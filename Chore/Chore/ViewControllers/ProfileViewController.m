@@ -10,6 +10,8 @@
 #import "Parse.h"
 #import "ParseUI.h"
 #import "ChoreInformationCell.h"
+#import "ChoreAssignment.h"
+#import "GroupCell.h"
 
 @protocol profileViewControllerDelegate;
 
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) Group *currentGroup;
 
 
 - (IBAction)onTapEditProfile:(id)sender;
@@ -62,14 +65,14 @@
 }
 
 - (void)fetchUpcomingChores{
-    PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
-    [query orderByDescending:@"points"];
-    query.limit = 20;
+    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    query.limit = 1;
+    [query whereKey:@"userName" equalTo:self.currentGroup.name];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *chores, NSError *error) {
+        if (chores != nil) {
             
-            self.upcomingChores = (NSMutableArray *)posts;
+            self.upcomingChores = (NSMutableArray *)chores;
             [self.upcomingTableView reloadData];
             
         } else {
@@ -94,6 +97,8 @@
 
 - (IBAction)onTapEditProfile:(id)sender {
 }
+
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     [choreCell setCell: self.upcomingChores[indexPath.row]];
