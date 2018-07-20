@@ -89,7 +89,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="W9q-hE-aYq">
                                 <rect key="frame" x="16" y="460" width="275.5" height="46"/>
                                 <subviews>
@@ -136,7 +135,6 @@
                         <viewLayoutGuide key="safeArea" id="z5K-V5-fRn"/>
                     </view>
                     <connections>
-                        <outlet property="addPictureButton" destination="2Vb-uv-lOX" id="6sw-vS-oFr"/>
                         <outlet property="choreNameLabel" destination="2wZ-v3-X1l" id="n7h-NV-TAw"/>
                         <outlet property="chorePic" destination="HNM-5q-4oN" id="qxK-q8-nHK"/>
                         <outlet property="deadlineLabel" destination="u6K-z2-NwT" id="8nP-3X-3sp"/>
