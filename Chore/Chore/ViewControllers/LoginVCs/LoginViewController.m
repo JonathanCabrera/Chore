@@ -29,6 +29,15 @@
     
     self.signupButton.layer.borderWidth = 0.8f;
     self.signupButton.layer.borderColor = [UIColor grayColor].CGColor;
+    
+    UIColor *backgroundColor = [UIColor colorWithRed:0.14 green:0.48 blue:0.48 alpha:1.0];
+    [self.loginButton setBackgroundColor:backgroundColor];
+    self.loginButton.layer.cornerRadius = self.loginButton.frame.size.width /15;
+    self.loginButton.clipsToBounds = YES;
+    [self.signupButton setBackgroundColor:backgroundColor];
+    self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
+    self.signupButton.clipsToBounds = YES;
+
 }
 
 - (void)didReceiveMemoryWarning {

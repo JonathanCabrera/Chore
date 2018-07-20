@@ -21,7 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UIColor *backgroundColor = [UIColor colorWithRed:0.14 green:0.48 blue:0.48 alpha:1.0];
+    [self.signupButton setBackgroundColor:backgroundColor];
+    self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
+    self.signupButton.clipsToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {
