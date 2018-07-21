@@ -19,13 +19,14 @@
     // Configure the view for the selected state
 }
 
+
 - (void)setCell:(Chore *)chore withName:(NSString *)userName {
     _chore = chore;
     _userName = userName;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
     self.userNameLabel.text = userName;
-    
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
     NSString *dateString = [dateFormatter stringFromDate:chore.deadline];

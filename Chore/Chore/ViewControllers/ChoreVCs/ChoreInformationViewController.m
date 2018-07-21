@@ -22,7 +22,6 @@
 @property (strong, nonatomic) NSMutableArray *userNames;
 @property (strong, nonatomic) NSString *userNameToSend;
 
-
 @end
 
 @implementation ChoreInformationViewController
@@ -114,10 +113,8 @@
 }
 
 - (IBAction)didTapAddChore:(id)sender {
-    
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -130,7 +127,6 @@
     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
         AddChoreViewController *addChoreController = (AddChoreViewController *)controller.topViewController;
         addChoreController.currentGroup = sender;
-        
     }
 }
 
