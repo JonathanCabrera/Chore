@@ -93,6 +93,7 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
     if ([tableView isEqual:self.upcomingTableView]){
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
         Chore *myChore = self.upcomingChores[indexPath.row];
