@@ -56,7 +56,8 @@
                                 <rect key="frame" x="119" y="265.5" width="136" height="30"/>
                                 <state key="normal" title="I Finished My Chore"/>
                                 <connections>
-                                    <action selector="didTapeDone:" destination="PpC-AV-sPm" eventType="touchUpInside" id="m3R-56-Pwg"/>
+                                    <action selector="didTapFinished:" destination="PpC-AV-sPm" eventType="touchUpInside" id="LcK-Oj-mJW"/>
+                                    <segue destination="SnA-Ek-jvO" kind="presentation" id="EOX-lI-Ixu"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-Z6-OHs">
@@ -155,6 +156,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fC-Ds-m1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4036" y="-2950.0749625187409"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="s8a-38-YD7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="SnA-Ek-jvO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ctv-1w-q7S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3487" y="-2961"/>
         </scene>
         <!--editChore-->
         <scene sceneID="adi-6K-ka7">
