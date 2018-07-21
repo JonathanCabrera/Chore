@@ -9,6 +9,7 @@
 #import "ChoreDetailsViewController.h"
 #import "ProfileViewController.h"
 #import "ChoreInformationViewController.h"
+#import "ChoreAssignment.h"
 
 
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -38,8 +39,44 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)didTapeDone:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (IBAction)didTapFinished:(id)sender {
+    [self updateCompletedChore];
+
+}
+
+- (void)updateCompletedChore{
+    PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    pastQuery.limit = 1;
+    [pastQuery whereKey:@"userName" equalTo:self.userName];
+    
+    [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil){
+            ChoreAssignment *assignment = posts[0];
+            
+            NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
+            NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
+            
+            NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
+            
+            [newCompleted addObject:newUncompleted[removeIndex]];
+            [newUncompleted removeObjectAtIndex:removeIndex];
+            
+            [assignment setObject:newCompleted forKey:@"completedChores"];
+            [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
+            
+            [assignment saveInBackground];
+        }
+    }];
+}
+
+- (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
+    for (int i = 0; i < [choreArray count]; i++) {
+        Chore *chore = choreArray[i];
+        if ([chore.objectId isEqualToString:removableObjectId]) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 - (void)setChoreDetails {
@@ -52,17 +89,7 @@
     [self.chorePic loadInBackground];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)onTapAddPic:(id)sender {
-    
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
