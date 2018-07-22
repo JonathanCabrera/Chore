@@ -11,7 +11,6 @@
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
 
-
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;

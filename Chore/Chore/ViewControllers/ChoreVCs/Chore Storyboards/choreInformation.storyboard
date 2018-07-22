@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
-                                <rect key="frame" x="0.0" y="148" width="375" height="519"/>
+                                <rect key="frame" x="0.0" y="126.5" width="375" height="540.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="150" id="R11-b3-5jg" customClass="ChoreInformationCell">
@@ -85,38 +85,49 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feq-eg-LOL">
-                                <rect key="frame" x="106" y="91" width="163" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="+ Add Chore"/>
-                                <connections>
-                                    <action selector="didTapAddChore:" destination="sdK-8W-SJO" eventType="touchUpInside" id="M3S-QB-WSw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
-                                <rect key="frame" x="270" y="58" width="89" height="30"/>
-                                <state key="normal" title="Create chore"/>
-                                <connections>
-                                    <segue destination="aVo-Eo-Hz3" kind="show" id="wCX-HK-cQv"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yai-Rf-qD6">
+                                <rect key="frame" x="268" y="56" width="92" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feq-eg-LOL">
+                                        <rect key="frame" x="0.0" y="0.0" width="92" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Assign Chore"/>
+                                        <connections>
+                                            <action selector="didTapAddChore:" destination="sdK-8W-SJO" eventType="touchUpInside" id="M3S-QB-WSw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
+                                        <rect key="frame" x="0.0" y="30" width="92" height="30"/>
+                                        <state key="normal" title="Create Chore"/>
+                                        <connections>
+                                            <segue destination="aVo-Eo-Hz3" kind="show" id="wCX-HK-cQv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVZ-gQ-tpf">
+                                <rect key="frame" x="15" y="70" width="132.5" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="feq-eg-LOL" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="50" id="6cx-cF-mBl"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="trailing" secondItem="tOz-xs-xdk" secondAttribute="trailing" id="DQk-7o-UfE"/>
-                            <constraint firstItem="feq-eg-LOL" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="20" id="Lzd-k7-AVT"/>
-                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="feq-eg-LOL" secondAttribute="bottom" constant="30" id="OAe-ku-Few"/>
-                            <constraint firstItem="tOz-xs-xdk" firstAttribute="trailing" secondItem="7DQ-mK-8Mm" secondAttribute="trailing" constant="20" id="OcP-xR-BBq"/>
-                            <constraint firstItem="7DQ-mK-8Mm" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="50" id="ShR-ei-S5t"/>
+                            <constraint firstItem="yai-Rf-qD6" firstAttribute="centerY" secondItem="XVZ-gQ-tpf" secondAttribute="centerY" id="NJI-cT-egj"/>
+                            <constraint firstItem="XVZ-gQ-tpf" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="15" id="TiI-eA-E00"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" id="cv2-Pv-DGL"/>
-                            <constraint firstItem="7DQ-mK-8Mm" firstAttribute="centerY" secondItem="feq-eg-LOL" secondAttribute="centerY" id="d6g-cg-EWM"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="bottom" secondItem="tOz-xs-xdk" secondAttribute="bottom" id="gA9-g4-q5j"/>
+                            <constraint firstItem="XVZ-gQ-tpf" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="50" id="iL6-Ig-Ohv"/>
+                            <constraint firstItem="tOz-xs-xdk" firstAttribute="trailing" secondItem="yai-Rf-qD6" secondAttribute="trailing" constant="15" id="nl8-Hc-2pk"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="XVZ-gQ-tpf" secondAttribute="bottom" constant="25" id="zyJ-AJ-OnW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
                     <connections>
                         <outlet property="addChoreButton" destination="feq-eg-LOL" id="Aq2-Ik-Sj3"/>
+                        <outlet property="groupNameLabel" destination="XVZ-gQ-tpf" id="syc-jM-bZF"/>
                         <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>
                         <segue destination="L4Z-CK-YYS" kind="show" identifier="choreDetailsSegue" id="Z6F-bb-cAp"/>
                         <segue destination="Wir-Hx-zov" kind="presentation" identifier="addChoreSegue" id="orj-Ws-mml"/>

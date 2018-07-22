@@ -160,7 +160,7 @@
 		E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationViewController.h; sourceTree = "<group>"; };
 		E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationViewController.m; sourceTree = "<group>"; };
 		E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationCell.h; sourceTree = "<group>"; };
-		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; };
+		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,9 +291,9 @@
 		1E829451210262310086EB80 /* Chore Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				1E200B312100FA4700945BD6 /* addChore.storyboard */,
-				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
 				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
+				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
+				1E200B312100FA4700945BD6 /* addChore.storyboard */,
 				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
 				9E50A95D2100FF8A001FF108 /* editChore.storyboard */,
 			);
