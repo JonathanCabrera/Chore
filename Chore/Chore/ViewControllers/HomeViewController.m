@@ -19,7 +19,6 @@
 
 
 
-
 @interface HomeViewController ()
 @property (nonatomic) CGFloat progressBarWidth;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
@@ -32,6 +31,10 @@
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
+@property (nonatomic) long currNumberOfChores;
+@property (nonatomic) long currCompletedChores;
+@property (nonatomic) float increment;
+
 
 - (IBAction)onTapIncrement:(id)sender;
 - (IBAction)onTapZero:(id)sender;
@@ -45,32 +48,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDesignAspects];
-//    [self fetchChores];
-    [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
-        return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * self.chores.count];
-    }];
+    
+    NSString *usersGroup = [PFUser currentUser][@"groupName"];
+    if(usersGroup != nil) {
+        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+        query.limit = 1;
+        [query whereKey:@"name" equalTo:usersGroup];
+
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.currentGroup = posts[0];
+                NSLog(@"user's group: %@", self.currentGroup.name);
+                [self fetchChores];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else {
+        NSLog(@"user has no group");
+    }
+    
+    [_progressBar setProgress:0 animated:NO];
+    [_progressBar setProgress:self.increment animated:YES duration:5];
+    
+   
+
+    
 }
-//- (void) fetchChores {
-//    PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
-//    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
-//    choreQuery.limit = 20;
-//    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-//        if (posts != nil) {
-//            self.chores = (NSMutableArray *)posts;
-//            self.allAssignments = (NSMutableArray *)posts;
-//            for (ChoreAssignment *currAssignment in self.allAssignments) {
-//                if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
-//                    [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
-//                    [self.chores addObjectsFromArray: currAssignment.completedChores];
-//                }
-//
-//
-//            }
-//
-//        } else {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//    }];}
+- (void) fetchChores {
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
+    choreQuery.limit = 20;
+    __weak typeof(self) weakSelf = self;
+    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.allAssignments = (NSMutableArray *)posts;
+            self.chores = [NSMutableArray array];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
+                    self.currNumberOfChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+                    self.currCompletedChores += [currAssignment.completedChores count];
+                    self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
+                    NSLog(@"completed: %lu", self.currCompletedChores);
+                    NSLog(@"total: %lu", self.currNumberOfChores);
+                    NSLog(@"increment: %f", self.increment);
+                    [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
+                        return [NSString stringWithFormat:@"%lu / %lu Chores Done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
+                    }];
+                    [weakSelf.progressBar setProgress:0 animated:NO];
+                    [weakSelf.progressBar setProgress:self.increment animated:YES duration:5];
+                }
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -78,7 +110,6 @@
 }
 
 - (void)setDesignAspects{
-    [_progressBar setProgress:100 animated:YES duration:5];
     UIColor *unfinished = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.46 green:0.56 blue:0.80 alpha:1.0];
     UIColor *hintColor =
@@ -89,6 +120,7 @@
     [_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = backgroundColor;
     [_progressBar setStartAngle:270];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:30]];
 }
 
 /*
@@ -102,10 +134,11 @@
 */
 - (IBAction)onTapProgressButton:(id)sender {
     [_progressBar setProgress:0 animated:NO];
-    [_progressBar setProgress:100 animated:YES duration:5];
+    [_progressBar setProgress:self.increment animated:YES duration:5];
 }
+
 - (IBAction)onTapIncrement:(id)sender {
-    [_progressBar setProgress:(_progressBar.progress + 0.10f) animated:YES];
+    [_progressBar setProgress:(_progressBar.progress + self.increment) animated:YES];
 }
 - (IBAction)onTapZero:(id)sender {
     [_progressBar setProgress:0 animated:NO];
