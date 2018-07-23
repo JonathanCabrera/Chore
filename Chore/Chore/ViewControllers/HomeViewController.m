@@ -34,31 +34,40 @@
 @property (strong, nonatomic) ChoreAssignment *assignment;
 
 - (IBAction)onTapIncrement:(id)sender;
-
 - (IBAction)onTapZero:(id)sender;
 - (IBAction)onTapLogOut:(id)sender;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
 - (IBAction)onTapProgressButton:(id)sender;
-
-
-
-
-
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-
+    [self setDesignAspects];
+    [self fetchChores];
     [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
-        return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * 10];
-        
+        return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * self.chores.count];
     }];
+}
+- (void) fetchChores {
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+    choreQuery.limit = 20;
+    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.chores = (NSMutableArray *)posts;
+            
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];}
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)setDesignAspects{
     [_progressBar setProgress:100 animated:YES duration:5];
     UIColor *unfinished = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.46 green:0.56 blue:0.80 alpha:1.0];
@@ -70,42 +79,7 @@
     [_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = backgroundColor;
     [_progressBar setStartAngle:270];
-    
-    
-    //fetch the user's group
-    NSString *usersGroup = [PFUser currentUser][@"groupName"];
-    if(usersGroup != nil) {
-        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-        query.limit = 1;
-        [query whereKey:@"name" equalTo:usersGroup];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts != nil) {
-                self.currentGroup = posts[0];
-                NSLog(@"user's group: %@", self.currentGroup.name);
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-    } else {
-        NSLog(@"user has no group");
-    }
-    
-    
 }
-
-- (void) fetchChores {
-    for (ChoreAssignment *currAssignment in self.allAssignments) {
-        [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 /*
 #pragma mark - Navigation
@@ -116,15 +90,10 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
 - (IBAction)onTapProgressButton:(id)sender {
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:100 animated:YES duration:5];
 }
-
-
-
 - (IBAction)onTapIncrement:(id)sender {
     [_progressBar setProgress:(_progressBar.progress + 0.10f) animated:YES];
 }
