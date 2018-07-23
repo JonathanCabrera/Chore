@@ -26,12 +26,17 @@
     
     self.userNameLabel.text = userName;
     self.choreNameLabel.text = chore.name;
+//    self.userNameLabel.text = [self createTableViewCellText];
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
 
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
     
     [self.choreView addGestureRecognizer:tapRecognizer];
+}
+
+- (NSString *)createTableViewCellText {
+    return [[self.userName stringByAppendingString:@" has to "] stringByAppendingString:self.chore.name];
 }
 
 - (void)didTapChore {
