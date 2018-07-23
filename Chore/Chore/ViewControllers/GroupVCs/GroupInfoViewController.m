@@ -14,7 +14,9 @@
 
 @interface GroupInfoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, AddGroupMemberCellDelegate, GroupMemberCellDelegate>
 
+
 @property (strong, nonatomic) NSMutableArray *userArray;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -25,18 +27,17 @@
     [super viewDidLoad];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
+    self.groupNameLabel.text = self.currentGroup.name;
     [self fetchMembers];
     
     //layout collection view
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
-    layout.minimumInteritemSpacing = 3;
-    layout.minimumLineSpacing = 3;
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     CGFloat postersPerLine = 2;
     CGFloat itemWidth = (self.collectionView.frame.size.width - (layout.minimumInteritemSpacing * (postersPerLine - 1))) / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-
 }
 
 
@@ -66,9 +67,9 @@
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
     if(indexPath.row == 0) {
         AddGroupMemberCell *addCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddGroupMemberCell" forIndexPath:indexPath];
+        [addCell setCell];
         addCell.delegate = self;
         return addCell;
     } else {
@@ -104,6 +105,7 @@
     } else if([segue.identifier isEqualToString:@"memberProfileSegue"]) {
         ProfileViewController *profileController = (ProfileViewController *)nextController.topViewController;
         profileController.selectedUser = sender;
+        profileController.showBack = YES;
     }
 }
 

@@ -69,7 +69,6 @@
     //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     if(usersGroup != nil) {
-        
         PFQuery *query = [PFQuery queryWithClassName:@"Group"];
         query.limit = 1;
         [query whereKey:@"name" equalTo:usersGroup];
