@@ -23,21 +23,26 @@
 - (void)setCell:(Chore *)chore withName:(NSString *)userName {
     _chore = chore;
     _userName = userName;
+    
+    self.userNameLabel.text = userName;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
-    self.userNameLabel.text = userName;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
-    NSString *dateString = [dateFormatter stringFromDate:chore.deadline];
-    self.deadlineLabel.text = dateString;
 
+    self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
+    
     [self.choreView addGestureRecognizer:tapRecognizer];
 }
 
 - (void)didTapChore {
     [self.delegate seeChore:self withChore:self.chore withName:self.userName];
+}
+
+- (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
+    NSString *dateString = [dateFormatter stringFromDate:deadlineDate];
+    return dateString;
 }
 
 @end
