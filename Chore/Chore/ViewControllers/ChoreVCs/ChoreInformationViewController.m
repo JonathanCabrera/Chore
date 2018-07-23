@@ -66,7 +66,6 @@
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
             self.userNames = [NSMutableArray array];

@@ -54,13 +54,16 @@
 
 - (void)setName:(PFUser *)user{
     self.selectedUser = user;
-     self.userNameLabel.text = self.currentUser.username;
+    self.userNameLabel.text = [PFUser currentUser].username;
+    
 }
 
 - (void)fetchUpcomingChores{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
     [query whereKey:@"userName" equalTo:[PFUser currentUser].username];
+    
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.assignment = posts[0];
@@ -79,7 +82,7 @@
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             self.pastAssignment = posts[0];
-            self.pastChores = self.pastAssignment.uncompletedChores;
+            self.pastChores = self.pastAssignment.completedChores;
             [self.pastTableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
@@ -111,12 +114,15 @@
     } else {
             ChoreInformationCell *pastChoreCell = [tableView dequeueReusableCellWithIdentifier:@"PastChoreCell" forIndexPath:indexPath];
             Chore *myPastChore = self.pastChores[indexPath.row];
+            NSLog(@"hi");
             
             PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
             choreQuery.limit = 1;
             [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
             [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                 if (objects != nil){
+                    NSLog(@"here");
+                    NSLog(@"%@", objects[0]);
                     [pastChoreCell setCell:objects[0] withName:@"PastCell"];
                 }
             }];
@@ -126,7 +132,8 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.upcomingChores.count;
+    return MAX(self.upcomingChores.count,self.pastChores.count);
+    
 }
 
 - (void)seeChore:(ChoreInformationCell *)cell withChore:(Chore *)chore {
