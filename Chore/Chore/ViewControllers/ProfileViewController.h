@@ -16,6 +16,5 @@
 @property (strong, nonatomic) PFUser *selectedUser;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
-- (void)setName:(PFUser *)user;
 @end
 

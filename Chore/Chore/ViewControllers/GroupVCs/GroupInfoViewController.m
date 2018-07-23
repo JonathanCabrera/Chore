@@ -10,14 +10,12 @@
 #import "GroupMemberCell.h"
 #import "AddGroupMemberCell.h"
 #import "AddMemberViewController.h"
+#import "ProfileViewController.h"
 
-
-@interface GroupInfoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, AddGroupMemberCellDelegate>
+@interface GroupInfoViewController () <UICollectionViewDelegate, UICollectionViewDataSource, AddGroupMemberCellDelegate, GroupMemberCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *userArray;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
-
 
 @end
 
@@ -25,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -49,7 +46,6 @@
 }
 
 - (void)fetchMembers {
-    
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query orderByAscending:@"username"];
     [query includeKey:@"author"];
@@ -60,66 +56,55 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-        
             self.userArray = (NSMutableArray *)posts;
             [self.collectionView reloadData];
-            
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
-    
 }
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     if(indexPath.row == 0) {
-        
         AddGroupMemberCell *addCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddGroupMemberCell" forIndexPath:indexPath];
         addCell.delegate = self;
         return addCell;
-        
     } else {
-        
         GroupMemberCell *memberCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GroupMemberCell" forIndexPath:indexPath];
         [memberCell setMember:self.userArray[indexPath.row - 1]];
+        memberCell.delegate = self;
         return memberCell;
-        
     }
-    
 }
 
+
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     return [self.userArray count] + 1;
-    
-    
 }
 
 - (void)addMember:(AddGroupMemberCell *)addGroupMemberCell {
-    
     [self performSegueWithIdentifier:@"addMember" sender:self.currentGroup];
-    
-    
 }
 
+- (void)seeMemberProfile:(GroupMemberCell *)cell withUser:(PFUser *)user {
+    [self performSegueWithIdentifier:@"memberProfileSegue" sender:user];
+}
 
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     UINavigationController *nextController = [segue destinationViewController];
+    
     if([segue.identifier isEqualToString:@"addMember"]) {
-        
         AddMemberViewController *addMemberController = (AddMemberViewController *)nextController;
         addMemberController.currentGroup = sender;
-        
+    } else if([segue.identifier isEqualToString:@"memberProfileSegue"]) {
+        ProfileViewController *profileController = (ProfileViewController *)nextController.topViewController;
+        profileController.selectedUser = sender;
     }
-    
-    
 }
 
 

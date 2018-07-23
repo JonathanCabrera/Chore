@@ -65,6 +65,12 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
+- (IBAction)didTapBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 /*
 #pragma mark - Navigation
 

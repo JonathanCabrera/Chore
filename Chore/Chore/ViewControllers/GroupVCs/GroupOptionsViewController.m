@@ -59,13 +59,10 @@
 }
 
 - (void)didTapSeeGroup {
-    
     [self performSegueWithIdentifier:@"groupInfoSegue" sender:self.currentGroup];
-    
 }
 
 - (void)didTapSeeChores {
-    
     [self performSegueWithIdentifier:@"choreInfoSegue" sender:self.currentGroup];
 }
 

@@ -122,6 +122,11 @@
                         <viewLayoutGuide key="safeArea" id="Wjf-Gw-E9r"/>
                     </view>
                     <navigationItem key="navigationItem" id="6aO-wZ-WGN">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="I9r-Hg-sAe">
+                            <connections>
+                                <action selector="didTapBack:" destination="6mG-8N-NEe" id="3Bd-AU-m01"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="aif-fk-10j">
                             <connections>
                                 <action selector="didTapEdit:" destination="6mG-8N-NEe" id="Sdx-vx-SLH"/>
@@ -129,6 +134,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="I9r-Hg-sAe" id="0sE-zE-0Lh"/>
+                        <outlet property="editButton" destination="aif-fk-10j" id="Gdx-f9-luU"/>
                         <outlet property="pastTableView" destination="QzQ-Lk-JFA" id="3kx-fh-s1J"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>

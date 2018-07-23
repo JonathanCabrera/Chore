@@ -106,11 +106,20 @@
                     <connections>
                         <outlet property="collectionView" destination="ruw-x7-skt" id="o5m-3I-uz2"/>
                         <segue destination="0sm-r4-ih9" kind="show" identifier="addMember" id="0Pk-uA-R8Q"/>
+                        <segue destination="qEc-68-fBQ" kind="show" identifier="memberProfileSegue" id="IIz-Jy-pm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvS-yv-Eg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="416.80000000000001" y="-122.78860569715144"/>
+        </scene>
+        <!--profile-->
+        <scene sceneID="n20-XA-9od">
+            <objects>
+                <viewControllerPlaceholder storyboardName="profile" id="qEc-68-fBQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3qj-GQ-osP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1215" y="-12"/>
         </scene>
         <!--addMember-->
         <scene sceneID="e8R-gO-EJV">
