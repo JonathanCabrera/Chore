@@ -11,9 +11,12 @@
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
 
+
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+
+@property BOOL myChore;
 
 @end
 
@@ -43,6 +46,15 @@
 
 }
 
++(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {
+    UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {// handle response here.
+    }];
+    
+    [alertViewController addAction:okAction];
+    [parentViewController presentViewController:alertViewController animated:YES completion:nil];
+}
+
 - (void)updateCompletedChore{
     PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     pastQuery.limit = 1;
@@ -50,20 +62,25 @@
     
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
-            ChoreAssignment *assignment = posts[0];
+            if ([[PFUser currentUser].username isEqualToString: self.userName]){
+               
+                ChoreAssignment *assignment = posts[0];
             
-            NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
-            NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
+                NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
+                NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
             
-            NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
+                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
             
-            [newCompleted addObject:newUncompleted[removeIndex]];
-            [newUncompleted removeObjectAtIndex:removeIndex];
+                [newCompleted addObject:newUncompleted[removeIndex]];
+                [newUncompleted removeObjectAtIndex:removeIndex];
             
-            [assignment setObject:newCompleted forKey:@"completedChores"];
-            [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
+                [assignment setObject:newCompleted forKey:@"completedChores"];
+                [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
             
-            [assignment saveInBackground];
+                [assignment saveInBackground];
+               
+            } 
+           
         }
     }];
 }
@@ -150,6 +167,17 @@
     
     return newImage;
 }
+
+
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([[PFUser currentUser].username isEqualToString: self.userName]){
+        [segue.identifier isEqualToString:@"segueToMain"];
+     } else {
+        [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
+         
+     }
+ }
+
 
 
 

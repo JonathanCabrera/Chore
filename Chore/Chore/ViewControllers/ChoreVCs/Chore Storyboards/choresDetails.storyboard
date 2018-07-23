@@ -57,7 +57,7 @@
                                 <state key="normal" title="I Finished My Chore"/>
                                 <connections>
                                     <action selector="didTapFinished:" destination="PpC-AV-sPm" eventType="touchUpInside" id="LcK-Oj-mJW"/>
-                                    <segue destination="SnA-Ek-jvO" kind="presentation" id="EOX-lI-Ixu"/>
+                                    <segue destination="SnA-Ek-jvO" kind="presentation" identifier="segueToMain" id="DS1-in-ryE"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-Z6-OHs">
