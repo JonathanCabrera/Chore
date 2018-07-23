@@ -14,12 +14,15 @@
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *chores;
-@property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
-@property (strong, nonatomic) NSMutableArray *allAssignments;
+
+@property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
+@property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) NSMutableArray *userNames;
+
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *userNameToSend;
 
 @end
@@ -31,11 +34,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    
     //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
+    self.groupNameLabel.text = usersGroup;
     if(usersGroup != nil) {
-        
         PFQuery *query = [PFQuery queryWithClassName:@"Group"];
         query.limit = 1;
         [query whereKey:@"name" equalTo:usersGroup];
@@ -60,13 +62,11 @@
 }
 
 - (void)fetchChores {
-
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
             self.userNames = [NSMutableArray array];
@@ -86,7 +86,9 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
 
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
+    
     Chore *myChore = self.chores[indexPath.row];
+    
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
     choreQuery.limit = 1;
     [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
