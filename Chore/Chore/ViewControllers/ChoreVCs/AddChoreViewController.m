@@ -49,6 +49,7 @@
     
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
     [choreQuery orderByDescending:@"name"];
+    [choreQuery whereKey:@"defaultChore" equalTo:@"YES"];
     choreQuery.limit = 20;
     
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -122,8 +123,19 @@
 }
 
 - (IBAction)saveAssignment:(id)sender {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMddyyyy"];
+    NSDate *date = [formatter dateFromString:self.deadlineField.text];
     
-    [ChoreAssignment assignChore:self.userToAssign withChore:self.choreToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:date withDefault:@"NO" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded) {
+            NSLog(@"created chore");
+        } else {
+            NSLog(@"error creating chore: %@", error.localizedDescription);
+        }
+    }];
+    
+    [ChoreAssignment assignChore:self.userToAssign withChore:newChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"Assigned chore!");
         } else {

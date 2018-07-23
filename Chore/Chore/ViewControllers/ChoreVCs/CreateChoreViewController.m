@@ -34,7 +34,7 @@
     [formatter setDateFormat:@"MMddyyyy"];
     NSDate *date = [formatter dateFromString:self.dateField.text];
     
-    [Chore makeChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointField.text intValue] withDeadline:date withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [Chore makeChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointField.text intValue] withDeadline:date withDefault:@"YES" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"saved chore");
         } else {
