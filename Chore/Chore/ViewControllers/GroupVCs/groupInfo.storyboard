@@ -43,16 +43,9 @@
                                                         <action selector="didTapAdd:" destination="PJm-wE-yYS" eventType="touchUpInside" id="jnx-TU-Ocb"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Rs4-eY-K1s" customClass="PFImageView">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cropped-add-user" translatesAutoresizingMaskIntoConstraints="NO" id="Rs4-eY-K1s" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add member" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dym-Kt-llu">
-                                                    <rect key="frame" x="40" y="135" width="102" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -64,6 +57,7 @@
                                         <size key="customSize" width="182" height="162"/>
                                         <connections>
                                             <outlet property="addButton" destination="DS1-lu-I8W" id="vF4-qS-sV4"/>
+                                            <outlet property="addUserImage" destination="Rs4-eY-K1s" id="uFQ-on-bLZ"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GroupMemberCell" id="B5z-5i-k4h" customClass="GroupMemberCell">
@@ -73,7 +67,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-G9-oGT" customClass="PFImageView">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-G9-oGT" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-gt-IAp">
@@ -99,12 +93,20 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O05-Ph-uHc">
+                                <rect key="frame" x="152" y="86" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="onM-K2-Y4X"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="ruw-x7-skt" id="o5m-3I-uz2"/>
+                        <outlet property="groupNameLabel" destination="O05-Ph-uHc" id="M1T-nv-AIe"/>
                         <segue destination="0sm-r4-ih9" kind="show" identifier="addMember" id="0Pk-uA-R8Q"/>
                         <segue destination="qEc-68-fBQ" kind="show" identifier="memberProfileSegue" id="IIz-Jy-pm1"/>
                     </connections>
@@ -131,6 +133,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cropped-add-user" width="434" height="434"/>
         <image name="user-placeholder" width="577" height="576"/>
     </resources>
 </document>

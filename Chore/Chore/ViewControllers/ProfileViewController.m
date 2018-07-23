@@ -55,12 +55,14 @@
     
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refresh) userInfo:nil repeats:true];
     
-    if(self.selectedUser == [PFUser currentUser]) {
+    if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
-        [self.backButton setValue:@YES forKeyPath:@"hidden"];
     } else {
         [self.editButton setValue:@YES forKeyPath:@"hidden"];
-        [self.backButton setValue:@NO forKeyPath:@"hidden"];
+    }
+    
+    if(!self.showBack) {
+       [self.backButton setValue:@YES forKeyPath:@"hidden"];
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParseUI.h"
 
 @protocol AddGroupMemberCellDelegate;
 
@@ -14,8 +15,12 @@
 
 @property (nonatomic, weak) id<AddGroupMemberCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) IBOutlet PFImageView *addUserImage;
+
+- (void)setCell;
 
 @end
+
 
 
 @protocol AddGroupMemberCellDelegate

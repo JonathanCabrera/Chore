@@ -11,10 +11,12 @@
 
 @implementation AddGroupMemberCell
 
+- (void)setCell {
+    self.addUserImage.layer.cornerRadius = self.addUserImage.frame.size.width /2;
+}
+
 - (IBAction)didTapAdd:(id)sender {
-    
     [self.delegate addMember:self];
-    
 }
 
 

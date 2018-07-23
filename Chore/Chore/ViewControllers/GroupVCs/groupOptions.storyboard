@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Group-->
+        <!--Group Options View Controller-->
         <scene sceneID="HyS-1H-wCS">
             <objects>
                 <viewController storyboardIdentifier="GroupVC" id="MLS-qJ-HNn" customClass="GroupOptionsViewController" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="8Ih-cn-AOy"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Group" id="BE4-H0-cpJ"/>
+                    <navigationItem key="navigationItem" id="BE4-H0-cpJ"/>
                     <connections>
                         <outlet property="groupNameLabel" destination="3Mc-0H-sdr" id="tVw-RT-WJN"/>
                         <outlet property="seeChoresView" destination="W00-PP-NQN" id="cQJ-Jf-Z1b"/>
@@ -98,7 +98,9 @@
         <scene sceneID="yO3-CI-ghJ">
             <objects>
                 <navigationController title="Group" automaticallyAdjustsScrollViewInsets="NO" id="c6s-3B-hUV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Group" image="meeting" id="j8I-EX-i6L"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Z2-tj-ngq">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -116,5 +118,6 @@
     <resources>
         <image name="broom" width="96" height="96"/>
         <image name="group" width="96" height="96"/>
+        <image name="meeting" width="30" height="30"/>
     </resources>
 </document>
