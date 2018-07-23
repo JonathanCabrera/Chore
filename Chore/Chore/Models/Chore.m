@@ -10,13 +10,13 @@
 
 @implementation Chore
 
-    @dynamic name, info, points, photo, deadline;
+    @dynamic name, info, points, photo, deadline, defaultChore;
 
 + (nonnull NSString *)parseClassName {
     return @"Chore";
 }
 
-+ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *)date withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (Chore *) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *)date withDefault: (NSString *)defaultChore withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     Chore *newChore = [Chore new];
     
@@ -24,11 +24,14 @@
     newChore.info = description;
     newChore.points = points;
     newChore.deadline = date;
+    newChore.defaultChore = defaultChore;
     
     NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"camera"]);
     newChore.photo = [PFFile fileWithData:placeholderData];
     
     [newChore saveInBackgroundWithBlock: completion];
+    
+    return newChore;
 }
 
 @end
