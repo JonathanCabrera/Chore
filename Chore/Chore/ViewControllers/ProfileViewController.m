@@ -12,6 +12,7 @@
 #import "ChoreInformationCell.h"
 #import "ChoreAssignment.h"
 #import "GroupCell.h"
+#import "HomeViewController.h"
 
 @protocol profileViewControllerDelegate;
 
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) Group *currentGroup;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) ChoreAssignment *pastAssignment;
+
 
 
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
@@ -205,6 +207,7 @@
 
 /*
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- */
+*/
+ 
 
 @end
