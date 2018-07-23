@@ -45,22 +45,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setDesignAspects];
-    [self fetchChores];
+//    [self fetchChores];
     [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
         return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * self.chores.count];
     }];
 }
-- (void) fetchChores {
-    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-    choreQuery.limit = 20;
-    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.chores = (NSMutableArray *)posts;
-            
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];}
+//- (void) fetchChores {
+//    PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+//    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
+//    choreQuery.limit = 20;
+//    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+//        if (posts != nil) {
+//            self.chores = (NSMutableArray *)posts;
+//            self.allAssignments = (NSMutableArray *)posts;
+//            for (ChoreAssignment *currAssignment in self.allAssignments) {
+//                if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
+//                    [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
+//                    [self.chores addObjectsFromArray: currAssignment.completedChores];
+//                }
+//
+//
+//            }
+//
+//        } else {
+//            NSLog(@"%@", error.localizedDescription);
+//        }
+//    }];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
