@@ -20,7 +20,7 @@
 }
 
 
-- (void)setCell:(Chore *)chore withName:(NSString *)userName {
+- (void)setCell:(Chore *)chore withName:(NSString *)userName withColor:(UIColor *)color{
     _chore = chore;
     _userName = userName;
     
@@ -31,8 +31,9 @@
 
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
-    
     [self.choreView addGestureRecognizer:tapRecognizer];
+    
+    self.backgroundColor = color;
 }
 
 - (NSString *)createTableViewCellText {

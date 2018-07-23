@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 
-- (void)setCell: (Chore *)chore withName: (NSString *)userName;
+- (void)setCell: (Chore *)chore withName: (NSString *)userName withColor: (UIColor *)color;
 
 @end
 

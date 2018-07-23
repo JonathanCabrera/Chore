@@ -96,7 +96,7 @@
 
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row]];
+            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row] withColor:[UIColor whiteColor]];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }
