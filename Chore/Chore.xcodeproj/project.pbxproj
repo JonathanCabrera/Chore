@@ -41,6 +41,7 @@
 		1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */; };
 		1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */; };
 		1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */; };
+		1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */; };
 		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
 		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
@@ -133,6 +134,7 @@
 		1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = createChore.storyboard; sourceTree = "<group>"; };
 		1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateChoreViewController.h; sourceTree = "<group>"; };
 		1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateChoreViewController.m; sourceTree = "<group>"; };
+		1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A93700C70BDE40ED83451BB /* Pods-Chore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */,
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
 				1E1E3C2020FD40DA003C87B4 /* main.m */,
+				1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */,
 			);
 			path = Chore;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				1E829453210280640086EB80 /* Signup.storyboard in Resources */,
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
+				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
 				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,
 				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
 				1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */,

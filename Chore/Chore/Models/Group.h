@@ -14,7 +14,7 @@
 @property (nonatomic, strong, nonnull) NSString *name;
 @property (nonatomic, strong, nonnull) NSMutableArray *members;
 
-+ (Group  *) makeGroup: (NSString * _Nullable)name withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (Group  *_Nullable) makeGroup: (NSString * _Nullable)name withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 - (void) addMember: (Group * _Nullable)group withUser: (PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock _Nullable)completion;
 
