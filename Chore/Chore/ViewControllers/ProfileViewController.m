@@ -25,7 +25,7 @@
 @property (strong, nonatomic) Group *currentGroup;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) ChoreAssignment *pastAssignment;
-
+@property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
 @property (weak, nonatomic) NSMutableArray *pastChores;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
@@ -43,10 +43,10 @@
     self.pastTableView.delegate = self;
     self.pastTableView.dataSource = self;
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.63 green:0.87 blue:1.00 alpha:1.0];
-    self.view.backgroundColor = backgroundColor;
-    self.upcomingTableView.backgroundColor = backgroundColor;
-    self.pastTableView.backgroundColor = backgroundColor;
+    self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.view.backgroundColor = self.backgroundColor;
+    self.upcomingTableView.backgroundColor = self.backgroundColor;
+    self.pastTableView.backgroundColor = self.backgroundColor;
     
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
@@ -125,7 +125,7 @@
         [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
-                [choreCell setCell:objects[0] withName:@"UpcomingCell"];
+                [choreCell setCell:objects[0] withName:@"UpcomingCell" withColor:self.backgroundColor];
             }
         }];
         choreCell.delegate = self;
@@ -140,7 +140,7 @@
         [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
-                [pastChoreCell setCell:objects[0] withName:@"PastCell"];
+                [pastChoreCell setCell:objects[0] withName:@"PastCell" withColor:self.backgroundColor];
             }
         }];
         pastChoreCell.delegate = self;

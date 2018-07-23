@@ -63,24 +63,27 @@
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             if ([[PFUser currentUser].username isEqualToString: self.userName]){
-               
+
                 ChoreAssignment *assignment = posts[0];
             
                 NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
                 NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
             
                 NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
-            
-                [newCompleted addObject:newUncompleted[removeIndex]];
+    
+                Chore* removedChore = newUncompleted[removeIndex];
+                [removedChore fetchIfNeeded];
+                
+                NSNumber *updatedPointValue = [NSNumber numberWithInt: (assignment.points + removedChore.points)];
+
+                [newCompleted addObject:removedChore];
                 [newUncompleted removeObjectAtIndex:removeIndex];
-            
+                
+                [assignment incrementKey:@"points" byAmount:updatedPointValue];
                 [assignment setObject:newCompleted forKey:@"completedChores"];
                 [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
-            
                 [assignment saveInBackground];
-               
-            } 
-           
+            }
         }
     }];
 }
