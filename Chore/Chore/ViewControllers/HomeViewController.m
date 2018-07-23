@@ -14,6 +14,8 @@
 #import "ParseUI.h"
 #import "CircleProgressBar.h"
 #import "Group.h"
+#import "Chore.h"
+#import "ChoreAssignment.h"
 
 
 
@@ -27,6 +29,9 @@
 @property (nonatomic) CGFloat startAngle;
 @property (weak, nonatomic) IBOutlet UIButton *incrementButton;
 @property (weak, nonatomic) IBOutlet UIButton *zeroProgressButton;
+@property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
+@property (strong, nonatomic) NSMutableArray<Chore *> *chores;
+@property (strong, nonatomic) ChoreAssignment *assignment;
 
 - (IBAction)onTapIncrement:(id)sender;
 
@@ -47,6 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 
     [_progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
         return [NSString stringWithFormat:@"%.0f / 10 Chores Done", progress * 10];
@@ -87,6 +93,12 @@
     }
     
     
+}
+
+- (void) fetchChores {
+    for (ChoreAssignment *currAssignment in self.allAssignments) {
+        [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
