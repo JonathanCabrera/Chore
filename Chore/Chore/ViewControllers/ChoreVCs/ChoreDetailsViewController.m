@@ -63,7 +63,7 @@
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             if ([[PFUser currentUser].username isEqualToString: self.userName]){
-                self.myChore = YES;
+               
                 ChoreAssignment *assignment = posts[0];
             
                 NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
@@ -78,12 +78,8 @@
                 [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
             
                 [assignment saveInBackground];
-                //
-            } else {
-                self.myChore = NO;
-                [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
-                //
-            }
+               
+            } 
            
         }
     }];
@@ -174,14 +170,14 @@
 
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if (self.myChore == YES){
-         [segue.identifier isEqualToString:@"segueToMain"];
+     if ([[PFUser currentUser].username isEqualToString: self.userName]){
+        [segue.identifier isEqualToString:@"segueToMain"];
      } else {
+        [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
          
-            
      }
-     
  }
+
 
 
 
