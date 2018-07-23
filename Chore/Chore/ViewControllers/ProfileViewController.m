@@ -13,6 +13,7 @@
 #import "ChoreAssignment.h"
 #import "GroupCell.h"
 #import "HomeViewController.h"
+#import "ChoreDetailsViewController.h"
 
 @protocol profileViewControllerDelegate;
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) Group *currentGroup;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) ChoreAssignment *pastAssignment;
+@property (strong, nonatomic) NSString *userNameToSend;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
 @property (weak, nonatomic) NSMutableArray *pastChores;
@@ -156,10 +158,6 @@
     }
 }
 
-- (void)seeChore:(ChoreInformationCell *)cell withChore:(Chore *)chore withName: (NSString *)userName {
-    [self performSegueWithIdentifier:@"profileSegue" sender:chore];
-}
-
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -228,9 +226,18 @@
     return newImage;
 }
 
-/*
+- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
+    self.userNameToSend = userName;
+    [self performSegueWithIdentifier:@"profileToDetailsSegue" sender:chore];
+}
+
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-*/
- 
+     UINavigationController *controller = [segue destinationViewController];
+     if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
+         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
+         detailsController.chore = sender;
+         detailsController.userName = self.userNameToSend;
+     }
+ }
 
 @end
