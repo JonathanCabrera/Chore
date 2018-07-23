@@ -16,20 +16,19 @@
 @protocol profileViewControllerDelegate;
 
 @interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
-@property (strong, nonatomic) PFUser *currentUser;
+
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet UITableView *pastTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) Group *currentGroup;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) ChoreAssignment *pastAssignment;
-
-
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
 @property (weak, nonatomic) NSMutableArray *pastChores;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 @end
 
@@ -41,30 +40,45 @@
     self.upcomingTableView.dataSource = self;
     self.pastTableView.delegate = self;
     self.pastTableView.dataSource = self;
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.profilePicture.file = [PFUser currentUser][@"profilePic"];
-    [self.profilePicture loadInBackground];
-    [self fetchUpcomingChores];
-    [self fetchPastChores];
-    [self setName:[PFUser currentUser]];
+    
     UIColor *backgroundColor = [UIColor colorWithRed:0.63 green:0.87 blue:1.00 alpha:1.0];
     self.view.backgroundColor = backgroundColor;
     self.upcomingTableView.backgroundColor = backgroundColor;
     self.pastTableView.backgroundColor = backgroundColor;
+    
+    if(self.selectedUser == nil) {
+        self.selectedUser = [PFUser currentUser];
+    }
+    self.userNameLabel.text = self.selectedUser.username;
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refresh) userInfo:nil repeats:true];
+    
+    if(self.selectedUser == [PFUser currentUser]) {
+        [self.editButton setValue:@NO forKeyPath:@"hidden"];
+        [self.backButton setValue:@YES forKeyPath:@"hidden"];
+    } else {
+        [self.editButton setValue:@YES forKeyPath:@"hidden"];
+        [self.backButton setValue:@NO forKeyPath:@"hidden"];
+    }
+    
 }
 
-- (void)setName:(PFUser *)user{
-    self.selectedUser = user;
-    self.userNameLabel.text = [PFUser currentUser].username;
-    
+- (void)viewDidAppear:(BOOL)animated {
+    [self refresh];
+}
+
+
+- (void)refresh {
+    self.profilePicture.file = self.selectedUser[@"profilePic"];
+    [self.profilePicture loadInBackground];
+    [self fetchUpcomingChores];
+    [self fetchPastChores];
 }
 
 - (void)fetchUpcomingChores{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
-    [query whereKey:@"userName" equalTo:[PFUser currentUser].username];
-    
-    
+    [query whereKey:@"userName" equalTo:self.selectedUser.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.assignment = posts[0];
@@ -79,7 +93,7 @@
 - (void) fetchPastChores{
     PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     pastQuery.limit = 1;
-    [pastQuery whereKey:@"userName" equalTo:[PFUser currentUser].username];
+    [pastQuery whereKey:@"userName" equalTo:self.selectedUser.username];
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             self.pastAssignment = posts[0];
@@ -100,8 +114,8 @@
     
     if ([tableView isEqual:self.upcomingTableView]){
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+
         Chore *myChore = self.upcomingChores[indexPath.row];
-        
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
         choreQuery.limit = 1;
         [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
@@ -112,34 +126,40 @@
         }];
         choreCell.delegate = self;
         return choreCell;
+
     } else {
-            ChoreInformationCell *pastChoreCell = [tableView dequeueReusableCellWithIdentifier:@"PastChoreCell" forIndexPath:indexPath];
-            Chore *myPastChore = self.pastChores[indexPath.row];
-            NSLog(@"hi");
-            
-            PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-            choreQuery.limit = 1;
-            [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
-            [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-                if (objects != nil){
-                    NSLog(@"here");
-                    NSLog(@"%@", objects[0]);
-                    [pastChoreCell setCell:objects[0] withName:@"PastCell"];
-                }
-            }];
-            pastChoreCell.delegate = self;
-            return pastChoreCell;
+        ChoreInformationCell *pastChoreCell = [tableView dequeueReusableCellWithIdentifier:@"PastChoreCell" forIndexPath:indexPath];
+        
+        Chore *myPastChore = self.pastChores[indexPath.row];
+        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery.limit = 1;
+        [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
+        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if (objects != nil){
+                [pastChoreCell setCell:objects[0] withName:@"PastCell"];
+            }
+        }];
+        pastChoreCell.delegate = self;
+        return pastChoreCell;
     }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return MAX(self.upcomingChores.count,self.pastChores.count);
-    
+    if([tableView isEqual:self.upcomingTableView]) {
+        return [self.upcomingChores count];
+    } else {
+        return [self.pastChores count];
+    }
 }
 
-- (void)seeChore:(ChoreInformationCell *)cell withChore:(Chore *)chore {
+- (void)seeChore:(ChoreInformationCell *)cell withChore:(Chore *)chore withName: (NSString *)userName {
     [self performSegueWithIdentifier:@"profileSegue" sender:chore];
 }
+
+- (IBAction)didTapBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (IBAction)didTapEdit:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
