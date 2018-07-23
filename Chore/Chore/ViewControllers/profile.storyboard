@@ -132,7 +132,7 @@
                         <outlet property="pastTableView" destination="QzQ-Lk-JFA" id="3kx-fh-s1J"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>
-                        <outlet property="userNameLabel" destination="sSH-VM-3rP" id="JX3-Sz-8k3"/>
+                        <outlet property="userNameLabel" destination="sSH-VM-3rP" id="e5B-fp-AZf"/>
                         <outlet property="view" destination="4rT-it-zID" id="iMZ-Xh-Gbc"/>
                     </connections>
                 </viewController>
