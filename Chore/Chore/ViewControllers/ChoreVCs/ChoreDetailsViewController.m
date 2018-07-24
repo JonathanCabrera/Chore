@@ -47,6 +47,7 @@
 
 - (IBAction)didTapFinished:(id)sender {
     [self updateCompletedChore];
+    
 }
 
 +(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {
@@ -74,6 +75,7 @@
                 NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
     
                 Chore* removedChore = newUncompleted[removeIndex];
+                removedChore.completionStatus = YES;
                 [removedChore fetchIfNeeded];
                 
                 [newCompleted addObject:removedChore];
@@ -99,6 +101,7 @@
 }
 
 - (void)setChoreDetails {
+    [self setCompletionStatusLabelColor];
     self.userNameLabel.text = self.userName;
     self.choreNameLabel.text = self.chore.name;
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
@@ -106,6 +109,16 @@
     self.informationLabel.text = self.chore.info;
     self.chorePic.file = self.chore.photo;
     [self.chorePic loadInBackground];
+}
+
+- (void)setCompletionStatusLabelColor {
+    if (self.chore.completionStatus) {
+        self.completionStatusLabel.textColor = [UIColor greenColor];
+        self.completionStatusLabel.text = @"Completed";
+    } else {
+        self.completionStatusLabel.textColor = [UIColor redColor];
+        self.completionStatusLabel.text = @"Uncompleted";
+    }
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
