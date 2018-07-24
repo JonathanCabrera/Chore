@@ -34,6 +34,7 @@
 @property (nonatomic) long currNumberOfChores;
 @property (nonatomic) long currCompletedChores;
 @property (nonatomic) float increment;
+@property (nonatomic, strong) UIColor *backgroundColor;
 
 
 - (IBAction)onTapIncrement:(id)sender;
@@ -47,6 +48,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.view.backgroundColor = self.backgroundColor;
     [self setDesignAspects];
     
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
@@ -89,11 +92,8 @@
                     self.currNumberOfChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.currCompletedChores += [currAssignment.completedChores count];
                     self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
-                    NSLog(@"completed: %lu", self.currCompletedChores);
-                    NSLog(@"total: %lu", self.currNumberOfChores);
-                    NSLog(@"increment: %f", self.increment);
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
-                        return [NSString stringWithFormat:@"%lu / %lu Chores Done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
+                        return [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
                     }];
                     [weakSelf.progressBar setProgress:0 animated:NO];
                     [weakSelf.progressBar setProgress:self.increment animated:YES duration:5];
@@ -110,17 +110,18 @@
 }
 
 - (void)setDesignAspects{
-    UIColor *unfinished = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
-    UIColor *progressColor = [UIColor colorWithRed:0.46 green:0.56 blue:0.80 alpha:1.0];
-    UIColor *hintColor =
-    [UIColor colorWithRed:0.44 green:0.54 blue:1.00 alpha:1.0];
-    UIColor *backgroundColor = [UIColor colorWithRed:0.63 green:0.87 blue:1.00 alpha:1.0];
+    UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
+    UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
+    
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
-    _progressBar.backgroundColor = backgroundColor;
+    _progressBar.backgroundColor = self.backgroundColor;
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:30]];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:24]];
+    [_progressBar setHintTextColor:unfinished];
+    [_progressBar setHintViewBackgroundColor:progressColor];
 }
 
 /*
