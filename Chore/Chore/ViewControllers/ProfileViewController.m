@@ -20,7 +20,6 @@
 @interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
-@property (weak, nonatomic) IBOutlet UITableView *pastTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -35,6 +34,8 @@
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
+
 
 @end
 
@@ -44,14 +45,11 @@
     [super viewDidLoad];
     self.upcomingTableView.delegate = self;
     self.upcomingTableView.dataSource = self;
-    self.pastTableView.delegate = self;
-    self.pastTableView.dataSource = self;
     
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.upcomingTableView.backgroundColor = self.backgroundColor;
-    self.pastTableView.backgroundColor = self.backgroundColor;
     self.userNameLabel.textColor = darkGreenColor;
     self.pointsLabel.textColor = darkGreenColor;
     
@@ -85,6 +83,16 @@
     [self.activityIndicator stopAnimating];
 }
 
+- (IBAction)didTapControl:(id)sender {
+    [self.upcomingTableView reloadData];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)fetchChores{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
@@ -95,25 +103,29 @@
             self.numPoints = self.assignment.points;
             self.pointsLabel.text = [NSString stringWithFormat:@"%d", self.numPoints];
             self.upcomingChores = self.assignment.uncompletedChores;
-            [self.upcomingTableView reloadData];
             self.pastChores = self.assignment.completedChores;
-            [self.pastTableView reloadData];
+            [self.upcomingTableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     
-    if ([tableView isEqual:self.upcomingTableView]){
-        ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-
+    //past
+    if(self.choreControl.selectedSegmentIndex == 0) {
+        Chore *myPastChore = self.pastChores[indexPath.row];
+        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery.limit = 1;
+        [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
+        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if (objects != nil){
+                [choreCell setCell:objects[0] withName:@"PastCell" withColor:self.backgroundColor];
+            }
+        }];
+    } else {
         Chore *myChore = self.upcomingChores[indexPath.row];
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
         choreQuery.limit = 1;
@@ -123,33 +135,19 @@
                 [choreCell setCell:objects[0] withName:@"UpcomingCell" withColor:self.backgroundColor];
             }
         }];
-        choreCell.delegate = self;
-        return choreCell;
-
-    } else {
-        ChoreInformationCell *pastChoreCell = [tableView dequeueReusableCellWithIdentifier:@"PastChoreCell" forIndexPath:indexPath];
-        
-        Chore *myPastChore = self.pastChores[indexPath.row];
-        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery.limit = 1;
-        [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
-        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            if (objects != nil){
-                [pastChoreCell setCell:objects[0] withName:@"PastCell" withColor:self.backgroundColor];
-            }
-        }];
-        pastChoreCell.delegate = self;
-        return pastChoreCell;
     }
+    choreCell.delegate = self;
+    return choreCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if([tableView isEqual:self.upcomingTableView]) {
-        return [self.upcomingChores count];
-    } else {
+    if(self.choreControl.selectedSegmentIndex == 0) {
         return [self.pastChores count];
+    } else {
+        return [self.upcomingChores count];
     }
 }
+
 
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
