@@ -96,7 +96,7 @@
                         return [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
                     }];
                     [weakSelf.progressBar setProgress:0 animated:NO];
-                    [weakSelf.progressBar setProgress:self.increment animated:YES duration:5];
+                    [weakSelf.progressBar setProgress:self.increment animated:YES duration:2];
                 }
             }
         } else {
