@@ -59,6 +59,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="choreNameLabel" destination="Ppg-Dh-qAR" id="CVt-hX-Zg0"/>
+                                            <outlet property="choreView" destination="0Qk-et-Q9Z" id="oKa-op-Nkw"/>
                                             <outlet property="pointsLabel" destination="27l-sO-v2R" id="SMH-Zx-W0Q"/>
                                         </connections>
                                     </tableViewCell>
