@@ -269,9 +269,9 @@
 			isa = PBXGroup;
 			children = (
 				1E9738EC20FFECB400EE46B9 /* groupOptions.storyboard */,
+				1E9738ED20FFECB400EE46B9 /* groupInfo.storyboard */,
 				1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */,
 				1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */,
-				1E9738ED20FFECB400EE46B9 /* groupInfo.storyboard */,
 				1E5C36C820FE821B002979BA /* GroupInfoViewController.h */,
 				1E5C36C920FE821B002979BA /* GroupInfoViewController.m */,
 				1E9738E420FFA53300EE46B9 /* addMember.storyboard */,
@@ -308,11 +308,11 @@
 			children = (
 				1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */,
 				1E9738F120FFED2F00EE46B9 /* login.storyboard */,
+				1E829452210280640086EB80 /* Signup.storyboard */,
 				1E5C36C120FD51F2002979BA /* LoginViewController.h */,
 				1E5C36C220FD51F2002979BA /* LoginViewController.m */,
 				1E5C36D820FE940D002979BA /* NewUserViewController.h */,
 				1E5C36D920FE940D002979BA /* NewUserViewController.m */,
-				1E829452210280640086EB80 /* Signup.storyboard */,
 				1E829454210280800086EB80 /* SignupViewController.h */,
 				1E829455210280800086EB80 /* SignupViewController.m */,
 			);

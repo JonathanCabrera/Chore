@@ -67,37 +67,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-G9-oGT" customClass="PFImageView">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mtb-G9-oGT" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-gt-IAp">
-                                                    <rect key="frame" x="40" y="133" width="102" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-gt-IAp">
+                                                    <rect key="frame" x="67.5" y="131.5" width="47.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2Q-V5-Yiy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
+                                                    <connections>
+                                                        <action selector="didTapButton:" destination="B5z-5i-k4h" eventType="touchUpInside" id="qea-lv-xRU"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Mtb-G9-oGT" secondAttribute="trailing" id="EDc-4e-DmQ"/>
-                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="top" secondItem="B5z-5i-k4h" secondAttribute="top" id="RDq-66-WNJ"/>
-                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="leading" secondItem="B5z-5i-k4h" secondAttribute="leading" id="XR1-7m-UF7"/>
-                                            <constraint firstAttribute="bottom" secondItem="Mtb-G9-oGT" secondAttribute="bottom" id="rsA-F6-4a3"/>
+                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="leading" secondItem="B5z-5i-k4h" secondAttribute="leading" id="4F9-CG-DKR"/>
+                                            <constraint firstAttribute="bottom" secondItem="lQw-gt-IAp" secondAttribute="bottom" constant="10" id="5Wh-xI-OLV"/>
+                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="top" secondItem="B5z-5i-k4h" secondAttribute="top" id="6x8-Gk-Okh"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mtb-G9-oGT" secondAttribute="trailing" id="OKB-qi-YF0"/>
+                                            <constraint firstAttribute="bottom" secondItem="O2Q-V5-Yiy" secondAttribute="bottom" id="OP5-wQ-pqK"/>
+                                            <constraint firstAttribute="trailing" secondItem="O2Q-V5-Yiy" secondAttribute="trailing" id="ZLJ-J5-pZ9"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mtb-G9-oGT" secondAttribute="bottom" id="bZR-WZ-vcD"/>
+                                            <constraint firstItem="O2Q-V5-Yiy" firstAttribute="top" secondItem="B5z-5i-k4h" secondAttribute="top" id="qDA-JM-rcy"/>
+                                            <constraint firstItem="lQw-gt-IAp" firstAttribute="centerX" secondItem="O2Q-V5-Yiy" secondAttribute="centerX" id="tN8-Ax-wiy"/>
+                                            <constraint firstItem="O2Q-V5-Yiy" firstAttribute="leading" secondItem="B5z-5i-k4h" secondAttribute="leading" id="vOO-wQ-3u0"/>
                                         </constraints>
                                         <size key="customSize" width="182" height="162"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="lQw-gt-IAp" id="Ftb-6z-fsj"/>
                                             <outlet property="profilePic" destination="Mtb-G9-oGT" id="aNG-53-PB4"/>
+                                            <outlet property="userButton" destination="O2Q-V5-Yiy" id="1GF-jt-GGx"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O05-Ph-uHc">
-                                <rect key="frame" x="152" y="86" width="71" height="33"/>
+                                <rect key="frame" x="128" y="66" width="118" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -134,6 +146,5 @@
     </scenes>
     <resources>
         <image name="cropped-add-user" width="434" height="434"/>
-        <image name="user-placeholder" width="577" height="576"/>
     </resources>
 </document>

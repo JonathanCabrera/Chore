@@ -22,14 +22,16 @@
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet UITableView *pastTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (strong, nonatomic) Group *currentGroup;
 @property (strong, nonatomic) ChoreAssignment *assignment;
-@property (strong, nonatomic) ChoreAssignment *pastAssignment;
 @property (strong, nonatomic) NSString *userNameToSend;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
 @property (weak, nonatomic) NSMutableArray *pastChores;
+@property (nonatomic) int numPoints;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
@@ -46,64 +48,55 @@
     self.pastTableView.dataSource = self;
     
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.upcomingTableView.backgroundColor = self.backgroundColor;
     self.pastTableView.backgroundColor = self.backgroundColor;
+    self.userNameLabel.textColor = darkGreenColor;
+    self.pointsLabel.textColor = darkGreenColor;
     
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
     self.userNameLabel.text = self.selectedUser.username;
     
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refresh) userInfo:nil repeats:true];
-    
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
     } else {
         [self.editButton setValue:@YES forKeyPath:@"hidden"];
     }
-    
     if(!self.showBack) {
        [self.backButton setValue:@YES forKeyPath:@"hidden"];
     }
     
+    self.activityIndicator.hidesWhenStopped = YES;
+    [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [self refresh];
 }
 
-
 - (void)refresh {
+    [self.activityIndicator startAnimating];
+    [self fetchChores];
     self.profilePicture.file = self.selectedUser[@"profilePic"];
     [self.profilePicture loadInBackground];
-    [self fetchUpcomingChores];
-    [self fetchPastChores];
+    [self.activityIndicator stopAnimating];
 }
 
-- (void)fetchUpcomingChores{
+- (void)fetchChores{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
     [query whereKey:@"userName" equalTo:self.selectedUser.username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.assignment = posts[0];
+            self.numPoints = self.assignment.points;
+            self.pointsLabel.text = [NSString stringWithFormat:@"%d", self.numPoints];
             self.upcomingChores = self.assignment.uncompletedChores;
             [self.upcomingTableView reloadData];
-        } else {
-            NSLog(@" %@", error.localizedDescription);
-        }
-    }];
-}
-
-- (void) fetchPastChores{
-    PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    pastQuery.limit = 1;
-    [pastQuery whereKey:@"userName" equalTo:self.selectedUser.username];
-    [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil){
-            self.pastAssignment = posts[0];
-            self.pastChores = self.pastAssignment.completedChores;
+            self.pastChores = self.assignment.completedChores;
             [self.pastTableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
