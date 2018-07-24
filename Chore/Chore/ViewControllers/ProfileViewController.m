@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-@property (strong, nonatomic) Group *currentGroup;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) NSString *userNameToSend;
 @property (strong, nonatomic) UIColor *backgroundColor;
@@ -72,6 +71,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    self.choreControl.selectedSegmentIndex = 0;
     [self refresh];
 }
 
@@ -84,7 +84,9 @@
 }
 
 - (IBAction)didTapControl:(id)sender {
+    [self.activityIndicator startAnimating];
     [self.upcomingTableView reloadData];
+    [self.activityIndicator stopAnimating];
 }
 
 
@@ -101,7 +103,7 @@
         if (posts != nil) {
             self.assignment = posts[0];
             self.numPoints = self.assignment.points;
-            self.pointsLabel.text = [NSString stringWithFormat:@"%d", self.numPoints];
+            self.pointsLabel.text = [NSString stringWithFormat:@"%d points", self.numPoints];
             self.upcomingChores = self.assignment.uncompletedChores;
             self.pastChores = self.assignment.completedChores;
             [self.upcomingTableView reloadData];
@@ -122,17 +124,17 @@
         [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
-                [choreCell setCell:objects[0] withName:@"PastCell" withColor:self.backgroundColor];
+                [choreCell setCell:objects[0] withName:self.selectedUser.username withColor:self.backgroundColor];
             }
         }];
     } else {
         Chore *myChore = self.upcomingChores[indexPath.row];
-        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery.limit = 1;
-        [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
-        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            if (objects != nil){
-                [choreCell setCell:objects[0] withName:@"UpcomingCell" withColor:self.backgroundColor];
+        PFQuery *choreQuery2 = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery2.limit = 1;
+        [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
+        [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
+            if (posts != nil){
+                [choreCell setCell:posts[0] withName:self.selectedUser.username withColor:self.backgroundColor];
             }
         }];
     }
@@ -148,11 +150,9 @@
     }
 }
 
-
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 - (IBAction)didTapEdit:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
