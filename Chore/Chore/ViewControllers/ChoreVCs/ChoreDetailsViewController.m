@@ -32,6 +32,11 @@
 
 }
 
+- (void)setFinishedButtonProperties {
+    self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.finishedButton.titleLabel.numberOfLines = 2;
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     self.chorePic.file = self.chore.photo;
     [self.chorePic loadInBackground];
@@ -74,12 +79,10 @@
                 Chore* removedChore = newUncompleted[removeIndex];
                 [removedChore fetchIfNeeded];
                 
-                NSNumber *updatedPointValue = [NSNumber numberWithInt: (assignment.points + removedChore.points)];
-
                 [newCompleted addObject:removedChore];
                 [newUncompleted removeObjectAtIndex:removeIndex];
                 
-                [assignment incrementKey:@"points" byAmount:updatedPointValue];
+                [assignment incrementKey:@"points" byAmount:[NSNumber numberWithInt: removedChore.points]];
                 [assignment setObject:newCompleted forKey:@"completedChores"];
                 [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
                 [assignment saveInBackground];
