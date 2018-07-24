@@ -18,6 +18,7 @@
 @property (nonatomic, weak) id<GroupMemberCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *userButton;
 
 - (void)setMember:(PFUser *)user;
 

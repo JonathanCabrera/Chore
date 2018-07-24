@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UILabel *orLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -30,14 +34,26 @@
     self.signupButton.layer.borderWidth = 0.8f;
     self.signupButton.layer.borderColor = [UIColor grayColor].CGColor;
     
-    UIColor *backgroundColor = [UIColor colorWithRed:0.14 green:0.48 blue:0.48 alpha:1.0];
+    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     [self.loginButton setBackgroundColor:backgroundColor];
+    self.loginButton.layer.borderColor = backgroundColor.CGColor;
     self.loginButton.layer.cornerRadius = self.loginButton.frame.size.width /15;
     self.loginButton.clipsToBounds = YES;
+    [self.loginButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
+
     [self.signupButton setBackgroundColor:backgroundColor];
+    self.signupButton.layer.borderColor = backgroundColor.CGColor;
     self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
     self.signupButton.clipsToBounds = YES;
-
+    self.signupButton.titleLabel.textColor = darkGreenColor;
+    [self.signupButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
+    
+    self.titleLabel.textColor = lightGreenColor;
+    self.usernameLabel.textColor = lightGreenColor;
+    self.passwordLabel.textColor = lightGreenColor;
+    self.orLabel.textColor = lightGreenColor;
 }
 
 - (void)didReceiveMemoryWarning {
