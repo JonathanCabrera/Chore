@@ -10,7 +10,7 @@
 
 @implementation Chore
 
-    @dynamic name, info, points, photo, deadline, defaultChore;
+    @dynamic name, info, points, photo, deadline, defaultChore, completionStatus;
 
 + (nonnull NSString *)parseClassName {
     return @"Chore";
@@ -25,6 +25,7 @@
     newChore.points = points;
     newChore.deadline = date;
     newChore.defaultChore = defaultChore;
+    newChore.completionStatus = NO;
     
     NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"camera"]);
     newChore.photo = [PFFile fileWithData:placeholderData];

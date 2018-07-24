@@ -17,6 +17,7 @@
 @property (nonatomic) int points;
 @property (nonatomic, strong, nonnull) PFFile *photo;
 @property (nonatomic, strong, nonnull) NSString *defaultChore;
+@property (nonatomic) BOOL completionStatus;
 
 + (Chore *_Nullable) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *_Nullable)date withDefault: (NSString * _Nullable)defaultChore withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
