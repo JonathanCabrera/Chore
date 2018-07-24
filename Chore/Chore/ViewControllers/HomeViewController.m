@@ -38,8 +38,15 @@
 @property (strong, nonatomic) NSString *username;
 @property (nonatomic) long currNumberOfChores;
 @property (nonatomic) long currCompletedChores;
+@property (nonatomic) long memberNumberOfChores;
+@property (nonatomic) long memberCompletedChores;
 @property (nonatomic) float increment;
+@property (nonatomic) float memberIncrement;
 @property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) NSNumber *memberIncrementNSNum;
+@property (nonatomic, strong) NSNumber *memberPoint;
+@property (nonatomic, strong) NSMutableArray *membersProgress;
+@property (nonatomic,strong) NSMutableArray *membersPoints;
 
 - (IBAction)onTapIncrement:(id)sender;
 - (IBAction)onTapZero:(id)sender;
@@ -69,7 +76,6 @@
                 self.currentGroup = posts[0];
                 NSLog(@"user's group: %@", self.currentGroup.name);
                 [self fetchChores];
-                [self fetchGroupProgress];
             } else {
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -86,63 +92,47 @@
     [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
     choreQuery.limit = 20;
     __weak typeof(self) weakSelf = self;
+    self.userNames = [NSMutableArray array];
+    self.membersProgress = [NSMutableArray array];
+    self.memberIncrementNSNum = [NSNumber new];
+    self.membersPoints = [NSMutableArray array];
+    self.memberPoint = [NSNumber new];
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
-                    self.currNumberOfChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
-                    self.currCompletedChores += [currAssignment.completedChores count];
+                    self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+                    self.currCompletedChores = [currAssignment.completedChores count];
                     self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
                         return [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
                     }];
                     [weakSelf.progressBar setProgress:0 animated:NO];
                     [weakSelf.progressBar setProgress:self.increment animated:YES duration:2];
+                } else {
+                    [self.userNames addObject:currAssignment.userName];
+                    self.memberNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+                    self.memberCompletedChores = [currAssignment.completedChores count];
+                    self.memberIncrement = (float) self.memberCompletedChores/self.memberNumberOfChores;
+                    self.memberIncrementNSNum = [NSNumber numberWithFloat:self.memberIncrement];
+                    [self.membersProgress addObject:self.memberIncrementNSNum];
+                    self.memberPoint = [NSNumber numberWithInt:currAssignment.points];
+                    [self.membersPoints addObject:self.memberPoint];
+                    [self.tableView reloadData];
+                    
                 }
             }
+
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-    }];}
-
--(void)fetchGroupProgress{
-    PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
-    choreQuery.limit = 20;
-    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.allAssignments = (NSMutableArray *)posts;
-            self.userNames = [NSMutableArray array];
-            for (ChoreAssignment *currAssignment in self.allAssignments) {
-                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
-                for (Chore *currChore in currAssignment.uncompletedChores) {
-                    [self.userNames addObject:currAssignment.userName];
-                }
-            }
-            [self.tableView reloadData];
-        } else {
-            NSLog(@" %@", error.localizedDescription);
-        }
     }];
     
-    
-    
-//    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-//    [query orderByAscending:@"username"];
-//    query.limit = 10;
-//    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-//        if (posts != nil) {
-//            self.userNames = (NSMutableArray *)posts;
-//
-//        } else {
-//            NSLog(@" %@", error.localizedDescription);
-//        }
-//    }];
- 
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -177,16 +167,8 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
-    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    query.limit = 10;
-    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (objects != nil){
-            [progressCell setCell:self.username withColor:self.backgroundColor];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
+    NSLog(@"count: %lu", [self.membersProgress count]);
+    [progressCell setCell:self.userNames[indexPath.row] withColor:self.backgroundColor withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
     progressCell.delegate = self;
     return progressCell;
 }

@@ -133,6 +133,8 @@
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
                 [choreCell setCell:objects[0] withName:@"UpcomingCell" withColor:self.backgroundColor];
+            }  else {
+                NSLog(@" %@", error.localizedDescription);
             }
         }];
     }

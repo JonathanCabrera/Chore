@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 
-- (void)setCell:(NSString *)userName withColor: (UIColor *)color;
+- (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints: (NSNumber *)points;
 
 @end
 
