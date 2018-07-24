@@ -52,6 +52,7 @@
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
 		9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB05F20FE890A003F458E /* ProfileViewController.m */; };
 		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
+		9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC839D621078C4D00CC5491 /* ProgressCell.m */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
 		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
@@ -152,6 +153,8 @@
 		9E9FB05E20FE890A003F458E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		9E9FB05F20FE890A003F458E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
+		9EC839D521078C4D00CC5491 /* ProgressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressCell.h; sourceTree = "<group>"; };
+		9EC839D621078C4D00CC5491 /* ProgressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressCell.m; sourceTree = "<group>"; };
 		AD7C64C32F624343DAC51904 /* libPods-Chore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 				1E200B342100FED000945BD6 /* AddChoreCell.m */,
 				1E200B362100FEE700945BD6 /* AssignUserCell.h */,
 				1E200B372100FEE700945BD6 /* AssignUserCell.m */,
+				9EC839D521078C4D00CC5491 /* ProgressCell.h */,
+				9EC839D621078C4D00CC5491 /* ProgressCell.m */,
 			);
 			path = "Chore Views";
 			sourceTree = "<group>";
@@ -649,6 +654,7 @@
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
 				9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */,
 				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
+				9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */,
 				1E200B352100FED000945BD6 /* AddChoreCell.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
 				1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */,

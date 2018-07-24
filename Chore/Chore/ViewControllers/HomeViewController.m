@@ -16,14 +16,16 @@
 #import "Group.h"
 #import "Chore.h"
 #import "ChoreAssignment.h"
+#import "ProgressCell.h"
 
 
 
-@interface HomeViewController ()
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
 @property (nonatomic) CGFloat progressBarWidth;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
 @property (nonatomic) UIColor *progressBarProgressColor;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) UIColor *progressBarTrackColor;
 @property (nonatomic) CGFloat startAngle;
 @property (weak, nonatomic) IBOutlet UIButton *incrementButton;
@@ -31,11 +33,13 @@
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (strong, nonatomic) NSMutableArray *userNames;
+@property (strong, nonatomic) NSString *username;
 @property (nonatomic) long currNumberOfChores;
 @property (nonatomic) long currCompletedChores;
 @property (nonatomic) float increment;
 @property (nonatomic, strong) UIColor *backgroundColor;
-
 
 - (IBAction)onTapIncrement:(id)sender;
 - (IBAction)onTapZero:(id)sender;
@@ -48,6 +52,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     [self setDesignAspects];
@@ -57,12 +64,12 @@
         PFQuery *query = [PFQuery queryWithClassName:@"Group"];
         query.limit = 1;
         [query whereKey:@"name" equalTo:usersGroup];
-
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.currentGroup = posts[0];
                 NSLog(@"user's group: %@", self.currentGroup.name);
                 [self fetchChores];
+                [self fetchGroupProgress];
             } else {
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -73,10 +80,6 @@
     
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:self.increment animated:YES duration:5];
-    
-   
-
-    
 }
 - (void) fetchChores {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
@@ -103,6 +106,43 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];}
+
+-(void)fetchGroupProgress{
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
+    choreQuery.limit = 20;
+    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.allAssignments = (NSMutableArray *)posts;
+            self.userNames = [NSMutableArray array];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
+                for (Chore *currChore in currAssignment.uncompletedChores) {
+                    [self.userNames addObject:currAssignment.userName];
+                }
+            }
+            [self.tableView reloadData];
+        } else {
+            NSLog(@" %@", error.localizedDescription);
+        }
+    }];
+    
+    
+    
+//    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+//    [query orderByAscending:@"username"];
+//    query.limit = 10;
+//    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+//        if (posts != nil) {
+//            self.userNames = (NSMutableArray *)posts;
+//
+//        } else {
+//            NSLog(@" %@", error.localizedDescription);
+//        }
+//    }];
+ 
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -133,6 +173,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    query.limit = 10;
+    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (objects != nil){
+            [progressCell setCell:self.username withColor:self.backgroundColor];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    progressCell.delegate = self;
+    return progressCell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.userNames count];
+}
+
+- (void)seeProgress: (ProgressCell *)cell withProgress: (UIProgressView *)progress withName: (NSString *)userName{
+    self.username = userName;
+}
+
 - (IBAction)onTapProgressButton:(id)sender {
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:self.increment animated:YES duration:5];
@@ -148,10 +214,10 @@
 - (IBAction)onTapLogOut:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         appDelegate.window.rootViewController = loginViewController;
     }];
 }
+
 @end

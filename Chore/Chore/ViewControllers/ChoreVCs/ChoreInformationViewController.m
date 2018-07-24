@@ -33,8 +33,7 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
+  
     //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     self.groupNameLabel.text = usersGroup;
