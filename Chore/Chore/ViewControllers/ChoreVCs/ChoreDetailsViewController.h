@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *chorePic;
 @property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
+@property (weak, nonatomic) IBOutlet UIButton *finishedButton;
 
 @property (nonatomic, strong) Chore *chore;
 @property (nonatomic, strong) NSString *userName;
