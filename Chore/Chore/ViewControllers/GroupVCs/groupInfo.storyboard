@@ -71,7 +71,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="182" height="162"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQw-gt-IAp">
-                                                    <rect key="frame" x="40" y="136" width="102" height="24"/>
+                                                    <rect key="frame" x="40" y="133" width="102" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -80,10 +80,10 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="top" secondItem="B5z-5i-k4h" secondAttribute="top" id="7nM-cU-Trj"/>
-                                            <constraint firstAttribute="bottom" secondItem="Mtb-G9-oGT" secondAttribute="bottom" id="GF0-pz-vak"/>
-                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="leading" secondItem="B5z-5i-k4h" secondAttribute="leading" id="Xwf-mI-aJh"/>
-                                            <constraint firstAttribute="trailing" secondItem="Mtb-G9-oGT" secondAttribute="trailing" id="u7l-Vv-jUa"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mtb-G9-oGT" secondAttribute="trailing" id="EDc-4e-DmQ"/>
+                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="top" secondItem="B5z-5i-k4h" secondAttribute="top" id="RDq-66-WNJ"/>
+                                            <constraint firstItem="Mtb-G9-oGT" firstAttribute="leading" secondItem="B5z-5i-k4h" secondAttribute="leading" id="XR1-7m-UF7"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mtb-G9-oGT" secondAttribute="bottom" id="rsA-F6-4a3"/>
                                         </constraints>
                                         <size key="customSize" width="182" height="162"/>
                                         <connections>

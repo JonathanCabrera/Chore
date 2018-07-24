@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="2088" y="-677"/>
         </scene>
-        <!--Home View Controller-->
+        <!--broom broom-->
         <scene sceneID="42I-OK-CfC">
             <objects>
                 <viewController id="agp-Wa-ws8" customClass="HomeViewController" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
+                            <view clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
                                 <rect key="frame" x="16" y="95" width="343" height="328"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -78,7 +78,7 @@
                                             <action selector="onTapZero:" destination="agp-Wa-ws8" eventType="touchUpInside" id="kNf-Ok-aKe"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PS-9F-4if">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PS-9F-4if">
                                         <rect key="frame" x="94" y="65" width="154" height="199"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
@@ -106,7 +106,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Iom-1h-gTc"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zTZ-rP-elu">
+                    <navigationItem key="navigationItem" title="broom broom" id="zTZ-rP-elu">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="lQu-7V-vaa">
                             <connections>
                                 <action selector="onTapLogOut:" destination="agp-Wa-ws8" id="Uda-BO-2Rp"/>

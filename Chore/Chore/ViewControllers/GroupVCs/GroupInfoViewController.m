@@ -30,6 +30,10 @@
     self.groupNameLabel.text = self.currentGroup.name;
     [self fetchMembers];
     
+    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.view.backgroundColor = backgroundColor;
+    self.collectionView.backgroundColor = backgroundColor;
+    
     //layout collection view
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 10;
@@ -38,6 +42,8 @@
     CGFloat itemWidth = (self.collectionView.frame.size.width - (layout.minimumInteritemSpacing * (postersPerLine - 1))) / postersPerLine;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+
 }
 
 

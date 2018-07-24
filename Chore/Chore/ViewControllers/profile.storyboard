@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--profile-->
         <scene sceneID="5p0-zq-Qfk">
             <objects>
                 <viewController id="6mG-8N-NEe" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -121,7 +121,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Wjf-Gw-E9r"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6aO-wZ-WGN">
+                    <navigationItem key="navigationItem" title="profile" id="6aO-wZ-WGN">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="I9r-Hg-sAe">
                             <connections>
                                 <action selector="didTapBack:" destination="6mG-8N-NEe" id="3Bd-AU-m01"/>

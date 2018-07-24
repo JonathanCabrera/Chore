@@ -20,8 +20,7 @@
     self.nameLabel.text = self.currUser.username;
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapMember)];
-    
-    [self addGestureRecognizer:tapRecognizer];
+    [self.profilePic addGestureRecognizer:tapRecognizer];
 }
 
 - (void)didTapMember {
