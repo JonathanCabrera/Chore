@@ -54,7 +54,6 @@
     } else {
         NSLog(@"user has no group");
     }
-    
     [self fetchChores];
 }
 
@@ -66,6 +65,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
@@ -85,9 +85,7 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    
     Chore *myChore = self.chores[indexPath.row];
     
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
@@ -120,9 +118,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     UINavigationController *controller = [segue destinationViewController];
-    
     if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
         detailsController.chore = sender;
