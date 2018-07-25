@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Group.h"
+#import "THDatePickerViewController.h"
 
-@interface AddChoreViewController : UIViewController
+@interface AddChoreViewController : UIViewController <THDatePickerDelegate>
+- (IBAction)onTapDeadline:(id)sender;
 
 @property (strong, nonatomic) Group *currentGroup;
+@property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
+@property (nonatomic, strong) THDatePickerViewController *datePicker;
 
 @end
