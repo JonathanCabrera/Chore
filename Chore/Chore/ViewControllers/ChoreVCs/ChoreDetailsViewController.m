@@ -47,10 +47,9 @@
 
 - (IBAction)didTapFinished:(id)sender {
     [self updateCompletedChore];
-    
 }
 
-+(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {
++ (void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {
     UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {// handle response here.
     }];
@@ -114,6 +113,8 @@
     if (self.chore.completionStatus) {
         self.completionStatusLabel.textColor = [UIColor greenColor];
         self.completionStatusLabel.text = @"Completed";
+        self.finishedButton.hidden = YES;
+
     } else {
         self.completionStatusLabel.textColor = [UIColor redColor];
         self.completionStatusLabel.text = @"Uncompleted";
@@ -178,7 +179,6 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){

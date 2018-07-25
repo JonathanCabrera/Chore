@@ -65,6 +65,7 @@
     self.tableView.backgroundColor = self.backgroundColor;
     self.view.backgroundColor = self.backgroundColor;
     [self setDesignAspects];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //fetches the user's current group 
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
@@ -107,9 +108,19 @@
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
                     self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.currCompletedChores = [currAssignment.completedChores count];
-                    self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
+                    if(self.currNumberOfChores == 0) {
+                        self.increment = 0;
+                    } else {
+                        self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
+                    }
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
-                        return [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
+                        NSString *myProgress;
+                        if(self.currNumberOfChores == 0) {
+                            myProgress = @"No chores yet!";
+                        } else {
+                            myProgress = [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
+                        }
+                        return myProgress;
                     }];
                     [weakSelf.progressBar setProgress:0 animated:NO];
                     [weakSelf.progressBar setProgress:self.increment animated:YES duration:2];
@@ -117,7 +128,11 @@
                     [self.userNames addObject:currAssignment.userName];
                     self.memberNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.memberCompletedChores = [currAssignment.completedChores count];
-                    self.memberIncrement = (float) self.memberCompletedChores/self.memberNumberOfChores;
+                    if(self.memberNumberOfChores == 0) {
+                        self.memberIncrement = 0;
+                    } else {
+                        self.memberIncrement = (float) self.memberCompletedChores/self.memberNumberOfChores;
+                    }
                     self.memberIncrementNSNum = [NSNumber numberWithFloat:self.memberIncrement];
                     [self.membersProgress addObject:self.memberIncrementNSNum];
                     self.memberPoint = [NSNumber numberWithInt:currAssignment.points];
@@ -148,10 +163,12 @@
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
     
+
     self.titleLabel1.textColor = progressColor;
     self.titleLabel2.textColor = progressColor;
     
 //    ProgressBarProperties *progressBarProperties = [[ProgressBarProperties alloc] initWithTrackColor:unfinished];
+
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
