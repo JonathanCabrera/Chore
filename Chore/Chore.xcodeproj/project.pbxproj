@@ -376,18 +376,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9E9C172520FD464A007F0F31 /* ViewControllers */ = {
+		9E7535C22108F3C000E14E83 /* UserVCs */ = {
 			isa = PBXGroup;
 			children = (
-				1E9738E020FFA3E200EE46B9 /* LoginVCs */,
-				E8750BF020FEA37C00D0B13D /* ChoreVCs */,
-				1E5C36CB20FE822A002979BA /* GroupVCs */,
 				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
 				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
 				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
 				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
 				9E9FB06120FE8B22003F458E /* profile.storyboard */,
+			);
+			path = UserVCs;
+			sourceTree = "<group>";
+		};
+		9E9C172520FD464A007F0F31 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9E7535C22108F3C000E14E83 /* UserVCs */,
+				1E9738E020FFA3E200EE46B9 /* LoginVCs */,
+				E8750BF020FEA37C00D0B13D /* ChoreVCs */,
+				1E5C36CB20FE822A002979BA /* GroupVCs */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -612,6 +620,9 @@
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj",
+				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib",
+				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib",
+				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/Images.xcassets",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -619,6 +630,9 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pt-BR.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDateDay.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDatePickerViewController.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -838,13 +852,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 786NDH46LQ;
+				DEVELOPMENT_TEAM = 4732YMW59C;
 				INFOPLIST_FILE = Chore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Broombroom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.katie.Broombroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -856,13 +870,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 786NDH46LQ;
+				DEVELOPMENT_TEAM = 4732YMW59C;
 				INFOPLIST_FILE = Chore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Broombroom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.katie.Broombroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

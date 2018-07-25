@@ -140,13 +140,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MMddYYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ON-Ca-IZl">
-                                <rect key="frame" x="164" y="364" width="108.5" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk0-vE-rK9">
+                                <rect key="frame" x="298" y="364" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Deadline"/>
+                                <connections>
+                                    <action selector="onTapDeadline:" destination="oi3-R3-5xY" eventType="touchUpInside" id="zT3-ac-chJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Date Selected " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngw-WI-IPE">
+                                <rect key="frame" x="168" y="370" width="128" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="9"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mI2-MD-waR"/>
@@ -165,7 +173,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="choreTableView" destination="t3B-qG-7am" id="XAs-dt-Tk2"/>
-                        <outlet property="deadlineField" destination="6ON-Ca-IZl" id="6IQ-0H-XQ7"/>
+                        <outlet property="deadlineButton" destination="pk0-vE-rK9" id="ySi-x9-BhZ"/>
+                        <outlet property="deadlineLabel" destination="ngw-WI-IPE" id="kkW-Uj-o5w"/>
                         <outlet property="userTableView" destination="ywt-84-b2q" id="njq-sy-U3l"/>
                     </connections>
                 </viewController>

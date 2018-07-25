@@ -15,12 +15,14 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *choreTableView;
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
-@property (weak, nonatomic) IBOutlet UITextField *deadlineField;
+@property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
 @property (nonatomic, strong) NSString *userToAssign;
 @property (nonatomic, strong) Chore *choreToAssign;
+@property (nonatomic, retain) NSDate * currDate;
+@property (nonatomic, retain) NSDateFormatter * formatter;
 
 
 @end
@@ -29,16 +31,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
     self.choreTableView.delegate = self;
     self.choreTableView.dataSource = self;
     self.userTableView.delegate = self;
     self.userTableView.dataSource = self;
-    
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
-    
     [self fetchData];
+    //date picker
+    self.currDate = [NSDate date];
+    
+    
+}
+
+- (void) refreshDeadline{
+    self.deadlineLabel.text = [NSString stringWithFormat:@"%@", _currDate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,8 +76,6 @@
     }];
     
     PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
-    //[choreQuery orderByDescending:@"points"];
-    
     userQuery.limit = 20;
     [userQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
     
@@ -122,11 +128,7 @@
 }
 
 - (IBAction)saveAssignment:(id)sender {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMddyyyy"];
-    NSDate *date = [formatter dateFromString:self.deadlineField.text];
-    
-    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:date withDefault:@"NO" withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:_currDate withDefault:@"NO" withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"created chore");
         } else {
@@ -155,4 +157,36 @@
 }
 */
 
+- (IBAction)onTapDeadline:(id)sender {
+    if(!self.datePicker)
+        self.datePicker = [THDatePickerViewController datePicker];
+    self.datePicker.date = self.currDate;
+    self.datePicker.delegate = self;
+    [self.datePicker setAllowClearDate:NO];
+    [self.datePicker setClearAsToday:YES];
+    [self.datePicker setAutoCloseOnSelectDate:NO];
+    [self.datePicker setAllowSelectionOfSelectedDate:YES];
+    [self.datePicker setDisableYearSwitch:YES];
+    [self.datePicker setDaysInHistorySelection:0];
+    [self.datePicker setDaysInFutureSelection:0];
+    [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0]];
+    [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
+    [self.datePicker setCurrentDateColorSelected:[UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0]];
+    [self presentSemiViewController:self.datePicker withOptions:@{
+                                                                  KNSemiModalOptionKeys.pushParentBack    : @(NO),
+                                                                  KNSemiModalOptionKeys.animationDuration : @(.5),
+                                                                  KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
+                                                                  }];
+    
+}
+
+- (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
+    self.currDate = datePicker.date;
+    [self refreshDeadline];
+    [self dismissSemiModalView];
+}
+
+- (void)datePickerCancelPressed:(THDatePickerViewController *)datePicker {
+    [self dismissSemiModalView];
+}
 @end

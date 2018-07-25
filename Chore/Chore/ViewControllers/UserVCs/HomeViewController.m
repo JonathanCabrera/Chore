@@ -17,6 +17,7 @@
 #import "Chore.h"
 #import "ChoreAssignment.h"
 #import "ProgressCell.h"
+//#import "ProgressBarProperties.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
 @property (nonatomic) CGFloat progressBarWidth;
@@ -162,8 +163,12 @@
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
     
-    //self.titleLabel1.textColor = progressColor;
-    //self.titleLabel2.textColor = progressColor;
+
+    self.titleLabel1.textColor = progressColor;
+    self.titleLabel2.textColor = progressColor;
+    
+//    ProgressBarProperties *progressBarProperties = [[ProgressBarProperties alloc] initWithTrackColor:unfinished];
+
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
