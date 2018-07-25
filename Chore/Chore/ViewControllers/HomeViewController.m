@@ -48,6 +48,9 @@
 @property (nonatomic, strong) NSMutableArray *membersProgress;
 @property (nonatomic,strong) NSMutableArray *membersPoints;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
+
 - (IBAction)onTapIncrement:(id)sender;
 - (IBAction)onTapZero:(id)sender;
 - (IBAction)onTapLogOut:(id)sender;
@@ -145,12 +148,14 @@
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
     
+    self.titleLabel1.textColor = progressColor;
+    self.titleLabel2.textColor = progressColor;
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = self.backgroundColor;
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:24]];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:20]];
     [_progressBar setHintTextColor:unfinished];
     [_progressBar setHintViewBackgroundColor:progressColor];
 }

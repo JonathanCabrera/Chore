@@ -59,8 +59,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
-                                <rect key="frame" x="16" y="95" width="343" height="328"/>
+                            <view clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
+                                <rect key="frame" x="27" y="114" width="320" height="280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bp-Y4-a1g">
@@ -152,6 +152,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlH-fA-w6t">
+                                <rect key="frame" x="111" y="73" width="153" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your group's progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-gm-Qf9">
+                                <rect key="frame" x="66" y="410" width="243" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Iom-1h-gTc"/>
@@ -169,6 +183,8 @@
                         <outlet property="progressBar" destination="qdq-QB-XdI" id="k5b-iB-Egp"/>
                         <outlet property="progressButton" destination="7PS-9F-4if" id="1xg-tg-3Z9"/>
                         <outlet property="tableView" destination="CzO-uV-TCC" id="VNe-iO-rQS"/>
+                        <outlet property="titleLabel1" destination="dlH-fA-w6t" id="W9n-Ac-EMy"/>
+                        <outlet property="titleLabel2" destination="1RG-gm-Qf9" id="Cuq-UJ-0Jg"/>
                         <outlet property="zeroProgressButton" destination="Kui-Ci-qjC" id="aGp-EI-UFY"/>
                     </connections>
                 </viewController>
