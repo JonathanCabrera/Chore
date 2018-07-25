@@ -27,7 +27,6 @@
 
 @protocol ProgressCellDelegate
 
-- (void)seeProgress: (ProgressCell *)cell withProgress: (UIProgressView *)progress withName: (NSString *)userName;
 
 @end
 

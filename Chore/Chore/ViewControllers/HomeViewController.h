@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Group.h"
 
-
-
 @interface HomeViewController : UIViewController
-
 @property (strong, nonatomic) Group *currentGroup;
 @end

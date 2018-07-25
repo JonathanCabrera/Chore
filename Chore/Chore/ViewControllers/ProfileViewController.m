@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) NSString *userNameToSend;
 @property (strong, nonatomic) UIColor *backgroundColor;

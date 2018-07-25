@@ -59,26 +59,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
+                            <view clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
                                 <rect key="frame" x="27" y="114" width="320" height="280"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bp-Y4-a1g">
-                                        <rect key="frame" x="5" y="573" width="69" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="increment"/>
-                                        <connections>
-                                            <action selector="onTapIncrement:" destination="agp-Wa-ws8" eventType="touchUpInside" id="adH-hB-g8r"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kui-Ci-qjC">
-                                        <rect key="frame" x="116" y="573" width="73" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="return to 0"/>
-                                        <connections>
-                                            <action selector="onTapZero:" destination="agp-Wa-ws8" eventType="touchUpInside" id="kNf-Ok-aKe"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PS-9F-4if">
                                         <rect key="frame" x="94" y="65" width="154" height="199"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -152,14 +136,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlH-fA-w6t">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlH-fA-w6t">
                                 <rect key="frame" x="111" y="73" width="153" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your group's progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-gm-Qf9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your group's progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-gm-Qf9">
                                 <rect key="frame" x="66" y="410" width="243" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
@@ -178,14 +162,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="incrementButton" destination="3Bp-Y4-a1g" id="Ff8-Nc-a9k"/>
                         <outlet property="logOutButton" destination="lQu-7V-vaa" id="hxc-FZ-FeQ"/>
                         <outlet property="progressBar" destination="qdq-QB-XdI" id="k5b-iB-Egp"/>
                         <outlet property="progressButton" destination="7PS-9F-4if" id="1xg-tg-3Z9"/>
                         <outlet property="tableView" destination="CzO-uV-TCC" id="VNe-iO-rQS"/>
                         <outlet property="titleLabel1" destination="dlH-fA-w6t" id="W9n-Ac-EMy"/>
                         <outlet property="titleLabel2" destination="1RG-gm-Qf9" id="Cuq-UJ-0Jg"/>
-                        <outlet property="zeroProgressButton" destination="Kui-Ci-qjC" id="aGp-EI-UFY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI3-lL-P0N" userLabel="First Responder" sceneMemberID="firstResponder"/>

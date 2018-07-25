@@ -18,8 +18,6 @@
 #import "ChoreAssignment.h"
 #import "ProgressCell.h"
 
-
-
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
 @property (nonatomic) CGFloat progressBarWidth;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
@@ -47,14 +45,11 @@
 @property (nonatomic, strong) NSNumber *memberPoint;
 @property (nonatomic, strong) NSMutableArray *membersProgress;
 @property (nonatomic,strong) NSMutableArray *membersPoints;
-
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
-
-- (IBAction)onTapIncrement:(id)sender;
-- (IBAction)onTapZero:(id)sender;
-- (IBAction)onTapLogOut:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
+
+- (IBAction)onTapLogOut:(id)sender;
 - (IBAction)onTapProgressButton:(id)sender;
 @end
 
@@ -69,6 +64,7 @@
     self.view.backgroundColor = self.backgroundColor;
     [self setDesignAspects];
     
+    //fetches the user's current group 
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     if(usersGroup != nil) {
         PFQuery *query = [PFQuery queryWithClassName:@"Group"];
@@ -77,7 +73,6 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.currentGroup = posts[0];
-                NSLog(@"user's group: %@", self.currentGroup.name);
                 [self fetchChores];
             } else {
                 NSLog(@"%@", error.localizedDescription);
@@ -90,6 +85,8 @@
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:self.increment animated:YES duration:5];
 }
+
+/* This method fetches the progress of both the current user and all of the other members in that current user's group */
 - (void) fetchChores {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
@@ -143,6 +140,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/* sets most of the design aspects of the Home View Controller */
 - (void)setDesignAspects{
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
@@ -182,20 +180,9 @@
     return [self.userNames count];
 }
 
-- (void)seeProgress: (ProgressCell *)cell withProgress: (UIProgressView *)progress withName: (NSString *)userName{
-    self.username = userName;
-}
-
 - (IBAction)onTapProgressButton:(id)sender {
     [_progressBar setProgress:0 animated:NO];
-    [_progressBar setProgress:self.increment animated:YES duration:5];
-}
-
-- (IBAction)onTapIncrement:(id)sender {
-    [_progressBar setProgress:(_progressBar.progress + self.increment) animated:YES];
-}
-- (IBAction)onTapZero:(id)sender {
-    [_progressBar setProgress:0 animated:NO];
+    [_progressBar setProgress:self.increment animated:YES duration:1];
 }
 
 - (IBAction)onTapLogOut:(id)sender {
