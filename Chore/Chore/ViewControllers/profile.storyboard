@@ -84,8 +84,8 @@
                                 <rect key="frame" x="106" y="299" width="162" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="Past"/>
                                     <segment title="Upcoming"/>
+                                    <segment title="Past"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>

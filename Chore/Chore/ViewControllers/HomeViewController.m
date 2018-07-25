@@ -121,18 +121,19 @@
                     self.memberPoint = [NSNumber numberWithInt:currAssignment.points];
                     [self.membersPoints addObject:self.memberPoint];
                     [self.tableView reloadData];
-                    
                 }
             }
-
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
 }
 
-
+- (void)viewDidAppear:(BOOL)animated {
+    if(self.currentGroup != nil) {
+        [self fetchChores];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -167,7 +168,6 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
-    NSLog(@"count: %lu", [self.membersProgress count]);
     [progressCell setCell:self.userNames[indexPath.row] withColor:self.backgroundColor withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
     progressCell.delegate = self;
     return progressCell;

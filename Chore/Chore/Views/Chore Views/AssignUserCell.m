@@ -7,6 +7,7 @@
 //
 
 #import "AssignUserCell.h"
+#import "ChoreAssignment.h"
 
 @implementation AssignUserCell
 
@@ -24,6 +25,17 @@
 - (void)setCell: (PFUser *)user {
     _user = user;
     self.userNameLabel.text = user.username;
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    query.limit = 1;
+    [query whereKey:@"userName" equalTo:user.username];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(objects != nil) {
+            ChoreAssignment *assignment = objects[0];
+            self.userPointLabel.text = [NSString stringWithFormat:@"%d points", assignment.points];
+        }
+    }];
 }
 
 - (IBAction)didTapCheck:(id)sender {

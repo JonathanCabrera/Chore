@@ -89,7 +89,6 @@
     [self.activityIndicator stopAnimating];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -117,7 +116,7 @@
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     
     //past
-    if(self.choreControl.selectedSegmentIndex == 0) {
+    if(self.choreControl.selectedSegmentIndex == 1) {
         Chore *myPastChore = self.pastChores[indexPath.row];
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
         choreQuery.limit = 1;
@@ -143,7 +142,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.choreControl.selectedSegmentIndex == 0) {
+    if(self.choreControl.selectedSegmentIndex == 1) {
         return [self.pastChores count];
     } else {
         return [self.upcomingChores count];
