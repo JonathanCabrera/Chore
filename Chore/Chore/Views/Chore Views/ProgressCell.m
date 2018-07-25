@@ -26,7 +26,7 @@
     self.userNameLabel.text = self.userName;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d points", [points intValue]];
     self.backgroundColor = color;
-    [_progressView setProgress:number];
+    [_progressView setProgress:number animated:YES];
     NSLog(@"%f", number);
 
     
