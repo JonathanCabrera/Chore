@@ -41,15 +41,16 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
 
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:refreshControl atIndex:0];
-
     [self fetchUserGroup];
     [self fetchChores];
     
     self.bgColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.view.backgroundColor = self.bgColor;
+    self.tableView.backgroundColor = self.bgColor;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self beginRefresh];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
@@ -73,7 +74,7 @@
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"There are currently no chores to be completed at this time.";
+    NSString *text = @"There are no chores to be completed at this time.";
     
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
@@ -108,10 +109,8 @@
     }
 }
 
-- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    [self.tableView reloadData];
+- (void)beginRefresh {
     [self fetchChores];
-    [refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,6 +121,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup.name];
+    [query orderByAscending:@"createdAt"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {

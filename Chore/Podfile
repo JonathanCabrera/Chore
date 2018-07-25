@@ -11,6 +11,7 @@ target 'Chore' do
 	pod 'ParseUI'
 	pod 'MBProgressHUD'
 	pod 'DZNEmptyDataSet'
+	pod 'JBDatePicker'
 
   target 'ChoreTests' do
     inherit! :search_paths
