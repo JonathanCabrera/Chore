@@ -54,6 +54,9 @@
     self.usernameLabel.textColor = lightGreenColor;
     self.passwordLabel.textColor = lightGreenColor;
     self.orLabel.textColor = lightGreenColor;
+    
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
+    [self.view addGestureRecognizer:hideTapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +64,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dismissKB {
+    [self.view endEditing:YES]
+}
 
 +(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {
     UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
