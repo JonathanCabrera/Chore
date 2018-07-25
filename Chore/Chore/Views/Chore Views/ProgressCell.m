@@ -30,6 +30,7 @@
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     [self.progressView setProgressTintColor:progressColor];
     [self.progressView setTrackTintColor:unfinished];
+    self.pointsLabel.textColor = progressColor;
     [_progressView setProgress:number animated:YES];
 }
 
