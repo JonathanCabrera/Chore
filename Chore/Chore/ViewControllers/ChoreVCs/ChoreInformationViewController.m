@@ -12,7 +12,9 @@
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
 
-@interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
+#import "UIScrollView+EmptyDataSet.h"
+
+@interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *userNameToSend;
+@property (strong, nonatomic) UIColor *bgColor;
 
 @end
 
@@ -33,7 +36,57 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-  
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.tableFooterView = [UIView new];
+
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
+
+    [self fetchUserGroup];
+    [self fetchChores];
+    
+    self.bgColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.view.backgroundColor = self.bgColor;
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"broom"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return self.bgColor;
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No Chores";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"There are currently no chores to be completed at this time.";
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (void)fetchUserGroup {
     //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     self.groupNameLabel.text = usersGroup;
@@ -53,7 +106,12 @@
     } else {
         NSLog(@"user has no group");
     }
+}
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    [self.tableView reloadData];
     [self fetchChores];
+    [refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,7 +151,7 @@
 
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row] withColor:[UIColor whiteColor]];
+            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row] withColor:self.bgColor];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }
