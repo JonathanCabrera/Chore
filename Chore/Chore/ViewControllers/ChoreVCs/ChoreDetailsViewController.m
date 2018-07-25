@@ -14,8 +14,7 @@
 
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;\
 @property BOOL myChore;
 
 @end
@@ -29,6 +28,7 @@
     self.chorePic.file = self.chore.photo;
     [self.chorePic loadInBackground];
     [self setFinishedButtonProperties];
+    self.view.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
 }
 
 - (void)setFinishedButtonProperties {
