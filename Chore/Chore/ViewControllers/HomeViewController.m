@@ -64,6 +64,7 @@
     self.tableView.backgroundColor = self.backgroundColor;
     self.view.backgroundColor = self.backgroundColor;
     [self setDesignAspects];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //fetches the user's current group 
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
@@ -115,7 +116,6 @@
                         NSString *myProgress;
                         if(self.currNumberOfChores == 0) {
                             myProgress = @"No chores yet!";
-                            NSLog(@"%f", weakSelf.increment);
                         } else {
                             myProgress = [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
                         }
@@ -162,8 +162,8 @@
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
     
-    self.titleLabel1.textColor = progressColor;
-    self.titleLabel2.textColor = progressColor;
+    //self.titleLabel1.textColor = progressColor;
+    //self.titleLabel2.textColor = progressColor;
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];

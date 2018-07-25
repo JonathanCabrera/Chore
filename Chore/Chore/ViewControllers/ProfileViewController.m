@@ -47,13 +47,13 @@
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.upcomingTableView.backgroundColor = self.backgroundColor;
-    self.userNameLabel.textColor = darkGreenColor;
     self.pointsLabel.textColor = darkGreenColor;
     
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
     self.userNameLabel.text = self.selectedUser.username;
+    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
