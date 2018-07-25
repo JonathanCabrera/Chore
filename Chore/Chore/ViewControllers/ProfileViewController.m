@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) ChoreAssignment *assignment;
-@property (strong, nonatomic) NSString *userNameToSend;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) NSMutableArray *upcomingChores;
 @property (weak, nonatomic) NSMutableArray *pastChores;
@@ -122,7 +121,7 @@
         [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
-                [choreCell setCell:objects[0] withName:self.selectedUser.username withColor:self.backgroundColor];
+                [choreCell setCell:objects[0] withColor:self.backgroundColor];
             }
         }];
     } else {
@@ -132,7 +131,7 @@
         [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
         [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
             if (posts != nil){
-                [choreCell setCell:posts[0] withName:self.selectedUser.username withColor:self.backgroundColor];
+                [choreCell setCell:posts[0] withColor:self.backgroundColor];
             }
         }];
     }
@@ -216,7 +215,6 @@
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
-    self.userNameToSend = userName;
     [self performSegueWithIdentifier:@"profileToDetailsSegue" sender:chore];
 }
 
@@ -225,7 +223,6 @@
      if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
          ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
          detailsController.chore = sender;
-         detailsController.userName = self.userNameToSend;
      }
  }
 

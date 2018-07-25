@@ -16,7 +16,7 @@
     return @"Chore";
 }
 
-+ (Chore *) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *)date withDefault: (NSString *)defaultChore withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (Chore *) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *)date withDefault: (NSString *)defaultChore withUserName: (NSString * _Nullable)userName withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     Chore *newChore = [Chore new];
     
@@ -26,6 +26,7 @@
     newChore.deadline = date;
     newChore.defaultChore = defaultChore;
     newChore.completionStatus = NO;
+    newChore.userName = userName;
     
     NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"camera"]);
     newChore.photo = [PFFile fileWithData:placeholderData];

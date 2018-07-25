@@ -20,12 +20,10 @@
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
-@property (strong, nonatomic) NSMutableArray *userNames;
 
 @property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSString *userNameToSend;
 @property (strong, nonatomic) UIColor *bgColor;
 
 @end
@@ -127,14 +125,10 @@
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
-            self.userNames = [NSMutableArray array];
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
-                for (Chore *currChore in currAssignment.uncompletedChores) {
-                    [self.userNames addObject:currAssignment.userName];
-                }
+                [self.tableView reloadData];
             }
-            [self.tableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
@@ -151,12 +145,11 @@
 
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [choreCell setCell:posts[0] withName:self.userNames[indexPath.row] withColor:self.bgColor];
+            [choreCell setCell:posts[0] withColor:self.bgColor];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }
     }];
-    
     choreCell.delegate = self;
     return choreCell;
 }
@@ -166,7 +159,6 @@
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
-    self.userNameToSend = userName;
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
@@ -179,7 +171,6 @@
     if([segue.identifier isEqualToString:@"choreDetailsSegue"]){
         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
         detailsController.chore = sender;
-        detailsController.userName = self.userNameToSend;
     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
         AddChoreViewController *addChoreController = (AddChoreViewController *)controller.topViewController;
         addChoreController.currentGroup = sender;

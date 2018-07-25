@@ -65,7 +65,7 @@
 }
 
 - (void)dismissKB {
-    [self.view endEditing:YES]
+    [self.view endEditing:YES];
 }
 
 +(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {

@@ -25,11 +25,18 @@
     [self.signupButton setBackgroundColor:backgroundColor];
     self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
     self.signupButton.clipsToBounds = YES;
+    
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
+    [self.view addGestureRecognizer:hideTapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dismissKB {
+    [self.view endEditing:YES];
 }
 
 - (void)registerUser {

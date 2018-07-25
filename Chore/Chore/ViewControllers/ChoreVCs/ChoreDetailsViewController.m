@@ -61,14 +61,13 @@
 - (void)updateCompletedChore{
     PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     pastQuery.limit = 1;
-    [pastQuery whereKey:@"userName" equalTo:self.userName];
+    [pastQuery whereKey:@"userName" equalTo:self.chore.userName];
     
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
-            if ([[PFUser currentUser].username isEqualToString: self.userName]){
+            if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
 
                 ChoreAssignment *assignment = posts[0];
-            
                 NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
                 NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
             
@@ -102,7 +101,7 @@
 
 - (void)setChoreDetails {
     [self setCompletionStatusLabelColor];
-    self.userNameLabel.text = self.userName;
+    self.userNameLabel.text = self.chore.userName;
     self.choreNameLabel.text = self.chore.name;
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
@@ -182,7 +181,7 @@
 
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if ([[PFUser currentUser].username isEqualToString: self.userName]){
+     if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
         [segue.identifier isEqualToString:@"segueToMain"];
      } else {
         [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
