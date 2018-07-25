@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *finishedButton;
 
 @property (nonatomic, strong) Chore *chore;
-@property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) UIImage *photo;
 
 +(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController;

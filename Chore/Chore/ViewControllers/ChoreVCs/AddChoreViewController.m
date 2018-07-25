@@ -35,8 +35,10 @@
     self.userTableView.delegate = self;
     self.userTableView.dataSource = self;
     
-    [self fetchData];
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
+    [self.view addGestureRecognizer:hideTapGestureRecognizer];
     
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,9 +46,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dismissKB {
+    [self.view endEditing:YES];
+}
 
 - (void)fetchData {
-    
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
     [choreQuery orderByDescending:@"name"];
     [choreQuery whereKey:@"defaultChore" equalTo:@"YES"];
@@ -82,20 +86,15 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
     if([tableView isEqual:self.choreTableView]) {
-        
         AddChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AddChoreCell" forIndexPath:indexPath];
         [choreCell setCell:self.allChores[indexPath.row]];
         choreCell.delegate = self;
-        
         return choreCell;
     } else {
-
         AssignUserCell *userCell = [tableView dequeueReusableCellWithIdentifier:@"AssignUserCell" forIndexPath:indexPath];
         [userCell setCell:self.userArray[indexPath.row]];
         userCell.delegate = self;
-        
         return userCell;
     }
 }
@@ -127,7 +126,7 @@
     [formatter setDateFormat:@"MMddyyyy"];
     NSDate *date = [formatter dateFromString:self.deadlineField.text];
     
-    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:date withDefault:@"NO" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:date withDefault:@"NO" withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"created chore");
         } else {

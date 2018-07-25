@@ -47,7 +47,6 @@
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
 		9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A95B2100FF79001FF108 /* EditChoreViewController.m */; };
 		9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A95D2100FF8A001FF108 /* editChore.storyboard */; };
-		9E7535C12108E9A100E14E83 /* libJBDatePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7535C02108E9A100E14E83 /* libJBDatePicker.a */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
@@ -146,7 +145,6 @@
 		9E50A95A2100FF79001FF108 /* EditChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
 		9E50A95B2100FF79001FF108 /* EditChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
 		9E50A95D2100FF8A001FF108 /* editChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editChore.storyboard; sourceTree = "<group>"; };
-		9E7535C02108E9A100E14E83 /* libJBDatePicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libJBDatePicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9C172220FD4646007F0F31 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9E9C172320FD4646007F0F31 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9E9C172620FD4DD0007F0F31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -175,7 +173,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E7535C12108E9A100E14E83 /* libJBDatePicker.a in Frameworks */,
 				9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */,
 				9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */,
 				9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */,
@@ -365,7 +362,6 @@
 		6AC1C798CE8C693EADA7C980 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9E7535C02108E9A100E14E83 /* libJBDatePicker.a */,
 				1E5C36C420FD62FF002979BA /* Parse.framework */,
 				9E14378420FD51FE0007E6A3 /* AVFoundation.framework */,
 				9E1C601120FD51030076B4D5 /* ParseUI.framework */,
@@ -848,13 +844,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4732YMW59C;
+				DEVELOPMENT_TEAM = 786NDH46LQ;
 				INFOPLIST_FILE = Chore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.katie.ChoresApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Broombroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -866,13 +862,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4732YMW59C;
+				DEVELOPMENT_TEAM = 786NDH46LQ;
 				INFOPLIST_FILE = Chore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.katie.ChoresApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Broombroom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

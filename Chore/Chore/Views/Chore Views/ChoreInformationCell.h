@@ -16,7 +16,6 @@
 
 @property (nonatomic, weak) id<ChoreInformationCellDelegate> delegate;
 @property (strong, nonatomic) Chore *chore;
-@property (strong, nonatomic) NSString *userName;
 @property (weak, nonatomic) IBOutlet UILabel *choreNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIView *choreView;
@@ -24,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 
-- (void)setCell: (Chore *)chore withName: (NSString *)userName withColor: (UIColor *)color;
+- (void)setCell:(Chore *)chore withColor: (UIColor *)color;
 
 @end
 

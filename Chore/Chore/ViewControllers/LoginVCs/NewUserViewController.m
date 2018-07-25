@@ -39,12 +39,20 @@
     self.titleLabel.textColor = darkGreenColor;
     self.optionOneLabel.textColor = darkGreenColor;
     self.optionTwoLabel.textColor = darkGreenColor;
+    
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
+    [self.view addGestureRecognizer:hideTapGestureRecognizer];
+    
     [self fetchGroups];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dismissKB {
+    [self.view endEditing:YES];
 }
 
 - (void)fetchGroups {

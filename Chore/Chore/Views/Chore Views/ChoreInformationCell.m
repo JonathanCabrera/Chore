@@ -20,11 +20,9 @@
 }
 
 
-- (void)setCell:(Chore *)chore withName:(NSString *)userName withColor:(UIColor *)color{
+- (void)setCell:(Chore *)chore withColor:(UIColor *)color{
     _chore = chore;
-    _userName = userName;
-    
-    self.userNameLabel.text = userName;
+    self.userNameLabel.text = chore.userName;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
@@ -34,11 +32,11 @@
 }
 
 - (NSString *)createTableViewCellText {
-    return [[self.userName stringByAppendingString:@" has to "] stringByAppendingString:self.chore.name];
+    return [[self.chore.userName stringByAppendingString:@" has to "] stringByAppendingString:self.chore.name];
 }
 
 - (void)didTapChore {
-    [self.delegate seeChore:self withChore:self.chore withName:self.userName];
+    [self.delegate seeChore:self withChore:self.chore withName:self.chore.userName];
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
