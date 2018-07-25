@@ -47,6 +47,7 @@
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
 		9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A95B2100FF79001FF108 /* EditChoreViewController.m */; };
 		9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A95D2100FF8A001FF108 /* editChore.storyboard */; };
+		9E7535D42109240B00E14E83 /* ProgressBarProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7535D32109240B00E14E83 /* ProgressBarProperties.m */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
@@ -145,6 +146,8 @@
 		9E50A95A2100FF79001FF108 /* EditChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
 		9E50A95B2100FF79001FF108 /* EditChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
 		9E50A95D2100FF8A001FF108 /* editChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editChore.storyboard; sourceTree = "<group>"; };
+		9E7535D22109240B00E14E83 /* ProgressBarProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBarProperties.h; sourceTree = "<group>"; };
+		9E7535D32109240B00E14E83 /* ProgressBarProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressBarProperties.m; sourceTree = "<group>"; };
 		9E9C172220FD4646007F0F31 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9E9C172320FD4646007F0F31 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9E9C172620FD4DD0007F0F31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -233,6 +236,8 @@
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
 				1E1E3C2020FD40DA003C87B4 /* main.m */,
 				1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */,
+				9E7535D22109240B00E14E83 /* ProgressBarProperties.h */,
+				9E7535D32109240B00E14E83 /* ProgressBarProperties.m */,
 			);
 			path = Chore;
 			sourceTree = "<group>";
@@ -685,6 +690,7 @@
 				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
 				1E829456210280800086EB80 /* SignupViewController.m in Sources */,
+				9E7535D42109240B00E14E83 /* ProgressBarProperties.m in Sources */,
 				1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */,
 				1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,

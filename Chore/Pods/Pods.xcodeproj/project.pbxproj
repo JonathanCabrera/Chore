@@ -321,8 +321,6 @@
 		9C6018C809FFE59248C6FF4A986E0C93 /* PFConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = C692089C15032D55685AC73918EF8AF2 /* PFConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9D19859D4325FAA162D265A7DE485ACB /* PFFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FFA6F4A59BF775BB523F2A5FA09C0E20 /* PFFileManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9E3F1A7AF304E9D550C8A5A285AF56BF /* PFAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5347EF246E1E1CD80F89CA98A5F4BC4D /* PFAlertView.m */; };
-		9E7535CA2108F9DF00E14E83 /* ProgressBarProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E7535C82108F9DF00E14E83 /* ProgressBarProperties.h */; };
-		9E7535CB2108F9DF00E14E83 /* ProgressBarProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7535C92108F9DF00E14E83 /* ProgressBarProperties.m */; };
 		9EF2795E7095A1E2CF71ACF3E81AF340 /* PFProductsRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = A867DA3DA9F24C7A9810C5DF23C13446 /* PFProductsRequestHandler.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9FEA6B6B87A7476CB6C3659B1007E17F /* PFObjectSubclassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6BF7FDC8914B28A23CDB9A7B16E94 /* PFObjectSubclassInfo.m */; };
 		A01CB37823E6D15C9316C8BA9D8C74C2 /* PFQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E1CD3C9A3623F3B78D4B2343ED835F7 /* PFQuery.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -942,8 +940,6 @@
 		9C99EC5DB2671D4052A812FA23369DBD /* PFOfflineStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFOfflineStore.h; path = Parse/Parse/Internal/LocalDataStore/OfflineStore/PFOfflineStore.h; sourceTree = "<group>"; };
 		9C9F5A3D0FBE78448D56BF2F916E4C3C /* PFInternalUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFInternalUtils.m; path = Parse/Parse/Internal/PFInternalUtils.m; sourceTree = "<group>"; };
 		9CFCACD3A85CA700FB1996709093E647 /* pt-BR.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "pt-BR.lproj"; path = "ParseUI/Resources/Localization/pt-BR.lproj"; sourceTree = "<group>"; };
-		9E7535C82108F9DF00E14E83 /* ProgressBarProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBarProperties.h; sourceTree = "<group>"; };
-		9E7535C92108F9DF00E14E83 /* ProgressBarProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressBarProperties.m; sourceTree = "<group>"; };
 		9EBCF2A8ED1B903B8EC7347131872439 /* PFEncoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFEncoder.m; path = Parse/Parse/PFEncoder.m; sourceTree = "<group>"; };
 		9ED64A95E50B95D1266F18E36E058E49 /* BFCancellationTokenSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFCancellationTokenSource.m; path = Bolts/Common/BFCancellationTokenSource.m; sourceTree = "<group>"; };
 		9F31CE47F886D04A28B157F254B48559 /* PFPinningEventuallyQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFPinningEventuallyQueue.h; path = Parse/Parse/Internal/PFPinningEventuallyQueue.h; sourceTree = "<group>"; };
@@ -1343,8 +1339,6 @@
 			isa = PBXGroup;
 			children = (
 				10933DFF6FE05B594A7ABF182EA2046F /* CircleProgressBar.h */,
-				9E7535C82108F9DF00E14E83 /* ProgressBarProperties.h */,
-				9E7535C92108F9DF00E14E83 /* ProgressBarProperties.m */,
 				F0A2ECFD6456E986193B8143EF9A8CFC /* CircleProgressBar.m */,
 				DB487212BFE21A49A53D03EBD5AA275C /* Support Files */,
 			);
@@ -2095,7 +2089,6 @@
 			files = (
 				56B314ADD88E61990D8E29FA75300E68 /* BFCancellationToken.h in Headers */,
 				600A2F1395A295CAB8F35D9A4BEA86D9 /* BFCancellationTokenRegistration.h in Headers */,
-				9E7535CA2108F9DF00E14E83 /* ProgressBarProperties.h in Headers */,
 				A8121E50A168C9BCB0FBFD39324169BA /* BFCancellationTokenSource.h in Headers */,
 				432211A6137DFD2F18C2924DFB28BEF7 /* BFExecutor.h in Headers */,
 				75A36D0109FDDC6E3119D739771FB87D /* BFGeneric.h in Headers */,
@@ -2891,7 +2884,6 @@
 				545C6094A9920AB769CD97F0E9D6B524 /* BFCancellationToken.m in Sources */,
 				48FE2A64C3BCA7F1D32EB49C5273B970 /* BFCancellationTokenRegistration.m in Sources */,
 				FDA2D87B9F255B1E7FFE5C150D81C3E4 /* BFCancellationTokenSource.m in Sources */,
-				9E7535CB2108F9DF00E14E83 /* ProgressBarProperties.m in Sources */,
 				009DAF234FBBD39E9F70D02AA1DC8F89 /* BFExecutor.m in Sources */,
 				47D578927F9E78A462324F4E0B68255C /* BFTask.m in Sources */,
 				6A90CD4C47C7C1983DABD4785E6F8909 /* BFTaskCompletionSource.m in Sources */,

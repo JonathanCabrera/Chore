@@ -17,9 +17,9 @@
 #import "Chore.h"
 #import "ChoreAssignment.h"
 #import "ProgressCell.h"
-//#import "ProgressBarProperties.h"
+#import "ProgressBarProperties.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate, ProgressBarDelegate>
 @property (nonatomic) CGFloat progressBarWidth;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
@@ -54,7 +54,7 @@
 - (IBAction)onTapProgressButton:(id)sender;
 @end
 
-@implementation HomeViewController
+@implementation HomeViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -167,7 +167,8 @@
     self.titleLabel1.textColor = progressColor;
     self.titleLabel2.textColor = progressColor;
     
-//    ProgressBarProperties *progressBarProperties = [[ProgressBarProperties alloc] initWithTrackColor:unfinished];
+    ProgressBarProperties *progressBarProperties = [[ProgressBarProperties alloc] init];
+    //[progressBarProperties initWithProperties:_progressBar withColor:unfinished];
 
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];

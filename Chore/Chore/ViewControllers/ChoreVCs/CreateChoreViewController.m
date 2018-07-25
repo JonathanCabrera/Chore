@@ -28,12 +28,22 @@
     [super didReceiveMemoryWarning];
 }
 
++ (void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController {
+    UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {// handle response here.
+    }];
+    [alertViewController addAction:okAction];
+    [parentViewController presentViewController:alertViewController animated:YES completion:nil];
+}
+
 
 - (IBAction)didTapCreate:(id)sender {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMddyyyy"];
     NSDate *date = [formatter dateFromString:self.dateField.text];
-    
+    if ([self.pointField.text intValue] > 10){
+        [CreateChoreViewController presentAlertWithTitle:@"Error: The maximum number of points a chore can be is 10" fromViewController:self];
+    } else {
     [Chore makeChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointField.text intValue] withDeadline:date withDefault:@"YES" withUserName:@"DEFAULT" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"saved chore");
@@ -41,6 +51,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    }
     
     self.nameField.text = @"";
     self.descriptionField.text = @"";
