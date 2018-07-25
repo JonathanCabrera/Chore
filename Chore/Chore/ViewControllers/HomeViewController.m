@@ -61,6 +61,7 @@
     self.tableView.delegate = self;
      self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.tableView.backgroundColor = self.backgroundColor;
     self.view.backgroundColor = self.backgroundColor;
     [self setDesignAspects];
     
