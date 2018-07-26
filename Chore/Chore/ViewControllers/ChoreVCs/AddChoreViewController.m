@@ -7,8 +7,6 @@
 //
 
 #import "AddChoreViewController.h"
-#import "AddChoreCell.h"
-#import "AssignUserCell.h"
 #import "ChoreAssignment.h"
 #import "MKDropdownMenu.h"
 
@@ -37,7 +35,7 @@
     self.choreMenu.delegate = self;
     self.userMenu.dataSource = self;
     self.userMenu.delegate = self;
-    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
     //date picker
     self.currDate = [NSDate date];
@@ -68,10 +66,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)dismissKB {
-    [self.view endEditing:YES];
 }
 
 - (void)fetchData {
@@ -116,22 +110,22 @@
 }
 
 - (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForComponent:(NSInteger)component {
-    
+    UIColor *titleColor = [UIColor colorWithRed:0.00 green:0.56 blue:0.32 alpha:1.0];
     if([dropdownMenu isEqual:self.choreMenu]) {
         if(self.choreToAssign == nil) {
             return [[NSAttributedString alloc] initWithString:@"Select a chore"
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
         } else {
             return [[NSAttributedString alloc] initWithString:self.choreToAssign.name
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
         }
     } else {
         if(self.userToAssign == nil) {
             return [[NSAttributedString alloc] initWithString:@"Select a user"
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
         } else {
             return [[NSAttributedString alloc] initWithString:self.userToAssign
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
         }
     }
 }
