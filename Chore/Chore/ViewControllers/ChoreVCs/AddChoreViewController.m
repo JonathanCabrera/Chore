@@ -9,6 +9,7 @@
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
 #import "MKDropdownMenu.h"
+#import "DefaultChore.h"
 
 @interface AddChoreViewController () <MKDropdownMenuDelegate, MKDropdownMenuDataSource>
 
@@ -19,7 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
 @property (nonatomic, strong) NSString *userToAssign;
-@property (nonatomic, strong) Chore *choreToAssign;
+@property (nonatomic, strong) DefaultChore *choreToAssign;
 @property (nonatomic, retain) NSDate * currDate;
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *darkGreenColor;
@@ -69,10 +70,9 @@
 }
 
 - (void)fetchData {
-    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"DefaultChore"];
     [choreQuery orderByDescending:@"name"];
-    [choreQuery whereKey:@"defaultChore" equalTo:@"YES"];
-    choreQuery.limit = 20;
+    choreQuery.limit = 30;
     
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
@@ -132,7 +132,7 @@
 
 - (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if([dropdownMenu isEqual:self.choreMenu]) {
-        Chore *myChore = self.allChores[row];
+        DefaultChore *myChore = self.allChores[row];
         return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d points)", myChore.name, myChore.points]
                                                attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName:self.lightGreenColor}];
     } else {
@@ -169,7 +169,7 @@
 }
 
 - (IBAction)saveAssignment:(id)sender {
-    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:_currDate withDefault:@"NO" withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:_currDate withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"created chore");
         } else {
