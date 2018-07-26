@@ -89,7 +89,7 @@
     
     PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
     userQuery.limit = 20;
-    [userQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
+    [userQuery whereKey:@"groupName" equalTo:self.currentGroup];
     
     [userQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (objects != nil) {
