@@ -134,16 +134,6 @@
     [_progressBar setHintViewBackgroundColor:progressColor];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
     [progressCell setCell:self.userNames[indexPath.row] withColor:[UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0] withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
@@ -168,5 +158,31 @@
         appDelegate.window.rootViewController = loginViewController;
     }];
 }
+
+- (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName {
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    query.limit = 1;
+    [query whereKey:@"username" equalTo:userName];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                [self performSegueWithIdentifier:@"profileSegue" sender:posts[0]];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+}
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     UINavigationController *nextController = [segue destinationViewController];
+     if([segue.identifier isEqualToString:@"profileSegue"]) {
+         ProfileViewController *profileController = (ProfileViewController *)nextController.topViewController;
+         profileController.selectedUser = sender;
+     }
+ }
+ 
+
 
 @end
