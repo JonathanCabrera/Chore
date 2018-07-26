@@ -4,17 +4,15 @@
 //
 //  Created by Jonathan Cabrera on 7/17/18.
 //  Copyright © 2018 JAK. All rights reserved.
-//
 
 #import "ChoreDetailsViewController.h"
 #import "ProfileViewController.h"
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
 
-
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) UIRefreshControl *refreshControl;\
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property BOOL myChore;
 
 @end
@@ -25,8 +23,7 @@
     [super viewDidLoad];
     [self setChoreDetails];
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.chorePic.file = self.chore.photo;
-    [self.chorePic loadInBackground];
+    [self loadChorePicture];
     [self setFinishedButtonProperties];
     self.view.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
 }
@@ -36,7 +33,11 @@
     self.finishedButton.titleLabel.numberOfLines = 2;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
+    [self loadChorePicture];
+}
+
+- (void) loadChorePicture {
     self.chorePic.file = self.chore.photo;
     [self.chorePic loadInBackground];
 }
@@ -65,7 +66,7 @@
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
-
+                //TODO: typecast posts[0]
                 ChoreAssignment *assignment = posts[0];
                 NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
                 NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
@@ -105,8 +106,7 @@
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
-    self.chorePic.file = self.chore.photo;
-    [self.chorePic loadInBackground];
+    [self loadChorePicture];
 }
 
 - (void)setCompletionStatusLabelColor {
@@ -130,30 +130,38 @@
 
 - (IBAction)onTapAddPic:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
+    
     UIAlertController *pictureViewController = [UIAlertController alertControllerWithTitle:@"Choose a photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Take photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
+        
     }];
+    
     UIAlertAction *galleryAction = [UIAlertAction actionWithTitle:@"Choose from gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
     }];
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
+    
     [pictureViewController addAction:cameraAction];
     [pictureViewController addAction:galleryAction];
     [pictureViewController addAction:cancelAction];
+    
     [self presentViewController:pictureViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
+    UIImage *resizedImage = [self resizeImage:info[UIImagePickerControllerEditedImage] withSize:CGSizeMake(140, 140)];
     [self dismissViewControllerAnimated:YES completion:nil];
     self.photo = resizedImage;
+    NSLog(@"%@", self.photo);
     [self.addPictureButton setImage:resizedImage forState:UIControlStateNormal];
     if(self.photo != nil) {
         NSData *imageData = UIImagePNGRepresentation(self.photo);
