@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property (weak, nonatomic) IBOutlet MKDropdownMenu *choreMenu;
 @property (weak, nonatomic) IBOutlet MKDropdownMenu *userMenu;
-@property (weak, nonatomic) IBOutlet UILabel *choreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
@@ -120,11 +118,21 @@
 - (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForComponent:(NSInteger)component {
     
     if([dropdownMenu isEqual:self.choreMenu]) {
-        return [[NSAttributedString alloc] initWithString:@"Select a chore"
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20], NSForegroundColorAttributeName: [UIColor blackColor]}];
+        if(self.choreToAssign == nil) {
+            return [[NSAttributedString alloc] initWithString:@"Select a chore"
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+        } else {
+            return [[NSAttributedString alloc] initWithString:self.choreToAssign.name
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+        }
     } else {
-        return [[NSAttributedString alloc] initWithString:@"Select a user"
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20], NSForegroundColorAttributeName: [UIColor blackColor]}];
+        if(self.userToAssign == nil) {
+            return [[NSAttributedString alloc] initWithString:@"Select a user"
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+        } else {
+            return [[NSAttributedString alloc] initWithString:self.userToAssign
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName: [UIColor blackColor]}];
+        }
     }
 }
 
@@ -132,22 +140,22 @@
     if([dropdownMenu isEqual:self.choreMenu]) {
         Chore *myChore = self.allChores[row];
         return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d points)", myChore.name, myChore.points]
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName: [UIColor blackColor]}];
+                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName:self.lightGreenColor}];
     } else {
         PFUser *myUser = self.userArray[row];
         return [[NSAttributedString alloc] initWithString:myUser.username
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName: [UIColor blackColor]}];
+                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName:self.lightGreenColor}];
     }
 }
 
 - (void)dropdownMenu:(MKDropdownMenu *)dropdownMenu didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if([dropdownMenu isEqual:self.choreMenu]) {
         self.choreToAssign = self.allChores[row];
-        self.choreLabel.text = self.choreToAssign.name;
+        [self.choreMenu reloadAllComponents];
     } else {
         PFUser *myUser = self.userArray[row];
         self.userToAssign = myUser.username;
-        self.userLabel.text = self.userToAssign;
+        [self.userMenu reloadAllComponents];
     }
     [self performSelector:@selector(closeMenus) withObject:nil afterDelay:0.25];
 }
@@ -158,8 +166,9 @@
 }
 
 - (UIColor *)dropdownMenu:(MKDropdownMenu *)dropdownMenu backgroundColorForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.backgroundColor;
+    return self.darkGreenColor;
 }
+
 
 - (IBAction)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
