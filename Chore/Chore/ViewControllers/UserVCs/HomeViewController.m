@@ -7,51 +7,10 @@
 //
 
 #import "HomeViewController.h"
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "LoginViewController.h"
-#import "Parse.h"
-#import "ParseUI.h"
-#import "CircleProgressBar.h"
-#import "Group.h"
-#import "Chore.h"
-#import "ChoreAssignment.h"
-#import "ProgressCell.h"
-#import "ProgressBarProperties.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate, ProgressBarDelegate>
-@property (nonatomic) CGFloat progressBarWidth;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
-@property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
-@property (nonatomic) UIColor *progressBarProgressColor;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) UIColor *progressBarTrackColor;
-@property (nonatomic) CGFloat startAngle;
-@property (weak, nonatomic) IBOutlet UIButton *incrementButton;
-@property (weak, nonatomic) IBOutlet UIButton *zeroProgressButton;
-@property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
-@property (strong, nonatomic) NSMutableArray<Chore *> *chores;
-@property (strong, nonatomic) ChoreAssignment *assignment;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (strong, nonatomic) NSMutableArray *userNames;
-@property (strong, nonatomic) NSString *username;
-@property (nonatomic) long currNumberOfChores;
-@property (nonatomic) long currCompletedChores;
-@property (nonatomic) long memberNumberOfChores;
-@property (nonatomic) long memberCompletedChores;
-@property (nonatomic) float increment;
-@property (nonatomic) float memberIncrement;
-@property (nonatomic, strong) UIColor *backgroundColor;
-@property (nonatomic, strong) NSNumber *memberIncrementNSNum;
-@property (nonatomic, strong) NSNumber *memberPoint;
-@property (nonatomic, strong) NSMutableArray *membersProgress;
-@property (nonatomic, strong) NSMutableArray *membersPoints;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
-@property (weak, nonatomic) IBOutlet UIButton *progressButton;
 
-- (IBAction)onTapLogOut:(id)sender;
-- (IBAction)onTapProgressButton:(id)sender;
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
+
 @end
 
 @implementation HomeViewController 
@@ -162,16 +121,8 @@
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
-
-    
-
     self.titleLabel1.textColor = progressColor;
     self.titleLabel2.textColor = progressColor;
-    
-    ProgressBarProperties *progressBarProperties = [[ProgressBarProperties alloc] init];
-    //[progressBarProperties initWithProperties:_progressBar withColor:unfinished];
-
-
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
@@ -191,7 +142,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
