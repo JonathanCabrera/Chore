@@ -15,9 +15,11 @@
 #import "HomeViewController.h"
 #import "ChoreDetailsViewController.h"
 
+#import "UIScrollView+EmptyDataSet.h"
+
 @protocol profileViewControllerDelegate;
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate,  DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
@@ -33,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 
-
 @end
 
 @implementation ProfileViewController
@@ -42,6 +43,10 @@
     [super viewDidLoad];
     self.upcomingTableView.delegate = self;
     self.upcomingTableView.dataSource = self;
+    self.upcomingTableView.emptyDataSetSource = self;
+    self.upcomingTableView.emptyDataSetDelegate = self;
+    self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
+    self.upcomingTableView.tableFooterView = [UIView new];
     
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
@@ -73,6 +78,39 @@
     [self refresh];
 }
 
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"broom"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No Chores";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
+        @"There are no chores to be completed at this time." :
+        @"There are no chores that have been completed at this time.");
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
 - (void)refresh {
     [self.activityIndicator startAnimating];
     [self fetchChores];
@@ -89,7 +127,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)fetchChores{
