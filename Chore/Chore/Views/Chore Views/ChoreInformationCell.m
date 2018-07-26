@@ -30,14 +30,35 @@
         self.pointsLabel.text = [NSString stringWithFormat:@"%d pts", chore.points];
     }
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
+    [self setCurrentUserImage];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
     [self.choreView addGestureRecognizer:tapRecognizer];
     self.backgroundColor = color;
 }
 
-- (NSString *)createTableViewCellText {
-    return [[self.chore.userName stringByAppendingString:@" has to "] stringByAppendingString:self.chore.name];
+- (void)setCurrentUserImage {
+    NSString *currentUser = self.chore.userName;
+    
+    PFQuery *choreQuery = [PFQuery queryWithClassName:@"_User"];
+    [choreQuery whereKey:@"username" equalTo:currentUser];
+    choreQuery.limit = 1;
+    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
+        if (users != nil) {
+            PFUser *user = users[0];
+            self.userImageView.file = (PFFile *)user[@"profilePic"];
+            self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/ 2;
+            self.userImageView.clipsToBounds = YES;
+            [self.userImageView loadInBackground];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
+
+// DEPRICATED
+//- (NSString *)createTableViewCellText {
+//    return [[self.chore.userName stringByAppendingString:@" has to "] stringByAppendingString:self.chore.name];
+//}
 
 - (void)didTapChore {
     [self.delegate seeChore:self withChore:self.chore withName:self.chore.userName];
