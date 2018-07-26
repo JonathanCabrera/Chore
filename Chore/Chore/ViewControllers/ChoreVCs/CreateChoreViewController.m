@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UITextField *pointField;
 @property (weak, nonatomic) IBOutlet UITextField *dateField;
+@property (weak, nonatomic) IBOutlet UISlider *pointSlider;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+- (IBAction)onSlide:(id)sender;
 
 @end
 
@@ -22,6 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //[_pointSlider maximumValue: 10];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,17 +47,16 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMddyyyy"];
     NSDate *date = [formatter dateFromString:self.dateField.text];
-    if ([self.pointField.text intValue] > 10){
-        [CreateChoreViewController presentAlertWithTitle:@"Error: The maximum number of points a chore can be is 10" fromViewController:self];
-    } else {
-    [Chore makeChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointField.text intValue] withDeadline:date withDefault:@"YES" withUserName:@"DEFAULT" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+ 
+    
+    [Chore makeChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointsLabel.text intValue] withDeadline:date withDefault:@"YES" withUserName:@"DEFAULT" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"saved chore");
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    }
+    
     
     self.nameField.text = @"";
     self.descriptionField.text = @"";
@@ -69,4 +74,7 @@
 }
 */
 
+- (IBAction)onSlide:(UISlider *)sender {
+    _pointsLabel.text = [NSString stringWithFormat:@"%1.0f", [sender value]];
+}
 @end
