@@ -39,7 +39,13 @@
 }
 
 - (IBAction)didTapCheck:(id)sender {
-    [self.checkButton setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+    UIImage *checked = [UIImage imageNamed:@"button-checked"];
+    UIImage *unchecked = [UIImage imageNamed:@"button-unchecked"];
+    
+    if([self.checkButton.currentImage isEqual:unchecked]) {
+        NSLog(@"unchecked");
+    }
+    [self.checkButton setImage:[UIImage imageNamed:@"button-checked"] forState:UIControlStateNormal];
     [self.delegate selectUser:self withUserName:self.user.username];
 }
 
