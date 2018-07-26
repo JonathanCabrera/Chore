@@ -13,6 +13,7 @@ target 'Chore' do
 	pod 'DZNEmptyDataSet'
 	pod 'MKDropdownMenu'
 	pod 'THCalendarDatePicker', '~> 1.2.6'
+	pod 'STPopup'
 
 
   target 'ChoreTests' do

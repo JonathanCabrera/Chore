@@ -44,8 +44,6 @@
 		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
 		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
-		9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A95B2100FF79001FF108 /* EditChoreViewController.m */; };
-		9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A95D2100FF8A001FF108 /* editChore.storyboard */; };
 		9E7535D42109240B00E14E83 /* ProgressBarProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7535D32109240B00E14E83 /* ProgressBarProperties.m */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
@@ -140,9 +138,6 @@
 		9E14378420FD51FE0007E6A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9E1C600F20FD50FB0076B4D5 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E1C601120FD51030076B4D5 /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E50A95A2100FF79001FF108 /* EditChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
-		9E50A95B2100FF79001FF108 /* EditChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
-		9E50A95D2100FF8A001FF108 /* editChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editChore.storyboard; sourceTree = "<group>"; };
 		9E7535D22109240B00E14E83 /* ProgressBarProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBarProperties.h; sourceTree = "<group>"; };
 		9E7535D32109240B00E14E83 /* ProgressBarProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressBarProperties.m; sourceTree = "<group>"; };
 		9E9C172220FD4646007F0F31 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
