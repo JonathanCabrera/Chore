@@ -17,6 +17,7 @@
 #import "Chore.h"
 #import "ChoreAssignment.h"
 #import "ProgressCell.h"
+#import "ProfileViewController.h"
 
 
 @interface HomeViewController : UIViewController

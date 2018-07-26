@@ -27,6 +27,7 @@
 
 @protocol ProgressCellDelegate
 
+- (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName;
 
 @end
 

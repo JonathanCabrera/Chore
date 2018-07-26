@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 
+
+
 @end
 
 @implementation ProfileViewController
@@ -47,11 +49,10 @@
     self.upcomingTableView.emptyDataSetDelegate = self;
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
     self.upcomingTableView.tableFooterView = [UIView new];
-    
-    self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.upcomingTableView.layer.cornerRadius = 10;
+    self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
-    self.upcomingTableView.backgroundColor = self.backgroundColor;
     self.pointsLabel.textColor = darkGreenColor;
     
     if(self.selectedUser == nil) {
@@ -62,11 +63,9 @@
     
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
+        [self.backButton setValue:@YES forKey:@"hidden"];
     } else {
         [self.editButton setValue:@YES forKeyPath:@"hidden"];
-    }
-    if(!self.showBack) {
-       [self.backButton setValue:@YES forKeyPath:@"hidden"];
     }
     
     self.activityIndicator.hidesWhenStopped = YES;
