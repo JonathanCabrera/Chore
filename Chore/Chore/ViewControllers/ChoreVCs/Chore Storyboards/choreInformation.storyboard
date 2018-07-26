@@ -18,35 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yai-Rf-qD6">
-                                <rect key="frame" x="268" y="52.5" width="92" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feq-eg-LOL">
-                                        <rect key="frame" x="0.0" y="0.0" width="92" height="30"/>
-                                        <state key="normal" title="Assign Chore">
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapAddChore:" destination="sdK-8W-SJO" eventType="touchUpInside" id="M3S-QB-WSw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
-                                        <rect key="frame" x="0.0" y="30" width="92" height="30"/>
-                                        <state key="normal" title="Create Chore"/>
-                                        <connections>
-                                            <segue destination="aVo-Eo-Hz3" kind="show" id="wCX-HK-cQv"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yai-Rf-qD6">
+                                <rect key="frame" x="269" y="79" width="91" height="30"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVZ-gQ-tpf">
-                                <rect key="frame" x="15" y="70" width="98.5" height="23.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
-                                <rect key="frame" x="0.0" y="118" width="375" height="540.5"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
+                                <rect key="frame" x="0.0" y="178" width="375" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="99" id="R11-b3-5jg" customClass="ChoreInformationCell">
@@ -126,17 +102,50 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feq-eg-LOL">
+                                <rect key="frame" x="15" y="93" width="108" height="34"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <state key="normal" title="Assign a chore">
+                                    <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAddChore:" destination="sdK-8W-SJO" eventType="touchUpInside" id="M3S-QB-WSw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DQ-mK-8Mm">
+                                <rect key="frame" x="15" y="129" width="162" height="34"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <state key="normal" title="Create a default chore">
+                                    <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="aVo-Eo-Hz3" kind="show" id="wCX-HK-cQv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVZ-gQ-tpf">
+                                <rect key="frame" x="86" y="30" width="202.5" height="48"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="35"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="trailing" secondItem="tOz-xs-xdk" secondAttribute="trailing" id="8c5-gA-Af2"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="trailing" secondItem="tOz-xs-xdk" secondAttribute="trailing" id="DQk-7o-UfE"/>
-                            <constraint firstItem="yai-Rf-qD6" firstAttribute="centerY" secondItem="XVZ-gQ-tpf" secondAttribute="centerY" id="NJI-cT-egj"/>
-                            <constraint firstItem="XVZ-gQ-tpf" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="15" id="TiI-eA-E00"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="bottom" secondItem="tOz-xs-xdk" secondAttribute="bottom" id="QI7-J9-sBA"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" id="SyR-gS-KQo"/>
+                            <constraint firstItem="7DQ-mK-8Mm" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="15" id="XEQ-uV-g2O"/>
+                            <constraint firstItem="feq-eg-LOL" firstAttribute="top" secondItem="XVZ-gQ-tpf" secondAttribute="bottom" constant="15" id="XUD-ME-aCx"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" id="cv2-Pv-DGL"/>
+                            <constraint firstItem="XVZ-gQ-tpf" firstAttribute="centerX" secondItem="CU2-me-kKh" secondAttribute="centerX" id="dKT-dg-6lV"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="bottom" secondItem="tOz-xs-xdk" secondAttribute="bottom" id="gA9-g4-q5j"/>
-                            <constraint firstItem="XVZ-gQ-tpf" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="50" id="iL6-Ig-Ohv"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="7DQ-mK-8Mm" secondAttribute="bottom" constant="15" id="lwn-ze-t1t"/>
                             <constraint firstItem="tOz-xs-xdk" firstAttribute="trailing" secondItem="yai-Rf-qD6" secondAttribute="trailing" constant="15" id="nl8-Hc-2pk"/>
-                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="XVZ-gQ-tpf" secondAttribute="bottom" constant="25" id="zyJ-AJ-OnW"/>
+                            <constraint firstItem="7DQ-mK-8Mm" firstAttribute="top" secondItem="feq-eg-LOL" secondAttribute="bottom" constant="2" id="t68-rW-TjN"/>
+                            <constraint firstItem="feq-eg-LOL" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="15" id="xc1-ka-5i7"/>
+                            <constraint firstItem="XVZ-gQ-tpf" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="10" id="zht-cF-l5X"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>

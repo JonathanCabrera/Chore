@@ -7,14 +7,13 @@
 //
 
 #import "CreateChoreViewController.h"
-#import "Chore.h"
+#import "DefaultChore.h"
 
 @interface CreateChoreViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionField;
 @property (weak, nonatomic) IBOutlet UITextField *pointField;
-@property (weak, nonatomic) IBOutlet UITextField *dateField;
 
 @end
 
@@ -30,13 +29,10 @@
 
 
 - (IBAction)didTapCreate:(id)sender {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMddyyyy"];
-    NSDate *date = [formatter dateFromString:self.dateField.text];
     
-    [Chore makeChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointField.text intValue] withDeadline:date withDefault:@"YES" withUserName:@"DEFAULT" withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [DefaultChore makeDefaultChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointField.text intValue] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
-            NSLog(@"saved chore");
+            NSLog(@"saved default chore");
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -45,7 +41,6 @@
     self.nameField.text = @"";
     self.descriptionField.text = @"";
     self.pointField.text = @"";
-    self.dateField.text = @"";
 }
 
 /*

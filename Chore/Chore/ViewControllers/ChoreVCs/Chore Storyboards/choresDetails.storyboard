@@ -39,7 +39,6 @@
                                 </constraints>
                                 <connections>
                                     <action selector="onTapAddPic:" destination="PpC-AV-sPm" eventType="touchUpInside" id="cgh-GM-dbz"/>
-                                    <segue destination="S9d-rz-2d6" kind="presentation" id="p2f-cF-07Z"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZP-qX-qce">
@@ -159,14 +158,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ctv-1w-q7S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3487" y="-2961"/>
-        </scene>
-        <!--editChore-->
-        <scene sceneID="adi-6K-ka7">
-            <objects>
-                <viewControllerPlaceholder storyboardName="editChore" id="S9d-rz-2d6" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="snM-eb-XMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3764" y="-2463"/>
         </scene>
     </scenes>
 </document>

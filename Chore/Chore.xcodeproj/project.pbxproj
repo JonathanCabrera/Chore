@@ -17,6 +17,7 @@
 		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
 		1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E200B312100FA4700945BD6 /* addChore.storyboard */; };
 		1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B3A210129F800945BD6 /* ChoreAssignment.m */; };
+		1E574417210A3BBB00473C7B /* DefaultChore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574416210A3BBB00473C7B /* DefaultChore.m */; };
 		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
 		1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */; };
 		1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C220FD51F2002979BA /* LoginViewController.m */; };
@@ -43,8 +44,6 @@
 		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
 		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
-		9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E50A95B2100FF79001FF108 /* EditChoreViewController.m */; };
-		9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E50A95D2100FF8A001FF108 /* editChore.storyboard */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
@@ -93,6 +92,8 @@
 		1E200B312100FA4700945BD6 /* addChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addChore.storyboard; sourceTree = "<group>"; };
 		1E200B39210129F800945BD6 /* ChoreAssignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreAssignment.h; sourceTree = "<group>"; };
 		1E200B3A210129F800945BD6 /* ChoreAssignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreAssignment.m; sourceTree = "<group>"; };
+		1E574415210A3BBB00473C7B /* DefaultChore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultChore.h; sourceTree = "<group>"; };
+		1E574416210A3BBB00473C7B /* DefaultChore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultChore.m; sourceTree = "<group>"; };
 		1E5C36B720FD4A10002979BA /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		1E5C36B820FD4A10002979BA /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		1E5C36BA20FD4E89002979BA /* GroupOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupOptionsViewController.h; sourceTree = "<group>"; };
@@ -136,9 +137,6 @@
 		9E14378420FD51FE0007E6A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9E1C600F20FD50FB0076B4D5 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E1C601120FD51030076B4D5 /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E50A95A2100FF79001FF108 /* EditChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
-		9E50A95B2100FF79001FF108 /* EditChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
-		9E50A95D2100FF8A001FF108 /* editChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editChore.storyboard; sourceTree = "<group>"; };
 		9E9C172220FD4646007F0F31 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9E9C172320FD4646007F0F31 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9E9C172620FD4DD0007F0F31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -258,6 +256,8 @@
 				1E5C36B820FD4A10002979BA /* Group.m */,
 				1E200B39210129F800945BD6 /* ChoreAssignment.h */,
 				1E200B3A210129F800945BD6 /* ChoreAssignment.m */,
+				1E574415210A3BBB00473C7B /* DefaultChore.h */,
+				1E574416210A3BBB00473C7B /* DefaultChore.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -295,7 +295,6 @@
 				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
 				1E200B312100FA4700945BD6 /* addChore.storyboard */,
 				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
-				9E50A95D2100FF8A001FF108 /* editChore.storyboard */,
 			);
 			path = "Chore Storyboards";
 			sourceTree = "<group>";
@@ -415,8 +414,6 @@
 				1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */,
 				1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */,
 				1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */,
-				9E50A95A2100FF79001FF108 /* EditChoreViewController.h */,
-				9E50A95B2100FF79001FF108 /* EditChoreViewController.m */,
 			);
 			path = ChoreVCs;
 			sourceTree = "<group>";
@@ -541,7 +538,6 @@
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E9738EF20FFECB400EE46B9 /* groupInfo.storyboard in Resources */,
 				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
-				9E50A95E2100FF8A001FF108 /* editChore.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,11 +652,11 @@
 			files = (
 				1E5C36CF20FE830E002979BA /* GroupMemberCell.m in Sources */,
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
-				9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */,
 				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
 				9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
 				1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */,
+				1E574417210A3BBB00473C7B /* DefaultChore.m in Sources */,
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
 				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
 				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,

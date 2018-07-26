@@ -40,27 +40,19 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdo-wJ-XjB">
-                                <rect key="frame" x="121" y="499" width="139" height="42"/>
+                                <rect key="frame" x="82" y="499" width="218" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Create chore"/>
+                                <state key="normal" title="Create default chore"/>
                                 <connections>
                                     <action selector="didTapCreate:" destination="YlB-fr-P56" eventType="touchUpInside" id="QOu-Nb-y6x"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/DD/YYYY" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PAG-CQ-e8s">
-                                <rect key="frame" x="33" y="365" width="168" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ulM-ya-pUm"/>
                     </view>
                     <connections>
-                        <outlet property="dateField" destination="PAG-CQ-e8s" id="deP-ij-M4M"/>
                         <outlet property="descriptionField" destination="fX2-m9-FSq" id="ZDF-RW-oxJ"/>
                         <outlet property="nameField" destination="VIT-eZ-hRZ" id="szI-5X-mTM"/>
                         <outlet property="pointField" destination="eaU-OA-qlI" id="h6L-lT-uxN"/>
