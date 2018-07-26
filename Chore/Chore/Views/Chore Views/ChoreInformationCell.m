@@ -69,16 +69,29 @@
     NSString *dueMessage = @"";
     if (daysRemaining < 0) {
         dueMessage = [NSString stringWithFormat: @"Overdue by %ld days", daysRemaining * -1];
-        //self.deadlineLabel.textColor = INSERT_COLOR_HERE;
+        self.deadlineLabel.textColor = UIColorWithHexString(@"#b94a48");
     } else if (daysRemaining == 0) {
         dueMessage = @"Due Today";
-        //self.deadlineLabel.textColor = INSERT_COLOR_HERE;
+        self.deadlineLabel.textColor = UIColorWithHexString(@"#f89406");
     } else {
         dueMessage = [NSString stringWithFormat: @"Due in %ld days", daysRemaining];
-        //self.deadlineLabel.textColor = INSERT_COLOR_HERE;
+        self.deadlineLabel.textColor = UIColorWithHexString(@"#468847");
     }
     
     return dueMessage;
+}
+
+// From stackover flow :O so cool
+static UIColor * UIColorWithHexString(NSString *hex) {
+    unsigned int rgb = 0;
+    [[NSScanner scannerWithString:
+      [[hex uppercaseString] stringByTrimmingCharactersInSet:
+       [[NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet]]]
+     scanHexInt:&rgb];
+    return [UIColor colorWithRed:((CGFloat)((rgb & 0xFF0000) >> 16)) / 255.0
+                           green:((CGFloat)((rgb & 0xFF00) >> 8)) / 255.0
+                            blue:((CGFloat)(rgb & 0xFF)) / 255.0
+                           alpha:1.0];
 }
 
 @end
