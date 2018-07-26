@@ -12,6 +12,6 @@
 
 @interface ChoreInformationViewController : UIViewController
 
-@property (nonatomic, strong) Group *currentGroup;
+@property (nonatomic, strong) NSString *currentGroup;
 
 @end
