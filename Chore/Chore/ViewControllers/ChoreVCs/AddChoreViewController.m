@@ -10,6 +10,8 @@
 #import "ChoreAssignment.h"
 #import "MKDropdownMenu.h"
 #import "DefaultChore.h"
+#import <STPopup/STPopup.h>
+#import "CreateChoreViewController.h"
 
 @interface AddChoreViewController () <MKDropdownMenuDelegate, MKDropdownMenuDataSource>
 
@@ -25,6 +27,7 @@
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *darkGreenColor;
 @property (nonatomic, strong) UIColor *lightGreenColor;
+@property (nonatomic, strong) UIColor *titleColor;
 
 @end
 
@@ -44,6 +47,7 @@
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    self.titleColor = [UIColor colorWithRed:0.00 green:0.56 blue:0.32 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.choreMenu.backgroundColor = self.backgroundColor;
     self.choreMenu.layer.borderWidth = 0.8f;
@@ -110,22 +114,21 @@
 }
 
 - (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForComponent:(NSInteger)component {
-    UIColor *titleColor = [UIColor colorWithRed:0.00 green:0.56 blue:0.32 alpha:1.0];
     if([dropdownMenu isEqual:self.choreMenu]) {
         if(self.choreToAssign == nil) {
             return [[NSAttributedString alloc] initWithString:@"Select a chore"
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
         } else {
             return [[NSAttributedString alloc] initWithString:self.choreToAssign.name
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
         }
     } else {
         if(self.userToAssign == nil) {
             return [[NSAttributedString alloc] initWithString:@"Select a user"
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
         } else {
             return [[NSAttributedString alloc] initWithString:self.userToAssign
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:titleColor}];
+                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
         }
     }
 }
@@ -133,7 +136,7 @@
 - (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if([dropdownMenu isEqual:self.choreMenu]) {
         DefaultChore *myChore = self.allChores[row];
-        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d points)", myChore.name, myChore.points]
+        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d pts)", myChore.name, myChore.points]
                                                attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName:self.lightGreenColor}];
     } else {
         PFUser *myUser = self.userArray[row];
@@ -165,10 +168,12 @@
 
 
 - (IBAction)didTapCancel:(id)sender {
+    [self closeMenus];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)saveAssignment:(id)sender {
+    [self closeMenus];
     Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:_currDate withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"created chore");
@@ -188,17 +193,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)onTapDeadline:(id)sender {
+    [self closeMenus];
     if(!self.datePicker)
         self.datePicker = [THDatePickerViewController datePicker];
     self.datePicker.date = self.currDate;
@@ -218,7 +215,6 @@
                                                                   KNSemiModalOptionKeys.animationDuration : @(.5),
                                                                   KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
                                                                   }];
-    
 }
 
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
@@ -230,4 +226,25 @@
 - (void)datePickerCancelPressed:(THDatePickerViewController *)datePicker {
     [self dismissSemiModalView];
 }
+
+- (IBAction)didTapCustom:(id)sender {
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"createChore" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateChoreViewController"]];
+    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
+    [popupController presentInViewController:self];
+}
+
+- (void)didTapBackground {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 @end

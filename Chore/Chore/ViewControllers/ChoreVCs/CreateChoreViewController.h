@@ -10,5 +10,4 @@
 
 @interface CreateChoreViewController : UIViewController
 
-+ (void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController;
 @end
