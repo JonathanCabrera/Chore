@@ -25,19 +25,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
-    
-    self.view.backgroundColor = backgroundColor;
-    self.groupLabel.textColor = lightGreenColor;
-    self.choreLabel.textColor = lightGreenColor;
+
     self.seeGroupView.layer.cornerRadius = 40;
     self.seeGroupView.clipsToBounds = true;
-    self.seeGroupView.backgroundColor = darkGreenColor;
     self.seeChoresView.layer.cornerRadius = 40;
     self.seeChoresView.clipsToBounds = true;
-    self.seeChoresView.backgroundColor = darkGreenColor;
+
     
     //fetch the user's group
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
