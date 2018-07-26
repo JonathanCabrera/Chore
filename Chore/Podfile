@@ -11,9 +11,8 @@ target 'Chore' do
 	pod 'ParseUI'
 	pod 'MBProgressHUD'
 	pod 'DZNEmptyDataSet'
-	pod 'THCalendarDatePicker', '~> 1.2.6'
 	pod 'MKDropdownMenu'
-
+	pod 'THCalendarDatePicker', '~> 1.2.6'
 
 
   target 'ChoreTests' do
