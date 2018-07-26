@@ -114,6 +114,7 @@
 - (void)refresh {
     [self.activityIndicator startAnimating];
     [self fetchChores];
+
     self.profilePicture.file = self.selectedUser[@"profilePic"];
     [self.profilePicture loadInBackground];
     [self.activityIndicator stopAnimating];
