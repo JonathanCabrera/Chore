@@ -34,6 +34,7 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.currentGroup = posts[0];
+                NSLog(@"current group: %@", self.currentGroup.name);
                 [self fetchChores];
             } else {
                 NSLog(@"%@", error.localizedDescription);

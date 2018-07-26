@@ -38,8 +38,8 @@
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
-
-    [self fetchUserGroup];
+    
+    self.currentGroup = [PFUser currentUser][@"groupName"];
     [self fetchChores];
     
     self.bgColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
@@ -82,28 +82,6 @@
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
-- (void)fetchUserGroup {
-    //fetch the user's group
-    NSString *usersGroup = [PFUser currentUser][@"groupName"];
-    self.groupNameLabel.text = usersGroup;
-    if(usersGroup != nil) {
-        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-        query.limit = 1;
-        [query whereKey:@"name" equalTo:usersGroup];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts != nil) {
-                self.currentGroup = posts[0];
-                NSLog(@"user's group: %@", self.currentGroup.name);
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-    } else {
-        NSLog(@"user has no group");
-    }
-}
-
 - (void)beginRefresh {
     [self fetchChores];
 }
@@ -115,7 +93,7 @@
 - (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
-    [query whereKey:@"groupName" equalTo:self.currentGroup.name];
+    [query whereKey:@"groupName" equalTo:self.currentGroup];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
