@@ -50,6 +50,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
+@property (weak, nonatomic) IBOutlet UIView *userView;
+@property (weak, nonatomic) IBOutlet UIView *groupView;
 
 - (IBAction)onTapLogOut:(id)sender;
 - (IBAction)onTapProgressButton:(id)sender;

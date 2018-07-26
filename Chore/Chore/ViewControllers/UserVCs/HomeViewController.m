@@ -9,7 +9,24 @@
 #import "HomeViewController.h"
 
 
+
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
+
+
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "Parse.h"
+#import "ParseUI.h"
+#import "CircleProgressBar.h"
+#import "Group.h"
+#import "Chore.h"
+#import "ChoreAssignment.h"
+#import "ProgressCell.h"
+
+
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
+
 
 @end
 
@@ -21,8 +38,9 @@
     self.tableView.delegate = self;
      self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    self.tableView.backgroundColor = self.backgroundColor;
-    self.view.backgroundColor = self.backgroundColor;
+    self.tableView.layer.cornerRadius = 10;
+    self.userView.layer.cornerRadius = 15;
+    self.groupView.layer.cornerRadius = 15;
     [self setDesignAspects];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -78,7 +96,8 @@
                         if(self.currNumberOfChores == 0) {
                             myProgress = @"No chores yet!";
                         } else {
-                            myProgress = [NSString stringWithFormat:@"%lu / %lu chores done", weakSelf.currCompletedChores, weakSelf.currNumberOfChores];
+                            float percentage = (float) weakSelf.currCompletedChores/weakSelf.currNumberOfChores *100;
+                            myProgress = [NSString stringWithFormat:@"%.0f%% done", percentage];
                         }
                         return myProgress;
                     }];
@@ -128,7 +147,7 @@
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
-    _progressBar.backgroundColor = self.backgroundColor;
+    _progressBar.backgroundColor = [UIColor clearColor];
     [_progressBar setStartAngle:270];
     [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:20]];
     [_progressBar setHintTextColor:unfinished];
