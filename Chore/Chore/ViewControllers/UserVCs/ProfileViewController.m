@@ -63,11 +63,9 @@
     
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
+        [self.backButton setValue:@YES forKey:@"hidden"];
     } else {
         [self.editButton setValue:@YES forKeyPath:@"hidden"];
-    }
-    if(!self.showBack) {
-       [self.backButton setValue:@YES forKeyPath:@"hidden"];
     }
     
     self.activityIndicator.hidesWhenStopped = YES;
