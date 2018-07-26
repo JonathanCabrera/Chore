@@ -30,6 +30,13 @@
     self.pointsLabel.textColor = unfinished;
     self.userNameLabel.textColor = unfinished;
     [_progressView setProgress:number animated:YES];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUser)];
+    [self addGestureRecognizer:tapRecognizer];
+}
+
+- (void)didTapUser {
+    [self.delegate seeMemberProfile:self withUser:self.userName];
 }
 
 @end

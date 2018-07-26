@@ -25,7 +25,6 @@
                         <segue destination="pYx-ZX-OjP" kind="relationship" relationship="viewControllers" id="Dwt-1P-hs8"/>
                         <segue destination="dpM-qq-lKC" kind="relationship" relationship="viewControllers" id="Rug-fF-zma"/>
                         <segue destination="daB-MR-fzC" kind="relationship" relationship="viewControllers" id="5T7-Cc-sLa"/>
-                        <segue destination="daB-MR-fzC" kind="show" identifier="profileSegue" id="hLn-vC-oBz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXP-Hl-4dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,11 +179,20 @@
                         <outlet property="titleLabel1" destination="dlH-fA-w6t" id="W9n-Ac-EMy"/>
                         <outlet property="titleLabel2" destination="1RG-gm-Qf9" id="Cuq-UJ-0Jg"/>
                         <outlet property="userView" destination="6Dr-PS-hEx" id="tdG-VC-eEr"/>
+                        <segue destination="niW-u2-LDH" kind="show" identifier="profileSegue" id="QbE-OU-roa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI3-lL-P0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1906.4000000000001" y="-28.335832083958024"/>
+        </scene>
+        <!--profile-->
+        <scene sceneID="gVt-JX-tOw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="profile" id="niW-u2-LDH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U0w-68-iye" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3003" y="-172"/>
         </scene>
         <!--Home-->
         <scene sceneID="wr5-Gn-pZm">
@@ -209,7 +217,4 @@
     <resources>
         <image name="home" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hLn-vC-oBz"/>
-    </inferredMetricsTieBreakers>
 </document>
