@@ -76,7 +76,6 @@
     } else {
         dueMessage = [NSString stringWithFormat: @"Due in %ld days", daysRemaining];
         //self.deadlineLabel.textColor = INSERT_COLOR_HERE;
-
     }
     
     return dueMessage;
