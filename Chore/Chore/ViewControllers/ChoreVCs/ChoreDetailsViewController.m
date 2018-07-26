@@ -10,6 +10,8 @@
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -29,6 +31,9 @@
 }
 
 - (void)setFinishedButtonProperties {
+    if (!([[PFUser currentUser].username isEqualToString: self.chore.userName])){
+        self.finishedButton.hidden = YES;
+    }
     self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.finishedButton.titleLabel.numberOfLines = 2;
 }
@@ -39,6 +44,8 @@
 
 - (void) loadChorePicture {
     self.chorePic.file = self.chore.photo;
+    self.chorePic.layer.cornerRadius = self.chorePic.frame.size.height/ 15;
+    self.chorePic.clipsToBounds = YES;
     [self.chorePic loadInBackground];
 }
 
@@ -106,18 +113,16 @@
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
+
     [self loadChorePicture];
 }
 
 - (void)setCompletionStatusLabelColor {
     if (self.chore.completionStatus) {
-        self.completionStatusLabel.textColor = [UIColor greenColor];
-        self.completionStatusLabel.text = @"Completed";
+        self.completionStatusImage.image = [UIImage imageNamed:@"checkedbox_1"];
         self.finishedButton.hidden = YES;
-
     } else {
-        self.completionStatusLabel.textColor = [UIColor redColor];
-        self.completionStatusLabel.text = @"Uncompleted";
+        self.completionStatusImage.image = [UIImage imageNamed:@"uncheckedbox_1"];
     }
 }
 
@@ -159,12 +164,10 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *resizedImage = [self resizeImage:info[UIImagePickerControllerEditedImage] withSize:CGSizeMake(140, 140)];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    self.photo = resizedImage;
-    NSLog(@"%@", self.photo);
-    [self.addPictureButton setImage:resizedImage forState:UIControlStateNormal];
-    if(self.photo != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.photo);
+    //self.photo = resizedImage; // removed for redudency check
+    self.chorePic.image = resizedImage;
+    if(resizedImage != nil) {
+        NSData *imageData = UIImagePNGRepresentation(resizedImage);
         self.chore.photo = [PFFile fileWithData:imageData];
         [self.chore saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded) {
@@ -175,6 +178,7 @@
             }
         }];
     }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
@@ -195,9 +199,5 @@
         [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
      }
  }
-
-
-
-
 
 @end
