@@ -30,7 +30,7 @@
 
 - (IBAction)didTapCheck:(id)sender {
     
-    [self.checkButton setImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
+    [self.checkButton setImage:[UIImage imageNamed:@"button-checked"] forState:UIControlStateNormal];
     [self.delegate selectChore:self withChore:self.chore];
     
 }

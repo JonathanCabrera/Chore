@@ -12,6 +12,9 @@ target 'Chore' do
 	pod 'MBProgressHUD'
 	pod 'DZNEmptyDataSet'
 	pod 'THCalendarDatePicker', '~> 1.2.6'
+	pod 'MKDropdownMenu'
+
+
 
   target 'ChoreTests' do
     inherit! :search_paths
