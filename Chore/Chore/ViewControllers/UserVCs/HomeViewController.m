@@ -9,22 +9,6 @@
 #import "HomeViewController.h"
 
 
-
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
-
-
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "LoginViewController.h"
-#import "Parse.h"
-#import "ParseUI.h"
-#import "CircleProgressBar.h"
-#import "Group.h"
-#import "Chore.h"
-#import "ChoreAssignment.h"
-#import "ProgressCell.h"
-
-
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
 
 
