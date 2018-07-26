@@ -8,9 +8,7 @@
 
 #import "HomeViewController.h"
 
-
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
-
 
 @end
 
@@ -24,7 +22,6 @@
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.tableView.layer.cornerRadius = 10;
     self.userView.layer.cornerRadius = 15;
-    self.groupView.layer.cornerRadius = 15;
     [self setDesignAspects];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -37,6 +34,7 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.currentGroup = posts[0];
+                NSLog(@"current group: %@", self.currentGroup.name);
                 [self fetchChores];
             } else {
                 NSLog(@"%@", error.localizedDescription);
@@ -125,16 +123,14 @@
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
-    self.titleLabel1.textColor = progressColor;
-    self.titleLabel2.textColor = progressColor;
 
-    [_progressBar setProgressBarProgressColor:progressColor];
+    [_progressBar setProgressBarProgressColor:[UIColor blackColor]];
     [_progressBar setProgressBarTrackColor:unfinished];
     [_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = [UIColor clearColor];
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:20]];
-    [_progressBar setHintTextColor:unfinished];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:18]];
+    [_progressBar setHintTextColor:[UIColor whiteColor]];
     [_progressBar setHintViewBackgroundColor:progressColor];
 }
 
@@ -150,7 +146,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
-    [progressCell setCell:self.userNames[indexPath.row] withColor:self.backgroundColor withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
+    [progressCell setCell:self.userNames[indexPath.row] withColor:[UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0] withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
     progressCell.delegate = self;
     return progressCell;
 }
