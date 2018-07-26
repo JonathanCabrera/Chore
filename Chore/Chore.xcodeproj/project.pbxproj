@@ -228,8 +228,6 @@
 				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
 				1E1E3C2020FD40DA003C87B4 /* main.m */,
 				1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */,
-				9E7535D22109240B00E14E83 /* ProgressBarProperties.h */,
-				9E7535D32109240B00E14E83 /* ProgressBarProperties.m */,
 			);
 			path = Chore;
 			sourceTree = "<group>";
@@ -674,7 +672,6 @@
 				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
 				1E829456210280800086EB80 /* SignupViewController.m in Sources */,
-				9E7535D42109240B00E14E83 /* ProgressBarProperties.m in Sources */,
 				1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */,
 				1E5C36D220FE857C002979BA /* AddGroupMemberCell.m in Sources */,
 				1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */,
