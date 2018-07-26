@@ -1,10 +1,8 @@
-//
 //  ChoreInformationCell.m
 //  Chore
 //
 //  Created by Jonathan Cabrera on 7/17/18.
 //  Copyright © 2018 JAK. All rights reserved.
-//
 
 #import "ChoreInformationCell.h"
 
@@ -16,19 +14,13 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     //[super setSelected:selected animated:animated];
-    // Configure the view for the selected state
 }
-
 
 - (void)setCell:(Chore *)chore withColor:(UIColor *)color{
     _chore = chore;
     self.userNameLabel.text = chore.userName;
     self.choreNameLabel.text = chore.name;
-    if(chore.points == 1) {
-        self.pointsLabel.text = [NSString stringWithFormat:@"%d pt", chore.points];
-    } else {
-        self.pointsLabel.text = [NSString stringWithFormat:@"%d pts", chore.points];
-    }
+    self.pointsLabel.text  = [NSString stringWithFormat:((chore.points == 1) ? @"%d pt" : @"%d pts"), chore.points];
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
     [self setCurrentUserImage];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
@@ -38,7 +30,6 @@
 
 - (void)setCurrentUserImage {
     NSString *currentUser = self.chore.userName;
-    
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"_User"];
     [choreQuery whereKey:@"username" equalTo:currentUser];
     choreQuery.limit = 1;
@@ -55,27 +46,15 @@
     }];
 }
 
-// DEPRICATED
-//- (NSString *)createTableViewCellText {
-//    return [[self.chore.userName stringByAppendingString:@" has to "] stringByAppendingString:self.chore.name];
-//}
-
 - (void)didTapChore {
     [self.delegate seeChore:self withChore:self.chore withName:self.chore.userName];
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd-yyyy"];
-    
-    
-
     NSDate *startDate = [NSDate date];
     NSDate *endDate = self.chore.deadline;
     
-    
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
     
     NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
                                                         fromDate:startDate
