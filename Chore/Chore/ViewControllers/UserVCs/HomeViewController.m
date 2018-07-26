@@ -45,7 +45,7 @@
 @property (nonatomic, strong) NSNumber *memberIncrementNSNum;
 @property (nonatomic, strong) NSNumber *memberPoint;
 @property (nonatomic, strong) NSMutableArray *membersProgress;
-@property (nonatomic,strong) NSMutableArray *membersPoints;
+@property (nonatomic, strong) NSMutableArray *membersPoints;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
