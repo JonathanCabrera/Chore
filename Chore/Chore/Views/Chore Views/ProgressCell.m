@@ -25,12 +25,10 @@
     _userName = userName;
     self.userNameLabel.text = self.userName;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d points", [points intValue]];
-    self.backgroundColor = color;
-    UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    //self.backgroundColor = color;
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    [self.progressView setProgressTintColor:progressColor];
-    [self.progressView setTrackTintColor:unfinished];
-    self.pointsLabel.textColor = progressColor;
+    self.pointsLabel.textColor = unfinished;
+    self.userNameLabel.textColor = unfinished;
     [_progressView setProgress:number animated:YES];
 }
 
