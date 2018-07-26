@@ -65,10 +65,31 @@
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
-    NSString *dateString = [dateFormatter stringFromDate:deadlineDate];
-    return dateString;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd-yyyy"];
+    
+    
+
+    NSDate *startDate = [NSDate date];
+    NSDate *endDate = self.chore.deadline;
+    
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    
+    NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
+                                                        fromDate:startDate
+                                                          toDate:endDate
+                                                         options:0];
+    
+    NSLog(@"Days between %@ and %@ is: %ld", startDate, endDate, [components day]);
+    NSInteger daysRemaining = [components day];
+    if (daysRemaining < 0) {
+        return @"OVERDUE";
+    } else {
+        NSString *days = [NSString stringWithFormat: @"%ld", daysRemaining];
+        return [days stringByAppendingString:@" days remaining"];
+    }
 }
 
 @end
