@@ -16,8 +16,6 @@
 		1E1E3C3620FD40DA003C87B4 /* ChoreUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */; };
 		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
 		1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E200B312100FA4700945BD6 /* addChore.storyboard */; };
-		1E200B352100FED000945BD6 /* AddChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B342100FED000945BD6 /* AddChoreCell.m */; };
-		1E200B382100FEE700945BD6 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B372100FEE700945BD6 /* AssignUserCell.m */; };
 		1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B3A210129F800945BD6 /* ChoreAssignment.m */; };
 		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
 		1E5C36BC20FD4E89002979BA /* GroupOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36BB20FD4E89002979BA /* GroupOptionsViewController.m */; };
@@ -94,10 +92,6 @@
 		1E1E3C4320FD43A3003C87B4 /* Chore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chore.h; sourceTree = "<group>"; };
 		1E1E3C4420FD43A3003C87B4 /* Chore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chore.m; sourceTree = "<group>"; };
 		1E200B312100FA4700945BD6 /* addChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addChore.storyboard; sourceTree = "<group>"; };
-		1E200B332100FED000945BD6 /* AddChoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddChoreCell.h; sourceTree = "<group>"; };
-		1E200B342100FED000945BD6 /* AddChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddChoreCell.m; sourceTree = "<group>"; };
-		1E200B362100FEE700945BD6 /* AssignUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignUserCell.h; sourceTree = "<group>"; };
-		1E200B372100FEE700945BD6 /* AssignUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignUserCell.m; sourceTree = "<group>"; };
 		1E200B39210129F800945BD6 /* ChoreAssignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreAssignment.h; sourceTree = "<group>"; };
 		1E200B3A210129F800945BD6 /* ChoreAssignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreAssignment.m; sourceTree = "<group>"; };
 		1E5C36B720FD4A10002979BA /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -345,10 +339,6 @@
 			children = (
 				E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */,
 				E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */,
-				1E200B332100FED000945BD6 /* AddChoreCell.h */,
-				1E200B342100FED000945BD6 /* AddChoreCell.m */,
-				1E200B362100FEE700945BD6 /* AssignUserCell.h */,
-				1E200B372100FEE700945BD6 /* AssignUserCell.m */,
 				9EC839D521078C4D00CC5491 /* ProgressCell.h */,
 				9EC839D621078C4D00CC5491 /* ProgressCell.m */,
 			);
@@ -674,13 +664,11 @@
 				9E50A95C2100FF79001FF108 /* EditChoreViewController.m in Sources */,
 				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
 				9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */,
-				1E200B352100FED000945BD6 /* AddChoreCell.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
 				1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */,
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
 				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
 				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,
-				1E200B382100FEE700945BD6 /* AssignUserCell.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
 				1E5C36CA20FE821B002979BA /* GroupInfoViewController.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,

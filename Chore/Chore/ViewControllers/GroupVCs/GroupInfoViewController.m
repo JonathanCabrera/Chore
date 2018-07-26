@@ -34,7 +34,6 @@
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = backgroundColor;
     self.collectionView.backgroundColor = backgroundColor;
-    self.groupNameLabel.textColor = darkGreenColor;
     
     //layout collection view
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
