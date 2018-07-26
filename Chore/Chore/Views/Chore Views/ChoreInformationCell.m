@@ -24,7 +24,11 @@
     _chore = chore;
     self.userNameLabel.text = chore.userName;
     self.choreNameLabel.text = chore.name;
-    self.pointsLabel.text = [NSString stringWithFormat:@"%d", chore.points];
+    if(chore.points == 1) {
+        self.pointsLabel.text = [NSString stringWithFormat:@"%d pt", chore.points];
+    } else {
+        self.pointsLabel.text = [NSString stringWithFormat:@"%d pts", chore.points];
+    }
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
     [self.choreView addGestureRecognizer:tapRecognizer];

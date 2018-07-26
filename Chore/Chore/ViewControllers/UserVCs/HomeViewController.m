@@ -93,6 +93,7 @@
 - (void) fetchChores {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
+    [choreQuery orderByAscending:@"userName"];
     choreQuery.limit = 20;
     __weak typeof(self) weakSelf = self;
     self.userNames = [NSMutableArray array];
@@ -162,15 +163,9 @@
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
-
-    
-
-    self.titleLabel1.textColor = progressColor;
-    self.titleLabel2.textColor = progressColor;
     
     ProgressBarProperties *progressBarProperties = [[ProgressBarProperties alloc] init];
     //[progressBarProperties initWithProperties:_progressBar withColor:unfinished];
-
 
     [_progressBar setProgressBarProgressColor:progressColor];
     [_progressBar setProgressBarTrackColor:unfinished];

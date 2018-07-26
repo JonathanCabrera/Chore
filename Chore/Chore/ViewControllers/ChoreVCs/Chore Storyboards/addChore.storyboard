@@ -98,11 +98,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Assign a chore" id="dUw-14-RmA">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="XzX-h1-RtJ">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="didTapCancel:" destination="oi3-R3-5xY" id="ahr-kk-oEC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="yhv-MG-T3X">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveAssignment:" destination="oi3-R3-5xY" id="NI8-JD-amX"/>
                             </connections>

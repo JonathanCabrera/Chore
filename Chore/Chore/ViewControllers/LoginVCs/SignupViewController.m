@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 
 @end
 
@@ -21,10 +24,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIColor *backgroundColor = [UIColor colorWithRed:0.14 green:0.48 blue:0.48 alpha:1.0];
+    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
+
     [self.signupButton setBackgroundColor:backgroundColor];
+    self.signupButton.layer.borderColor = backgroundColor.CGColor;
     self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
     self.signupButton.clipsToBounds = YES;
+    self.signupButton.titleLabel.textColor = darkGreenColor;
+    [self.signupButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
+    
+    self.titleLabel.textColor = lightGreenColor;
+    self.userLabel.textColor = lightGreenColor;
+    self.passwordLabel.textColor = lightGreenColor;
     
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
