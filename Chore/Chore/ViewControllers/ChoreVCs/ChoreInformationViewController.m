@@ -21,8 +21,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 
-@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
-@property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIColor *bgColor;
 
@@ -38,9 +36,9 @@
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
-    
+
     self.currentGroup = [PFUser currentUser][@"groupName"];
-    self.groupNameLabel.text = self.currentGroup;
+    self.navigationItem.title = self.currentGroup;
     [self fetchChores];
     
     self.bgColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
@@ -137,9 +135,11 @@
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
-- (IBAction)didTapAddChore:(id)sender {
+
+- (IBAction)didTapAdd:(id)sender {
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *controller = [segue destinationViewController];
