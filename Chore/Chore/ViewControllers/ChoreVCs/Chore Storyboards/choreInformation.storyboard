@@ -124,7 +124,7 @@
                 <viewControllerPlaceholder storyboardName="choresDetails" id="L4Z-CK-YYS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAg-eP-m7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="554"/>
+            <point key="canvasLocation" x="1163" y="557"/>
         </scene>
         <!--addChore-->
         <scene sceneID="cd5-wJ-Lh9">
@@ -133,14 +133,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anX-YD-STy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2076" y="-292"/>
-        </scene>
-        <!--createChore-->
-        <scene sceneID="R91-CX-hHw">
-            <objects>
-                <viewControllerPlaceholder storyboardName="createChore" id="aVo-Eo-Hz3" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Eu-BJ-GF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1748" y="271.664167916042"/>
         </scene>
         <!--Chores-->
         <scene sceneID="xk9-VP-bni">

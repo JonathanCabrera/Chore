@@ -46,6 +46,13 @@
     [self beginRefresh];
 }
 
+- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
+    
+    [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
+    
+    
+}
+
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"broom"];
 }
