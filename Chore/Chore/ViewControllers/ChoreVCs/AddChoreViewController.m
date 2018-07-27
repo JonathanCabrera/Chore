@@ -28,6 +28,7 @@
 @property (nonatomic, strong) UIColor *darkGreenColor;
 @property (nonatomic, strong) UIColor *lightGreenColor;
 @property (nonatomic, strong) UIColor *titleColor;
+@property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
 
 @end
 
@@ -49,14 +50,17 @@
     self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.titleColor = [UIColor colorWithRed:0.00 green:0.56 blue:0.32 alpha:1.0];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.choreMenu.backgroundColor = self.backgroundColor;
+    self.choreMenu.backgroundColor = [UIColor whiteColor];
     self.choreMenu.layer.borderWidth = 0.8f;
     self.choreMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.choreMenu.layer.cornerRadius = 20;
-    self.userMenu.backgroundColor = self.backgroundColor;
+    self.userMenu.backgroundColor = [UIColor whiteColor];
     self.userMenu.layer.borderWidth = 0.8f;
     self.userMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.userMenu.layer.cornerRadius = 20;
+    self.customChoreButton.layer.borderWidth = 0.8f;
+    self.customChoreButton.layer.cornerRadius = 20;
+    self.customChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
     
     [self fetchData];
 }
@@ -137,11 +141,11 @@
     if([dropdownMenu isEqual:self.choreMenu]) {
         DefaultChore *myChore = self.allChores[row];
         return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d pts)", myChore.name, myChore.points]
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.lightGreenColor}];
+                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.titleColor}];
     } else {
         PFUser *myUser = self.userArray[row];
         return [[NSAttributedString alloc] initWithString:myUser.username
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.lightGreenColor}];
+                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.titleColor}];
     }
 }
 
@@ -163,7 +167,7 @@
 }
 
 - (UIColor *)dropdownMenu:(MKDropdownMenu *)dropdownMenu backgroundColorForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.darkGreenColor;
+    return self.lightGreenColor;
 }
 
 

@@ -75,7 +75,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m7-Bo-OfB">
-                                <rect key="frame" x="138" y="145" width="189" height="37"/>
+                                <rect key="frame" x="115" y="145" width="235" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="Create a custom chore">
@@ -112,6 +112,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="choreMenu" destination="AmY-kG-q3J" id="S51-6a-cSt"/>
+                        <outlet property="customChoreButton" destination="7m7-Bo-OfB" id="WTc-rZ-nEF"/>
                         <outlet property="deadlineButton" destination="pk0-vE-rK9" id="ySi-x9-BhZ"/>
                         <outlet property="deadlineLabel" destination="ngw-WI-IPE" id="kkW-Uj-o5w"/>
                         <outlet property="userMenu" destination="mFU-1m-p4y" id="MJj-GP-IuR"/>
