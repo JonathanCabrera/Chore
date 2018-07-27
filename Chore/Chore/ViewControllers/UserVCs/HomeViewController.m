@@ -126,12 +126,12 @@
 
     [_progressBar setProgressBarProgressColor:[UIColor blackColor]];
     [_progressBar setProgressBarTrackColor:unfinished];
-    [_progressBar setHintViewBackgroundColor:hintColor];
+    //[_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = [UIColor clearColor];
     [_progressBar setStartAngle:270];
     [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:18]];
     [_progressBar setHintTextColor:[UIColor whiteColor]];
-    [_progressBar setHintViewBackgroundColor:progressColor];
+    //[_progressBar setHintViewBackgroundColor:[UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
