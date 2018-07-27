@@ -123,16 +123,13 @@
         if (posts != nil) {
             [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
         } else if (self.delete == YES) {
-            for (PFObject *post in posts) {
-                [post deleteInBackground];
-            }
+          [PFObject deleteAllInBackground:posts];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
             
         }
     }];
     
-   
     choreCell.delegate = self;
     return choreCell;
 }
