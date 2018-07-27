@@ -10,8 +10,7 @@
 
 @implementation DefaultChore
 
-    @dynamic name, info, points;
-
+@dynamic name, info, points;
 
 + (nonnull NSString *)parseClassName {
     return @"DefaultChore";

@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *optionOneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *optionTwoLabel;
 
-
 @end
 
 @implementation NewUserViewController
@@ -32,17 +31,14 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
     UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = backgroundColor;
     self.titleLabel.textColor = darkGreenColor;
     self.optionOneLabel.textColor = darkGreenColor;
     self.optionTwoLabel.textColor = darkGreenColor;
-    
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
-    
     [self fetchGroups];
 }
 
@@ -120,9 +116,6 @@
     [self performSegueWithIdentifier:@"newToHomeSegue" sender:group];
 }
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"newToHomeSegue"]) {
         UITabBarController *tabBar = (UITabBarController *)[segue destinationViewController];

@@ -64,12 +64,10 @@
     [alertViewController addAction:okAction];
     [parentViewController presentViewController:alertViewController animated:YES completion:nil];
 }
-
 - (void)updateCompletedChore{
     PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     pastQuery.limit = 1;
     [pastQuery whereKey:@"userName" equalTo:self.chore.userName];
-    
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
             if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
@@ -77,16 +75,12 @@
                 ChoreAssignment *assignment = posts[0];
                 NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
                 NSMutableArray<Chore *> *newCompleted = assignment.completedChores;
-            
                 NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
-    
                 Chore* removedChore = newUncompleted[removeIndex];
                 removedChore.completionStatus = YES;
                 [removedChore fetchIfNeeded];
-                
                 [newCompleted addObject:removedChore];
                 [newUncompleted removeObjectAtIndex:removeIndex];
-                
                 [assignment incrementKey:@"points" byAmount:[NSNumber numberWithInt: removedChore.points]];
                 [assignment setObject:newCompleted forKey:@"completedChores"];
                 [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
@@ -113,7 +107,6 @@
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
-
     [self loadChorePicture];
 }
 
@@ -135,26 +128,19 @@
 
 - (IBAction)onTapAddPic:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    
     UIAlertController *pictureViewController = [UIAlertController alertControllerWithTitle:@"Choose a photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Take photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
-        
     }];
-    
     UIAlertAction *galleryAction = [UIAlertAction actionWithTitle:@"Choose from gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
     }];
-    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
-    
     [pictureViewController addAction:cameraAction];
     [pictureViewController addAction:galleryAction];
     [pictureViewController addAction:cancelAction];

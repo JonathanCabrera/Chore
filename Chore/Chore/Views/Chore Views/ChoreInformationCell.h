@@ -11,8 +11,6 @@
 #import "Parse.h"
 #import "ParseUI.h"
 
-
-
 @protocol ChoreInformationCellDelegate;
 
 @interface ChoreInformationCell : UITableViewCell

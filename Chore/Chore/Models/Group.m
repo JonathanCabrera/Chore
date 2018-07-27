@@ -10,7 +10,7 @@
 
 @implementation Group
 
-    @dynamic name, members;
+@dynamic name, members;
 
 + (nonnull NSString *)parseClassName {
     return @"Group";
@@ -21,24 +21,16 @@
     Group *newGroup = [Group new];
     newGroup.name = name;
     newGroup.members = [NSMutableArray new];
-    
     [newGroup saveInBackgroundWithBlock:completion];
-    
     return newGroup;
-    
 }
 
-
 - (void) addMember: (Group *)group withUser: (PFUser *)user withCompletion: (PFBooleanResultBlock _Nullable)completion {
-    
     [group.members addObject:user];
     [group setObject:group.members forKey:@"members"];
     [group saveInBackgroundWithBlock:completion];
-    
     [user setObject:group.name forKey:@"groupName"];
     [user saveInBackgroundWithBlock:completion];
-    
-    
 }
 
 @end

@@ -18,5 +18,4 @@
 
 - (void) addMember: (Group * _Nullable)group withUser: (PFUser * _Nullable)user withCompletion: (PFBooleanResultBlock _Nullable)completion;
 
-
 @end

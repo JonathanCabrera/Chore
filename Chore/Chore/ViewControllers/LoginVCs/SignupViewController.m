@@ -27,18 +27,15 @@
     UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-
     [self.signupButton setBackgroundColor:backgroundColor];
     self.signupButton.layer.borderColor = backgroundColor.CGColor;
     self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
     self.signupButton.clipsToBounds = YES;
     self.signupButton.titleLabel.textColor = darkGreenColor;
     [self.signupButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
-    
     self.titleLabel.textColor = lightGreenColor;
     self.userLabel.textColor = lightGreenColor;
     self.passwordLabel.textColor = lightGreenColor;
-    
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
 }
@@ -56,14 +53,11 @@
     PFUser *newUser = [PFUser user];
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
-    
     NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"user-placeholder"], 1);
     newUser[@"profilePic"] = [PFFile fileWithData:imageData];
-    
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {
             NSLog(@"Error: %@", error.localizedDescription);
-            
             [LoginViewController presentAlertWithTitle:@"Error signing up" fromViewController:self];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else {
@@ -88,9 +82,6 @@
 - (IBAction)didTapBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
 /*
 #pragma mark - Navigation
 

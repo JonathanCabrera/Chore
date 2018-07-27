@@ -18,9 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
-
 - (void)setCell:(PFUser *)user;
-
 
 @end
 

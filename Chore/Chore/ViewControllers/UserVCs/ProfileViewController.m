@@ -51,19 +51,16 @@
     self.upcomingTableView.tableFooterView = [UIView new];
     self.upcomingTableView.layer.cornerRadius = 10;
     self.upcomingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
     self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.pointsLabel.textColor = darkGreenColor;
-    
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
-    
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
         [self.backButton setValue:@YES forKey:@"hidden"];
@@ -109,14 +106,12 @@
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
                                  NSForegroundColorAttributeName: [UIColor lightGrayColor],
                                  NSParagraphStyleAttributeName: paragraph};
-    
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (void)refresh {
     [self.activityIndicator startAnimating];
     [self fetchChores];
-
     self.profilePicture.file = self.selectedUser[@"profilePic"];
     [self.profilePicture loadInBackground];
     [self.activityIndicator stopAnimating];
@@ -152,8 +147,6 @@
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-    
-    //past
     if(self.choreControl.selectedSegmentIndex == 1) {
         Chore *myPastChore = self.pastChores[indexPath.section];
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
@@ -178,8 +171,6 @@
     choreCell.delegate = self;
     return choreCell;
 }
-
-
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
@@ -256,18 +247,14 @@
     }
 }
 
-
-
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizeImageView.image = image;
-    
     UIGraphicsBeginImageContext(size);
     [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
     return newImage;
 }
 

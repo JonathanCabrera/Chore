@@ -118,7 +118,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/* sets most of the design aspects of the Home View Controller */
 - (void)setDesignAspects{
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
@@ -172,9 +171,6 @@
         }];
 }
 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *nextController = [segue destinationViewController];
      if([segue.identifier isEqualToString:@"profileSegue"]) {
@@ -182,7 +178,5 @@
          profileController.selectedUser = sender;
      }
  }
- 
-
 
 @end

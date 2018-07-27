@@ -17,7 +17,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     //[super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
@@ -30,7 +29,6 @@
     self.pointsLabel.textColor = unfinished;
     self.userNameLabel.textColor = unfinished;
     [_progressView setProgress:number animated:YES];
-    
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUser)];
     [self addGestureRecognizer:tapRecognizer];
 }

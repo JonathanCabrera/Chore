@@ -12,24 +12,18 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     //[super setSelected:selected animated:animated];
-
-
 }
 
 - (void)setCell:(Group *)group {
-    
     _currentGroup = group;
     self.groupNameLabel.text = group.name;
-    
 }
 
 - (IBAction)didTapSelect:(id)sender {
-    
     [self.currentGroup addMember:self.currentGroup withUser:[PFUser currentUser] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"added user to group");
@@ -39,10 +33,6 @@
     }];
     
     [self.delegate selectCell:self didSelect:self.currentGroup];
-    
-    
 }
-
-
 
 @end
