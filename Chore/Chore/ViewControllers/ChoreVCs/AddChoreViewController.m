@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property (weak, nonatomic) IBOutlet MKDropdownMenu *choreMenu;
 @property (weak, nonatomic) IBOutlet MKDropdownMenu *userMenu;
-
+@property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
 @property (nonatomic, strong) NSString *userToAssign;
@@ -28,7 +28,6 @@
 @property (nonatomic, strong) UIColor *darkGreenColor;
 @property (nonatomic, strong) UIColor *lightGreenColor;
 @property (nonatomic, strong) UIColor *titleColor;
-@property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
 
 @end
 
@@ -40,11 +39,16 @@
     self.choreMenu.delegate = self;
     self.userMenu.dataSource = self;
     self.userMenu.delegate = self;
+    self.currDate = [NSDate date];
+    
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
-    //date picker
-    self.currDate = [NSDate date];
+    
+    [self setLayout];
+    [self fetchData];
+}
 
+- (void)setLayout {
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
@@ -61,8 +65,6 @@
     self.customChoreButton.layer.borderWidth = 0.8f;
     self.customChoreButton.layer.cornerRadius = 20;
     self.customChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
-    
-    [self fetchData];
 }
 
 - (void) refreshDeadline{
@@ -74,14 +76,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)fetchData {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"DefaultChore"];
     [choreQuery orderByDescending:@"name"];
     choreQuery.limit = 30;
-    
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allChores = (NSMutableArray *)posts;

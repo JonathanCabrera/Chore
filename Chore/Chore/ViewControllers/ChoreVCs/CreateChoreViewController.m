@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 - (IBAction)onSlide:(id)sender;
 
-
 @end
 
 @implementation CreateChoreViewController
@@ -33,7 +32,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (IBAction)didTapCreate:(id)sender {
     [DefaultChore makeDefaultChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointsLabel.text intValue] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
@@ -63,4 +61,5 @@
  // Pass the selected object to the new view controller.
  }
  */
+
 @end
