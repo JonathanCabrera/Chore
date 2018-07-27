@@ -68,7 +68,7 @@
         } else {
             NSLog(@"User registered successfully");
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self performSegueWithIdentifier:@"signupToCreateGroupSegue" sender:nil];
         }
     }];
 }
