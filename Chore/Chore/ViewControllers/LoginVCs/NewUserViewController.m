@@ -32,23 +32,24 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
-    self.view.backgroundColor = backgroundColor;
-    self.titleLabel.textColor = darkGreenColor;
-    self.optionOneLabel.textColor = darkGreenColor;
-    self.optionTwoLabel.textColor = darkGreenColor;
-    
+    [self setLayout];
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
-    
     [self fetchGroups];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setLayout {
+    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    self.view.backgroundColor = backgroundColor;
+    self.titleLabel.textColor = darkGreenColor;
+    self.optionOneLabel.textColor = darkGreenColor;
+    self.optionTwoLabel.textColor = darkGreenColor;
 }
 
 - (void)dismissKB {
@@ -90,7 +91,6 @@
             NSLog(@"Error making group: %@", error.localizedDescription);
         }
     }];
-    
     [self.createdGroup addMember:self.createdGroup withUser:[PFUser currentUser] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Added user to group");
@@ -121,8 +121,6 @@
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"newToHomeSegue"]) {
         UITabBarController *tabBar = (UITabBarController *)[segue destinationViewController];
@@ -131,10 +129,5 @@
         homeController.currentGroup = sender;
     }
 }
-
-
-
-
-
 
 @end

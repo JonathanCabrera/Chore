@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 - (IBAction)onSlide:(id)sender;
 
-
 @end
 
 @implementation CreateChoreViewController
@@ -28,13 +27,11 @@
     self.contentSizeInPopup = CGSizeMake(300, 250);
     self.landscapeContentSizeInPopup = CGSizeMake(400, 250);
     self.view.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (IBAction)didTapCreate:(id)sender {
     [DefaultChore makeDefaultChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointsLabel.text intValue] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
@@ -51,7 +48,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 - (IBAction)onSlide:(UISlider *)sender {
     _pointsLabel.text = [NSString stringWithFormat:@"%1.0f", [sender value]];
 }
@@ -65,4 +61,5 @@
  // Pass the selected object to the new view controller.
  }
  */
+
 @end

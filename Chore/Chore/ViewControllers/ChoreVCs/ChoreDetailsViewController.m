@@ -134,36 +134,29 @@
 
 - (IBAction)onTapAddPic:(id)sender {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    
     UIAlertController *pictureViewController = [UIAlertController alertControllerWithTitle:@"Choose a photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Take photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
-        
     }];
-    
     UIAlertAction *galleryAction = [UIAlertAction actionWithTitle:@"Choose from gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePickerVC animated:YES completion:nil];
     }];
-    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     
     [pictureViewController addAction:cameraAction];
     [pictureViewController addAction:galleryAction];
     [pictureViewController addAction:cancelAction];
-    
     [self presentViewController:pictureViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *resizedImage = [self resizeImage:info[UIImagePickerControllerEditedImage] withSize:CGSizeMake(140, 140)];
-    //self.photo = resizedImage; // removed for redudency check
     self.chorePic.image = resizedImage;
     if(resizedImage != nil) {
         NSData *imageData = UIImagePNGRepresentation(resizedImage);

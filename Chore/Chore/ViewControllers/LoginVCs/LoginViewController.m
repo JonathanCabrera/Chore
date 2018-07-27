@@ -27,22 +27,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setLayout];
+
     
-    self.loginButton.layer.borderWidth = 0.8f;
-    self.loginButton.layer.borderColor = [UIColor grayColor].CGColor;
-    
-    self.signupButton.layer.borderWidth = 0.8f;
-    self.signupButton.layer.borderColor = [UIColor grayColor].CGColor;
-    
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
+    [self.view addGestureRecognizer:hideTapGestureRecognizer];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)setLayout {
     UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
+    
+    self.loginButton.layer.borderWidth = 0.8f;
+    self.loginButton.layer.borderColor = [UIColor grayColor].CGColor;
     [self.loginButton setBackgroundColor:backgroundColor];
     self.loginButton.layer.borderColor = backgroundColor.CGColor;
     self.loginButton.layer.cornerRadius = self.loginButton.frame.size.width /15;
     self.loginButton.clipsToBounds = YES;
     [self.loginButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
-
+    
+    self.signupButton.layer.borderWidth = 0.8f;
+    self.signupButton.layer.borderColor = [UIColor grayColor].CGColor;
     [self.signupButton setBackgroundColor:backgroundColor];
     self.signupButton.layer.borderColor = backgroundColor.CGColor;
     self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
@@ -54,14 +65,6 @@
     self.usernameLabel.textColor = lightGreenColor;
     self.passwordLabel.textColor = lightGreenColor;
     self.orLabel.textColor = lightGreenColor;
-    
-    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
-    [self.view addGestureRecognizer:hideTapGestureRecognizer];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)dismissKB {
@@ -72,7 +75,6 @@
     UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {// handle response here.
     }];
-    
     [alertViewController addAction:okAction];
     [parentViewController presentViewController:alertViewController animated:YES completion:nil];
 }
@@ -80,7 +82,6 @@
 - (void)loginUser {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
-    
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
@@ -108,9 +109,6 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self loginUser];
 }
-
-
-
 
 /*
 #pragma mark - Navigation
