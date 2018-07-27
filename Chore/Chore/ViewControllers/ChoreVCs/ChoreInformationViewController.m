@@ -105,7 +105,6 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myChore = self.chores[indexPath.section];
-
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
     choreQuery.limit = 1;
     [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];

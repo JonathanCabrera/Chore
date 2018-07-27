@@ -88,11 +88,20 @@
                         <outlet property="titleLabel" destination="vOd-MH-uPG" id="hMe-48-F5o"/>
                         <outlet property="userLabel" destination="gMJ-rO-1tS" id="dKx-YW-egM"/>
                         <outlet property="usernameField" destination="SxW-ir-IBw" id="DGW-cA-JpS"/>
+                        <segue destination="dXf-cE-VXu" kind="show" identifier="signupToCreateGroupSegue" id="748-Dq-x45"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ew-I8-KPx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2020" y="97.601199400299862"/>
+        </scene>
+        <!--createGroup-->
+        <scene sceneID="sGb-vc-pmF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="createGroup" id="dXf-cE-VXu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LGu-gl-H7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3018" y="68"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="99U-tW-u9K">
