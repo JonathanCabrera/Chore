@@ -71,6 +71,13 @@
                                                     <action selector="onTapProgressButton:" destination="agp-Wa-ws8" eventType="touchUpInside" id="mhs-pu-awE"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6z-xn-U4e">
+                                                <rect key="frame" x="123" y="108" width="70" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <rect key="contentStretch" x="1" y="1" width="0.0" height="0.0"/>
@@ -198,6 +205,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="logOutButton" destination="lQu-7V-vaa" id="hxc-FZ-FeQ"/>
+                        <outlet property="myPointsLabel" destination="c6z-xn-U4e" id="Xrc-uS-EXF"/>
                         <outlet property="progressBar" destination="qdq-QB-XdI" id="k5b-iB-Egp"/>
                         <outlet property="progressButton" destination="7PS-9F-4if" id="1xg-tg-3Z9"/>
                         <outlet property="tableView" destination="CzO-uV-TCC" id="VNe-iO-rQS"/>

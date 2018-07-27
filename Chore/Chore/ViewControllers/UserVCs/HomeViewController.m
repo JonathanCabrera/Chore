@@ -71,6 +71,7 @@
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
                     self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.currCompletedChores = [currAssignment.completedChores count];
+                    self.myPointsLabel.text = [NSString stringWithFormat:@"%d points", currAssignment.points];
                     if(self.currNumberOfChores == 0) {
                         self.increment = 0;
                     } else {
@@ -79,7 +80,7 @@
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
                         NSString *myProgress;
                         if(self.currNumberOfChores == 0) {
-                            myProgress = @"No chores yet!";
+                            myProgress = @"No chores!";
                         } else {
                             float percentage = (float) weakSelf.currCompletedChores/weakSelf.currNumberOfChores *100;
                             myProgress = [NSString stringWithFormat:@"%.0f%% done", percentage];
@@ -131,7 +132,7 @@
     //[_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = [UIColor clearColor];
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:18]];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:20]];
     [_progressBar setHintTextColor:[UIColor whiteColor]];
     //[_progressBar setHintViewBackgroundColor:[UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]];
 }
