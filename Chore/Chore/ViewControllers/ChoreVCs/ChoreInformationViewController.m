@@ -16,14 +16,12 @@
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIColor *bgColor;
 @property (nonatomic) BOOL delete;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -41,18 +39,14 @@
     self.currentGroup = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.currentGroup;
     [self fetchChores];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [self beginRefresh];
 }
 
-- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
-    
+- (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
-    
-    
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
@@ -79,7 +73,6 @@
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
                                  NSForegroundColorAttributeName: [UIColor lightGrayColor],
                                  NSParagraphStyleAttributeName: paragraph};
-    
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
@@ -109,16 +102,13 @@
     }];
 }
 
-
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myChore = self.chores[indexPath.section];
-    
+
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
     choreQuery.limit = 1;
     [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
-
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
@@ -129,7 +119,6 @@
             
         }
     }];
-    
     choreCell.delegate = self;
     return choreCell;
 }
@@ -163,7 +152,6 @@
 - (IBAction)didTapAdd:(id)sender {
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *controller = [segue destinationViewController];

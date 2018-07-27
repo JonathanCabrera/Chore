@@ -20,10 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *completionStatusImage;
 @property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishedButton;
-
 @property (nonatomic, strong) Chore *chore;
 
 +(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController;
-
 
 @end

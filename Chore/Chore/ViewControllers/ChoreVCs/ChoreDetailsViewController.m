@@ -144,13 +144,11 @@
     [pictureViewController addAction:cameraAction];
     [pictureViewController addAction:galleryAction];
     [pictureViewController addAction:cancelAction];
-    
     [self presentViewController:pictureViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *resizedImage = [self resizeImage:info[UIImagePickerControllerEditedImage] withSize:CGSizeMake(140, 140)];
-    //self.photo = resizedImage; // removed for redudency check
     self.chorePic.image = resizedImage;
     if(resizedImage != nil) {
         NSData *imageData = UIImagePNGRepresentation(resizedImage);
