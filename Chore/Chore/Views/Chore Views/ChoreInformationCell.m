@@ -18,6 +18,10 @@
 
 - (void)setCell:(Chore *)chore withColor:(UIColor *)color{
     _chore = chore;
+    self.choreView.layer.cornerRadius = 8;
+    self.choreView.layer.borderWidth = 0.7f;
+    UIColor *borderColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
+    self.choreView.layer.borderColor = borderColor.CGColor;
     self.userNameLabel.text = chore.userName;
     self.choreNameLabel.text = chore.name;
     self.pointsLabel.text  = [NSString stringWithFormat:((chore.points == 1) ? @"%d pt" : @"%d pts"), chore.points];

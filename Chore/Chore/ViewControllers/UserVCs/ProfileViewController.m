@@ -50,6 +50,8 @@
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
     self.upcomingTableView.tableFooterView = [UIView new];
     self.upcomingTableView.layer.cornerRadius = 10;
+    self.upcomingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
@@ -59,6 +61,7 @@
         self.selectedUser = [PFUser currentUser];
     }
     self.userNameLabel.text = self.selectedUser.username;
+    self.navigationItem.title = self.selectedUser.username;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
@@ -152,7 +155,7 @@
     
     //past
     if(self.choreControl.selectedSegmentIndex == 1) {
-        Chore *myPastChore = self.pastChores[indexPath.row];
+        Chore *myPastChore = self.pastChores[indexPath.section];
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
         choreQuery.limit = 1;
         [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
@@ -162,7 +165,7 @@
             }
         }];
     } else {
-        Chore *myChore = self.upcomingChores[indexPath.row];
+        Chore *myChore = self.upcomingChores[indexPath.section];
         PFQuery *choreQuery2 = [PFQuery queryWithClassName:@"Chore"];
         choreQuery2.limit = 1;
         [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
@@ -176,12 +179,27 @@
     return choreCell;
 }
 
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if(self.choreControl.selectedSegmentIndex == 1) {
         return [self.pastChores count];
     } else {
         return [self.upcomingChores count];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [UIView new];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    return headerView;
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -237,6 +255,8 @@
         }];
     }
 }
+
+
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];

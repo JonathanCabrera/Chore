@@ -48,7 +48,7 @@
     self.lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.titleColor = [UIColor colorWithRed:0.00 green:0.56 blue:0.32 alpha:1.0];
-    self.view.backgroundColor = self.backgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.choreMenu.backgroundColor = self.backgroundColor;
     self.choreMenu.layer.borderWidth = 0.8f;
     self.choreMenu.layer.borderColor = self.darkGreenColor.CGColor;
@@ -137,11 +137,11 @@
     if([dropdownMenu isEqual:self.choreMenu]) {
         DefaultChore *myChore = self.allChores[row];
         return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d pts)", myChore.name, myChore.points]
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName:self.lightGreenColor}];
+                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.lightGreenColor}];
     } else {
         PFUser *myUser = self.userArray[row];
         return [[NSAttributedString alloc] initWithString:myUser.username
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16], NSForegroundColorAttributeName:self.lightGreenColor}];
+                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.lightGreenColor}];
     }
 }
 

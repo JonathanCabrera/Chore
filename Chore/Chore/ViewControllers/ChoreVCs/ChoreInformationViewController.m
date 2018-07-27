@@ -36,14 +36,11 @@
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.currentGroup = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.currentGroup;
     [self fetchChores];
-    
-    self.bgColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    self.view.backgroundColor = self.bgColor;
-    self.tableView.backgroundColor = self.bgColor;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -110,7 +107,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    Chore *myChore = self.chores[indexPath.row];
+    Chore *myChore = self.chores[indexPath.section];
     
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
     choreQuery.limit = 1;
@@ -118,7 +115,7 @@
 
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            [choreCell setCell:posts[0] withColor:self.bgColor];
+            [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }
@@ -128,7 +125,21 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.chores count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [UIView new];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    return headerView;
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
