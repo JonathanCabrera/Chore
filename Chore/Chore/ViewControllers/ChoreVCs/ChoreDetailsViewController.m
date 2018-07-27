@@ -27,7 +27,6 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self loadChorePicture];
     [self setFinishedButtonProperties];
-    self.view.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
 }
 
 - (void)setFinishedButtonProperties {
@@ -36,6 +35,7 @@
     }
     self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.finishedButton.titleLabel.numberOfLines = 2;
+    self.finishedButton.layer.cornerRadius = 10;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
