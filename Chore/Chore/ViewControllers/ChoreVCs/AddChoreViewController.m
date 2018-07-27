@@ -15,7 +15,7 @@
 
 @interface AddChoreViewController () <MKDropdownMenuDelegate, MKDropdownMenuDataSource>
 
-@property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
+@property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
 @property (weak, nonatomic) IBOutlet MKDropdownMenu *choreMenu;
 @property (weak, nonatomic) IBOutlet MKDropdownMenu *userMenu;
 @property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
@@ -65,13 +65,16 @@
     self.customChoreButton.layer.borderWidth = 0.8f;
     self.customChoreButton.layer.cornerRadius = 20;
     self.customChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
+    self.deadlineButton.layer.borderWidth = 0.8f;
+    self.deadlineButton.layer.cornerRadius = 20;
+    self.deadlineButton.layer.borderColor = self.darkGreenColor.CGColor;
 }
 
 - (void) refreshDeadline{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, yyyy"];
     NSString *formattedDate = [formatter stringFromDate:self.currDate];
-    self.deadlineLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
+    self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
 }
 
 - (void)didReceiveMemoryWarning {

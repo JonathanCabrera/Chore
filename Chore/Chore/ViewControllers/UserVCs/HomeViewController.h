@@ -44,6 +44,7 @@
 @property (nonatomic) float increment;
 @property (nonatomic) float memberIncrement;
 @property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *viewColor;
 @property (nonatomic, strong) NSNumber *memberIncrementNSNum;
 @property (nonatomic, strong) NSNumber *memberPoint;
 @property (nonatomic, strong) NSMutableArray *membersProgress;

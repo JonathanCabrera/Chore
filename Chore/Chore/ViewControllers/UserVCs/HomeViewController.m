@@ -18,7 +18,10 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
+    self.tableView.layer.borderWidth = 0.8f;
+    self.tableView.layer.borderColor = self.viewColor.CGColor;
     self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.tableView.layer.cornerRadius = 10;
     self.userView.layer.cornerRadius = 15;
@@ -123,7 +126,7 @@
     UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
 
-    [_progressBar setProgressBarProgressColor:[UIColor blackColor]];
+    //[_progressBar setProgressBarProgressColor:[UIColor blackColor]];
     [_progressBar setProgressBarTrackColor:unfinished];
     //[_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = [UIColor clearColor];
@@ -135,7 +138,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
-    [progressCell setCell:self.userNames[indexPath.row] withColor:[UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0] withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
+    [progressCell setCell:self.userNames[indexPath.row] withColor:self.viewColor withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
     progressCell.delegate = self;
     return progressCell;
 }
