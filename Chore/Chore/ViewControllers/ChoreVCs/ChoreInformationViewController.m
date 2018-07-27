@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) UIColor *bgColor;
+@property (nonatomic) BOOL delete;
 
 @end
 
@@ -40,6 +41,7 @@
     self.currentGroup = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.currentGroup;
     [self fetchChores];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,6 +109,8 @@
     }];
 }
 
+
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myChore = self.chores[indexPath.section];
@@ -118,10 +122,17 @@
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
+        } else if (self.delete == YES) {
+            for (PFObject *post in posts) {
+                [post deleteInBackground];
+            }
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
+            
         }
     }];
+    
+   
     choreCell.delegate = self;
     return choreCell;
 }
@@ -146,8 +157,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
+        self.delete = YES;
         [self.chores removeObjectAtIndex:indexPath.section];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+         [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation: UITableViewRowAnimationLeft];
     }
 }
 
