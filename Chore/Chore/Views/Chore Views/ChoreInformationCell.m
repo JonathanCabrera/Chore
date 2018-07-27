@@ -50,10 +50,6 @@
     }];
 }
 
-- (void)setDeadlineLabelColor {
-    //TODO: SET COLOR FOR DUE DATES
-}
-
 - (void)didTapChore {
     [self.delegate seeChore:self withChore:self.chore withName:self.chore.userName];
 }
@@ -72,13 +68,22 @@
     NSInteger daysRemaining = [components day];
     NSString *dueMessage = @"";
     if (daysRemaining < 0) {
-        dueMessage = [NSString stringWithFormat: @"Overdue by %ld days", daysRemaining * -1];
+        if (daysRemaining == -1)  {
+            dueMessage = [NSString stringWithFormat: @"Overdue by %ld day", daysRemaining * -1];
+        } else {
+            dueMessage = [NSString stringWithFormat: @"Overdue by %ld days", daysRemaining * -1];
+        }
         self.deadlineLabel.textColor = UIColorWithHexString(@"#b94a48");
     } else if (daysRemaining == 0) {
         dueMessage = @"Due Today";
         self.deadlineLabel.textColor = UIColorWithHexString(@"#f89406");
     } else {
-        dueMessage = [NSString stringWithFormat: @"Due in %ld days", daysRemaining];
+        if (daysRemaining == 1) {
+            dueMessage = [NSString stringWithFormat: @"Due in %ld day", daysRemaining];
+
+        } else {
+            dueMessage = [NSString stringWithFormat: @"Due in %ld days", daysRemaining];
+        }
         self.deadlineLabel.textColor = UIColorWithHexString(@"#468847");
     }
     
