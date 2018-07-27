@@ -132,6 +132,7 @@
     return [self.chores count];
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
@@ -142,10 +143,12 @@
     return headerView;
 }
 
-- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
-    [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.chores removeObjectAtIndex:indexPath.section];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
 }
-
 
 - (IBAction)didTapAdd:(id)sender {
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
