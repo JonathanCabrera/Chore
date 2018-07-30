@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointLabel;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *completionStatusLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *chorePic;
 @property (weak, nonatomic) IBOutlet UIImageView *completionStatusImage;
 @property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
