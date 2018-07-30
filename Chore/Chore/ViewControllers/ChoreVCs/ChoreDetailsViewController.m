@@ -112,10 +112,13 @@
 
 - (void)setCompletionStatusLabelColor {
     if (self.chore.completionStatus) {
-        self.completionStatusImage.image = [UIImage imageNamed:@"checkedbox_1"];
+        self.
+        self.completionStatusLabel.text = @"Complete";
+        self.completionStatusLabel.textColor = UIColorWithHexString(@"#468847");
         self.finishedButton.hidden = YES;
     } else {
-        self.completionStatusImage.image = [UIImage imageNamed:@"uncheckedbox_1"];
+        self.completionStatusLabel.text = @"Incomplete";
+        self.completionStatusLabel.textColor = UIColorWithHexString(@"#b94a48");
     }
 }
 
@@ -174,6 +177,19 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+// From stackover flow :O so cool
+static UIColor * UIColorWithHexString(NSString *hex) {
+    unsigned int rgb = 0;
+    [[NSScanner scannerWithString:
+      [[hex uppercaseString] stringByTrimmingCharactersInSet:
+       [[NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet]]]
+     scanHexInt:&rgb];
+    return [UIColor colorWithRed:((CGFloat)((rgb & 0xFF0000) >> 16)) / 255.0
+                           green:((CGFloat)((rgb & 0xFF00) >> 8)) / 255.0
+                            blue:((CGFloat)(rgb & 0xFF)) / 255.0
+                           alpha:1.0];
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
