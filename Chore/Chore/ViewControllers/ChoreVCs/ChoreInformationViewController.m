@@ -111,16 +111,11 @@
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
-        } else if (self.delete == YES) {
-            for (PFObject *post in posts) {
-                [post deleteInBackground];
-            }
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
-            
         }
+ 
     }];
-   
     choreCell.delegate = self;
     return choreCell;
 }

@@ -43,19 +43,12 @@
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     
-    self.loginButton.layer.borderWidth = 0.8f;
-    [self.loginButton setBackgroundColor:backgroundColor];
-    self.loginButton.layer.borderColor = backgroundColor.CGColor;
-    self.loginButton.layer.cornerRadius = self.loginButton.frame.size.width /15;
-    self.loginButton.clipsToBounds = YES;
-    [self.loginButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
 
-//    [self.signupButton setBackgroundColor:backgroundColor];
-//    self.signupButton.layer.borderColor = backgroundColor.CGColor;
-    self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
+    self.loginButton.layer.cornerRadius = self.loginButton.frame.size.width /20;
+    self.loginButton.clipsToBounds = YES;
+    self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /10;
     self.signupButton.clipsToBounds = YES;
-//    self.signupButton.titleLabel.textColor = darkGreenColor;
-//    [self.signupButton setTitleColor:darkGreenColor forState:UIControlStateNormal];
+
     
     self.titleLabel.textColor = lightGreenColor;
     self.usernameLabel.textColor = lightGreenColor;

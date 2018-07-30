@@ -44,6 +44,7 @@
 @property (nonatomic) float increment;
 @property (nonatomic) float memberIncrement;
 @property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *viewColor;
 @property (nonatomic, strong) NSNumber *memberIncrementNSNum;
 @property (nonatomic, strong) NSNumber *memberPoint;
 @property (nonatomic, strong) NSMutableArray *membersProgress;
@@ -52,7 +53,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
 @property (weak, nonatomic) IBOutlet UIView *userView;
-@property (weak, nonatomic) IBOutlet UIView *groupView;
+@property (weak, nonatomic) IBOutlet UILabel *myPointsLabel;
 
 - (IBAction)onTapLogOut:(id)sender;
 - (IBAction)onTapProgressButton:(id)sender;
