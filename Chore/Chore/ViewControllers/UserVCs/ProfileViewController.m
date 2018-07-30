@@ -35,8 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 
-
-
 @end
 
 @implementation ProfileViewController
@@ -81,54 +79,12 @@
     }
 }
 
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
-
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No Chores";
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
-    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
-        @"There are no chores to be completed at this time." :
-        @"There are no chores that have been completed at this time.");
-    
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
-                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
 - (void)refresh {
     [self.activityIndicator startAnimating];
     [self fetchChores];
     self.profilePicture.file = self.selectedUser[@"profilePic"];
     [self.profilePicture loadInBackground];
     [self.activityIndicator stopAnimating];
-}
-
-- (IBAction)didTapControl:(id)sender {
-    [self.activityIndicator startAnimating];
-    [self.upcomingTableView reloadData];
-    [self.activityIndicator stopAnimating];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)fetchChores{
@@ -159,6 +115,7 @@
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
                 [choreCell setCell:objects[0] withColor:self.backgroundColor];
+                choreCell.deadlineLabel.hidden = YES;
             }
         }];
     } else {
@@ -169,6 +126,7 @@
         [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
             if (posts != nil && [posts count] != 0){
                 [choreCell setCell:posts[0] withColor:self.backgroundColor];
+                choreCell.deadlineLabel.hidden = NO;
             }
         }];
     }
@@ -196,6 +154,16 @@
     UIView *headerView = [UIView new];
     [headerView setBackgroundColor:[UIColor whiteColor]];
     return headerView;
+}
+
+- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
+    [self performSegueWithIdentifier:@"profileToDetailsSegue" sender:chore];
+}
+
+- (IBAction)didTapControl:(id)sender {
+    [self.activityIndicator startAnimating];
+    [self.upcomingTableView reloadData];
+    [self.activityIndicator stopAnimating];
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -256,8 +224,40 @@
     return newImage;
 }
 
-- (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
-    [self performSegueWithIdentifier:@"profileToDetailsSegue" sender:chore];
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"broom"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No Chores";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
+                      @"There are no chores to be completed at this time." :
+                      @"There are no chores that have been completed at this time.");
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -22,8 +22,8 @@
     self.choreView.layer.borderWidth = 0.7f;
     UIColor *borderColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     self.choreView.layer.borderColor = borderColor.CGColor;
-    self.userNameLabel.text = chore.userName;
-    self.choreNameLabel.text = chore.name;
+    self.userNameLabel.text = [self toUpperFirstChar: chore.userName];
+    self.choreNameLabel.text = [self toUpperFirstChar: chore.name];
     self.pointsLabel.text  = [NSString stringWithFormat:((chore.points == 1) ? @"%d pt" : @"%d pts"), chore.points];
     self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
     [self setCurrentUserImage];
@@ -69,26 +69,28 @@
     NSInteger daysRemaining = [components day];
     NSString *dueMessage = @"";
     if (daysRemaining < 0) {
-        if (daysRemaining == -1)  {
-            dueMessage = [NSString stringWithFormat: @"Overdue by %ld day", daysRemaining * -1];
-        } else {
-            dueMessage = [NSString stringWithFormat: @"Overdue by %ld days", daysRemaining * -1];
-        }
+        dueMessage = [NSString stringWithFormat:((daysRemaining == -1) ?
+                                                 @"Overdue by %ld day" :
+                                                 @"Overdue by %ld days"),
+                      daysRemaining * -1];
         self.deadlineLabel.textColor = UIColorWithHexString(@"#b94a48");
     } else if (daysRemaining == 0) {
         dueMessage = @"Due Today";
         self.deadlineLabel.textColor = UIColorWithHexString(@"#f89406");
     } else {
-        if (daysRemaining == 1) {
-            dueMessage = [NSString stringWithFormat: @"Due in %ld day", daysRemaining];
-
-        } else {
-            dueMessage = [NSString stringWithFormat: @"Due in %ld days", daysRemaining];
-        }
+        dueMessage = [NSString stringWithFormat:((daysRemaining == 1) ?
+                                                 @"Due in %ld day" :
+                                                 @"Due in %ld days"),
+                      daysRemaining];
         self.deadlineLabel.textColor = UIColorWithHexString(@"#468847");
     }
-    
     return dueMessage;
+}
+
+- (NSString *)toUpperFirstChar:(NSString *)text {
+    return[NSString stringWithFormat:@"%@%@",
+            [[text substringToIndex:1] uppercaseString],
+            [[text substringFromIndex:1] lowercaseString]];
 }
 
 // From stackover flow :O so cool
@@ -103,5 +105,6 @@ static UIColor * UIColorWithHexString(NSString *hex) {
                             blue:((CGFloat)(rgb & 0xFF)) / 255.0
                            alpha:1.0];
 }
+
 
 @end
