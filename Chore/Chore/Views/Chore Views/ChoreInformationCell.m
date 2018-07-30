@@ -32,6 +32,7 @@
     self.backgroundColor = color;
 }
 
+
 - (void)setCurrentUserImage {
     NSString *currentUser = self.chore.userName;
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"_User"];

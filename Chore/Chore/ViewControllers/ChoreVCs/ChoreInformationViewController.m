@@ -11,7 +11,6 @@
 #import "ChoreInformationCell.h"
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
-
 #import "UIScrollView+EmptyDataSet.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -22,6 +21,7 @@
 @property (strong, nonatomic) UIColor *bgColor;
 @property (nonatomic) BOOL delete;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) ChoreInformationCell *choreCell;
 
 @end
 
@@ -39,6 +39,7 @@
     self.currentGroup = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.currentGroup;
     [self fetchChores];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -104,18 +105,27 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    Chore *myChore = self.chores[indexPath.section];
-    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-    choreQuery.limit = 1;
-    [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
-    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
+  
+        Chore *myChore = self.chores[indexPath.section];
+        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery.limit = 1;
+        [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
+        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil && [posts count] != 0) {
             [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
         } else {
             NSLog(@"nil post %@", error.localizedDescription);
         }
- 
-    }];
+            
+        if (self.delete == YES){
+            [choreQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                if (object != nil) {
+                    [object deleteInBackground];
+                }
+            }];
+        }
+        }];
+
     choreCell.delegate = self;
     return choreCell;
 }
@@ -142,7 +152,8 @@
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         self.delete = YES;
         [self.chores removeObjectAtIndex:indexPath.section];
-         [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation: UITableViewRowAnimationLeft];
+        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation: UITableViewRowAnimationLeft];
+       
     }
 }
 

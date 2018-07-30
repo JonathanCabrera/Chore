@@ -167,7 +167,7 @@
         choreQuery2.limit = 1;
         [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
         [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-            if (posts != nil){
+            if (posts != nil && [posts count] != 0){
                 [choreCell setCell:posts[0] withColor:self.backgroundColor];
             }
         }];
