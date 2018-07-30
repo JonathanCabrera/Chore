@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,42 +30,41 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreCell" rowHeight="93" id="Wze-OD-nxR" customClass="ChoreInformationCell">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="93"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreCell" rowHeight="88" id="Wze-OD-nxR" customClass="ChoreInformationCell">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wze-OD-nxR" id="0Qk-et-Q9Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="92.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27l-sO-v2R">
-                                                    <rect key="frame" x="275" y="21" width="44" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27l-sO-v2R">
+                                                    <rect key="frame" x="284" y="13.5" width="44" height="22"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="Chore Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppg-Dh-qAR">
-                                                    <rect key="frame" x="15" y="21" width="105" height="32"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0n-AT-7jC">
-                                                    <rect key="frame" x="15" y="59" width="54" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0n-AT-7jC">
+                                                    <rect key="frame" x="15" y="57.5" width="54" height="18"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Chore Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppg-Dh-qAR">
+                                                    <rect key="frame" x="15" y="12" width="105" height="25"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="P0n-AT-7jC" firstAttribute="top" secondItem="Ppg-Dh-qAR" secondAttribute="bottom" constant="8" id="3RU-Cw-QrD"/>
-                                                <constraint firstAttribute="bottom" secondItem="P0n-AT-7jC" secondAttribute="bottom" constant="8" id="AxF-e2-Cu5"/>
-                                                <constraint firstItem="27l-sO-v2R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ppg-Dh-qAR" secondAttribute="trailing" constant="20" id="Fi5-At-e3G"/>
-                                                <constraint firstItem="Ppg-Dh-qAR" firstAttribute="leading" secondItem="0Qk-et-Q9Z" secondAttribute="leadingMargin" id="Irf-wT-ZhV"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="27l-sO-v2R" secondAttribute="bottom" constant="10" id="JRB-o2-0Jt"/>
-                                                <constraint firstItem="27l-sO-v2R" firstAttribute="top" secondItem="0Qk-et-Q9Z" secondAttribute="topMargin" constant="8" id="O9m-MZ-uZg"/>
-                                                <constraint firstItem="P0n-AT-7jC" firstAttribute="leading" secondItem="Ppg-Dh-qAR" secondAttribute="leading" id="bMo-eH-jWV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="27l-sO-v2R" secondAttribute="trailing" constant="10" id="l2c-vp-vu2"/>
-                                                <constraint firstItem="Ppg-Dh-qAR" firstAttribute="top" secondItem="0Qk-et-Q9Z" secondAttribute="topMargin" constant="8" id="uqe-DG-ywV"/>
+                                                <constraint firstItem="P0n-AT-7jC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ppg-Dh-qAR" secondAttribute="bottom" priority="999" constant="5" id="1vl-yz-BcO"/>
+                                                <constraint firstAttribute="bottom" secondItem="P0n-AT-7jC" secondAttribute="bottom" priority="999" constant="12" id="QCf-f5-Rl9"/>
+                                                <constraint firstItem="27l-sO-v2R" firstAttribute="centerY" secondItem="Ppg-Dh-qAR" secondAttribute="centerY" id="S5j-zh-f3Z"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="27l-sO-v2R" secondAttribute="bottom" constant="12" id="SDf-4y-EEw"/>
+                                                <constraint firstItem="Ppg-Dh-qAR" firstAttribute="top" secondItem="0Qk-et-Q9Z" secondAttribute="top" constant="12" id="eEg-BD-Zeu"/>
+                                                <constraint firstItem="P0n-AT-7jC" firstAttribute="leading" secondItem="Ppg-Dh-qAR" secondAttribute="leading" id="tPR-oD-vi5"/>
+                                                <constraint firstItem="Ppg-Dh-qAR" firstAttribute="leading" secondItem="0Qk-et-Q9Z" secondAttribute="leading" constant="15" id="y8E-b4-Zut"/>
+                                                <constraint firstAttribute="trailing" secondItem="27l-sO-v2R" secondAttribute="trailing" constant="15" id="yqZ-Ab-ZVG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
