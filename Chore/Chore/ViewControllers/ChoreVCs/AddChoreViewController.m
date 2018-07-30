@@ -8,26 +8,30 @@
 
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
-#import "MKDropdownMenu.h"
 #import "DefaultChore.h"
 #import <STPopup/STPopup.h>
 #import "CreateChoreViewController.h"
+#import "AssignChoreCell.h"
+#import "AssignUserCell.h"
 
-@interface AddChoreViewController () <MKDropdownMenuDelegate, MKDropdownMenuDataSource>
+@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
-@property (weak, nonatomic) IBOutlet MKDropdownMenu *choreMenu;
-@property (weak, nonatomic) IBOutlet MKDropdownMenu *userMenu;
 @property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
+@property (weak, nonatomic) IBOutlet UITableView *choreMenu;
+@property (weak, nonatomic) IBOutlet UITableView *userMenu;
+@property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
+@property (weak, nonatomic) IBOutlet UIButton *selectUserButton;
+@property (weak, nonatomic) IBOutlet UISearchBar *choreSearchBar;
+
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
+@property (nonatomic, strong) NSMutableArray *filteredChores;
 @property (nonatomic, strong) NSString *userToAssign;
 @property (nonatomic, strong) DefaultChore *choreToAssign;
 @property (nonatomic, retain) NSDate * currDate;
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *darkGreenColor;
-@property (nonatomic, strong) UIColor *lightGreenColor;
-@property (nonatomic, strong) UIColor *titleColor;
 
 @end
 
@@ -39,6 +43,11 @@
     self.choreMenu.delegate = self;
     self.userMenu.dataSource = self;
     self.userMenu.delegate = self;
+    [self.choreMenu setHidden:YES];
+    [self.userMenu setHidden:YES];
+    self.choreMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.choreSearchBar.delegate = self;
     self.currDate = [NSDate date];
     
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
@@ -49,16 +58,14 @@
 }
 
 - (void)setLayout {
-    self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    self.lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
+    self.backgroundColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
-    self.titleColor = [UIColor colorWithRed:0.00 green:0.56 blue:0.32 alpha:1.0];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.choreMenu.backgroundColor = [UIColor whiteColor];
+    self.choreMenu.backgroundColor = self.backgroundColor;
     self.choreMenu.layer.borderWidth = 0.8f;
     self.choreMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.choreMenu.layer.cornerRadius = 20;
-    self.userMenu.backgroundColor = [UIColor whiteColor];
+    self.userMenu.backgroundColor = self.backgroundColor;
     self.userMenu.layer.borderWidth = 0.8f;
     self.userMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.userMenu.layer.cornerRadius = 20;
@@ -68,6 +75,12 @@
     self.deadlineButton.layer.borderWidth = 0.8f;
     self.deadlineButton.layer.cornerRadius = 20;
     self.deadlineButton.layer.borderColor = self.darkGreenColor.CGColor;
+    self.selectUserButton.layer.borderWidth = 0.8f;
+    self.selectUserButton.layer.cornerRadius = 20;
+    self.selectUserButton.layer.borderColor = self.darkGreenColor.CGColor;
+    self.selectChoreButton.layer.borderWidth = 0.8f;
+    self.selectChoreButton.layer.cornerRadius = 20;
+    self.selectChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
 }
 
 - (void) refreshDeadline{
@@ -77,99 +90,113 @@
     self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self fetchData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)fetchData {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"DefaultChore"];
-    [choreQuery orderByDescending:@"name"];
+    [choreQuery orderByAscending:@"name"];
     choreQuery.limit = 30;
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allChores = (NSMutableArray *)posts;
-            [self.choreMenu reloadAllComponents];
+            self.filteredChores = self.allChores;
+            [self.choreMenu reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
     
-    PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
+    PFQuery *userQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     userQuery.limit = 20;
+    [userQuery orderByAscending:@"userName"];
     [userQuery whereKey:@"groupName" equalTo:self.currentGroup];
     [userQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (objects != nil) {
             self.userArray = (NSMutableArray *)objects;
-            [self.userMenu reloadAllComponents];
+            [self.userMenu reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
 }
 
-- (NSInteger)numberOfComponentsInDropdownMenu:(MKDropdownMenu *)dropdownMenu {
-    return 1;
+- (IBAction)didTapSelectChore:(id)sender {
+    [self.userMenu setHidden:YES];
+    [self.choreMenu setHidden:NO];
 }
 
-- (NSInteger)dropdownMenu:(MKDropdownMenu *)dropdownMenu numberOfRowsInComponent:(NSInteger)component {
-    if([dropdownMenu isEqual:self.choreMenu]) {
-        return [self.allChores count];
+- (IBAction)didTapSelectUser:(id)sender {
+    [self.choreMenu setHidden:YES];
+    [self.userMenu setHidden:NO];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if([tableView isEqual:self.choreMenu]) {
+        return [self.filteredChores count];
     } else {
         return [self.userArray count];
     }
 }
 
-- (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForComponent:(NSInteger)component {
-    if([dropdownMenu isEqual:self.choreMenu]) {
-        if(self.choreToAssign == nil) {
-            return [[NSAttributedString alloc] initWithString:@"Select a chore"
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
-        } else {
-            return [[NSAttributedString alloc] initWithString:self.choreToAssign.name
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
-        }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if([tableView isEqual:self.choreMenu]) {
+        AssignChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AssignChoreCell" forIndexPath:indexPath];
+        [choreCell setCell:self.filteredChores[indexPath.row]];
+        choreCell.delegate = self;
+        return choreCell;
     } else {
-        if(self.userToAssign == nil) {
-            return [[NSAttributedString alloc] initWithString:@"Select a user"
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
-        } else {
-            return [[NSAttributedString alloc] initWithString:self.userToAssign
-                                                   attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:18], NSForegroundColorAttributeName:self.titleColor}];
-        }
+        AssignUserCell *userCell = [tableView dequeueReusableCellWithIdentifier:@"AssignUserCell" forIndexPath:indexPath];
+        [userCell setCell:self.userArray[indexPath.row]];
+        userCell.delegate = self;
+        return userCell;
     }
 }
 
-- (NSAttributedString *)dropdownMenu:(MKDropdownMenu *)dropdownMenu attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if([dropdownMenu isEqual:self.choreMenu]) {
-        DefaultChore *myChore = self.allChores[row];
-        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat: @"%@ (%d pts)", myChore.name, myChore.points]
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.titleColor}];
-    } else {
-        PFUser *myUser = self.userArray[row];
-        return [[NSAttributedString alloc] initWithString:myUser.username
-                                               attributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:15], NSForegroundColorAttributeName:self.titleColor}];
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
+        self.filteredChores = (NSMutableArray *) [self.allChores filteredArrayUsingPredicate:predicate];
     }
+    else {
+        self.filteredChores = self.allChores;
+    }
+    [self.choreMenu reloadData];
 }
 
-- (void)dropdownMenu:(MKDropdownMenu *)dropdownMenu didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if([dropdownMenu isEqual:self.choreMenu]) {
-        self.choreToAssign = self.allChores[row];
-        [self.choreMenu reloadAllComponents];
-    } else {
-        PFUser *myUser = self.userArray[row];
-        self.userToAssign = myUser.username;
-        [self.userMenu reloadAllComponents];
-    }
-    [self performSelector:@selector(closeMenus) withObject:nil afterDelay:0.25];
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.choreSearchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.choreSearchBar.showsCancelButton = NO;
+    self.choreSearchBar.text = @"";
+    [self.choreSearchBar resignFirstResponder];
+    [self closeMenus];
+}
+
+- (void)selectChore:(AssignChoreCell *)choreCell withChore:(DefaultChore *)chore {
+    self.choreToAssign = chore;
+    self.selectChoreButton.backgroundColor = self.backgroundColor;
+    self.selectChoreButton.titleLabel.text = self.choreToAssign.name;
+    [self performSelector:@selector(closeMenus) withObject:nil afterDelay:0.2];
+}
+
+- (void)selectUser:(AssignUserCell *)userCell withUserName:(NSString *)userName {
+    self.userToAssign = userName;
+    self.selectUserButton.backgroundColor = self.backgroundColor;
+    self.selectUserButton.titleLabel.text = self.userToAssign;
+    [self performSelector:@selector(closeMenus) withObject:nil afterDelay:0.2];
 }
 
 - (void)closeMenus {
-    [self.choreMenu closeAllComponentsAnimated:YES];
-    [self.userMenu closeAllComponentsAnimated:YES];
-}
-
-- (UIColor *)dropdownMenu:(MKDropdownMenu *)dropdownMenu backgroundColorForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.lightGreenColor;
+    [self.choreMenu setHidden:YES];
+    [self.userMenu setHidden:YES];
 }
 
 
@@ -225,6 +252,7 @@
 
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
     self.currDate = datePicker.date;
+    self.deadlineButton.backgroundColor = self.backgroundColor;
     [self refreshDeadline];
     [self dismissSemiModalView];
 }

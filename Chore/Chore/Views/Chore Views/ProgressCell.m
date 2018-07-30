@@ -12,7 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -24,10 +23,11 @@
     _userName = userName;
     self.userNameLabel.text = self.userName;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d points", [points intValue]];
-    //self.backgroundColor = color;
+    self.progressLabel.text = [NSString stringWithFormat:@"%0.f%% done", number*100];
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     self.pointsLabel.textColor = unfinished;
     self.userNameLabel.textColor = unfinished;
+    self.progressLabel.textColor = unfinished;
     [_progressView setProgress:number animated:YES];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUser)];
     [self addGestureRecognizer:tapRecognizer];

@@ -71,6 +71,7 @@
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
                     self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.currCompletedChores = [currAssignment.completedChores count];
+                    self.myPointsLabel.text = [NSString stringWithFormat:@"%d points", currAssignment.points];
                     if(self.currNumberOfChores == 0) {
                         self.increment = 0;
                     } else {
@@ -79,7 +80,7 @@
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
                         NSString *myProgress;
                         if(self.currNumberOfChores == 0) {
-                            myProgress = @"No chores yet!";
+                            myProgress = @"No chores!";
                         } else {
                             float percentage = (float) weakSelf.currCompletedChores/weakSelf.currNumberOfChores *100;
                             myProgress = [NSString stringWithFormat:@"%.0f%% done", percentage];
@@ -123,17 +124,11 @@
 
 - (void)setDesignAspects{
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    UIColor *progressColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
-    UIColor *hintColor = [UIColor colorWithRed:0.78 green:0.97 blue:0.77 alpha:1.0];
-
-    //[_progressBar setProgressBarProgressColor:[UIColor blackColor]];
     [_progressBar setProgressBarTrackColor:unfinished];
-    //[_progressBar setHintViewBackgroundColor:hintColor];
     _progressBar.backgroundColor = [UIColor clearColor];
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:18]];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:20]];
     [_progressBar setHintTextColor:[UIColor whiteColor]];
-    //[_progressBar setHintViewBackgroundColor:[UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

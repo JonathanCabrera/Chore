@@ -35,8 +35,6 @@
 }
 
 - (void)setLayout {
-    UIColor *backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     UIColor *lightGreenColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
 
     self.signupButton.layer.cornerRadius = self.signupButton.frame.size.width /15;
