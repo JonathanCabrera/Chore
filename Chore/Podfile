@@ -13,6 +13,8 @@ target 'Chore' do
 	pod 'DZNEmptyDataSet'
 	pod 'THCalendarDatePicker', '~> 1.2.6'
 	pod 'STPopup'
+	pod 'FBSDKLoginKit'
+	
 
 
   target 'ChoreTests' do

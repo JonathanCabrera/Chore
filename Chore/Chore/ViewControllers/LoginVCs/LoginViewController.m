@@ -7,9 +7,11 @@
 //
 
 #import "LoginViewController.h"
-#import "Parse.h"
+#import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
 #import "MBProgressHUD.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface LoginViewController ()
 
@@ -17,25 +19,66 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UILabel *orLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (strong, nonatomic) IBOutlet FBSDKLoginButton *fbLoginButton;
+    
 @end
 
 @implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setLayout];
+    self.fbLoginButton = [[FBSDKLoginButton alloc] init];
     
+//    [PFFacebookUtils logInInBackgroundWithReadPermissions:self.fbLoginButton.readPermissions block:^(PFUser *user, NSError *error) {
+//        if (!user) {
+//            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+//        } else if (user.isNew) {
+//            [self loadFBData];
+//            [self performSegueWithIdentifier:@"newUserSegue" sender:nil];
+//        } else {
+//            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+//        }
+//    }];
+    
+    [self setLayout];
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKB)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
 }
-
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+
+- (void)loadFBData {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            NSDictionary *userData = (NSDictionary *)result;
+            PFUser *newUser = [PFUser user];
+            newUser.username = userData[@"id"];
+            newUser[@"fullName"] = userData[@"name"];
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", userData[@"name"]]];
+            newUser[@"profilePicURL"] = pictureURL;
+
+            [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+                if (error != nil) {
+                    NSLog(@"Error: %@", error.localizedDescription);
+                    [LoginViewController presentAlertWithTitle:@"Error signing up" fromViewController:self];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                } else {
+                    NSLog(@"User registered successfully");
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [self performSegueWithIdentifier:@"signupToCreateGroupSegue" sender:nil];
+                }
+            }];
+            
+
+        }
+    }];
 }
 
 - (void)setLayout {
@@ -47,7 +90,6 @@
     self.titleLabel.textColor = lightGreenColor;
     self.usernameLabel.textColor = lightGreenColor;
     self.passwordLabel.textColor = lightGreenColor;
-    self.orLabel.textColor = lightGreenColor;
 }
 
 - (void)dismissKB {
@@ -68,7 +110,6 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            
             [LoginViewController presentAlertWithTitle:@"Error logging in" fromViewController:self];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else {

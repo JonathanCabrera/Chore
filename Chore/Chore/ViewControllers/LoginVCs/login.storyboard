@@ -95,6 +95,10 @@
                                     <action selector="didSignup:" destination="5XZ-J4-dlC" eventType="touchUpInside" id="j9g-HD-KGk"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YPO-My-3My" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="43" y="591" width="125" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="SHN-vc-6Ok"/>

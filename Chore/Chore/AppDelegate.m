@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface AppDelegate ()
 
@@ -23,6 +24,8 @@
         configuration.server = @"http://chorejak.herokuapp.com/parse";
     }];
     [Parse initializeWithConfiguration:config];
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
         NSLog(@"Welcome back %@ 😀", user.username);
@@ -30,8 +33,22 @@
         UIViewController *launchController = [storyboard instantiateViewControllerWithIdentifier:@"tabController"];
         self.window.rootViewController = launchController;
     }
+
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -46,14 +63,13 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
+    
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+    
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
+}
 
 @end
