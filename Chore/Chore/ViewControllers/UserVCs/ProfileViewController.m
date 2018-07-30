@@ -4,7 +4,6 @@
 //
 //  Created by Katie Kwan on 7/17/18.
 //  Copyright © 2018 JAK. All rights reserved.
-//
 
 #import "ProfileViewController.h"
 #import "Parse.h"
