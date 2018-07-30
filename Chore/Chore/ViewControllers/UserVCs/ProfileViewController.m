@@ -14,7 +14,6 @@
 #import "GroupCell.h"
 #import "HomeViewController.h"
 #import "ChoreDetailsViewController.h"
-
 #import "UIScrollView+EmptyDataSet.h"
 
 @protocol profileViewControllerDelegate;
