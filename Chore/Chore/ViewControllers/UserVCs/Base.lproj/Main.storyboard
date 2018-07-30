@@ -71,7 +71,7 @@
                                                     <action selector="onTapProgressButton:" destination="agp-Wa-ws8" eventType="touchUpInside" id="mhs-pu-awE"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6z-xn-U4e">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6z-xn-U4e">
                                                 <rect key="frame" x="123" y="108" width="70" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
@@ -132,38 +132,48 @@
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-Af-Shj">
-                                                    <rect key="frame" x="138" y="22" width="197" height="2"/>
-                                                    <color key="progressTintColor" red="0.15383914109999999" green="0.38479507390000001" blue="0.2371084343" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="trackTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="y46-JK-l7t">
                                                     <rect key="frame" x="10" y="10" width="91" height="27.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7d-as-zD7">
-                                                    <rect key="frame" x="10" y="42" width="55" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7d-as-zD7">
+                                                    <rect key="frame" x="10" y="42" width="40.5" height="20"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100% done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-9x-Gxp">
+                                                    <rect key="frame" x="273" y="25" width="71" height="22"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-Af-Shj">
+                                                    <rect key="frame" x="115" y="35" width="159" height="2"/>
+                                                    <color key="progressTintColor" red="0.15383914109999999" green="0.38479507390000001" blue="0.2371084343" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="trackTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </progressView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="T7d-as-zD7" firstAttribute="top" secondItem="y46-JK-l7t" secondAttribute="bottom" constant="4" id="0cH-9m-Opl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tgx-Af-Shj" secondAttribute="trailing" constant="70" id="1bI-aR-H3E"/>
                                                 <constraint firstItem="y46-JK-l7t" firstAttribute="top" secondItem="iwf-lE-VYC" secondAttribute="top" constant="10" id="86P-Oa-Lwa"/>
                                                 <constraint firstItem="T7d-as-zD7" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leading" constant="10" id="94j-xr-f5Q"/>
-                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="123" id="JhB-l2-n9a"/>
-                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="trailing" secondItem="iwf-lE-VYC" secondAttribute="trailingMargin" constant="-9" id="Ljb-wA-MMt"/>
+                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="100" id="JhB-l2-n9a"/>
                                                 <constraint firstItem="y46-JK-l7t" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leading" constant="10" id="ZkG-wg-fOt"/>
+                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="centerY" secondItem="iwf-lE-VYC" secondAttribute="centerY" id="bpe-RG-Viw"/>
                                                 <constraint firstAttribute="bottom" secondItem="T7d-as-zD7" secondAttribute="bottom" constant="10" id="fE4-8i-piz"/>
-                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="centerY" secondItem="y46-JK-l7t" secondAttribute="centerY" id="zdT-jr-aW8"/>
+                                                <constraint firstItem="ZRG-9x-Gxp" firstAttribute="centerY" secondItem="Tgx-Af-Shj" secondAttribute="centerY" id="gme-L7-2Af"/>
+                                                <constraint firstItem="ZRG-9x-Gxp" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="270" id="hdU-TN-bsW"/>
+                                                <constraint firstItem="ZRG-9x-Gxp" firstAttribute="trailing" secondItem="iwf-lE-VYC" secondAttribute="trailingMargin" constant="8" id="o8n-Nt-q2Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="pointsLabel" destination="T7d-as-zD7" id="gkP-2g-gWu"/>
+                                            <outlet property="progressLabel" destination="ZRG-9x-Gxp" id="HTd-nc-AVD"/>
                                             <outlet property="progressView" destination="Tgx-Af-Shj" id="sSf-ND-5hz"/>
                                             <outlet property="userNameLabel" destination="y46-JK-l7t" id="hTC-3q-4rm"/>
                                         </connections>
