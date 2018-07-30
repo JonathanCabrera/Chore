@@ -11,7 +11,6 @@
 #import "ChoreInformationCell.h"
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
-
 #import "UIScrollView+EmptyDataSet.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -22,6 +21,19 @@
 @property (strong, nonatomic) UIColor *bgColor;
 @property (nonatomic) BOOL delete;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) ChoreInformationCell *choreCell;
+@property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
+@property (nonatomic, strong) NSNumber *memberIncrementNSNum;
+@property (nonatomic, strong) NSNumber *memberPoint;
+@property (nonatomic, strong) NSMutableArray *membersProgress;
+@property (nonatomic, strong) NSMutableArray *membersPoints;
+@property (nonatomic) int points;
+@property (nonatomic) long totalChores;
+@property (nonatomic) long choresDone;
+@property (nonatomic) float memberIncrement;
+@property (nonatomic) NSInteger *indexToDelete;
+
+
 
 @end
 
@@ -36,12 +48,14 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.currentGroup = [PFUser currentUser][@"groupName"];
-    self.navigationItem.title = self.currentGroup;
+    self.groupName = [PFUser currentUser][@"groupName"];
+    self.navigationItem.title = self.groupName;
     [self fetchChores];
+    [self fetchGroupProgress];
+    
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [self beginRefresh];
 }
 
@@ -55,6 +69,16 @@
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     return self.bgColor;
+}
+
+- (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
+    for (int i = 0; i < [choreArray count]; i++) {
+        Chore *chore = choreArray[i];
+        if ([chore.objectId isEqualToString:removableObjectId]) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
@@ -87,7 +111,7 @@
 - (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
-    [query whereKey:@"groupName" equalTo:self.currentGroup];
+    [query whereKey:@"groupName" equalTo:self.groupName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
@@ -102,23 +126,51 @@
     }];
 }
 
+-(void) fetchGroupProgress{
+    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    [query whereKey:@"groupName" equalTo:self.groupName];
+    self.membersProgress = [NSMutableArray array];
+    self.memberIncrementNSNum = [NSNumber new];
+    self.membersPoints = [NSMutableArray array];
+    self.memberPoint = [NSNumber new];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
+        if (posts != nil){
+            self.allAssignments = (NSMutableArray *)posts;
+            self.chores = [NSMutableArray array];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                self.totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+                self.choresDone += [currAssignment.completedChores count];
+                if (self.totalChores == 0){
+                    self.memberIncrement = 0;
+                } else {
+                    self.memberIncrement = (float) self.choresDone/self.totalChores;
+                }
+            }
+            
+            [self->_groupProgressView setProgress:self.memberIncrement animated:YES];
+        }
+    }];
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    Chore *myChore = self.chores[indexPath.section];
-    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-    choreQuery.limit = 1;
-    [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
-    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
-        } else {
-            NSLog(@"nil post %@", error.localizedDescription);
-        }
- 
-    }];
+        Chore *myChore = self.chores[indexPath.section];
+        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery.limit = 1;
+        [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
+        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil && [posts count] != 0) {
+                [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
+            } else {
+                NSLog(@"nil post %@", error.localizedDescription);
+            }
+        }];
+
     choreCell.delegate = self;
     return choreCell;
 }
+
+
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -140,14 +192,39 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        self.delete = YES;
-        [self.chores removeObjectAtIndex:indexPath.section];
-         [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation: UITableViewRowAnimationLeft];
+        PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+        Chore *myChore = self.chores[indexPath.section];
+        [myChore fetchIfNeeded];
+        [choreAssignmentQuery whereKey:@"userName" equalTo: myChore.userName];
+        choreAssignmentQuery.limit = 1;
+        
+        [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
+            self.assignment = posts[0];
+                NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
+                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
+                Chore* removedChore = newUncompleted[removeIndex];
+                [removedChore fetchIfNeeded];
+                [newUncompleted removeObjectAtIndex:removeIndex];
+                [self.assignment setObject:newUncompleted forKey:@"uncompletedChores"];
+                [self.assignment saveInBackground];
+            }];
+        
+        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery.limit = 1;
+        [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
+        [choreQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                if (object != nil) {
+                    [self.chores removeObjectAtIndex:indexPath.section];
+                    [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation: UITableViewRowAnimationLeft];
+                    [object deleteInBackground];
+                    [tableView reloadData];
+                }
+            }];
     }
 }
 
 - (IBAction)didTapAdd:(id)sender {
-    [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
+    [self performSegueWithIdentifier:@"addChoreSegue" sender:self.groupName];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

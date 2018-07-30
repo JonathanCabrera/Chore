@@ -29,6 +29,8 @@
 
 - (void)setCell:(Chore *)chore withColor: (UIColor *)color;
 
+- (void)deleteCell: (Chore *)chore;
+
 @end
 
 
