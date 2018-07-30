@@ -148,9 +148,15 @@
                                 <rect key="frame" x="115" y="61" width="244" height="251"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for a chore" id="Rgc-fH-A2t">
+                                    <rect key="frame" x="0.0" y="0.0" width="244" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssignChoreCell" id="Y6S-fW-CHK" customClass="AssignChoreCell">
-                                        <rect key="frame" x="0.0" y="28" width="244" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="244" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y6S-fW-CHK" id="b9s-Fx-Yad">
                                             <rect key="frame" x="0.0" y="0.0" width="244" height="43.5"/>
@@ -206,6 +212,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="choreMenu" destination="GPa-FL-xhq" id="P11-9x-Uum"/>
+                        <outlet property="choreSearchBar" destination="Rgc-fH-A2t" id="IfF-kA-Com"/>
                         <outlet property="customChoreButton" destination="7m7-Bo-OfB" id="WTc-rZ-nEF"/>
                         <outlet property="deadlineButton" destination="JCu-aq-o0Z" id="h91-Ta-R3N"/>
                         <outlet property="selectChoreButton" destination="IiO-AC-TjG" id="L6B-4b-jrw"/>

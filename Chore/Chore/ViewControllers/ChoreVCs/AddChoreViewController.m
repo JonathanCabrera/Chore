@@ -14,7 +14,7 @@
 #import "AssignChoreCell.h"
 #import "AssignUserCell.h"
 
-@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate>
+@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
 @property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
@@ -22,10 +22,11 @@
 @property (weak, nonatomic) IBOutlet UITableView *userMenu;
 @property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectUserButton;
-
+@property (weak, nonatomic) IBOutlet UISearchBar *choreSearchBar;
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
+@property (nonatomic, strong) NSMutableArray *filteredChores;
 @property (nonatomic, strong) NSString *userToAssign;
 @property (nonatomic, strong) DefaultChore *choreToAssign;
 @property (nonatomic, retain) NSDate * currDate;
@@ -46,6 +47,7 @@
     [self.userMenu setHidden:YES];
     self.choreMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.choreSearchBar.delegate = self;
     self.currDate = [NSDate date];
     
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
@@ -88,7 +90,7 @@
     self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [self fetchData];
 }
 
@@ -103,6 +105,7 @@
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allChores = (NSMutableArray *)posts;
+            self.filteredChores = self.allChores;
             [self.choreMenu reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -135,7 +138,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if([tableView isEqual:self.choreMenu]) {
-        return [self.allChores count];
+        return [self.filteredChores count];
     } else {
         return [self.userArray count];
     }
@@ -144,7 +147,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual:self.choreMenu]) {
         AssignChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AssignChoreCell" forIndexPath:indexPath];
-        [choreCell setCell:self.allChores[indexPath.row]];
+        [choreCell setCell:self.filteredChores[indexPath.row]];
         choreCell.delegate = self;
         return choreCell;
     } else {
@@ -153,6 +156,28 @@
         userCell.delegate = self;
         return userCell;
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
+        self.filteredChores = (NSMutableArray *) [self.allChores filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        self.filteredChores = self.allChores;
+    }
+    [self.choreMenu reloadData];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.choreSearchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.choreSearchBar.showsCancelButton = NO;
+    self.choreSearchBar.text = @"";
+    [self.choreSearchBar resignFirstResponder];
+    [self closeMenus];
 }
 
 - (void)selectChore:(AssignChoreCell *)choreCell withChore:(DefaultChore *)chore {
