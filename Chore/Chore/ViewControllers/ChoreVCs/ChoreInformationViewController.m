@@ -21,11 +21,8 @@
 @property (strong, nonatomic) UIColor *bgColor;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) ChoreInformationCell *choreCell;
+
 @property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
-@property (nonatomic) int points;
-@property (nonatomic) long totalChores;
-@property (nonatomic) long choresDone;
-@property (nonatomic) float memberIncrement;
 
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
@@ -72,7 +69,6 @@
     [self.tableView reloadData];
     [self orderChores];
     [refreshControl endRefreshing];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -160,26 +156,24 @@
     return choreCell;
 }
 
+
 - (void)fetchGroupProgress{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
         if (posts != nil){
-            self.allAssignments = (NSMutableArray *)posts;
-            self.chores = [NSMutableArray array];
+            int totalChores = 0;
+            int choresDone = 0;
+            float memberIncrement = 0;
             for (ChoreAssignment *currAssignment in self.allAssignments) {
-                self.totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
-                self.choresDone += [currAssignment.completedChores count];
-                if (self.totalChores == 0){
-                    self.memberIncrement = 0;
-                } else {
-                    self.memberIncrement = ((float) self.choresDone)/self.totalChores;
+                totalChores += currAssignment.uncompletedChores.count + currAssignment.completedChores.count;
+                choresDone += currAssignment.completedChores.count;
+                if (totalChores != 0){
+                    memberIncrement = ((float) choresDone)/ totalChores;
                 }
             }
-            [self->_groupProgressView setProgress:self.memberIncrement animated:YES];
-            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", self.memberIncrement*100];
-         
-            
+            [self->_groupProgressView setProgress:memberIncrement animated:YES];
+            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", (memberIncrement * 100)];
         }
     }];
 }
