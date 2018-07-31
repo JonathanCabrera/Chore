@@ -48,9 +48,6 @@
 }
 
 - (void)orderChores {
-//    for (Chore* chore in self.chores) {
-//        [chore fetchIfNeeded];
-//    }
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
                                         sortDescriptorWithKey:@"deadline"
                                         ascending:YES];
@@ -111,10 +108,6 @@
 
 
 - (void)fetchChores {
-    PFQuery *innerQuery = [PFQuery queryWithClassName:@"Chore"];
-    [innerQuery whereKey:@"groupName" equalTo:self.currentGroup];
-    [innerQuery includeKey:@"deadline"];
-     
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [query whereKey:@"groupName" equalTo:self.currentGroup];
     query.limit = 20;
@@ -128,8 +121,6 @@
                     [chore fetchIfNeeded];
                     [self.chores addObject:chore];
                 }
-//                
-//                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
                 [self.tableView reloadData];
             }
             [self orderChores];
