@@ -42,7 +42,7 @@
     [self loadChorePicture];
 }
 
-- (void) loadChorePicture {
+- (void)loadChorePicture {
     self.chorePic.file = self.chore.photo;
     self.chorePic.layer.cornerRadius = self.chorePic.frame.size.height/ 15;
     self.chorePic.clipsToBounds = YES;

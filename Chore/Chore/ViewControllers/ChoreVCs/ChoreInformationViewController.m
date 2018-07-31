@@ -48,9 +48,9 @@
 }
 
 - (void)orderChores {
-    for (Chore* chore in self.chores) {
-        [chore fetchIfNeeded];
-    }
+//    for (Chore* chore in self.chores) {
+//        [chore fetchIfNeeded];
+//    }
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
                                         sortDescriptorWithKey:@"deadline"
                                         ascending:YES];
@@ -111,16 +111,25 @@
 
 
 - (void)fetchChores {
+    PFQuery *innerQuery = [PFQuery queryWithClassName:@"Chore"];
+    [innerQuery whereKey:@"groupName" equalTo:self.currentGroup];
+    [innerQuery includeKey:@"deadline"];
+     
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup];
-    [query includeKey:@""];
+    query.limit = 20;
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
-            for (ChoreAssignment *currAssignment in self.allAssignments) {;
-                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                for (Chore *chore in currAssignment.uncompletedChores) {
+                    [chore fetchIfNeeded];
+                    [self.chores addObject:chore];
+                }
+//                
+//                [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
                 [self.tableView reloadData];
             }
             [self orderChores];
@@ -129,8 +138,8 @@
             NSLog(@" %@", error.localizedDescription);
         }
     }];
-    
 }
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
