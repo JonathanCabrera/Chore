@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.emptyDataSetSource = self;
@@ -39,6 +40,30 @@
     self.currentGroup = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.currentGroup;
     [self fetchChores];
+   
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:refreshControl atIndex:0];
+}
+
+- (void)orderChores {
+    for (Chore* chore in self.chores) {
+        [chore fetchIfNeeded];
+    }
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"deadline"
+                                        ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.chores
+                                                   sortedArrayUsingDescriptors:sortDescriptors]];
+    self.chores = sortedEventArray;
+}
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    [self.tableView reloadData];
+    [self orderChores];
+    [refreshControl endRefreshing];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -84,38 +109,33 @@
     [super didReceiveMemoryWarning];
 }
 
+
 - (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.currentGroup];
+    [query includeKey:@""];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
-            for (ChoreAssignment *currAssignment in self.allAssignments) {
+            for (ChoreAssignment *currAssignment in self.allAssignments) {;
                 [self.chores addObjectsFromArray:currAssignment.uncompletedChores];
                 [self.tableView reloadData];
             }
+            [self orderChores];
+            [self.tableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
+    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myChore = self.chores[indexPath.section];
-    PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-    choreQuery.limit = 1;
-    [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
-    [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            [choreCell setCell:posts[0] withColor:[UIColor whiteColor]];
-        } else {
-            NSLog(@"nil post %@", error.localizedDescription);
-        }
- 
-    }];
+    [choreCell setCell:myChore withColor:[UIColor whiteColor]];
     choreCell.delegate = self;
     return choreCell;
 }
@@ -125,7 +145,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.chores count];
+    return self.chores.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
