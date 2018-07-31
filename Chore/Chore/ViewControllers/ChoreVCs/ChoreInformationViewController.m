@@ -23,10 +23,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) ChoreInformationCell *choreCell;
 @property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
-@property (nonatomic, strong) NSNumber *memberIncrementNSNum;
-@property (nonatomic, strong) NSNumber *memberPoint;
-@property (nonatomic, strong) NSMutableArray *membersProgress;
-@property (nonatomic, strong) NSMutableArray *membersPoints;
 @property (nonatomic) int points;
 @property (nonatomic) long totalChores;
 @property (nonatomic) long choresDone;
@@ -132,10 +128,6 @@
 -(void) fetchGroupProgress{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [query whereKey:@"groupName" equalTo:self.groupName];
-    self.membersProgress = [NSMutableArray array];
-    self.memberIncrementNSNum = [NSNumber new];
-    self.membersPoints = [NSMutableArray array];
-    self.memberPoint = [NSNumber new];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
         if (posts != nil){
             self.allAssignments = (NSMutableArray *)posts;
