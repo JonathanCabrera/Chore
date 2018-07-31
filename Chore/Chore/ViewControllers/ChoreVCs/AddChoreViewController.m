@@ -13,6 +13,7 @@
 #import "CreateChoreViewController.h"
 #import "AssignChoreCell.h"
 #import "AssignUserCell.h"
+#import "RepeatChoreViewController.h"
 
 @interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate>
 
@@ -23,13 +24,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectUserButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *choreSearchBar;
+@property (weak, nonatomic) IBOutlet UIButton *repeatButton;
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
 @property (nonatomic, strong) NSMutableArray *filteredChores;
 @property (nonatomic, strong) NSString *userToAssign;
 @property (nonatomic, strong) DefaultChore *choreToAssign;
-@property (nonatomic, retain) NSDate * currDate;
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *darkGreenColor;
 
@@ -199,6 +200,12 @@
     [self.userMenu setHidden:YES];
 }
 
+- (IBAction)didTapRepeat:(id)sender {
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"repeatChore" bundle:nil] instantiateViewControllerWithIdentifier:@"RepeatChoreViewController"]];
+    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
+    [popupController presentInViewController:self];
+}
+
 
 - (IBAction)didTapCancel:(id)sender {
     [self closeMenus];
@@ -225,7 +232,6 @@
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 - (IBAction)onTapDeadline:(id)sender {
     [self closeMenus];

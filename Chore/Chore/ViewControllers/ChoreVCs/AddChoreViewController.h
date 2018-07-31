@@ -15,5 +15,6 @@
 
 @property (strong, nonatomic) Group *currentGroup;
 @property (nonatomic, strong) THDatePickerViewController *datePicker;
+@property (nonatomic, retain) NSDate * currDate;
 
 @end

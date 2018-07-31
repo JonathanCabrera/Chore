@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wNW-bW-5np">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Repeat Chore View Controller-->
+        <scene sceneID="Usd-Jj-pVn">
+            <objects>
+                <viewController storyboardIdentifier="RepeatChoreViewController" id="k3H-f4-if4" customClass="RepeatChoreViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t4S-hs-irI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTd-7Z-dxp">
+                                <rect key="frame" x="12" y="76" width="52" height="28"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mD6-Jt-ehW">
+                                <rect key="frame" x="12" y="355" width="46" height="28"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeats" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLH-eg-juZ">
+                                <rect key="frame" x="12" y="217" width="74" height="28"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKE-4B-zlT">
+                                <rect key="frame" x="12" y="245" width="351" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="d8J-C0-rOU"/>
+                                </constraints>
+                            </pickerView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="2qR-lI-Muo">
+                                <rect key="frame" x="12" y="104" width="351" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="105" id="Qug-Ww-Cy5"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="554756042.44885898">
+                                    <!--2018-07-31 18:54:02 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="didChangeStartDate:" destination="k3H-f4-if4" eventType="valueChanged" id="iyo-Am-4mK"/>
+                                </connections>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="G2G-2E-3WA">
+                                <rect key="frame" x="12" y="383" width="351" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="igg-0Q-dl8"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="554756042.44885898">
+                                    <!--2018-07-31 18:54:02 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="didChangeEndDate:" destination="k3H-f4-if4" eventType="valueChanged" id="MCk-95-fQ2"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="G2G-2E-3WA" firstAttribute="top" secondItem="mD6-Jt-ehW" secondAttribute="bottom" id="3Us-Xu-vI0"/>
+                            <constraint firstItem="2qR-lI-Muo" firstAttribute="leading" secondItem="xFL-I1-alo" secondAttribute="leading" constant="12" id="AMg-Q6-aMe"/>
+                            <constraint firstItem="bKE-4B-zlT" firstAttribute="leading" secondItem="xFL-I1-alo" secondAttribute="leading" constant="12" id="Br7-WC-ZAc"/>
+                            <constraint firstItem="sTd-7Z-dxp" firstAttribute="leading" secondItem="xFL-I1-alo" secondAttribute="leading" constant="12" id="FZ3-5H-62v"/>
+                            <constraint firstItem="bKE-4B-zlT" firstAttribute="top" secondItem="PLH-eg-juZ" secondAttribute="bottom" id="Fd0-JT-Yj7"/>
+                            <constraint firstItem="xFL-I1-alo" firstAttribute="trailing" secondItem="bKE-4B-zlT" secondAttribute="trailing" constant="12" id="Hu2-vg-hCt"/>
+                            <constraint firstItem="mD6-Jt-ehW" firstAttribute="leading" secondItem="xFL-I1-alo" secondAttribute="leading" constant="12" id="JaZ-PP-kv4"/>
+                            <constraint firstItem="xFL-I1-alo" firstAttribute="trailing" secondItem="2qR-lI-Muo" secondAttribute="trailing" constant="12" id="na8-uy-1bm"/>
+                            <constraint firstItem="PLH-eg-juZ" firstAttribute="top" secondItem="2qR-lI-Muo" secondAttribute="bottom" constant="8" id="oG1-tA-Rql"/>
+                            <constraint firstItem="sTd-7Z-dxp" firstAttribute="top" secondItem="xFL-I1-alo" secondAttribute="top" constant="12" id="oOA-WC-fro"/>
+                            <constraint firstItem="G2G-2E-3WA" firstAttribute="leading" secondItem="xFL-I1-alo" secondAttribute="leading" constant="12" id="rqQ-Sn-l1H"/>
+                            <constraint firstItem="2qR-lI-Muo" firstAttribute="top" secondItem="sTd-7Z-dxp" secondAttribute="bottom" id="slr-kV-rck"/>
+                            <constraint firstItem="mD6-Jt-ehW" firstAttribute="top" secondItem="bKE-4B-zlT" secondAttribute="bottom" id="sty-gA-Mve"/>
+                            <constraint firstItem="PLH-eg-juZ" firstAttribute="leading" secondItem="xFL-I1-alo" secondAttribute="leading" constant="12" id="ubZ-Gm-ezO"/>
+                            <constraint firstItem="xFL-I1-alo" firstAttribute="trailing" secondItem="G2G-2E-3WA" secondAttribute="trailing" constant="12" id="z7V-MR-VIa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xFL-I1-alo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Ak-PD-7Fb">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Taq-ro-sbn">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didTapCancel:" destination="k3H-f4-if4" id="o5e-c8-D1M"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="1nZ-UT-9IC">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didTapSave:" destination="k3H-f4-if4" id="Ulw-3T-yTb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="endDatePicker" destination="G2G-2E-3WA" id="bzJ-tp-2wF"/>
+                        <outlet property="pickerView" destination="bKE-4B-zlT" id="NQQ-wQ-a4X"/>
+                        <outlet property="startDatePicker" destination="2qR-lI-Muo" id="VrF-37-7zk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKt-SO-Oyr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023.2" y="108.39580209895054"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FKq-Gd-Jaq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wNW-bW-5np" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BSm-LO-C6R">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k3H-f4-if4" kind="relationship" relationship="rootViewController" id="D2v-Yx-OYI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KjK-2B-1sn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="84" y="108.39580209895054"/>
+        </scene>
+    </scenes>
+</document>
