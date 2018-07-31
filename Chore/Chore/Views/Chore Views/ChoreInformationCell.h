@@ -29,10 +29,6 @@
 
 - (void)setCell:(Chore *)chore withColor: (UIColor *)color;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> test3
 @end
 
 

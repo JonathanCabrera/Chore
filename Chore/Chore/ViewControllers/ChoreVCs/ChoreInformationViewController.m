@@ -26,13 +26,10 @@
 @property (nonatomic) long totalChores;
 @property (nonatomic) long choresDone;
 @property (nonatomic) float memberIncrement;
-<<<<<<< HEAD
+
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalChoresLabel;
-
-=======
->>>>>>> test3
 
 
 @end
@@ -52,10 +49,10 @@
     self.navigationItem.title = self.groupName;
     [self fetchChores];
     [self fetchGroupProgress];
-<<<<<<< HEAD
+
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
-=======
+
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
@@ -75,7 +72,7 @@
     [self.tableView reloadData];
     [self orderChores];
     [refreshControl endRefreshing];
->>>>>>> test3
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
