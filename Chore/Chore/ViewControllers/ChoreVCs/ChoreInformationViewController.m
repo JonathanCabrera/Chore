@@ -32,6 +32,8 @@
 @property (nonatomic) long choresDone;
 @property (nonatomic) float memberIncrement;
 @property (nonatomic) NSInteger *indexToDelete;
+@property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalChoresLabel;
 
 
 
@@ -52,7 +54,8 @@
     self.navigationItem.title = self.groupName;
     [self fetchChores];
     [self fetchGroupProgress];
-    
+    _groupProgressView.layer.cornerRadius = 8;
+    _groupProgressView.clipsToBounds = true;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -148,6 +151,9 @@
             }
             
             [self->_groupProgressView setProgress:self.memberIncrement animated:YES];
+            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", self.memberIncrement*100];
+         
+            
         }
     }];
 }
