@@ -37,7 +37,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRV-vU-SsV">
-                                                    <rect key="frame" x="60" y="80.5" width="44" height="22"/>
+                                                    <rect key="frame" x="60" y="81" width="44" height="22"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -90,24 +90,45 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="33H-I9-TKW">
-                                <rect key="frame" x="87" y="70" width="200" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="33H-I9-TKW">
+                                <rect key="frame" x="24" y="53" width="327" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="lFw-t3-iUN"/>
+                                </constraints>
+                                <color key="progressTintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Group's Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDo-UB-Zos">
-                                <rect key="frame" x="16" y="20" width="218" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Group's Progress:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDo-UB-Zos">
+                                <rect key="frame" x="24" y="9.5" width="210" height="27.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx0-ve-y2a">
+                                <rect key="frame" x="250" y="11" width="139" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uncompleted Chores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-2D-YvJ">
+                                <rect key="frame" x="24" y="93" width="197" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="33H-I9-TKW" firstAttribute="centerX" secondItem="sWK-yv-glH" secondAttribute="centerX" id="AFk-dp-fvO"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="bottom" secondItem="tOz-xs-xdk" secondAttribute="bottom" id="QI7-J9-sBA"/>
+                            <constraint firstItem="qDo-UB-Zos" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="24" id="VIm-Jb-r9q"/>
+                            <constraint firstItem="33H-I9-TKW" firstAttribute="top" secondItem="qDo-UB-Zos" secondAttribute="bottom" constant="16" id="jtE-rA-wdt"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="tOz-xs-xdk" secondAttribute="leading" constant="10" id="moL-oq-GBD"/>
                             <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="tOz-xs-xdk" secondAttribute="top" constant="120" id="r8B-bc-19E"/>
                             <constraint firstItem="tOz-xs-xdk" firstAttribute="trailing" secondItem="sWK-yv-glH" secondAttribute="trailing" constant="10" id="vDg-id-ZSc"/>
+                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="33H-I9-TKW" secondAttribute="bottom" constant="47" id="vkZ-Ik-fBy"/>
+                            <constraint firstItem="33H-I9-TKW" firstAttribute="leading" secondItem="CU2-me-kKh" secondAttribute="leadingMargin" constant="8" id="xyj-2h-h4y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
@@ -120,6 +141,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="choresDoneLabel" destination="Yx0-ve-y2a" id="unK-Ny-X1B"/>
                         <outlet property="groupProgressView" destination="33H-I9-TKW" id="2Ov-fc-awL"/>
                         <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>
                         <segue destination="L4Z-CK-YYS" kind="show" identifier="choreDetailsSegue" id="Z6F-bb-cAp"/>
