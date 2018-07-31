@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *bgColor;
-@property (nonatomic) BOOL delete;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) ChoreInformationCell *choreCell;
 @property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
@@ -31,8 +30,6 @@
 @property (nonatomic) long totalChores;
 @property (nonatomic) long choresDone;
 @property (nonatomic) float memberIncrement;
-@property (nonatomic) NSInteger *indexToDelete;
-
 
 
 @end
