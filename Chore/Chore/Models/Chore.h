@@ -19,6 +19,6 @@
 @property (nonatomic, strong, nonnull) NSString *userName;
 @property (nonatomic) BOOL completionStatus;
 
-+ (Chore *_Nullable) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *_Nullable)date withUserName: (NSString * _Nullable)userName withCompletion: (PFBooleanResultBlock  _Nullable)completion;
++ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *_Nullable)date withUserName: (NSString * _Nullable)userName withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end

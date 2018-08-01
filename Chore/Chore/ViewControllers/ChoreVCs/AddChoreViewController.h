@@ -11,9 +11,9 @@
 #import "THDatePickerViewController.h"
 
 @interface AddChoreViewController : UIViewController <THDatePickerDelegate>
-- (IBAction)onTapDeadline:(id)sender;
 
 @property (strong, nonatomic) Group *currentGroup;
 @property (nonatomic, strong) THDatePickerViewController *datePicker;
+@property (nonatomic, retain) NSDate * currDate;
 
 @end

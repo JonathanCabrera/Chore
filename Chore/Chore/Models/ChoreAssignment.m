@@ -21,8 +21,8 @@
     newAssignment.userName = userName;
     newAssignment.groupName = groupName;
     newAssignment.points = 0;
-    newAssignment.uncompletedChores = [NSMutableArray new];
-    newAssignment.completedChores = [NSMutableArray new];
+    newAssignment.uncompletedChores = [[NSMutableArray alloc] init];
+    newAssignment.completedChores = [[NSMutableArray alloc] init];
     [newAssignment saveInBackgroundWithBlock: completion];
 }
 
@@ -33,9 +33,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             ChoreAssignment *currentAssignment = posts[0];
-            [currentAssignment.uncompletedChores addObject:chore];
-            [currentAssignment setObject:currentAssignment.uncompletedChores forKey:@"uncompletedChores"];
-            [currentAssignment saveInBackground];
+            NSLog(@"chore deadline: %@", chore.deadline);
+            NSMutableArray<Chore *> *newUncompleted = currentAssignment.uncompletedChores;
+            NSLog(@"newUncompleted chores count: %lu", [newUncompleted count]);
+            [newUncompleted addObject:chore];
+            NSLog(@"newUncompleted chores count: %lu", [newUncompleted count]);
+            [currentAssignment setObject:newUncompleted forKey:@"uncompletedChores"];
+            NSLog(@"uncompleted chores count: %lu", [currentAssignment.uncompletedChores count]);
+            [currentAssignment saveInBackgroundWithBlock:completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

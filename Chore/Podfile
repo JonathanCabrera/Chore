@@ -13,7 +13,7 @@ target 'Chore' do
 	pod 'DZNEmptyDataSet'
 	pod 'THCalendarDatePicker', '~> 1.2.6'
 	pod 'STPopup'
-
+	pod 'LCModal', '~> 1.0'
 
   target 'ChoreTests' do
     inherit! :search_paths

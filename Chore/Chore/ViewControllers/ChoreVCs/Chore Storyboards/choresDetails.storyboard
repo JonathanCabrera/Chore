@@ -192,13 +192,5 @@
             </objects>
             <point key="canvasLocation" x="-3474" y="-2951"/>
         </scene>
-        <!--editChore-->
-        <scene sceneID="adi-6K-ka7">
-            <objects>
-                <viewControllerPlaceholder storyboardName="editChore" id="S9d-rz-2d6" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="snM-eb-XMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4037" y="-2465"/>
-        </scene>
     </scenes>
 </document>
