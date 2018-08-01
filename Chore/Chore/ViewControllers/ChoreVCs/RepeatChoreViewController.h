@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RepeatChoreViewControllerDelegate;
+
 @interface RepeatChoreViewController : UIViewController
+@property (nonatomic, weak) id<RepeatChoreViewControllerDelegate> delegate;
+
+@end
+
+@protocol RepeatChoreViewControllerDelegate
+
+- (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency;
 
 @end

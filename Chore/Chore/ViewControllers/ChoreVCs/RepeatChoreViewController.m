@@ -7,7 +7,7 @@
 //
 
 #import "RepeatChoreViewController.h"
-#import <STPopup/STPopup.h>
+#import "UIViewController+KNSemiModal.h"
 #import "LoginViewController.h"
 
 @interface RepeatChoreViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSString *repeating;
+@property (nonatomic, strong) NSString *weekday;
+@property (nonatomic, strong) NSDateFormatter *formatter;
 
 @end
 
@@ -23,10 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.contentSizeInPopup = CGSizeMake(340, 450);
-    self.landscapeContentSizeInPopup = CGSizeMake(400, 500);
+    self.formatter = [[NSDateFormatter alloc] init];
+    [self.formatter setDateFormat:@"EEEE"];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
+    self.repeating = @"Daily";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,20 +38,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)didChangeStartDate:(id)sender {
     self.startDate = self.startDatePicker.date;
+    self.weekday = [self.formatter stringFromDate:self.startDate];
+    [self.pickerView reloadAllComponents];
 }
 
 - (IBAction)didChangeEndDate:(id)sender {
     self.endDate = self.endDatePicker.date;
-}
-
-
-
-
-- (IBAction)didTapCancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapSave:(id)sender {
@@ -61,6 +59,8 @@
         NSLog(@"here");
         [LoginViewController presentAlertWithTitle:@"Start date must occur before end date" fromViewController:self];
     }
+    self.weekday = [self.formatter stringFromDate:self.startDate];
+    [self.delegate updateDeadline:self.startDate withEndDate:self.endDate withFrequency:self.repeating];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -69,7 +69,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView
 numberOfRowsInComponent:(NSInteger)component {
-    return 3;
+    return 2;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -79,20 +79,23 @@ numberOfRowsInComponent:(NSInteger)component {
             title = @"Daily";
             break;
         case 1:
-            title = @"Weekly";
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            [formatter setDateFormat:@"MMM d, yyyy"];
-//            NSString *formattedDate = [formatter stringFromDate:self.currDate];
-//            self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
-            break;
-        case 2:
-            title = @"Monthly";
+            if(self.weekday == nil) {
+                title = @"Weekly";
+            } else {
+                title = [NSString stringWithFormat:@"Weekly on %@", self.weekday];
+            }
             break;
     }
     return title;
 }
 
-
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if(row == 0) {
+        self.repeating = @"Daily";
+    } else {
+        self.repeating = self.weekday;
+    }
+}
 
 /*
 #pragma mark - Navigation
