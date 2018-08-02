@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Chore' do
+target 'Broombroom' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for Chore
+  # Pods for Broombroom
 	pod 'CircleProgressBar', '~> 0.32’
 	pod 'Parse'
 	pod 'ParseUI'
@@ -15,12 +15,12 @@ target 'Chore' do
 	pod 'STPopup'
 	pod 'LCModal', '~> 1.0'
 
-  target 'ChoreTests' do
+  target 'BroombroomTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'ChoreUITests' do
+  target 'BroombroomUITests' do
     inherit! :search_paths
     # Pods for testing
   end
