@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -52,8 +53,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-//
-    
+    //
 }
 
 @end
