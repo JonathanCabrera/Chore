@@ -21,11 +21,14 @@
 @property (strong, nonatomic) UIColor *bgColor;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) ChoreInformationCell *choreCell;
+
 @property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
+
 @property (nonatomic) int points;
 @property (nonatomic) long totalChores;
 @property (nonatomic) long choresDone;
 @property (nonatomic) float memberIncrement;
+
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalChoresLabel;
@@ -47,7 +50,7 @@
     self.groupName = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.groupName;
     [self fetchChores];
-    [self fetchGroupProgress];
+
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
 
@@ -68,9 +71,8 @@
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    //[refreshControl beginRefreshing];
-    [self.tableView reloadData];
     [self orderChores];
+    [self.tableView reloadData];
     [refreshControl endRefreshing];
 }
 
@@ -128,21 +130,39 @@
 }
 
 - (void)fetchChores {
-    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    PFQuery* query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.groupName];
+    [query includeKey:@"uncompletedChores"];
+    NSArray* list = [query findObjects];
+    NSMutableArray* allUncompletedChores = [NSMutableArray array];
+    for (PFObject *object in list) {
+        NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
+        [allUncompletedChores addObjectsFromArray:uncompletedChores];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
+            int totalChores = 0;
+            int choresDone = 0;
+            float memberIncrement = 0;
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
             for (ChoreAssignment *currAssignment in self.allAssignments) {
-                for (Chore *chore in currAssignment.uncompletedChores) {
-                    [chore fetchIfNeeded];
+                totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+                choresDone += [currAssignment.completedChores count];
+                if (totalChores == 0){
+                    memberIncrement = 0;
+                } else {
+                    memberIncrement = ((float) choresDone)/totalChores;
+                }
+                for (Chore *chore in allUncompletedChores) {
                     [self.chores addObject:chore];
                     
                 }
                 [self.tableView reloadData];
             }
+            [self->_groupProgressView setProgress:memberIncrement animated:YES];
+            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement*100];
             [self orderChores];
             [self.tableView reloadData];
         } else {
@@ -151,6 +171,7 @@
     }];
 }
 
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myChore = self.chores[indexPath.section];
@@ -158,6 +179,7 @@
     choreCell.delegate = self;
     return choreCell;
 }
+
 
 - (void)fetchGroupProgress{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];

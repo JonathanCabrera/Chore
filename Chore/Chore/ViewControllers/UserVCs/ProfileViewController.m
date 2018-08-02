@@ -25,8 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *backgroundColor;
-@property (weak, nonatomic) NSMutableArray *upcomingChores;
-@property (weak, nonatomic) NSMutableArray *pastChores;
+@property (strong, nonatomic) NSMutableArray<Chore *> *upcomingChores;
+@property (strong, nonatomic) NSMutableArray<Chore *> *pastChores;
 @property (nonatomic) int numPoints;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -48,7 +48,7 @@
     self.upcomingTableView.dataSource = self;
     self.upcomingTableView.emptyDataSetSource = self;
     self.upcomingTableView.emptyDataSetDelegate = self;
-
+    
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
@@ -107,13 +107,20 @@
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
     [query whereKey:@"userName" equalTo:self.selectedUser.username];
+    [query includeKey:@"uncompletedChores"];
+    [query includeKey:@"completedChores"];
+    
+    PFObject* list = [query getFirstObject];
+    NSMutableArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
+    NSMutableArray* completedChores = [list objectForKey:@"completedChores"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.assignment = posts[0];
-            self.numPoints = self.assignment.points;
+            ChoreAssignment *assignment = posts[0];
+            self.numPoints = assignment.points;
+            self.upcomingChores = uncompletedChores;
+            self.pastChores = completedChores;
             self.pointsLabel.text = [NSString stringWithFormat:@"%d points", self.numPoints];
-            self.upcomingChores = self.assignment.uncompletedChores;
-            self.pastChores = self.assignment.completedChores;
             [self.upcomingTableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
@@ -122,17 +129,13 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    
     if(self.choreControl.selectedSegmentIndex == 1) {
         return [self.pastChores count];
     } else {
         return [self.upcomingChores count];
-        }
+    }
     
 }
-    
-    
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -162,44 +165,12 @@
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     if(self.choreControl.selectedSegmentIndex == 1) {
         Chore *myPastChore = self.pastChores[indexPath.row];
-        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery.limit = 1;
-        [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
-        
-        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            if (objects != nil){
-                [choreCell setCell:objects[0] withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = YES;
-            }
-        
-        }];
+        [choreCell setCell:myPastChore withColor:self.backgroundColor];
+        choreCell.deadlineLabel.hidden = YES;
     } else {
-        Chore *myChore = self.upcomingChores[indexPath.row];
-        
-        PFQuery *choreQuery2 = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery2.limit = 1;
-        [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
-        [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-            if (posts != nil && [posts count] != 0){
-                
-                //NSLog(@"%@", myChore.deadline);
-                [choreCell setCell:posts[0] withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
-                NSDate *today = [NSDate date];
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-                [myChore fetchIfNeeded];
-                NSDate *deadline = myChore.deadline;
-                NSLog(@"%@", today);
-               
-                if ([deadline earlierDate:today] == today){
-                    [self.nextWeek addObject:choreCell];
-                } else {
-                    [self.thisWeek addObject:choreCell];
-                }
-            }
-          
-        }];
+        Chore *myUpcomingChore = self.upcomingChores[indexPath.row];
+        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+        choreCell.deadlineLabel.hidden = NO;
     }
     choreCell.delegate = self;
     return choreCell;
@@ -311,12 +282,12 @@
     [super didReceiveMemoryWarning];
 }
 
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     UINavigationController *controller = [segue destinationViewController];
-     if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
-         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
-         detailsController.chore = sender;
-     }
- }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *controller = [segue destinationViewController];
+    if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
+        ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
+        detailsController.chore = sender;
+    }
+}
 
 @end
