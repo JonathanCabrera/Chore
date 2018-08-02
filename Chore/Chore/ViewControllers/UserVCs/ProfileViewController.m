@@ -25,8 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *backgroundColor;
-@property (weak, nonatomic) NSMutableArray *upcomingChores;
-@property (weak, nonatomic) NSMutableArray *pastChores;
+@property (strong, nonatomic) NSMutableArray<Chore *> *upcomingChores;
+@property (strong, nonatomic) NSMutableArray<Chore *> *pastChores;
 @property (nonatomic) int numPoints;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -43,7 +43,7 @@
     self.upcomingTableView.dataSource = self;
     self.upcomingTableView.emptyDataSetSource = self;
     self.upcomingTableView.emptyDataSetDelegate = self;
-
+    
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
@@ -89,13 +89,20 @@
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
     [query whereKey:@"userName" equalTo:self.selectedUser.username];
+    [query includeKey:@"uncompletedChores"];
+    [query includeKey:@"completedChores"];
+    
+    PFObject* list = [query getFirstObject];
+    NSMutableArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
+    NSMutableArray* completedChores = [list objectForKey:@"completedChores"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            self.assignment = posts[0];
-            self.numPoints = self.assignment.points;
+            ChoreAssignment *assignment = posts[0];
+            self.numPoints = assignment.points;
+            self.upcomingChores = uncompletedChores;
+            self.pastChores = completedChores;
             self.pointsLabel.text = [NSString stringWithFormat:@"%d points", self.numPoints];
-            self.upcomingChores = self.assignment.uncompletedChores;
-            self.pastChores = self.assignment.completedChores;
             [self.upcomingTableView reloadData];
         } else {
             NSLog(@" %@", error.localizedDescription);
@@ -107,24 +114,10 @@
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     if(self.choreControl.selectedSegmentIndex == 1) {
         Chore *myPastChore = self.pastChores[indexPath.section];
-        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery.limit = 1;
-        [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
-        [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            if (objects != nil){
-                [choreCell setCell:objects[0] withColor:self.backgroundColor];
-            }
-        }];
+        [choreCell setCell:myPastChore withColor:self.backgroundColor];
     } else {
-        Chore *myChore = self.upcomingChores[indexPath.section];
-        PFQuery *choreQuery2 = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery2.limit = 1;
-        [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
-        [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
-            if (posts != nil && [posts count] != 0){
-                [choreCell setCell:posts[0] withColor:self.backgroundColor];
-            }
-        }];
+        Chore *myUpcomingChore = self.upcomingChores[indexPath.section];
+        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
     }
     choreCell.delegate = self;
     return choreCell;
@@ -256,12 +249,12 @@
     [super didReceiveMemoryWarning];
 }
 
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     UINavigationController *controller = [segue destinationViewController];
-     if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
-         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
-         detailsController.chore = sender;
-     }
- }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *controller = [segue destinationViewController];
+    if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
+        ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
+        detailsController.chore = sender;
+    }
+}
 
 @end

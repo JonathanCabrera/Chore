@@ -125,10 +125,16 @@
 
 
 - (void)fetchChores {
-    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    PFQuery* query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query includeKey:@"uncompletedChores"];
+    NSArray* list = [query findObjects];
+    NSMutableArray* allUncompletedChores = [NSMutableArray array];
+    for (PFObject *object in list) {
+        NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
+        [allUncompletedChores addObjectsFromArray:uncompletedChores];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             int totalChores = 0;
@@ -137,7 +143,6 @@
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
             for (ChoreAssignment *currAssignment in self.allAssignments) {
-                
                 totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                 choresDone += [currAssignment.completedChores count];
                 if (totalChores == 0){
@@ -145,8 +150,7 @@
                 } else {
                     memberIncrement = ((float) choresDone)/totalChores;
                 }
-                for (Chore *chore in currAssignment.uncompletedChores) {
-                    [chore fetchIfNeeded];
+                for (Chore *chore in allUncompletedChores) {
                     [self.chores addObject:chore];
                 }
                 [self.tableView reloadData];
@@ -160,6 +164,7 @@
         }
     }];
 }
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
