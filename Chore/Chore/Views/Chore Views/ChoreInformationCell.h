@@ -29,6 +29,9 @@
 
 - (void)setCell:(Chore *)chore withColor: (UIColor *)color;
 
+
+-(NSString *)getDeadline:(Chore *)chore;
+
 @end
 
 

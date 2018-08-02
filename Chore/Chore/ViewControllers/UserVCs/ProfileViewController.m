@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
+@property (strong, nonatomic) NSMutableDictionary *weeklyChores;
+@property (strong, nonatomic) NSArray *choreTitles;
 
 @end
 
@@ -50,11 +52,17 @@
     [self setLayout];
     self.activityIndicator.hidesWhenStopped = YES;
     [self refresh];
+    self.weeklyChores = [[NSMutableDictionary alloc] initWithCapacity:[self.upcomingChores count]];
+    _choreTitles = [[_weeklyChores allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.choreControl.selectedSegmentIndex = 0;
     [self refresh];
+}
+
+-(void) makeDictionary {
+    
 }
 
 - (void)setLayout {
@@ -128,12 +136,23 @@
             }
         }];
     }
+    
+    for (Chore *chore in self.upcomingChores){
+        [_weeklyChores setObject:choreCell forKey:[choreCell getDeadline:chore]];
+    }
+    
+    NSString *sectionTitle = [_choreTitles objectAtIndex:indexPath.section];
+    NSArray *sectionChores = [_weeklyChores objectForKey:sectionTitle];
+    NSString *chore = [sectionChores objectAtIndex:indexPath.row];
+    choreCell.textLabel.text = chore;
     choreCell.delegate = self;
     return choreCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    NSString *sectionTitle = [_choreTitles objectAtIndex:section];
+    NSArray *sectionChores = [_weeklyChores objectForKey:sectionTitle];
+    return [sectionChores count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -142,6 +161,15 @@
     } else {
         return [self.upcomingChores count];
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *eachKey;
+    for (NSString *key in [self.weeklyChores allKeys]){
+        eachKey = key;
+    }
+    return [self.weeklyChores objectForKey: eachKey];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

@@ -32,6 +32,10 @@
     self.backgroundColor = color;
 }
 
+-(NSString *)getDeadline:(Chore *)chore{
+    return self.deadlineLabel.text;
+}
+
 
 - (void)setCurrentUserImage {
     NSString *currentUser = self.chore.userName;
