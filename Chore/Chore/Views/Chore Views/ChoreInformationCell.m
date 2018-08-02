@@ -60,13 +60,10 @@
     NSDate *endDate = self.chore.deadline;
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
-                                                        fromDate:startDate
-                                                          toDate:endDate
-                                                         options:0];
-    
-    NSInteger daysRemaining = [components day];
+    NSInteger start = [gregorianCalendar component:NSCalendarUnitDay fromDate:startDate];
+    NSInteger end = [gregorianCalendar component:NSCalendarUnitDay fromDate:endDate];
+
+    NSInteger daysRemaining = end - start;
     NSString *dueMessage = @"";
     if (daysRemaining < 0) {
         dueMessage = [NSString stringWithFormat:((daysRemaining == -1) ?
@@ -75,11 +72,11 @@
                       daysRemaining * -1];
         self.deadlineLabel.textColor = UIColorWithHexString(@"#b94a48");
     } else if (daysRemaining == 0) {
-        dueMessage = @"Due Today";
+        dueMessage = @"Due today";
         self.deadlineLabel.textColor = UIColorWithHexString(@"#f89406");
     } else {
         dueMessage = [NSString stringWithFormat:((daysRemaining == 1) ?
-                                                 @"Due in %ld day" :
+                                                 @"Due tomorrow" :
                                                  @"Due in %ld days"),
                       daysRemaining];
         self.deadlineLabel.textColor = UIColorWithHexString(@"#468847");

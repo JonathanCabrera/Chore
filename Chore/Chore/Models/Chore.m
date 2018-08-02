@@ -27,7 +27,7 @@
     newChore.userName = userName;
     NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"camera"]);
     newChore.photo = [PFFile fileWithData:placeholderData];
-    [newChore saveInBackgroundWithBlock: completion];
+    [newChore saveInBackgroundWithBlock:completion];
 }
 
 @end
