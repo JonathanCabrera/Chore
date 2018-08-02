@@ -7,6 +7,7 @@
 //
 
 #import "Chore.h"
+#import "ChoreAssignment.h"
 
 @implementation Chore
 
@@ -16,7 +17,7 @@
     return @"Chore";
 }
 
-+ (Chore *) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *)date withUserName: (NSString * _Nullable)userName withCompletion: (PFBooleanResultBlock  _Nullable)completion {
++ (void) makeChore: (NSString * _Nullable)name withDescription: (NSString * _Nullable)description withPoints: (int)points withDeadline: (NSDate *)date withUserName: (NSString * _Nullable)userName withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     Chore *newChore = [Chore new];
     newChore.name = name;
     newChore.info = description;
@@ -26,8 +27,7 @@
     newChore.userName = userName;
     NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"camera"]);
     newChore.photo = [PFFile fileWithData:placeholderData];
-    [newChore saveInBackgroundWithBlock: completion];
-    return newChore;
+    [newChore saveInBackgroundWithBlock:completion];
 }
 
 @end

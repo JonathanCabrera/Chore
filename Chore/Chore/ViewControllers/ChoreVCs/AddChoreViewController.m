@@ -13,8 +13,11 @@
 #import "CreateChoreViewController.h"
 #import "AssignChoreCell.h"
 #import "AssignUserCell.h"
+#import "UIViewController+LCModal.h"
+#import "RepeatChoreViewController.h"
+#import "MBProgressHUD.h"
 
-@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate>
+@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate, RepeatChoreViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
 @property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
@@ -23,15 +26,21 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectUserButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *choreSearchBar;
+@property (weak, nonatomic) IBOutlet UIButton *repeatButton;
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
 @property (nonatomic, strong) NSMutableArray *filteredChores;
 @property (nonatomic, strong) NSString *userToAssign;
 @property (nonatomic, strong) DefaultChore *choreToAssign;
-@property (nonatomic, retain) NSDate * currDate;
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *darkGreenColor;
+@property (nonatomic) BOOL repeating;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSString *frequency;
+@property (nonatomic) BOOL doneSaving;
+@property (nonatomic) BOOL doneCreating;
 
 @end
 
@@ -49,6 +58,9 @@
     self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.choreSearchBar.delegate = self;
     self.currDate = [NSDate date];
+    self.repeating = NO;
+    self.doneSaving = YES;
+    self.doneCreating = NO;
     
     UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
@@ -83,10 +95,10 @@
     self.selectChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
 }
 
-- (void) refreshDeadline{
+- (void)refreshDeadline: (NSDate *)deadline {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, yyyy"];
-    NSString *formattedDate = [formatter stringFromDate:self.currDate];
+    NSString *formattedDate = [formatter stringFromDate:deadline];
     self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
 }
 
@@ -199,33 +211,102 @@
     [self.userMenu setHidden:YES];
 }
 
+- (IBAction)didTapRepeat:(id)sender {
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"repeatChore" bundle:nil];
+    RepeatChoreViewController *repeatController = [storyboard instantiateViewControllerWithIdentifier:@"RepeatChoreViewController"];
+    repeatController.delegate = self;
+    repeatController.view.frame = CGRectMake(0.0, 0.0, 375, 475);
+    [self lc_presentViewController:repeatController completion:nil];
+}
 
 - (IBAction)didTapCancel:(id)sender {
     [self closeMenus];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)saveAssignment:(id)sender {
-    [self closeMenus];
-    Chore *newChore = [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:_currDate withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+- (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency {
+    [self lc_dismissViewControllerWithCompletion:nil];
+    self.repeating = YES;
+    self.startDate = startDate;
+    self.endDate = endDate;
+    self.frequency = frequency;
+    if([frequency isEqualToString:@"Daily"]) {
+        self.repeatButton.titleLabel.text = @"Repeats daily";
+    } else {
+        self.repeatButton.titleLabel.text = [NSString stringWithFormat:@"Repeats on %@s", frequency];
+    }
+    [self refreshDeadline:self.startDate];
+}
+
+- (void)assignChore:(NSString *)name withDeadline:(NSDate *)deadline {
+    PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
+    [query whereKey:@"name" equalTo:name];
+    [query whereKey:@"deadline" equalTo:deadline];
+    query.limit = 1;
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (object != nil) {
+            Chore *currentChore = (Chore *)object;
+            [ChoreAssignment assignChore:self.userToAssign withChore:currentChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+                if(succeeded) {
+                    NSLog(@"assigned chore!");
+                    self.doneSaving = YES;
+                } else {
+                    NSLog(@"Error assigning chore: %@", error.localizedDescription);
+                }
+            }];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void)createChore:(NSDate *)deadline {
+    [Chore makeChore:self.choreToAssign.name withDescription:self.choreToAssign.info withPoints:self.choreToAssign.points withDeadline:deadline withUserName:self.userToAssign withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded) {
             NSLog(@"created chore");
+            self.doneCreating = YES;
+            [self assignChore:self.choreToAssign.name withDeadline:deadline];
         } else {
             NSLog(@"error creating chore: %@", error.localizedDescription);
         }
     }];
-    
-    [ChoreAssignment assignChore:self.userToAssign withChore:newChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded) {
-            NSLog(@"Assigned chore!");
-        } else {
-            NSLog(@"Error assigning chore: %@", error.localizedDescription);
-        }
-    }];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)saveAssignment:(id)sender {
+    [self closeMenus];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if(self.repeating == NO) {
+        [self createChore:self.currDate];
+    } else {
+        NSDate *newStartDate = [NSDate new];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSDateComponents *comp = [NSDateComponents new];
+        NSDateComponents *startComponent = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.startDate];
+        NSDateComponents *endComponent = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.endDate];
+        NSDate *modifiedStart = [calendar dateFromComponents:startComponent];
+        NSDate *modifiedEnd = [calendar dateFromComponents:endComponent];
+        
+        while([modifiedStart compare:modifiedEnd] != NSOrderedDescending) {
+            self.doneSaving = NO;
+            self.doneCreating = NO;
+            [self createChore:modifiedStart];
+            while(self.doneCreating == NO || self.doneSaving == NO) {
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+            }
+                if([self.frequency isEqualToString:@"Daily"]) {
+                    comp.day = 1;
+                    newStartDate = [calendar dateByAddingComponents:comp toDate:modifiedStart options:0];
+                } else {
+                    comp.weekOfYear = 1;
+                    newStartDate = [calendar dateByAddingComponents:comp toDate:modifiedStart options:0];
+                }
+                startComponent = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:newStartDate];
+                modifiedStart = [calendar dateFromComponents:startComponent];
+            }
+    }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)onTapDeadline:(id)sender {
     [self closeMenus];
@@ -253,7 +334,8 @@
 - (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
     self.currDate = datePicker.date;
     self.deadlineButton.backgroundColor = self.backgroundColor;
-    [self refreshDeadline];
+    [self refreshDeadline:self.currDate];
+    self.repeating = NO;
     [self dismissSemiModalView];
 }
 

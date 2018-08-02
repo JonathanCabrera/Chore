@@ -27,6 +27,8 @@
 		1E829456210280800086EB80 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E829455210280800086EB80 /* SignupViewController.m */; };
 		1E89A05E210F7A7900926FD3 /* AssignChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */; };
 		1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A060210F7D8F00926FD3 /* AssignUserCell.m */; };
+		1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */; };
+		1E8CC2702110E54600C3E742 /* repeatChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */; };
 		1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */; };
 		1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738E420FFA53300EE46B9 /* addMember.storyboard */; };
 		1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E920FFA69400EE46B9 /* AddUserCell.m */; };
@@ -108,6 +110,9 @@
 		1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignChoreCell.m; sourceTree = "<group>"; };
 		1E89A05F210F7D8F00926FD3 /* AssignUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignUserCell.h; sourceTree = "<group>"; };
 		1E89A060210F7D8F00926FD3 /* AssignUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignUserCell.m; sourceTree = "<group>"; };
+		1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepeatChoreViewController.h; sourceTree = "<group>"; };
+		1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepeatChoreViewController.m; sourceTree = "<group>"; };
+		1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = repeatChore.storyboard; sourceTree = "<group>"; };
 		1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
 		1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
 		1E9738E420FFA53300EE46B9 /* addMember.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addMember.storyboard; sourceTree = "<group>"; };
@@ -282,6 +287,7 @@
 				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
 				1E200B312100FA4700945BD6 /* addChore.storyboard */,
 				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
+				1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */,
 			);
 			path = "Chore Storyboards";
 			sourceTree = "<group>";
@@ -402,6 +408,8 @@
 				1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */,
 				1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */,
 				1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */,
+				1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */,
+				1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */,
 			);
 			path = ChoreVCs;
 			sourceTree = "<group>";
@@ -525,6 +533,7 @@
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
+				1E8CC2702110E54600C3E742 /* repeatChore.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +665,7 @@
 				1E89A05E210F7A7900926FD3 /* AssignChoreCell.m in Sources */,
 				1E829456210280800086EB80 /* SignupViewController.m in Sources */,
 				1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */,
+				1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */,
 				1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */,
 				E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */,
 			);
