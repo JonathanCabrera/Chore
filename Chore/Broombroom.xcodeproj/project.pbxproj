@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0357228AD5E12FA04B20904C /* libPods-ChoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */; };
 		1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1220FD40DA003C87B4 /* AppDelegate.m */; };
 		1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1720FD40DA003C87B4 /* Main.storyboard */; };
 		1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */; };
@@ -41,9 +40,7 @@
 		1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */; };
 		1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */; };
 		2722414852AE3DDED3FC43FB /* libPods-Broombroom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */; };
-		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
 		6F5BA5EB884CA74C09E3F13D /* libPods-BroombroomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */; };
-		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
 		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
 		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
@@ -75,7 +72,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		049FFABB26823251BB9485F5 /* Pods-ChoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Broombroom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1E3C0E20FD40DA003C87B4 /* Broombroom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Broombroom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1E3C1120FD40DA003C87B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,13 +133,10 @@
 		1EDD732B2113A3790049389C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.35.0/Bolts.framework"; sourceTree = "<group>"; };
 		1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BroombroomUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C4B89FF3A8858C8C931D86 /* Pods-Broombroom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broombroom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom.debug.xcconfig"; sourceTree = "<group>"; };
-		32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		39C2D83173FF1446E96ADC6F /* Pods-BroombroomUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomUITests/Pods-BroombroomUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BroombroomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5798927799E1CE4A9F7CC4AA /* Pods-BroombroomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomTests/Pods-BroombroomTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6501733E465D5C0D64497498 /* Pods-BroombroomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomTests/Pods-BroombroomTests.release.xcconfig"; sourceTree = "<group>"; };
-		6A93700C70BDE40ED83451BB /* Pods-Chore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.release.xcconfig"; sourceTree = "<group>"; };
 		8E0D5811639CA045CC3924AA /* Pods-BroombroomUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomUITests/Pods-BroombroomUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9E14378420FD51FE0007E6A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9E1C600F20FD50FB0076B4D5 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,11 +151,6 @@
 		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		9EC839D521078C4D00CC5491 /* ProgressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressCell.h; sourceTree = "<group>"; };
 		9EC839D621078C4D00CC5491 /* ProgressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressCell.m; sourceTree = "<group>"; };
-		AD7C64C32F624343DAC51904 /* libPods-Chore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.debug.xcconfig"; sourceTree = "<group>"; };
-		E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreDetailsViewController.h; sourceTree = "<group>"; };
 		E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreDetailsViewController.m; sourceTree = "<group>"; };
 		E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationViewController.h; sourceTree = "<group>"; };
@@ -181,7 +169,6 @@
 				9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */,
 				9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */,
 				9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */,
-				4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */,
 				2722414852AE3DDED3FC43FB /* libPods-Broombroom.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,7 +177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0357228AD5E12FA04B20904C /* libPods-ChoreTests.a in Frameworks */,
 				6F5BA5EB884CA74C09E3F13D /* libPods-BroombroomTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,7 +185,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */,
 				B4F10E3B787627A5B3FA34F0 /* libPods-BroombroomUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,9 +358,6 @@
 				9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */,
 				9E9C172820FD4DD5007F0F31 /* CircleProgressBar.framework */,
 				9E9C172620FD4DD0007F0F31 /* UIKit.framework */,
-				AD7C64C32F624343DAC51904 /* libPods-Chore.a */,
-				5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */,
-				B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */,
 				16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */,
 				49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */,
 				1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */,
@@ -410,12 +392,6 @@
 		CB4D0AA61DAFC22D9B728178 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */,
-				6A93700C70BDE40ED83451BB /* Pods-Chore.release.xcconfig */,
-				B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */,
-				32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */,
-				E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */,
-				049FFABB26823251BB9485F5 /* Pods-ChoreUITests.release.xcconfig */,
 				26C4B89FF3A8858C8C931D86 /* Pods-Broombroom.debug.xcconfig */,
 				EBCFDE2BDEA8219B894C2D4C /* Pods-Broombroom.release.xcconfig */,
 				5798927799E1CE4A9F7CC4AA /* Pods-BroombroomTests.debug.xcconfig */,
