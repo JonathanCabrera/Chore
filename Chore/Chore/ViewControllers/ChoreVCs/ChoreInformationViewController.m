@@ -66,8 +66,8 @@
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    [self.tableView reloadData];
     [self orderChores];
+    [self.tableView reloadData];
     [refreshControl endRefreshing];
 }
 

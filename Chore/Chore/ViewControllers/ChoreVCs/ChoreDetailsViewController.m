@@ -109,10 +109,8 @@
     self.informationLabel.text = self.chore.info;
     [self loadChorePicture];
 }
-
 - (void)setCompletionStatusLabelColor {
     if (self.chore.completionStatus) {
-        self.
         self.completionStatusLabel.text = @"Complete";
         self.completionStatusLabel.textColor = UIColorWithHexString(@"#468847");
         self.finishedButton.hidden = YES;
