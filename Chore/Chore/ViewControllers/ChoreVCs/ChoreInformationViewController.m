@@ -48,8 +48,6 @@
     self.navigationItem.title = self.groupName;
     [self fetchChores];
     [self fetchGroupProgress];
-    
-
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
 
@@ -74,14 +72,10 @@
     [self.tableView reloadData];
     [self orderChores];
     [refreshControl endRefreshing];
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self beginRefresh];
-    
-    
 }
 
 - (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
@@ -127,14 +121,11 @@
 
 - (void)beginRefresh {
     [self fetchChores];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
@@ -186,15 +177,9 @@
                 
                 [self.groupProgressView setProgress:self.memberIncrement animated:YES];
                 self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", self.memberIncrement*100];
-              
-                
             }
-            
         }
     }];
-    
- 
-    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

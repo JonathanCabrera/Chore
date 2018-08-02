@@ -33,7 +33,10 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 @property (strong, nonatomic) NSMutableDictionary *weeklyChores;
-@property (strong, nonatomic) NSArray *choreTitles;
+@property (strong, nonatomic) NSMutableArray *sectionTitles;
+@property (strong, nonatomic) NSMutableArray *thisWeek;
+@property (strong, nonatomic) NSMutableArray *nextWeek;
+@property (strong, nonatomic) NSMutableArray *future;
 
 @end
 
@@ -52,8 +55,18 @@
     [self setLayout];
     self.activityIndicator.hidesWhenStopped = YES;
     [self refresh];
-    self.weeklyChores = [[NSMutableDictionary alloc] initWithCapacity:[self.upcomingChores count]];
-    _choreTitles = [[_weeklyChores allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSString *first = @"This Week";
+    NSString *second = @"Next Week";
+    NSString *third = @"Future";
+    self.sectionTitles = [NSMutableArray new];
+    [self.sectionTitles insertObject:first atIndex:0];
+    [self.sectionTitles insertObject:second atIndex:1];
+    [self.sectionTitles insertObject:third atIndex:2];
+    [self setSectionTitles:self.sectionTitles];
+    self.thisWeek = [NSMutableArray new];
+    self.nextWeek = [NSMutableArray new];
+    self.future = [NSMutableArray new];
+  
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -61,9 +74,6 @@
     [self refresh];
 }
 
--(void) makeDictionary {
-    
-}
 
 - (void)setLayout {
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
@@ -111,76 +121,91 @@
     }];
 }
 
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    
+    if(self.choreControl.selectedSegmentIndex == 1) {
+        return [self.pastChores count];
+    } else {
+        return [self.upcomingChores count];
+        }
+    
+}
+    
+    
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionTitles objectAtIndex:section];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont boldSystemFontOfSize:12]];
+    NSString *string =[self.sectionTitles objectAtIndex:section];
+    [label setText:string];
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
+    return view;
+}
+
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     if(self.choreControl.selectedSegmentIndex == 1) {
-        Chore *myPastChore = self.pastChores[indexPath.section];
+        Chore *myPastChore = self.pastChores[indexPath.row];
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
         choreQuery.limit = 1;
         [choreQuery whereKey:@"objectId" equalTo:myPastChore.objectId];
+        
         [choreQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
             if (objects != nil){
                 [choreCell setCell:objects[0] withColor:self.backgroundColor];
                 choreCell.deadlineLabel.hidden = YES;
             }
+        
         }];
     } else {
-        Chore *myChore = self.upcomingChores[indexPath.section];
+        Chore *myChore = self.upcomingChores[indexPath.row];
+        
         PFQuery *choreQuery2 = [PFQuery queryWithClassName:@"Chore"];
         choreQuery2.limit = 1;
         [choreQuery2 whereKey:@"objectId" equalTo:myChore.objectId];
         [choreQuery2 findObjectsInBackgroundWithBlock:^(NSArray * _Nullable posts, NSError * _Nullable error) {
             if (posts != nil && [posts count] != 0){
+                
+                //NSLog(@"%@", myChore.deadline);
                 [choreCell setCell:posts[0] withColor:self.backgroundColor];
                 choreCell.deadlineLabel.hidden = NO;
+                NSDate *today = [NSDate date];
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+                [myChore fetchIfNeeded];
+                NSDate *deadline = myChore.deadline;
+                NSLog(@"%@", today);
+               
+                if ([deadline earlierDate:today] == today){
+                    [self.nextWeek addObject:choreCell];
+                } else {
+                    [self.thisWeek addObject:choreCell];
+                }
             }
+          
         }];
     }
-    
-    for (Chore *chore in self.upcomingChores){
-        [_weeklyChores setObject:choreCell forKey:[choreCell getDeadline:chore]];
-    }
-    
-    NSString *sectionTitle = [_choreTitles objectAtIndex:indexPath.section];
-    NSArray *sectionChores = [_weeklyChores objectForKey:sectionTitle];
-    NSString *chore = [sectionChores objectAtIndex:indexPath.row];
-    choreCell.textLabel.text = chore;
     choreCell.delegate = self;
     return choreCell;
 }
 
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSString *sectionTitle = [_choreTitles objectAtIndex:section];
-    NSArray *sectionChores = [_weeklyChores objectForKey:sectionTitle];
-    return [sectionChores count];
-}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if(self.choreControl.selectedSegmentIndex == 1) {
-        return [self.pastChores count];
-    } else {
-        return [self.upcomingChores count];
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString *eachKey;
-    for (NSString *key in [self.weeklyChores allKeys]){
-        eachKey = key;
-    }
-    return [self.weeklyChores objectForKey: eachKey];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [UIView new];
-    [headerView setBackgroundColor:[UIColor whiteColor]];
-    return headerView;
-}
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
     [self performSegueWithIdentifier:@"profileToDetailsSegue" sender:chore];
