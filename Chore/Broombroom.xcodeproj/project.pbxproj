@@ -1,0 +1,1017 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0357228AD5E12FA04B20904C /* libPods-ChoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */; };
+		1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1220FD40DA003C87B4 /* AppDelegate.m */; };
+		1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1720FD40DA003C87B4 /* Main.storyboard */; };
+		1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */; };
+		1E1E3C2120FD40DA003C87B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2020FD40DA003C87B4 /* main.m */; };
+		1E1E3C2B20FD40DA003C87B4 /* ChoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C2A20FD40DA003C87B4 /* ChoreTests.m */; };
+		1E1E3C3620FD40DA003C87B4 /* ChoreUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */; };
+		1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1E3C4420FD43A3003C87B4 /* Chore.m */; };
+		1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E200B312100FA4700945BD6 /* addChore.storyboard */; };
+		1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E200B3A210129F800945BD6 /* ChoreAssignment.m */; };
+		1E574417210A3BBB00473C7B /* DefaultChore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574416210A3BBB00473C7B /* DefaultChore.m */; };
+		1E5C36B920FD4A10002979BA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36B820FD4A10002979BA /* Group.m */; };
+		1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36C220FD51F2002979BA /* LoginViewController.m */; };
+		1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D620FE93F5002979BA /* GroupCell.m */; };
+		1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5C36D920FE940D002979BA /* NewUserViewController.m */; };
+		1E5DBEC7210FA5CC000C1EC3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DBEC6210FA5CC000C1EC3 /* UserNotifications.framework */; };
+		1E829453210280640086EB80 /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E829452210280640086EB80 /* Signup.storyboard */; };
+		1E829456210280800086EB80 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E829455210280800086EB80 /* SignupViewController.m */; };
+		1E89A05E210F7A7900926FD3 /* AssignChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */; };
+		1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A060210F7D8F00926FD3 /* AssignUserCell.m */; };
+		1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */; };
+		1E8CC2702110E54600C3E742 /* repeatChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */; };
+		1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */; };
+		1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738E420FFA53300EE46B9 /* addMember.storyboard */; };
+		1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E920FFA69400EE46B9 /* AddUserCell.m */; };
+		1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */; };
+		1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F120FFED2F00EE46B9 /* login.storyboard */; };
+		1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */; };
+		1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */; };
+		1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */; };
+		1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */; };
+		1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */; };
+		1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */; };
+		2722414852AE3DDED3FC43FB /* libPods-Broombroom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */; };
+		4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD7C64C32F624343DAC51904 /* libPods-Chore.a */; };
+		6F5BA5EB884CA74C09E3F13D /* libPods-BroombroomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */; };
+		962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */; };
+		9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E14378420FD51FE0007E6A3 /* AVFoundation.framework */; };
+		9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C172320FD4646007F0F31 /* HomeViewController.m */; };
+		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
+		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
+		9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB05F20FE890A003F458E /* ProfileViewController.m */; };
+		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
+		9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC839D621078C4D00CC5491 /* ProgressCell.m */; };
+		B4F10E3B787627A5B3FA34F0 /* libPods-BroombroomUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */; };
+		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
+		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
+		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E1E3C2720FD40DA003C87B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E1E3C0620FD40DA003C87B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E1E3C0D20FD40DA003C87B4;
+			remoteInfo = Chore;
+		};
+		1E1E3C3220FD40DA003C87B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E1E3C0620FD40DA003C87B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E1E3C0D20FD40DA003C87B4;
+			remoteInfo = Chore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		049FFABB26823251BB9485F5 /* Pods-ChoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.release.xcconfig"; sourceTree = "<group>"; };
+		16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Broombroom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E1E3C0E20FD40DA003C87B4 /* Broombroom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Broombroom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E1E3C1120FD40DA003C87B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1E1E3C1220FD40DA003C87B4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1E1E3C1820FD40DA003C87B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1E1E3C1F20FD40DA003C87B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E1E3C2020FD40DA003C87B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1E1E3C2620FD40DA003C87B4 /* BroombroomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BroombroomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E1E3C2A20FD40DA003C87B4 /* ChoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreTests.m; sourceTree = "<group>"; };
+		1E1E3C2C20FD40DA003C87B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E1E3C3120FD40DA003C87B4 /* BroombroomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BroombroomUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreUITests.m; sourceTree = "<group>"; };
+		1E1E3C3720FD40DA003C87B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E1E3C4320FD43A3003C87B4 /* Chore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chore.h; sourceTree = "<group>"; };
+		1E1E3C4420FD43A3003C87B4 /* Chore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Chore.m; sourceTree = "<group>"; };
+		1E200B312100FA4700945BD6 /* addChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addChore.storyboard; sourceTree = "<group>"; };
+		1E200B39210129F800945BD6 /* ChoreAssignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreAssignment.h; sourceTree = "<group>"; };
+		1E200B3A210129F800945BD6 /* ChoreAssignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreAssignment.m; sourceTree = "<group>"; };
+		1E574415210A3BBB00473C7B /* DefaultChore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultChore.h; sourceTree = "<group>"; };
+		1E574416210A3BBB00473C7B /* DefaultChore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultChore.m; sourceTree = "<group>"; };
+		1E5C36B720FD4A10002979BA /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		1E5C36B820FD4A10002979BA /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		1E5C36C120FD51F2002979BA /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1E5C36C220FD51F2002979BA /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1E5C36C420FD62FF002979BA /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5C36D520FE93F5002979BA /* GroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
+		1E5C36D620FE93F5002979BA /* GroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
+		1E5C36D820FE940D002979BA /* NewUserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserViewController.h; sourceTree = "<group>"; };
+		1E5C36D920FE940D002979BA /* NewUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserViewController.m; sourceTree = "<group>"; };
+		1E5DBEC6210FA5CC000C1EC3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		1E829452210280640086EB80 /* Signup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
+		1E829454210280800086EB80 /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		1E829455210280800086EB80 /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		1E89A05C210F7A7900926FD3 /* AssignChoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignChoreCell.h; sourceTree = "<group>"; };
+		1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignChoreCell.m; sourceTree = "<group>"; };
+		1E89A05F210F7D8F00926FD3 /* AssignUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignUserCell.h; sourceTree = "<group>"; };
+		1E89A060210F7D8F00926FD3 /* AssignUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignUserCell.m; sourceTree = "<group>"; };
+		1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepeatChoreViewController.h; sourceTree = "<group>"; };
+		1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepeatChoreViewController.m; sourceTree = "<group>"; };
+		1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = repeatChore.storyboard; sourceTree = "<group>"; };
+		1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
+		1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
+		1E9738E420FFA53300EE46B9 /* addMember.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addMember.storyboard; sourceTree = "<group>"; };
+		1E9738E820FFA69400EE46B9 /* AddUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUserCell.h; sourceTree = "<group>"; };
+		1E9738E920FFA69400EE46B9 /* AddUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUserCell.m; sourceTree = "<group>"; };
+		1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = createGroup.storyboard; sourceTree = "<group>"; };
+		1E9738F120FFED2F00EE46B9 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
+		1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = choreInformation.storyboard; sourceTree = "<group>"; };
+		1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = choresDetails.storyboard; sourceTree = "<group>"; };
+		1E9738F820FFF51E00EE46B9 /* AddChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddChoreViewController.h; sourceTree = "<group>"; };
+		1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddChoreViewController.m; sourceTree = "<group>"; };
+		1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = createChore.storyboard; sourceTree = "<group>"; };
+		1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateChoreViewController.h; sourceTree = "<group>"; };
+		1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateChoreViewController.m; sourceTree = "<group>"; };
+		1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1EDD73272113A36D0049389C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.35.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		1EDD73292113A3700049389C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.35.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		1EDD732B2113A3790049389C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.35.0/Bolts.framework"; sourceTree = "<group>"; };
+		1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BroombroomUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26C4B89FF3A8858C8C931D86 /* Pods-Broombroom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broombroom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom.debug.xcconfig"; sourceTree = "<group>"; };
+		32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		39C2D83173FF1446E96ADC6F /* Pods-BroombroomUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomUITests/Pods-BroombroomUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BroombroomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5798927799E1CE4A9F7CC4AA /* Pods-BroombroomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomTests/Pods-BroombroomTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6501733E465D5C0D64497498 /* Pods-BroombroomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomTests/Pods-BroombroomTests.release.xcconfig"; sourceTree = "<group>"; };
+		6A93700C70BDE40ED83451BB /* Pods-Chore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.release.xcconfig"; sourceTree = "<group>"; };
+		8E0D5811639CA045CC3924AA /* Pods-BroombroomUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BroombroomUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BroombroomUITests/Pods-BroombroomUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9E14378420FD51FE0007E6A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9E1C600F20FD50FB0076B4D5 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E1C601120FD51030076B4D5 /* ParseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ParseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9C172220FD4646007F0F31 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		9E9C172320FD4646007F0F31 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		9E9C172620FD4DD0007F0F31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9E9C172820FD4DD5007F0F31 /* CircleProgressBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CircleProgressBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9E9FB05E20FE890A003F458E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		9E9FB05F20FE890A003F458E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
+		9EC839D521078C4D00CC5491 /* ProgressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressCell.h; sourceTree = "<group>"; };
+		9EC839D621078C4D00CC5491 /* ProgressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressCell.m; sourceTree = "<group>"; };
+		AD7C64C32F624343DAC51904 /* libPods-Chore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreTests/Pods-ChoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chore/Pods-Chore.debug.xcconfig"; sourceTree = "<group>"; };
+		E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoreUITests/Pods-ChoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreDetailsViewController.h; sourceTree = "<group>"; };
+		E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreDetailsViewController.m; sourceTree = "<group>"; };
+		E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationViewController.h; sourceTree = "<group>"; };
+		E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationViewController.m; sourceTree = "<group>"; };
+		E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationCell.h; sourceTree = "<group>"; };
+		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		EBCFDE2BDEA8219B894C2D4C /* Pods-Broombroom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broombroom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E1E3C0B20FD40DA003C87B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5DBEC7210FA5CC000C1EC3 /* UserNotifications.framework in Frameworks */,
+				9E14378520FD51FE0007E6A3 /* AVFoundation.framework in Frameworks */,
+				9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */,
+				9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */,
+				4386317B282C8DA1C8052821 /* libPods-Chore.a in Frameworks */,
+				2722414852AE3DDED3FC43FB /* libPods-Broombroom.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E1E3C2320FD40DA003C87B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0357228AD5E12FA04B20904C /* libPods-ChoreTests.a in Frameworks */,
+				6F5BA5EB884CA74C09E3F13D /* libPods-BroombroomTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E1E3C2E20FD40DA003C87B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				962A1D729A233B3836D9C82F /* libPods-ChoreUITests.a in Frameworks */,
+				B4F10E3B787627A5B3FA34F0 /* libPods-BroombroomUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E1E3C0520FD40DA003C87B4 = {
+			isa = PBXGroup;
+			children = (
+				1E1E3C1020FD40DA003C87B4 /* Chore */,
+				1E1E3C2920FD40DA003C87B4 /* ChoreTests */,
+				1E1E3C3420FD40DA003C87B4 /* ChoreUITests */,
+				1E1E3C0F20FD40DA003C87B4 /* Products */,
+				CB4D0AA61DAFC22D9B728178 /* Pods */,
+				6AC1C798CE8C693EADA7C980 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1E1E3C0F20FD40DA003C87B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E1E3C0E20FD40DA003C87B4 /* Broombroom.app */,
+				1E1E3C2620FD40DA003C87B4 /* BroombroomTests.xctest */,
+				1E1E3C3120FD40DA003C87B4 /* BroombroomUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E1E3C1020FD40DA003C87B4 /* Chore */ = {
+			isa = PBXGroup;
+			children = (
+				1E5C36CC20FE82EF002979BA /* Views */,
+				1E5C36B320FD49AB002979BA /* Models */,
+				9E9C172520FD464A007F0F31 /* ViewControllers */,
+				1E1E3C1220FD40DA003C87B4 /* AppDelegate.m */,
+				1E1E3C1120FD40DA003C87B4 /* AppDelegate.h */,
+				1E1E3C1A20FD40DA003C87B4 /* Assets.xcassets */,
+				1E1E3C1F20FD40DA003C87B4 /* Info.plist */,
+				1E1E3C2020FD40DA003C87B4 /* main.m */,
+				1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */,
+			);
+			path = Chore;
+			sourceTree = "<group>";
+		};
+		1E1E3C2920FD40DA003C87B4 /* ChoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				1E1E3C2A20FD40DA003C87B4 /* ChoreTests.m */,
+				1E1E3C2C20FD40DA003C87B4 /* Info.plist */,
+			);
+			path = ChoreTests;
+			sourceTree = "<group>";
+		};
+		1E1E3C3420FD40DA003C87B4 /* ChoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1E1E3C3520FD40DA003C87B4 /* ChoreUITests.m */,
+				1E1E3C3720FD40DA003C87B4 /* Info.plist */,
+			);
+			path = ChoreUITests;
+			sourceTree = "<group>";
+		};
+		1E5C36B320FD49AB002979BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E1E3C4320FD43A3003C87B4 /* Chore.h */,
+				1E1E3C4420FD43A3003C87B4 /* Chore.m */,
+				1E5C36B720FD4A10002979BA /* Group.h */,
+				1E5C36B820FD4A10002979BA /* Group.m */,
+				1E200B39210129F800945BD6 /* ChoreAssignment.h */,
+				1E200B3A210129F800945BD6 /* ChoreAssignment.m */,
+				1E574415210A3BBB00473C7B /* DefaultChore.h */,
+				1E574416210A3BBB00473C7B /* DefaultChore.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1E5C36CB20FE822A002979BA /* GroupVCs */ = {
+			isa = PBXGroup;
+			children = (
+				1E9738E420FFA53300EE46B9 /* addMember.storyboard */,
+				1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */,
+				1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */,
+			);
+			path = GroupVCs;
+			sourceTree = "<group>";
+		};
+		1E5C36CC20FE82EF002979BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E9738EB20FFA88D00EE46B9 /* Login Views */,
+				1E9738E720FFA62B00EE46B9 /* Chore Views */,
+				1E9738E620FFA61800EE46B9 /* Group Views */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1E829451210262310086EB80 /* Chore Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */,
+				1E9738F520FFED3900EE46B9 /* choresDetails.storyboard */,
+				1E200B312100FA4700945BD6 /* addChore.storyboard */,
+				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
+				1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */,
+			);
+			path = "Chore Storyboards";
+			sourceTree = "<group>";
+		};
+		1E9738E020FFA3E200EE46B9 /* LoginVCs */ = {
+			isa = PBXGroup;
+			children = (
+				1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */,
+				1E9738F120FFED2F00EE46B9 /* login.storyboard */,
+				1E829452210280640086EB80 /* Signup.storyboard */,
+				1E5C36C120FD51F2002979BA /* LoginViewController.h */,
+				1E5C36C220FD51F2002979BA /* LoginViewController.m */,
+				1E5C36D820FE940D002979BA /* NewUserViewController.h */,
+				1E5C36D920FE940D002979BA /* NewUserViewController.m */,
+				1E829454210280800086EB80 /* SignupViewController.h */,
+				1E829455210280800086EB80 /* SignupViewController.m */,
+			);
+			path = LoginVCs;
+			sourceTree = "<group>";
+		};
+		1E9738E620FFA61800EE46B9 /* Group Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E9738E820FFA69400EE46B9 /* AddUserCell.h */,
+				1E9738E920FFA69400EE46B9 /* AddUserCell.m */,
+			);
+			path = "Group Views";
+			sourceTree = "<group>";
+		};
+		1E9738E720FFA62B00EE46B9 /* Chore Views */ = {
+			isa = PBXGroup;
+			children = (
+				E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */,
+				E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */,
+				9EC839D521078C4D00CC5491 /* ProgressCell.h */,
+				9EC839D621078C4D00CC5491 /* ProgressCell.m */,
+				1E89A05C210F7A7900926FD3 /* AssignChoreCell.h */,
+				1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */,
+				1E89A05F210F7D8F00926FD3 /* AssignUserCell.h */,
+				1E89A060210F7D8F00926FD3 /* AssignUserCell.m */,
+			);
+			path = "Chore Views";
+			sourceTree = "<group>";
+		};
+		1E9738EB20FFA88D00EE46B9 /* Login Views */ = {
+			isa = PBXGroup;
+			children = (
+				1E5C36D520FE93F5002979BA /* GroupCell.h */,
+				1E5C36D620FE93F5002979BA /* GroupCell.m */,
+			);
+			path = "Login Views";
+			sourceTree = "<group>";
+		};
+		6AC1C798CE8C693EADA7C980 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1EDD732B2113A3790049389C /* Bolts.framework */,
+				1EDD73292113A3700049389C /* FBSDKLoginKit.framework */,
+				1EDD73272113A36D0049389C /* FBSDKCoreKit.framework */,
+				1E5DBEC6210FA5CC000C1EC3 /* UserNotifications.framework */,
+				1E5C36C420FD62FF002979BA /* Parse.framework */,
+				9E14378420FD51FE0007E6A3 /* AVFoundation.framework */,
+				9E1C601120FD51030076B4D5 /* ParseUI.framework */,
+				9E1C600F20FD50FB0076B4D5 /* Parse.framework */,
+				9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */,
+				9E9C172820FD4DD5007F0F31 /* CircleProgressBar.framework */,
+				9E9C172620FD4DD0007F0F31 /* UIKit.framework */,
+				AD7C64C32F624343DAC51904 /* libPods-Chore.a */,
+				5B4425C032DAD84EE8DCCABB /* libPods-ChoreTests.a */,
+				B0F9EF055B7427942BF17E7A /* libPods-ChoreUITests.a */,
+				16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */,
+				49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */,
+				1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E7535C22108F3C000E14E83 /* UserVCs */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C172220FD4646007F0F31 /* HomeViewController.h */,
+				9E9C172320FD4646007F0F31 /* HomeViewController.m */,
+				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
+				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
+				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
+				9E9FB06120FE8B22003F458E /* profile.storyboard */,
+			);
+			path = UserVCs;
+			sourceTree = "<group>";
+		};
+		9E9C172520FD464A007F0F31 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9E7535C22108F3C000E14E83 /* UserVCs */,
+				1E9738E020FFA3E200EE46B9 /* LoginVCs */,
+				E8750BF020FEA37C00D0B13D /* ChoreVCs */,
+				1E5C36CB20FE822A002979BA /* GroupVCs */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CB4D0AA61DAFC22D9B728178 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B96F8A8FD31274D583013471 /* Pods-Chore.debug.xcconfig */,
+				6A93700C70BDE40ED83451BB /* Pods-Chore.release.xcconfig */,
+				B8040DCB3B3C415FC8A7F8B8 /* Pods-ChoreTests.debug.xcconfig */,
+				32BA042687B4826745766DDE /* Pods-ChoreTests.release.xcconfig */,
+				E826C8820904F7D11C98647F /* Pods-ChoreUITests.debug.xcconfig */,
+				049FFABB26823251BB9485F5 /* Pods-ChoreUITests.release.xcconfig */,
+				26C4B89FF3A8858C8C931D86 /* Pods-Broombroom.debug.xcconfig */,
+				EBCFDE2BDEA8219B894C2D4C /* Pods-Broombroom.release.xcconfig */,
+				5798927799E1CE4A9F7CC4AA /* Pods-BroombroomTests.debug.xcconfig */,
+				6501733E465D5C0D64497498 /* Pods-BroombroomTests.release.xcconfig */,
+				39C2D83173FF1446E96ADC6F /* Pods-BroombroomUITests.debug.xcconfig */,
+				8E0D5811639CA045CC3924AA /* Pods-BroombroomUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E8750BF020FEA37C00D0B13D /* ChoreVCs */ = {
+			isa = PBXGroup;
+			children = (
+				1E829451210262310086EB80 /* Chore Storyboards */,
+				E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */,
+				E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */,
+				E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */,
+				E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */,
+				1E9738F820FFF51E00EE46B9 /* AddChoreViewController.h */,
+				1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */,
+				1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */,
+				1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */,
+				1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */,
+				1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */,
+			);
+			path = ChoreVCs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E1E3C0D20FD40DA003C87B4 /* Broombroom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E1E3C3A20FD40DA003C87B4 /* Build configuration list for PBXNativeTarget "Broombroom" */;
+			buildPhases = (
+				178DAA4BED6489EE5BFD1C5F /* [CP] Check Pods Manifest.lock */,
+				1E1E3C0A20FD40DA003C87B4 /* Sources */,
+				1E1E3C0B20FD40DA003C87B4 /* Frameworks */,
+				1E1E3C0C20FD40DA003C87B4 /* Resources */,
+				99DEDBC4F40ADA2A9548EE07 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Broombroom;
+			productName = Chore;
+			productReference = 1E1E3C0E20FD40DA003C87B4 /* Broombroom.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1E1E3C2520FD40DA003C87B4 /* BroombroomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E1E3C3D20FD40DA003C87B4 /* Build configuration list for PBXNativeTarget "BroombroomTests" */;
+			buildPhases = (
+				01A4157F5BA91995A74B46AF /* [CP] Check Pods Manifest.lock */,
+				1E1E3C2220FD40DA003C87B4 /* Sources */,
+				1E1E3C2320FD40DA003C87B4 /* Frameworks */,
+				1E1E3C2420FD40DA003C87B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E1E3C2820FD40DA003C87B4 /* PBXTargetDependency */,
+			);
+			name = BroombroomTests;
+			productName = ChoreTests;
+			productReference = 1E1E3C2620FD40DA003C87B4 /* BroombroomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1E1E3C3020FD40DA003C87B4 /* BroombroomUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E1E3C4020FD40DA003C87B4 /* Build configuration list for PBXNativeTarget "BroombroomUITests" */;
+			buildPhases = (
+				EEB7025D9D55BA991EFC5156 /* [CP] Check Pods Manifest.lock */,
+				1E1E3C2D20FD40DA003C87B4 /* Sources */,
+				1E1E3C2E20FD40DA003C87B4 /* Frameworks */,
+				1E1E3C2F20FD40DA003C87B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E1E3C3320FD40DA003C87B4 /* PBXTargetDependency */,
+			);
+			name = BroombroomUITests;
+			productName = ChoreUITests;
+			productReference = 1E1E3C3120FD40DA003C87B4 /* BroombroomUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E1E3C0620FD40DA003C87B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = JAK;
+				TargetAttributes = {
+					1E1E3C0D20FD40DA003C87B4 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					1E1E3C2520FD40DA003C87B4 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 1E1E3C0D20FD40DA003C87B4;
+					};
+					1E1E3C3020FD40DA003C87B4 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 1E1E3C0D20FD40DA003C87B4;
+					};
+				};
+			};
+			buildConfigurationList = 1E1E3C0920FD40DA003C87B4 /* Build configuration list for PBXProject "Broombroom" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1E1E3C0520FD40DA003C87B4;
+			productRefGroup = 1E1E3C0F20FD40DA003C87B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E1E3C0D20FD40DA003C87B4 /* Broombroom */,
+				1E1E3C2520FD40DA003C87B4 /* BroombroomTests */,
+				1E1E3C3020FD40DA003C87B4 /* BroombroomUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E1E3C0C20FD40DA003C87B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E829453210280640086EB80 /* Signup.storyboard in Resources */,
+				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
+				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
+				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
+				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,
+				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
+				1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */,
+				1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */,
+				9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */,
+				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
+				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
+				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
+				1E8CC2702110E54600C3E742 /* repeatChore.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E1E3C2420FD40DA003C87B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E1E3C2F20FD40DA003C87B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01A4157F5BA91995A74B46AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BroombroomTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		178DAA4BED6489EE5BFD1C5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Broombroom-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99DEDBC4F40ADA2A9548EE07 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
+				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
+				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
+				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj",
+				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib",
+				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib",
+				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/Images.xcassets",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pt-BR.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDateDay.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDatePickerViewController.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEB7025D9D55BA991EFC5156 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BroombroomUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E1E3C0A20FD40DA003C87B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
+				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
+				9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */,
+				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
+				1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */,
+				1E574417210A3BBB00473C7B /* DefaultChore.m in Sources */,
+				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
+				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
+				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,
+				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
+				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
+				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,
+				1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */,
+				1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */,
+				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
+				1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */,
+				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,
+				1E89A05E210F7A7900926FD3 /* AssignChoreCell.m in Sources */,
+				1E829456210280800086EB80 /* SignupViewController.m in Sources */,
+				1E200B3B210129F800945BD6 /* ChoreAssignment.m in Sources */,
+				1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */,
+				1E5C36DA20FE940D002979BA /* NewUserViewController.m in Sources */,
+				E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E1E3C2220FD40DA003C87B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E1E3C2B20FD40DA003C87B4 /* ChoreTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E1E3C2D20FD40DA003C87B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E1E3C3620FD40DA003C87B4 /* ChoreUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1E1E3C2820FD40DA003C87B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E1E3C0D20FD40DA003C87B4 /* Broombroom */;
+			targetProxy = 1E1E3C2720FD40DA003C87B4 /* PBXContainerItemProxy */;
+		};
+		1E1E3C3320FD40DA003C87B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E1E3C0D20FD40DA003C87B4 /* Broombroom */;
+			targetProxy = 1E1E3C3220FD40DA003C87B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1E1E3C1720FD40DA003C87B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E1E3C1820FD40DA003C87B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1E1E3C3820FD40DA003C87B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: jonathan-cabrera@live.com (979RK63UJK)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1E1E3C3920FD40DA003C87B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: jonathan-cabrera@live.com (979RK63UJK)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E1E3C3B20FD40DA003C87B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26C4B89FF3A8858C8C931D86 /* Pods-Broombroom.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 786NDH46LQ;
+				INFOPLIST_FILE = Chore/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Broombroom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E1E3C3C20FD40DA003C87B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBCFDE2BDEA8219B894C2D4C /* Pods-Broombroom.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 786NDH46LQ;
+				INFOPLIST_FILE = Chore/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.Broombroom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1E1E3C3E20FD40DA003C87B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5798927799E1CE4A9F7CC4AA /* Pods-BroombroomTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LY792TRHFJ;
+				INFOPLIST_FILE = ChoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.ChoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Broombroom.app/Broombroom";
+			};
+			name = Debug;
+		};
+		1E1E3C3F20FD40DA003C87B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6501733E465D5C0D64497498 /* Pods-BroombroomTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LY792TRHFJ;
+				INFOPLIST_FILE = ChoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.ChoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Broombroom.app/Broombroom";
+			};
+			name = Release;
+		};
+		1E1E3C4120FD40DA003C87B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39C2D83173FF1446E96ADC6F /* Pods-BroombroomUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 786NDH46LQ;
+				INFOPLIST_FILE = ChoreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.ChoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chore;
+			};
+			name = Debug;
+		};
+		1E1E3C4220FD40DA003C87B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E0D5811639CA045CC3924AA /* Pods-BroombroomUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 786NDH46LQ;
+				INFOPLIST_FILE = ChoreUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alice.ChoreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chore;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E1E3C0920FD40DA003C87B4 /* Build configuration list for PBXProject "Broombroom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E1E3C3820FD40DA003C87B4 /* Debug */,
+				1E1E3C3920FD40DA003C87B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E1E3C3A20FD40DA003C87B4 /* Build configuration list for PBXNativeTarget "Broombroom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E1E3C3B20FD40DA003C87B4 /* Debug */,
+				1E1E3C3C20FD40DA003C87B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E1E3C3D20FD40DA003C87B4 /* Build configuration list for PBXNativeTarget "BroombroomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E1E3C3E20FD40DA003C87B4 /* Debug */,
+				1E1E3C3F20FD40DA003C87B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E1E3C4020FD40DA003C87B4 /* Build configuration list for PBXNativeTarget "BroombroomUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E1E3C4120FD40DA003C87B4 /* Debug */,
+				1E1E3C4220FD40DA003C87B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E1E3C0620FD40DA003C87B4 /* Project object */;
+}

@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-    
+
 @end
 
 @implementation LoginViewController
