@@ -129,9 +129,12 @@
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query includeKey:@"uncompletedChores"];
-    PFObject* list = [query getFirstObject];
-    NSArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
-    
+    NSArray* list = [query findObjects];
+    NSMutableArray* allUncompletedChores = [NSMutableArray array];
+    for (PFObject *object in list) {
+        NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
+        [allUncompletedChores addObjectsFromArray:uncompletedChores];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             int totalChores = 0;
@@ -147,7 +150,7 @@
                 } else {
                     memberIncrement = ((float) choresDone)/totalChores;
                 }
-                for (Chore *chore in uncompletedChores) {
+                for (Chore *chore in allUncompletedChores) {
                     [self.chores addObject:chore];
                 }
                 [self.tableView reloadData];
