@@ -45,7 +45,6 @@
     self.groupName = [PFUser currentUser][@"groupName"];
     self.navigationItem.title = self.groupName;
     [self fetchChores];
-    [self fetchGroupProgress];
 
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
@@ -130,16 +129,31 @@
     query.limit = 20;
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query includeKey:@"uncompletedChores"];
-    
     PFObject* list = [query getFirstObject];
     NSArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
+            int totalChores = 0;
+            int choresDone = 0;
+            float memberIncrement = 0;
+            self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
-            for (Chore *chore in uncompletedChores) {
-                [self.chores addObject:chore];
+            for (ChoreAssignment *currAssignment in self.allAssignments) {
+                totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+                choresDone += [currAssignment.completedChores count];
+                if (totalChores == 0){
+                    memberIncrement = 0;
+                } else {
+                    memberIncrement = ((float) choresDone)/totalChores;
+                }
+                for (Chore *chore in uncompletedChores) {
+                    [self.chores addObject:chore];
+                }
+                [self.tableView reloadData];
             }
+            [self->_groupProgressView setProgress:memberIncrement animated:YES];
+            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement*100];
             [self orderChores];
             [self.tableView reloadData];
         } else {
@@ -155,28 +169,6 @@
     [choreCell setCell:myChore withColor:[UIColor whiteColor]];
     choreCell.delegate = self;
     return choreCell;
-}
-
-
-- (void)fetchGroupProgress{
-    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    [query whereKey:@"groupName" equalTo:self.groupName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
-        if (posts != nil){
-            int totalChores = 0;
-            int choresDone = 0;
-            float memberIncrement = 0;
-            for (ChoreAssignment *currAssignment in self.allAssignments) {
-                totalChores += currAssignment.uncompletedChores.count + currAssignment.completedChores.count;
-                choresDone += currAssignment.completedChores.count;
-                if (totalChores != 0){
-                    memberIncrement = ((float) choresDone)/ totalChores;
-                }
-            }
-            [self->_groupProgressView setProgress:memberIncrement animated:YES];
-            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", (memberIncrement * 100)];
-        }
-    }];
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

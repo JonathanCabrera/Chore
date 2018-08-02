@@ -66,7 +66,8 @@
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
     
     [self setLayout];
-    [self fetchData];
+    [self fetchDefaultChores];
+    [self fetchUsers];
 }
 
 - (void)setLayout {
@@ -120,15 +121,11 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self fetchData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)fetchData {
+- (void)fetchDefaultChores {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"DefaultChore"];
     [choreQuery orderByAscending:@"name"];
     choreQuery.limit = 30;
@@ -141,7 +138,10 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    
+}
+
+- (void)fetchUsers {
+
     PFQuery *userQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     userQuery.limit = 20;
     [userQuery orderByAscending:@"userName"];
@@ -157,6 +157,7 @@
 }
 
 - (IBAction)didTapSelectChore:(id)sender {
+    [self fetchDefaultChores];
     [self.userMenu setHidden:YES];
     [self.choreMenu setHidden:NO];
 }
