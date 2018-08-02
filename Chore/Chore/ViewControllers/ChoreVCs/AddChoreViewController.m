@@ -87,19 +87,37 @@
     self.deadlineButton.layer.borderWidth = 0.8f;
     self.deadlineButton.layer.cornerRadius = 20;
     self.deadlineButton.layer.borderColor = self.darkGreenColor.CGColor;
+    self.deadlineButton.titleLabel.numberOfLines = 1;
+    self.deadlineButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.deadlineButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
     self.selectUserButton.layer.borderWidth = 0.8f;
     self.selectUserButton.layer.cornerRadius = 20;
     self.selectUserButton.layer.borderColor = self.darkGreenColor.CGColor;
+    self.selectUserButton.titleLabel.numberOfLines = 1;
+    self.selectUserButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.selectUserButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
     self.selectChoreButton.layer.borderWidth = 0.8f;
     self.selectChoreButton.layer.cornerRadius = 20;
     self.selectChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
+    self.selectChoreButton.titleLabel.numberOfLines = 1;
+    self.selectChoreButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.selectChoreButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
+    self.repeatButton.titleLabel.text = @"Does not repeat";
+    self.repeatButton.titleLabel.numberOfLines = 1;
+    self.repeatButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.repeatButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
 }
 
 - (void)refreshDeadline: (NSDate *)deadline {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, yyyy"];
-    NSString *formattedDate = [formatter stringFromDate:deadline];
-    self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedDate];
+    NSString *formattedStartDate = [formatter stringFromDate:deadline];
+    if(self.repeating == NO) {
+        self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedStartDate];
+    } else {
+        NSString *formattedEndDate = [formatter stringFromDate:self.endDate];
+        self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@ to %@", formattedStartDate, formattedEndDate];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -236,6 +254,7 @@
         self.repeatButton.titleLabel.text = [NSString stringWithFormat:@"Repeats on %@s", frequency];
     }
     [self refreshDeadline:self.startDate];
+    self.deadlineButton.backgroundColor = self.backgroundColor;
 }
 
 - (void)assignChore:(NSString *)name withDeadline:(NSDate *)deadline {
@@ -336,6 +355,7 @@
     self.deadlineButton.backgroundColor = self.backgroundColor;
     [self refreshDeadline:self.currDate];
     self.repeating = NO;
+    self.repeatButton.titleLabel.text = @"Does not repeat";
     [self dismissSemiModalView];
 }
 
