@@ -22,10 +22,14 @@
     self.choreView.layer.borderWidth = 0.7f;
     UIColor *borderColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     self.choreView.layer.borderColor = borderColor.CGColor;
-    self.userNameLabel.text = [self toUpperFirstChar: chore.userName];
-    self.choreNameLabel.text = [self toUpperFirstChar: chore.name];
+    self.userNameLabel.text = [self toUpperFirstChar:chore.userName];
+    self.choreNameLabel.text = [self toUpperFirstChar:chore.name];
     self.pointsLabel.text  = [NSString stringWithFormat:((chore.points == 1) ? @"%d pt" : @"%d pts"), chore.points];
-    self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
+    if(chore.completionStatus == YES && chore[@"completedDate"] != nil) {
+        self.deadlineLabel.text = [self formatCompletedDate:chore[@"completedDate"]];
+    } else {
+        self.deadlineLabel.text = [self formatDeadlineDate:chore.deadline];
+    }
     [self setCurrentUserImage];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapChore)];
     [self.choreView addGestureRecognizer:tapRecognizer];
@@ -53,6 +57,27 @@
 
 - (void)didTapChore {
     [self.delegate seeChore:self withChore:self.chore withName:self.chore.userName];
+}
+
+- (NSString *)formatCompletedDate:(NSDate *)completedDate {
+    NSString *completedMessage = @"";
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
+    NSString *dateString = [dateFormatter stringFromDate:completedDate];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *completedComponent = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:completedDate];
+    NSDateComponents *deadlineComponent = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.chore.deadline];
+    NSDate *modifiedCompleted = [calendar dateFromComponents:completedComponent];
+    NSDate *modifiedDeadline = [calendar dateFromComponents:deadlineComponent];
+    if([modifiedCompleted compare:modifiedDeadline] == NSOrderedDescending) {
+        completedMessage = [NSString stringWithFormat:@"Completed late on %@", dateString];
+        self.deadlineLabel.textColor = UIColorWithHexString(@"#b94a48");
+    } else {
+        completedMessage = [NSString stringWithFormat:@"Completed on %@", dateString];
+        self.deadlineLabel.textColor = UIColorWithHexString(@"#468847");
+    }
+    return completedMessage;
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {

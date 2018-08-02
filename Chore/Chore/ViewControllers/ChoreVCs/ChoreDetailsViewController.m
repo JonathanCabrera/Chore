@@ -64,6 +64,7 @@
     [alertViewController addAction:okAction];
     [parentViewController presentViewController:alertViewController animated:YES completion:nil];
 }
+
 - (void)updateCompletedChore{
     PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     pastQuery.limit = 1;
@@ -78,6 +79,7 @@
                 NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
                 Chore* removedChore = newUncompleted[removeIndex];
                 removedChore.completionStatus = YES;
+                removedChore[@"completedDate"] = [NSDate date];
                 [removedChore fetchIfNeeded];
                 [newCompleted addObject:removedChore];
                 [newUncompleted removeObjectAtIndex:removeIndex];
