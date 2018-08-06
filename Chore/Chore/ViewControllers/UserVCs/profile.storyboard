@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTG-fx-wGZ">
-                                <rect key="frame" x="117" y="266" width="140" height="26"/>
+                                <rect key="frame" x="118" y="270" width="140" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -76,18 +76,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yGo-zk-0cd">
-                                <rect key="frame" x="169" y="272" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSH-VM-3rP">
-                                <rect key="frame" x="49" y="227" width="278" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="35"/>
-                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZL-BR-d6k" customClass="PFImageView">
                                 <rect key="frame" x="117" y="75" width="140" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -104,6 +92,25 @@
                                     <action selector="didTapControl:" destination="6mG-8N-NEe" eventType="valueChanged" id="m9T-lO-99y"/>
                                 </connections>
                             </segmentedControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aj4-k8-VlW">
+                                <rect key="frame" x="81" y="223" width="212" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSH-VM-3rP">
+                                        <rect key="frame" x="0.0" y="0.0" width="164" height="48"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="35"/>
+                                        <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GY1-6W-Je6">
+                                        <rect key="frame" x="164" y="0.0" width="48" height="48"/>
+                                        <state key="normal" image="trophy-button"/>
+                                        <connections>
+                                            <action selector="didTapBadge:" destination="6mG-8N-NEe" eventType="touchUpInside" id="goS-bZ-TPK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wjf-Gw-E9r"/>
                     </view>
@@ -122,16 +129,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="yGo-zk-0cd" id="RjO-2X-W5E"/>
                         <outlet property="backButton" destination="I9r-Hg-sAe" id="0sE-zE-0Lh"/>
                         <outlet property="choreControl" destination="vAu-Fy-0FY" id="52n-nI-tvs"/>
                         <outlet property="editButton" destination="aif-fk-10j" id="Gdx-f9-luU"/>
                         <outlet property="pointsLabel" destination="FTG-fx-wGZ" id="jmU-LU-eHO"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
+                        <outlet property="trophyButton" destination="GY1-6W-Je6" id="yIS-9T-stW"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>
                         <outlet property="userNameLabel" destination="sSH-VM-3rP" id="DeT-OD-JFq"/>
                         <outlet property="view" destination="4rT-it-zID" id="iMZ-Xh-Gbc"/>
                         <segue destination="u7A-os-Raa" kind="show" identifier="profileToDetailsSegue" id="LM6-bc-YQh"/>
+                        <segue destination="G6k-Vb-hYD" kind="presentation" identifier="badgeSegue" id="PyU-4n-quH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tb-46-VoO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,6 +153,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4u-x9-u6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1083" y="577"/>
+        </scene>
+        <!--badge-->
+        <scene sceneID="2GY-C4-sDI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="badge" id="G6k-Vb-hYD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4FE-fU-W8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1532" y="581"/>
         </scene>
         <!--Profile-->
         <scene sceneID="fkh-DL-pSA">
@@ -169,5 +185,6 @@
     </scenes>
     <resources>
         <image name="housekeeper30" width="30" height="30"/>
+        <image name="trophy-button" width="48" height="48"/>
     </resources>
 </document>
