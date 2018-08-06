@@ -97,9 +97,9 @@
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No Chores";
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    NSString *text = @"No chores";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
+                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
@@ -109,8 +109,8 @@
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;
     
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
-                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                  NSParagraphStyleAttributeName: paragraph};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
@@ -142,9 +142,6 @@
             float memberIncrement = 0;
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
-            for (Chore *chore in allUncompletedChores) {
-                [self.chores addObject:chore];
-            }
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                 choresDone += [currAssignment.completedChores count];
@@ -168,7 +165,6 @@
     }];
 }
 
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myChore = self.chores[indexPath.section];
@@ -182,7 +178,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.chores.count;
+    return [self.chores count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

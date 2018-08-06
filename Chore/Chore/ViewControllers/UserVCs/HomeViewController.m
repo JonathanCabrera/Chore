@@ -7,8 +7,11 @@
 //
 
 #import "HomeViewController.h"
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@property (strong, nonatomic) UIColor *bgColor;
 
 @end
 
@@ -18,6 +21,9 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.tableFooterView = [UIView new];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     self.tableView.layer.borderWidth = 0.8f;
@@ -115,6 +121,33 @@
     if(self.currentGroup != nil) {
         [self fetchChores];
     }
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"broom"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return self.bgColor;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No group members";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
+                                 NSForegroundColorAttributeName: [UIColor whiteColor]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"There are no other users in your group.";
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
+                                 NSForegroundColorAttributeName: [UIColor whiteColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (void)didReceiveMemoryWarning {
