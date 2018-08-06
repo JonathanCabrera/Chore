@@ -173,7 +173,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-    Chore *myChore = self.chores[indexPath.section];
+    Chore *myChore = self.chores[indexPath.row];
     [choreCell setCell:myChore withColor:[UIColor whiteColor]];
     choreCell.delegate = self;
     return choreCell;
@@ -204,12 +204,14 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+   return [self.chores count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.chores count];
+    return 1;
 }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
@@ -224,7 +226,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
-        Chore *myChore = self.chores[indexPath.section];
+        Chore *myChore = self.chores[indexPath.row];
         [myChore fetchIfNeeded];
         [choreAssignmentQuery whereKey:@"userName" equalTo: myChore.userName];
         choreAssignmentQuery.limit = 1;
@@ -247,7 +249,7 @@
         [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
         [choreQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                 if (object != nil) {
-                    [self.chores removeObjectAtIndex:indexPath.section];
+                    [self.chores removeObjectAtIndex:indexPath.row];
                     [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation: UITableViewRowAnimationLeft];
                     [object deleteInBackground];
                     [tableView reloadData];
