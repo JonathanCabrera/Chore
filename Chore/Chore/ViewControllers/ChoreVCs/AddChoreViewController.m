@@ -262,11 +262,12 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
     [query whereKey:@"name" equalTo:name];
     [query whereKey:@"deadline" equalTo:deadline];
+    [query whereKey:@"userName" equalTo:self.userToAssign];
     query.limit = 1;
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (object != nil) {
             Chore *currentChore = (Chore *)object;
-            [ChoreAssignment assignChore:self.userToAssign withChore:currentChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            [ChoreAssignment assignChore:currentChore withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
                 if(succeeded) {
                     NSLog(@"assigned chore!");
                     self.doneSaving = YES;

@@ -26,20 +26,16 @@
     [newAssignment saveInBackgroundWithBlock: completion];
 }
 
-+ (void) assignChore: (NSString * _Nullable)userName withChore: (Chore *)chore withCompletion: (PFBooleanResultBlock _Nullable)completion {
++ (void) assignChore:(Chore *)chore withCompletion: (PFBooleanResultBlock _Nullable)completion {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    [query whereKey:@"userName" equalTo:userName];
+    [query whereKey:@"userName" equalTo:chore.userName];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             ChoreAssignment *currentAssignment = posts[0];
-             //NSLog(@"chore deadline: %@", chore.deadline);
             NSMutableArray<Chore *> *newUncompleted = currentAssignment.uncompletedChores;
-           // NSLog(@"newUncompleted chores count: %lu", [newUncompleted count]);
             [newUncompleted addObject:chore];
-           // NSLog(@"newUncompleted chores count: %lu", [newUncompleted count]);
             [currentAssignment setObject:newUncompleted forKey:@"uncompletedChores"];
-            //NSLog(@"uncompleted chores count: %lu", [currentAssignment.uncompletedChores count]);
             [currentAssignment saveInBackgroundWithBlock:completion];
         } else {
             NSLog(@"%@", error.localizedDescription);
