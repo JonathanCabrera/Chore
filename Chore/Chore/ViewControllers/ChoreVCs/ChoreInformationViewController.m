@@ -123,7 +123,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
 - (void)fetchChores {
     PFQuery* query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 20;
@@ -150,11 +149,11 @@
                 } else {
                     memberIncrement = ((float) choresDone)/totalChores;
                 }
-                for (Chore *chore in allUncompletedChores) {
-                    [self.chores addObject:chore];
-                }
-                [self.tableView reloadData];
             }
+            for (Chore *chore in allUncompletedChores) {
+                [self.chores addObject:chore];
+            }
+            [self.tableView reloadData];
             [self->_groupProgressView setProgress:memberIncrement animated:YES];
             self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement*100];
             [self orderChores];
