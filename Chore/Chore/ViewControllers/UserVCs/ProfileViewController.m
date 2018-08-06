@@ -37,6 +37,7 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
+@property (strong, nonatomic) NSMutableArray *pastTitle;
 
 
 
@@ -60,12 +61,14 @@
     NSString *first = @"This Week";
     NSString *second = @"Next Week";
     NSString *third = @"Future";
+    NSString *past = @"Completed";
     self.sectionTitles = [NSMutableArray new];
     [self.sectionTitles insertObject:first atIndex:0];
     [self.sectionTitles insertObject:second atIndex:1];
     [self.sectionTitles insertObject:third atIndex:2];
+    [self.sectionTitles insertObject:past atIndex:3];
     [self setSectionTitles:self.sectionTitles];
-    NSLog(@" Initial Count: %lu", [self.thisWeek count]);
+
     
   
 }
@@ -104,20 +107,15 @@
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
-    NSLog(@"%@", today);
     
     for (Chore *currentChore in self.upcomingChores){
-        //[self daysbetwee]
-        //NSLog(@"This many days between %lu", [self daysBetweenDate:today andDate:currentChore.deadline]);
+        
         if ([self daysBetweenDate:today andDate:currentChore.deadline] > 7 && [self daysBetweenDate:today andDate:currentChore.deadline] < 14){
             [self.nextWeek addObject:currentChore];
-            NSLog(@"%lu next week", [self.nextWeek count]);
         } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7){
             [self.thisWeek addObject:currentChore];
-            NSLog(@"%lu this week", [self.thisWeek count]);
         } else {
             [self.future addObject:currentChore];
-            NSLog(@"%lu future", [self.future count]);
         }
         
         
@@ -196,33 +194,28 @@
     } else {
         NSInteger sectionCount;
         if (section == 0){
-            NSLog(@"This week: %lu", [self.thisWeek count]);
             sectionCount = [self.thisWeek count];
             
         } else if (section == 1){
-            NSLog(@"Next Week: %lu", [self.nextWeek count]);
             sectionCount = [self.nextWeek count];
         } else {
-            NSLog(@"Future: %lu", [self.future count]);
             sectionCount = [self.future count];
         }
         
         return sectionCount;
 
     }
-    
-    
-    
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [self.sectionTitles objectAtIndex:section];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if(self.choreControl.selectedSegmentIndex == 1) {
+        return 1;
+    } else {
     return 3;
+    }
 }
+
+
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
@@ -232,7 +225,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setFont:[UIFont boldSystemFontOfSize:12]];
-    NSString *string =[self.sectionTitles objectAtIndex:section];
+    NSString *string;
+    if(self.choreControl.selectedSegmentIndex == 1){
+        string = [self.sectionTitles objectAtIndex:3];
+    } else {
+        string =[self.sectionTitles objectAtIndex:section];
+    }
     [label setText:string];
     [view addSubview:label];
     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
@@ -247,10 +245,9 @@
         [choreCell setCell:myPastChore withColor:self.backgroundColor];
         choreCell.deadlineLabel.hidden = YES;
     } else {
-        //NSLog(@"row: %ld", indexPath.row);
         Chore *myUpcomingChore;
         if(indexPath.section == 0) {
-            myUpcomingChore = self.upcomingChores[indexPath.section];
+            myUpcomingChore = self.upcomingChores[indexPath.row];
         } else if(indexPath.section == 1) {
             unsigned long actualRow = [self.thisWeek count] + indexPath.row;
             myUpcomingChore = self.upcomingChores[actualRow];

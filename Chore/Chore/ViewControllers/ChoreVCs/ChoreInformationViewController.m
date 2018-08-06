@@ -148,9 +148,6 @@
             float memberIncrement = 0;
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
-            for (Chore *chore in allUncompletedChores) {
-                [self.chores addObject:chore];
-            }
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                 choresDone += [currAssignment.completedChores count];
