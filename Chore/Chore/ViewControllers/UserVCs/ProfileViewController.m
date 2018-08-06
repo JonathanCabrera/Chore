@@ -181,14 +181,14 @@
             [self.upcomingTableView reloadData];
             [self orderChores];
             [self countForSections];
-           
-            
+
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
     
 }
+
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(self.choreControl.selectedSegmentIndex == 1) {
@@ -208,6 +208,7 @@
         }
         
         return sectionCount;
+
     }
     
     

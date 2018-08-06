@@ -140,6 +140,7 @@
         NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
         [allUncompletedChores addObjectsFromArray:uncompletedChores];
     }
+
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             int totalChores = 0;
@@ -147,6 +148,9 @@
             float memberIncrement = 0;
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
+            for (Chore *chore in allUncompletedChores) {
+                [self.chores addObject:chore];
+            }
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                 choresDone += [currAssignment.completedChores count];
@@ -155,12 +159,11 @@
                 } else {
                     memberIncrement = ((float) choresDone)/totalChores;
                 }
-                for (Chore *chore in allUncompletedChores) {
-                    [self.chores addObject:chore];
-                    
-                }
-                [self.tableView reloadData];
             }
+            for (Chore *chore in allUncompletedChores) {
+                [self.chores addObject:chore];
+            }
+            [self.tableView reloadData];
             [self->_groupProgressView setProgress:memberIncrement animated:YES];
             self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement*100];
             [self orderChores];
