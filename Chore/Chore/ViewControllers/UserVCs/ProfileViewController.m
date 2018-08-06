@@ -104,10 +104,24 @@
             self.pastChores = completedChores;
             self.pointsLabel.text = [NSString stringWithFormat:@"%d points", self.numPoints];
             [self.upcomingTableView reloadData];
+            [self orderChores];
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
+}
+
+- (void)orderChores {
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"deadline"
+                                        ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSMutableArray<Chore *> *sortedPastChores = [NSMutableArray arrayWithArray:[self.pastChores
+                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
+    NSMutableArray<Chore *> *sortedUpcomingChores = [NSMutableArray arrayWithArray:[self.upcomingChores
+                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
+    self.pastChores = sortedPastChores;
+    self.upcomingChores = sortedUpcomingChores;
 }
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
