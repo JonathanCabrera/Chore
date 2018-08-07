@@ -189,7 +189,8 @@
     }];
 }
 
-- (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName {
+- (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName withProgress:(float)progress {
+    self.progressToSend = progress;
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     query.limit = 1;
     [query whereKey:@"username" equalTo:userName];
@@ -207,6 +208,7 @@
      if([segue.identifier isEqualToString:@"profileSegue"]) {
          ProfileViewController *profileController = (ProfileViewController *)nextController.topViewController;
          profileController.selectedUser = sender;
+         profileController.progress = self.progressToSend;
      }
  }
 
