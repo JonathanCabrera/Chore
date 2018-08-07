@@ -9,7 +9,6 @@
 #import "ProfileViewController.h"
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>

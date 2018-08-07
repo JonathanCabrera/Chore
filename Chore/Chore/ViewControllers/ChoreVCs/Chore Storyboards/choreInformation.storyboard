@@ -119,6 +119,42 @@
                                                             <outlet property="userNameLabel" destination="h5y-Ai-vii" id="b3a-tz-caD"/>
                                                         </connections>
                                                     </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyCell" rowHeight="80" id="O7W-5W-fsa" customClass="EmptyCell">
+                                                        <rect key="frame" x="0.0" y="146" width="359" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O7W-5W-fsa" id="8cC-hh-C8W">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="79.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="broom" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-A2-lNs">
+                                                                    <rect key="frame" x="15" y="19" width="40" height="40"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="KMp-ls-Al2"/>
+                                                                        <constraint firstAttribute="width" constant="40" id="sHy-zz-Dul"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Chore name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evP-um-FTd">
+                                                                    <rect key="frame" x="63" y="28" width="281" height="22"/>
+                                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="AXy-A2-lNs" firstAttribute="top" secondItem="8cC-hh-C8W" secondAttribute="topMargin" constant="8" id="4pk-v3-MUA"/>
+                                                                <constraint firstItem="AXy-A2-lNs" firstAttribute="leading" secondItem="8cC-hh-C8W" secondAttribute="leadingMargin" id="5Ll-rg-Wmj"/>
+                                                                <constraint firstItem="evP-um-FTd" firstAttribute="top" secondItem="8cC-hh-C8W" secondAttribute="topMargin" constant="17" id="GhP-AQ-ZNh"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="evP-um-FTd" secondAttribute="bottom" constant="19" id="MVh-HK-YiQ"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="AXy-A2-lNs" secondAttribute="bottom" constant="8" id="YYZ-ip-Xbl"/>
+                                                                <constraint firstItem="evP-um-FTd" firstAttribute="trailing" secondItem="8cC-hh-C8W" secondAttribute="trailingMargin" id="cll-7d-RvH"/>
+                                                                <constraint firstItem="evP-um-FTd" firstAttribute="leading" secondItem="AXy-A2-lNs" secondAttribute="trailing" constant="8" id="oKp-91-vfQ"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="emptyView" destination="8cC-hh-C8W" id="NWP-9S-7lE"/>
+                                                            <outlet property="noChoreLabel" destination="evP-um-FTd" id="36e-kS-4AU"/>
+                                                        </connections>
+                                                    </tableViewCell>
                                                 </prototypes>
                                             </tableView>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Sf-DJ-vpb">
@@ -227,6 +263,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="broom" width="96" height="96"/>
         <image name="washing" width="30" height="30"/>
     </resources>
 </document>
