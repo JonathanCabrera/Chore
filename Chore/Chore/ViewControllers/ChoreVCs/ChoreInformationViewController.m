@@ -60,7 +60,6 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-    
     NSString *first = @"This Week";
     NSString *second = @"Next Week";
     NSString *third = @"Future";
@@ -329,12 +328,12 @@
                         [self.future removeObjectAtIndex:indexPath.row];
         
                     }
-                    [tableView beginUpdates];
+                    
                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                     [object deleteInBackground];
                     [tableView reloadData];
                     [self.groupProgressView reloadInputViews];
-                    [tableView endUpdates];
+                     
                 }
             
             }];
