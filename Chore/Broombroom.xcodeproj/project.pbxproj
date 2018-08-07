@@ -38,6 +38,8 @@
 		1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */; };
 		1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */; };
 		1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */; };
+		1EB471B42118ED69001685AF /* badge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB471B32118ED69001685AF /* badge.storyboard */; };
+		1EB471B72118ED90001685AF /* BadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB471B62118ED90001685AF /* BadgeViewController.m */; };
 		1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */; };
 		2722414852AE3DDED3FC43FB /* libPods-Broombroom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E6C33D93326BB49F1872DB /* libPods-Broombroom.a */; };
 		6F5BA5EB884CA74C09E3F13D /* libPods-BroombroomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D30A3AACFEAD568FDDB631 /* libPods-BroombroomTests.a */; };
@@ -127,6 +129,9 @@
 		1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = createChore.storyboard; sourceTree = "<group>"; };
 		1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateChoreViewController.h; sourceTree = "<group>"; };
 		1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateChoreViewController.m; sourceTree = "<group>"; };
+		1EB471B32118ED69001685AF /* badge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = badge.storyboard; sourceTree = "<group>"; };
+		1EB471B52118ED90001685AF /* BadgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BadgeViewController.h; sourceTree = "<group>"; };
+		1EB471B62118ED90001685AF /* BadgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeViewController.m; sourceTree = "<group>"; };
 		1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EDD73272113A36D0049389C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.35.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		1EDD73292113A3700049389C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Downloads/FacebookSDKs-iOS-4.35.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -374,6 +379,9 @@
 				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
 				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
 				9E9FB06120FE8B22003F458E /* profile.storyboard */,
+				1EB471B32118ED69001685AF /* badge.storyboard */,
+				1EB471B52118ED90001685AF /* BadgeViewController.h */,
+				1EB471B62118ED90001685AF /* BadgeViewController.m */,
 			);
 			path = UserVCs;
 			sourceTree = "<group>";
@@ -531,6 +539,7 @@
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
 				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
+				1EB471B42118ED69001685AF /* badge.storyboard in Resources */,
 				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,
 				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
 				1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */,
@@ -653,6 +662,7 @@
 			files = (
 				1E1E3C2120FD40DA003C87B4 /* main.m in Sources */,
 				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
+				1EB471B72118ED90001685AF /* BadgeViewController.m in Sources */,
 				9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
 				1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */,

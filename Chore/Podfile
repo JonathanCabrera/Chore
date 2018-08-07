@@ -12,9 +12,10 @@ target 'Broombroom' do
 	pod 'ParseUI'
 	pod 'MBProgressHUD'
 	pod 'DZNEmptyDataSet'
-	pod 'THCalendarDatePicker', '~> 1.2.6'
 	pod 'STPopup'
 	pod 'LCModal', '~> 1.0'
+	pod 'THCalendarDatePicker', '~> 1.2.6'
+	pod 'KLCPopup'
 
   target 'BroombroomTests' do
     inherit! :search_paths

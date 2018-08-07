@@ -22,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *trophyButton;
+@property (weak, nonatomic) IBOutlet UIButton *badgesLabel;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (strong, nonatomic) NSMutableArray<Chore *> *upcomingChores;
@@ -56,7 +57,6 @@
         self.selectedUser = [PFUser currentUser];
     }
     [self setLayout];
-    self.activityIndicator.hidesWhenStopped = YES;
     [self refresh];
     NSString *first = @"This Week";
     NSString *second = @"Next Week";
@@ -135,23 +135,24 @@
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.pointsLabel.textColor = darkGreenColor;
+    self.badgesLabel.tintColor = darkGreenColor;
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
+        [self.trophyButton setValue:@"NO" forKey:@"hidden"];
         [self.backButton setValue:@YES forKey:@"hidden"];
     } else {
         [self.editButton setValue:@YES forKeyPath:@"hidden"];
+        [self.trophyButton setValue:@"YES" forKey:@"hidden"];
     }
 }
 
 - (void)refresh {
-    [self.activityIndicator startAnimating];
     [self fetchChores];
     self.profilePicture.file = self.selectedUser[@"profilePic"];
     [self.profilePicture loadInBackground];
-    [self.activityIndicator stopAnimating];
 }
 
 - (void)fetchChores{
@@ -271,9 +272,7 @@
 }
 
 - (IBAction)didTapControl:(id)sender {
-    [self.activityIndicator startAnimating];
     [self.upcomingTableView reloadData];
-    [self.activityIndicator stopAnimating];
 }
 
 - (IBAction)didTapBack:(id)sender {
@@ -363,6 +362,10 @@
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor],
                                  NSParagraphStyleAttributeName: paragraph};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (IBAction)didTapBadge:(id)sender {
+    [self performSegueWithIdentifier:@"badgeSegue" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {

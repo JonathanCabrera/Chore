@@ -31,7 +31,7 @@
                                 <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bigbroom" translatesAutoresizingMaskIntoConstraints="NO" id="jyn-y9-1H7">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="broom" translatesAutoresizingMaskIntoConstraints="NO" id="jyn-y9-1H7">
                                 <rect key="frame" x="126" y="259" width="123" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -54,6 +54,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bigbroom" width="96" height="96"/>
+        <image name="broom" width="96" height="96"/>
     </resources>
 </document>
