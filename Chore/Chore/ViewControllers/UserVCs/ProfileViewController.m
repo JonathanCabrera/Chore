@@ -224,9 +224,10 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     [view setBackgroundColor:color];
-
+    view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont boldSystemFontOfSize:12]];
+    [label setTextColor:[UIColor whiteColor]];
+    label.font = [UIFont fontWithName:@"Avenir" size:18];
     NSString *string;
     if(self.choreControl.selectedSegmentIndex == 1){
         string = [self.sectionTitles objectAtIndex:3];
@@ -235,7 +236,6 @@
     }
     [label setText:string];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
     return view;
 }
 

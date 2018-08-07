@@ -59,6 +59,7 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
     
     NSString *first = @"This Week";
     NSString *second = @"Next Week";
@@ -230,9 +231,10 @@
     } else if(indexPath.section == 1) {
         unsigned long actualRow = [self.thisWeek count] + indexPath.row;
         myUpcomingChore = self.chores[actualRow];
-    } else {
+    } else if(indexPath.section ==2){
         unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
         myUpcomingChore = self.chores[actualRow];
+        
     }
     
     [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
@@ -264,6 +266,13 @@
     }];
 }
 
+-(void) reloadTable
+{
+    [self fetchChores];
+    [self.tableView reloadData];
+    
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 28;
 }
@@ -285,10 +294,10 @@
         [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
                 self.assignment = posts[0];
                 NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
-                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
-                Chore* removedChore = newUncompleted[removeIndex];
-                [removedChore fetchIfNeeded];
-                [newUncompleted removeObjectAtIndex:removeIndex];
+//                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
+//                Chore* removedChore = newUncompleted[removeIndex];
+//                [removedChore fetchIfNeeded];
+//                [newUncompleted removeObjectAtIndex:removeIndex];
                 [self.assignment setObject:newUncompleted forKey:@"uncompletedChores"];
                 [self.assignment saveInBackground];
                 [self.groupProgressView reloadInputViews];
@@ -301,25 +310,32 @@
         [choreQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             
                 if (object != nil) {
-                    [self.chores removeObjectAtIndex:indexPath.row];
-
-                   [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
-                    [object deleteInBackground];
+                    if(indexPath.section == 0) {
+                        [self.chores removeObjectAtIndex:indexPath.row];
+                    } else if(indexPath.section == 1) {
+                        unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+                        [self.chores removeObjectAtIndex:actualRow - 1];
+                    } else {
+                        unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
+                        [self.chores removeObjectAtIndex:actualRow - 1];
+        
+                    }
+                    [tableView beginUpdates];
+                    //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                    //[object deleteInBackground];
                     [tableView reloadData];
                     [self.groupProgressView reloadInputViews];
-                  
-                    
+                    [tableView endUpdates];
                 }
+            
             }];
     }
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   
         NSInteger sectionCount;
         if (section == 0){
             sectionCount = [self.thisWeek count];
-            
         } else if (section == 1){
             sectionCount = [self.nextWeek count];
         } else {
@@ -332,9 +348,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-        return 3;
-    
+    return 3;
 }
 
 
@@ -346,15 +360,13 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     [view setBackgroundColor:color];
-    
+    view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont boldSystemFontOfSize:12]];
-
+    [label setTextColor:[UIColor whiteColor]];
+    label.font = [UIFont fontWithName:@"Avenir" size:18];
     NSString *string = [self.sectionTitles objectAtIndex:section];
-    
     [label setText:string];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
     return view;
 }
 

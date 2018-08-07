@@ -76,6 +76,17 @@
                                     <action selector="didTapSave:" destination="k3H-f4-if4" eventType="touchUpInside" id="ZEO-G4-Lnm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49e-34-epQ">
+                                <rect key="frame" x="11" y="13" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTapCancel:" destination="k3H-f4-if4" eventType="touchUpInside" id="EBz-hK-E4k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -100,6 +111,7 @@
                         <viewLayoutGuide key="safeArea" id="xFL-I1-alo"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="49e-34-epQ" id="tFG-xl-1sC"/>
                         <outlet property="endDatePicker" destination="G2G-2E-3WA" id="bzJ-tp-2wF"/>
                         <outlet property="pickerView" destination="bKE-4B-zlT" id="NQQ-wQ-a4X"/>
                         <outlet property="startDatePicker" destination="2qR-lI-Muo" id="VrF-37-7zk"/>
