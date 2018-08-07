@@ -14,6 +14,7 @@
 #import "HomeViewController.h"
 #import "ChoreDetailsViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "EmptyCell.h"
 
 @protocol profileViewControllerDelegate;
 
@@ -79,26 +80,20 @@
     self.upcomingChores = sortedEventArray;
 }
 
-- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-{
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
     NSDate *toDate;
-    
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&fromDate
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
                  interval:NULL forDate:toDateTime];
-    
     NSDateComponents *difference = [calendar components:NSCalendarUnitDay
                                                fromDate:fromDate toDate:toDate options:0];
-    
     return [difference day];
 }
 
 - (void) countForSections{
-    
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
@@ -163,7 +158,6 @@
     [query includeKey:@"uncompletedChores"];
     [query includeKey:@"completedChores"];
     
-    
     PFObject* list = [query getFirstObject];
     NSMutableArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
     NSMutableArray* completedChores = [list objectForKey:@"completedChores"];
@@ -183,9 +177,7 @@
             NSLog(@" %@", error.localizedDescription);
         }
     }];
-    
 }
-
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(self.choreControl.selectedSegmentIndex == 1) {
@@ -194,15 +186,16 @@
         NSInteger sectionCount;
         if (section == 0){
             sectionCount = [self.thisWeek count];
-            
         } else if (section == 1){
             sectionCount = [self.nextWeek count];
         } else {
             sectionCount = [self.future count];
         }
-        
-        return sectionCount;
-
+        if(sectionCount == 0) {
+            return 1;
+        } else {
+            return sectionCount;
+        }
     }
 }
 
@@ -213,8 +206,6 @@
     return 3;
     }
 }
-
-
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
@@ -239,33 +230,63 @@
     return view;
 }
 
-
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
     if(self.choreControl.selectedSegmentIndex == 1) {
-        Chore *myPastChore = self.pastChores[indexPath.row];
-        [choreCell setCell:myPastChore withColor:self.backgroundColor];
-        choreCell.deadlineLabel.hidden = YES;
+        if([self.pastChores count] == 0) {
+            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+            [emptyCell setCell:@"No completed chores"];
+            return emptyCell;
+        } else {
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+            choreCell.delegate = self;
+            Chore *myPastChore = self.pastChores[indexPath.row];
+            [choreCell setCell:myPastChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = YES;
+            return choreCell;
+        }
     } else {
         Chore *myUpcomingChore;
         if(indexPath.section == 0) {
-            myUpcomingChore = self.upcomingChores[indexPath.row];
+            if([self.thisWeek count] == 0) {
+                EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+                [emptyCell setCell:@"No chores for this week"];
+                return emptyCell;
+            } else {
+                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+                myUpcomingChore = self.upcomingChores[indexPath.row];
+                choreCell.delegate = self;
+                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+                choreCell.deadlineLabel.hidden = NO;
+                return choreCell;
+            }
         } else if(indexPath.section == 1) {
-            unsigned long actualRow = [self.thisWeek count] + indexPath.row;
-            myUpcomingChore = self.upcomingChores[actualRow];
+            if([self.nextWeek count] == 0) {
+                EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+                [emptyCell setCell:@"No chores for next week"];
+                return emptyCell;
+            } else {
+                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+                unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+                myUpcomingChore = self.upcomingChores[actualRow];
+                choreCell.delegate = self;
+                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+                choreCell.deadlineLabel.hidden = NO;
+                return choreCell;
+            }
+        } else if([self.future count] == 0) {
+            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+            [emptyCell setCell:@"No chores for the future"];
+            return emptyCell;
         } else {
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
             unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
             myUpcomingChore = self.upcomingChores[actualRow];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
         }
-
-        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-        choreCell.deadlineLabel.hidden = NO;
-       
     }
-    choreCell.delegate = self;
-    return choreCell;
-    
-
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
