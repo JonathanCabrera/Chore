@@ -9,6 +9,7 @@
 #import "RepeatChoreViewController.h"
 #import "UIViewController+KNSemiModal.h"
 #import "LoginViewController.h"
+#import "AddChoreViewController.h"
 
 @interface RepeatChoreViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
@@ -19,6 +20,9 @@
 @property (nonatomic, strong) NSString *repeating;
 @property (nonatomic, strong) NSString *weekday;
 @property (nonatomic, strong) NSDateFormatter *formatter;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) UIViewController *addChoreVC;
+
 
 @end
 
@@ -95,6 +99,10 @@ numberOfRowsInComponent:(NSInteger)component {
     } else {
         self.repeating = self.weekday;
     }
+}
+- (IBAction)onTapCancel:(id)sender {
+    //[self presentedViewController];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
