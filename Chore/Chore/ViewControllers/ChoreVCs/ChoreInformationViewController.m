@@ -235,6 +235,12 @@
         unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
         myUpcomingChore = self.chores[actualRow];
         
+    } else if ([self.thisWeek count] == 0){
+        
+    } else if ([self.nextWeek count] == 0){
+        
+    } else if ([self.future count] == 0){
+        
     }
     
     [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
@@ -349,6 +355,14 @@
         
     
 }
+
+
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 25;
+}
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;

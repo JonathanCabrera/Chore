@@ -45,13 +45,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uncompleted Chores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-2D-YvJ">
-                                                <rect key="frame" x="20" y="121" width="197" height="27.5"/>
+                                                <rect key="frame" x="20" y="115" width="197" height="27.5"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
-                                                <rect key="frame" x="8" y="152" width="359" height="409"/>
+                                                <rect key="frame" x="8" y="152.5" width="359" height="408.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="118" id="R11-b3-5jg" customClass="ChoreInformationCell">
@@ -121,8 +121,8 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Sf-DJ-vpb">
-                                                <rect key="frame" x="0.0" y="102" width="375" height="2"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hRe-u0-eGx">
+                                                <rect key="frame" x="0.0" y="97" width="375" height="2"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
@@ -135,13 +135,13 @@
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="20" id="7uW-GP-i4V"/>
                                             <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="8" id="9pd-xd-qeu"/>
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="leading" secondItem="qDo-UB-Zos" secondAttribute="leading" id="D8G-cS-geH"/>
-                                            <constraint firstItem="NC0-2D-YvJ" firstAttribute="top" secondItem="33H-I9-TKW" secondAttribute="bottom" constant="45" id="H88-l6-CBl"/>
                                             <constraint firstAttribute="trailing" secondItem="sWK-yv-glH" secondAttribute="trailing" constant="8" id="JBm-Ko-Zl8"/>
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="top" secondItem="Yx0-ve-y2a" secondAttribute="bottom" constant="8" id="JUa-j9-Esf"/>
-                                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="NC0-2D-YvJ" secondAttribute="bottom" constant="3.5" id="LdI-gL-NgT"/>
+                                            <constraint firstItem="NC0-2D-YvJ" firstAttribute="top" secondItem="33H-I9-TKW" secondAttribute="bottom" constant="39" id="Ubd-ZH-Vek"/>
                                             <constraint firstItem="NC0-2D-YvJ" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="20" id="Uf7-99-qvS"/>
                                             <constraint firstItem="Yx0-ve-y2a" firstAttribute="top" secondItem="fha-xK-4bT" secondAttribute="top" constant="20" id="c2z-IE-Wnt"/>
                                             <constraint firstAttribute="height" constant="600" id="cyr-eE-Ot4"/>
+                                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="NC0-2D-YvJ" secondAttribute="bottom" constant="10" id="fMI-Um-ub2"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Yx0-ve-y2a" secondAttribute="trailing" constant="56" id="hrp-LX-HIW"/>
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="centerX" secondItem="fha-xK-4bT" secondAttribute="centerX" id="nUY-kB-BG0"/>
                                             <constraint firstItem="qDo-UB-Zos" firstAttribute="top" secondItem="fha-xK-4bT" secondAttribute="top" constant="20" id="vrq-cX-oVZ"/>
