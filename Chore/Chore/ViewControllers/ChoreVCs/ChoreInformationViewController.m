@@ -197,7 +197,7 @@
     if(indexPath.section == 0) {
         if([self.overDue count] == 0) {
             EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores Overdue!"];
+            [emptyCell setCell:@"No chores overdue!"];
             return emptyCell;
         } else {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];

@@ -33,12 +33,13 @@
     [self.formatter setDateFormat:@"EEEE"];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
-    self.repeating = @"Daily";
+    self.repeating = @"Does not repeat";
+    self.startDate = [NSDate date];
+    self.endDate = [NSDate date];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)didChangeStartDate:(id)sender {
@@ -52,14 +53,7 @@
 }
 
 - (IBAction)didTapSave:(id)sender {
-    if(self.startDate == nil) {
-        [LoginViewController presentAlertWithTitle:@"Please select a start date" fromViewController:self];
-    }
-    if(self.endDate == nil) {
-        [LoginViewController presentAlertWithTitle:@"Please select an end date" fromViewController:self];
-    }
-    if ([self.startDate compare:self.endDate] == NSOrderedDescending) {
-        NSLog(@"here");
+    if ([self.startDate compare:self.endDate] == NSOrderedDescending && ![self.repeating isEqualToString:@"Does not repeat"]) {
         [LoginViewController presentAlertWithTitle:@"Start date must occur before end date" fromViewController:self];
     }
     self.weekday = [self.formatter stringFromDate:self.startDate];
@@ -72,16 +66,19 @@
 
 - (NSInteger)pickerView:(UIPickerView *)thePickerView
 numberOfRowsInComponent:(NSInteger)component {
-    return 2;
+    return 3;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSString * title = nil;
     switch(row) {
         case 0:
-            title = @"Daily";
+            title = @"Does not repeat";
             break;
         case 1:
+            title = @"Daily";
+            break;
+        case 2:
             if(self.weekday == nil) {
                 title = @"Weekly";
             } else {
@@ -94,6 +91,8 @@ numberOfRowsInComponent:(NSInteger)component {
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if(row == 0) {
+        self.repeating = @"Does not repeat";
+    } else if(row == 1) {
         self.repeating = @"Daily";
     } else {
         self.repeating = self.weekday;

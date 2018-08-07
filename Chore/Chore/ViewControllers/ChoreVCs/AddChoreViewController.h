@@ -13,6 +13,5 @@
 @interface AddChoreViewController : UIViewController
 
 @property (strong, nonatomic) Group *currentGroup;
-@property (nonatomic, retain) NSDate * currDate;
 
 @end

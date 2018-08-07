@@ -16,6 +16,7 @@
 #import "UIViewController+LCModal.h"
 #import "RepeatChoreViewController.h"
 #import "MBProgressHUD.h"
+#import "LoginViewController.h"
 
 @interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate, RepeatChoreViewControllerDelegate>
 
@@ -56,7 +57,6 @@
     self.choreMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.choreSearchBar.delegate = self;
-    self.currDate = [NSDate date];
     self.repeating = NO;
     self.doneSaving = YES;
     self.doneCreating = NO;
@@ -104,10 +104,10 @@
     self.selectChoreButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
 }
 
-- (void)refreshDeadline: (NSDate *)deadline {
+- (void)refreshDeadline {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, yyyy"];
-    NSString *formattedStartDate = [formatter stringFromDate:deadline];
+    NSString *formattedStartDate = [formatter stringFromDate:self.startDate];
     if(self.repeating == NO) {
         self.deadlineButton.titleLabel.text = [NSString stringWithFormat:@"%@", formattedStartDate];
     } else {
@@ -229,16 +229,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency {
-    [self lc_dismissViewControllerWithCompletion:nil];
-    self.repeating = YES;
-    self.startDate = startDate;
-    self.endDate = endDate;
-    self.frequency = frequency;
-    [self refreshDeadline:self.startDate];
-    self.deadlineButton.backgroundColor = self.backgroundColor;
-}
-
 - (void)assignChore:(NSString *)name withDeadline:(NSDate *)deadline {
     PFQuery *query = [PFQuery queryWithClassName:@"Chore"];
     [query whereKey:@"name" equalTo:name];
@@ -276,9 +266,21 @@
 
 - (IBAction)saveAssignment:(id)sender {
     [self closeMenus];
+    if(self.startDate == nil) {
+        [LoginViewController presentAlertWithTitle:@"Please select a deadline" fromViewController:self];
+        return;
+    }
+    if(self.userToAssign == nil) {
+        [LoginViewController presentAlertWithTitle:@"Please select a user" fromViewController:self];
+        return;
+    }
+    if(self.choreToAssign == nil) {
+        [LoginViewController presentAlertWithTitle:@"Please select a chore" fromViewController:self];
+        return;
+    }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     if(self.repeating == NO) {
-        [self createChore:self.currDate];
+        [self createChore:self.startDate];
     } else {
         NSDate *newStartDate = [NSDate new];
         NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -317,6 +319,20 @@
     repeatController.delegate = self;
     repeatController.view.frame = CGRectMake(0.0, 0.0, 375, 475);
     [self lc_presentViewController:repeatController completion:nil];
+}
+
+- (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency {
+    [self lc_dismissViewControllerWithCompletion:nil];
+    if([frequency isEqualToString:@"Does not repeat"]) {
+        self.repeating = NO;
+    } else {
+        self.repeating = YES;
+    }
+    self.startDate = startDate;
+    self.endDate = endDate;
+    self.frequency = frequency;
+    [self refreshDeadline];
+    self.deadlineButton.backgroundColor = self.backgroundColor;
 }
 
 - (IBAction)didTapCustom:(id)sender {
