@@ -2,6 +2,7 @@ PODS:
   - Bolts/Tasks (1.9.0)
   - CircleProgressBar (0.32)
   - DZNEmptyDataSet (1.8.1)
+  - KLCPopup (1.0)
   - KNSemiModalViewController_hons82 (0.4.5)
   - LCModal (1.0.0)
   - MBProgressHUD (1.1.0)
@@ -19,6 +20,7 @@ PODS:
 DEPENDENCIES:
   - CircleProgressBar (~> 0.32)
   - DZNEmptyDataSet
+  - KLCPopup
   - LCModal (~> 1.0)
   - MBProgressHUD
   - Parse
@@ -31,6 +33,7 @@ SPEC REPOS:
     - Bolts
     - CircleProgressBar
     - DZNEmptyDataSet
+    - KLCPopup
     - KNSemiModalViewController_hons82
     - LCModal
     - MBProgressHUD
@@ -43,6 +46,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CircleProgressBar: 3920079be5224b62b3d9ed6eeb23ac01c835b681
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  KLCPopup: 76c5a19227977f1e53d85236f9ef42257c168d98
   KNSemiModalViewController_hons82: 0ef0ef5ed7c3814ddd0fa9c884ab74d5495de16b
   LCModal: 94a748e94ee457067e3e15a2e1198af54a5b1407
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
@@ -51,6 +55,6 @@ SPEC CHECKSUMS:
   STPopup: da1167250a01584af7bcccb898653185f223ec46
   THCalendarDatePicker: fd1a1103ae0d1d1f2d0f9a1463a3f628a23a25a5
 
-PODFILE CHECKSUM: 519edb880e2c3925a85dba572398b89ef629f25d
+PODFILE CHECKSUM: f65751299a4c954f83b1ab6ee2aba924de266c2c
 
 COCOAPODS: 1.5.3

@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *trophyButton;
+@property (weak, nonatomic) IBOutlet UIButton *badgesLabel;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (strong, nonatomic) NSMutableArray<Chore *> *upcomingChores;
@@ -65,6 +66,7 @@
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
     self.pointsLabel.textColor = darkGreenColor;
+    self.badgesLabel.tintColor = darkGreenColor;
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
@@ -258,7 +260,6 @@
 - (IBAction)didTapBadge:(id)sender {
     [self performSegueWithIdentifier:@"badgeSegue" sender:nil];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

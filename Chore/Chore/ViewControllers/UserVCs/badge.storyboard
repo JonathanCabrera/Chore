@@ -18,67 +18,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPW-i7-jdB">
-                                <rect key="frame" x="144" y="101" width="88" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
-                                <color key="textColor" red="0.15383914109999999" green="0.38479507390000001" blue="0.2371084343" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfX-1n-0yN">
                                 <rect key="frame" x="16" y="178" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="one-badge"/>
+                                <connections>
+                                    <action selector="didTapOne:" destination="zid-JS-3VS" eventType="touchUpInside" id="mBX-QG-r5j"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0St-tP-7QC">
                                 <rect key="frame" x="147" y="178" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="high-five (1)"/>
+                                <connections>
+                                    <action selector="didTapFive:" destination="zid-JS-3VS" eventType="touchUpInside" id="kuR-mJ-OwR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRk-JZ-PiH">
-                                <rect key="frame" x="16" y="334" width="100" height="100"/>
+                                <rect key="frame" x="16" y="344" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="fist (1)"/>
+                                <connections>
+                                    <action selector="didTapGroup:" destination="zid-JS-3VS" eventType="touchUpInside" id="xGB-oI-NYx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-IM-YdM">
                                 <rect key="frame" x="147" y="344" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="washing-plate (1)"/>
+                                <connections>
+                                    <action selector="didTapKitchen:" destination="zid-JS-3VS" eventType="touchUpInside" id="L3v-AK-LHX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKY-ah-SYI">
-                                <rect key="frame" x="259" y="334" width="100" height="100"/>
+                                <rect key="frame" x="269" y="344" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="recycle"/>
+                                <connections>
+                                    <action selector="didTapRecycle:" destination="zid-JS-3VS" eventType="touchUpInside" id="Yis-IA-RRN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZS-Dc-jfd">
                                 <rect key="frame" x="16" y="504" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="rubber-duck"/>
+                                <connections>
+                                    <action selector="didTapBathroom:" destination="zid-JS-3VS" eventType="touchUpInside" id="AwL-3z-T5T"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9D-2c-shc">
-                                <rect key="frame" x="137" y="504" width="90" height="90"/>
+                                <rect key="frame" x="147" y="504" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="washing-machine"/>
+                                <connections>
+                                    <action selector="didTapSilver:" destination="zid-JS-3VS" eventType="touchUpInside" id="Pzj-J0-g85"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4va-19-jlh">
-                                <rect key="frame" x="259" y="504" width="100" height="100"/>
+                                <rect key="frame" x="269" y="504" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="broom-badge"/>
+                                <connections>
+                                    <action selector="didTapGold:" destination="zid-JS-3VS" eventType="touchUpInside" id="d2W-Cl-rB1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQc-fh-8w5">
                                 <rect key="frame" x="269" y="178" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="medal"/>
+                                <connections>
+                                    <action selector="didTapTen:" destination="zid-JS-3VS" eventType="touchUpInside" id="b6k-CJ-f8D"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="07h-Gt-kxE">
+                                <rect key="frame" x="43" y="243" width="288" height="191"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ukt-Ao-EPb">
+                                        <rect key="frame" x="99" y="24" width="90" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tigurnfsakmldskjfnbguroifepwas,l" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GY-X9-4u6">
+                                        <rect key="frame" x="18" y="130" width="252" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" red="0.15383914109999999" green="0.38479507390000001" blue="0.2371084343" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPW-i7-jdB">
+                                <rect key="frame" x="131" y="101" width="112" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="6lc-9N-kvV"/>
@@ -90,6 +126,20 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bathroomButton" destination="NZS-Dc-jfd" id="nbi-ZU-Eu4"/>
+                        <outlet property="fiveButton" destination="0St-tP-7QC" id="p71-nG-1t9"/>
+                        <outlet property="goldButton" destination="4va-19-jlh" id="ME2-TW-lf0"/>
+                        <outlet property="groupButton" destination="WRk-JZ-PiH" id="yi9-pY-GCO"/>
+                        <outlet property="kitchenButton" destination="Xxe-IM-YdM" id="zGl-78-yte"/>
+                        <outlet property="oneButton" destination="FfX-1n-0yN" id="bo0-m3-lGS"/>
+                        <outlet property="popupImage" destination="Ukt-Ao-EPb" id="a1X-A0-Y27"/>
+                        <outlet property="popupLabel" destination="5GY-X9-4u6" id="V7m-2k-2KJ"/>
+                        <outlet property="popupView" destination="07h-Gt-kxE" id="24z-FK-Ibp"/>
+                        <outlet property="recycleButton" destination="XKY-ah-SYI" id="RlC-PJ-au4"/>
+                        <outlet property="silverButton" destination="p9D-2c-shc" id="fXv-I1-JGO"/>
+                        <outlet property="tenButton" destination="AQc-fh-8w5" id="ygg-8J-WzP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLV-sZ-x3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -114,15 +164,4 @@
             <point key="canvasLocation" x="629.60000000000002" y="-497.00149925037488"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="broom-badge" width="100" height="100"/>
-        <image name="fist (1)" width="128" height="128"/>
-        <image name="high-five (1)" width="128" height="128"/>
-        <image name="medal" width="64" height="64"/>
-        <image name="one-badge" width="100" height="100"/>
-        <image name="recycle" width="100" height="100"/>
-        <image name="rubber-duck" width="128" height="128"/>
-        <image name="washing-machine" width="128" height="128"/>
-        <image name="washing-plate (1)" width="128" height="128"/>
-    </resources>
 </document>
