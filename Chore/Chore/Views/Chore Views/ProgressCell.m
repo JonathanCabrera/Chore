@@ -29,6 +29,8 @@
     self.userNameLabel.textColor = unfinished;
     self.progressLabel.textColor = unfinished;
     [_progressView setProgress:number animated:YES];
+    _progressView.layer.cornerRadius = 4;
+    _progressView.clipsToBounds = true;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUser)];
     [self addGestureRecognizer:tapRecognizer];
 }

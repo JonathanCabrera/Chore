@@ -33,6 +33,14 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
+@property (strong, nonatomic) NSMutableDictionary *weeklyChores;
+@property (strong, nonatomic) NSMutableArray *sectionTitles;
+@property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
+@property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
+@property (strong, nonatomic) NSMutableArray<Chore *> *future;
+@property (strong, nonatomic) NSMutableArray *pastTitle;
+
+
 
 @end
 
@@ -50,12 +58,73 @@
     }
     [self setLayout];
     [self refresh];
+    NSString *first = @"This Week";
+    NSString *second = @"Next Week";
+    NSString *third = @"Future";
+    NSString *past = @"Completed";
+    self.sectionTitles = [NSMutableArray new];
+    [self.sectionTitles insertObject:first atIndex:0];
+    [self.sectionTitles insertObject:second atIndex:1];
+    [self.sectionTitles insertObject:third atIndex:2];
+    [self.sectionTitles insertObject:past atIndex:3];
+
+}
+
+- (void)orderChores {
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"deadline"
+                                        ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.upcomingChores
+                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
+    self.upcomingChores = sortedEventArray;
+}
+
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
+{
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&fromDate
+                 interval:NULL forDate:fromDateTime];
+    [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
+                 interval:NULL forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:NSCalendarUnitDay
+                                               fromDate:fromDate toDate:toDate options:0];
+    
+    return [difference day];
+}
+
+- (void) countForSections{
+    
+    self.thisWeek = [NSMutableArray array];
+    self.nextWeek = [NSMutableArray array];
+    self.future = [NSMutableArray array];
+    NSDate *today = [NSDate date];
+    
+    for (Chore *currentChore in self.upcomingChores){
+        
+        if ([self daysBetweenDate:today andDate:currentChore.deadline] > 7 && [self daysBetweenDate:today andDate:currentChore.deadline] < 14){
+            [self.nextWeek addObject:currentChore];
+        } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7){
+            [self.thisWeek addObject:currentChore];
+        } else {
+            [self.future addObject:currentChore];
+        }
+        
+        
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.choreControl.selectedSegmentIndex = 0;
     [self refresh];
+    [self orderChores];
 }
+
 
 - (void)setLayout {
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
@@ -93,6 +162,7 @@
     [query includeKey:@"uncompletedChores"];
     [query includeKey:@"completedChores"];
     
+    
     PFObject* list = [query getFirstObject];
     NSMutableArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
     NSMutableArray* completedChores = [list objectForKey:@"completedChores"];
@@ -106,58 +176,95 @@
             self.pointsLabel.text = [NSString stringWithFormat:@"%d points", self.numPoints];
             [self.upcomingTableView reloadData];
             [self orderChores];
+            [self countForSections];
+
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
+    
 }
 
-- (void)orderChores {
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"deadline"
-                                        ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-    NSMutableArray<Chore *> *sortedPastChores = [NSMutableArray arrayWithArray:[self.pastChores
-                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
-    NSMutableArray<Chore *> *sortedUpcomingChores = [NSMutableArray arrayWithArray:[self.upcomingChores
-                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
-    self.pastChores = sortedPastChores;
-    self.upcomingChores = sortedUpcomingChores;
-}
-
-- (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-    if(self.choreControl.selectedSegmentIndex == 1) {
-        Chore *myPastChore = self.pastChores[indexPath.section];
-        [choreCell setCell:myPastChore withColor:self.backgroundColor];
-    } else {
-        Chore *myUpcomingChore = self.upcomingChores[indexPath.section];
-        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-    }
-    choreCell.delegate = self;
-    return choreCell;
-}
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if(self.choreControl.selectedSegmentIndex == 1) {
+        return [self.pastChores count];
+    } else {
+        NSInteger sectionCount;
+        if (section == 0){
+            sectionCount = [self.thisWeek count];
+            
+        } else if (section == 1){
+            sectionCount = [self.nextWeek count];
+        } else {
+            sectionCount = [self.future count];
+        }
+        
+        return sectionCount;
+
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if(self.choreControl.selectedSegmentIndex == 1) {
-        return [self.pastChores count];
+        return 1;
     } else {
-        return [self.upcomingChores count];
+    return 3;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
+
+
+- (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [UIView new];
-    [headerView setBackgroundColor:[UIColor whiteColor]];
-    return headerView;
+    UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    [view setBackgroundColor:color];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont boldSystemFontOfSize:12]];
+    NSString *string;
+    if(self.choreControl.selectedSegmentIndex == 1){
+        string = [self.sectionTitles objectAtIndex:3];
+    } else {
+        string =[self.sectionTitles objectAtIndex:section];
+    }
+    [label setText:string];
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]];
+    return view;
+}
+
+
+- (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+    if(self.choreControl.selectedSegmentIndex == 1) {
+        Chore *myPastChore = self.pastChores[indexPath.row];
+        [choreCell setCell:myPastChore withColor:self.backgroundColor];
+        choreCell.deadlineLabel.hidden = YES;
+    } else {
+        Chore *myUpcomingChore;
+        if(indexPath.section == 0) {
+            myUpcomingChore = self.upcomingChores[indexPath.row];
+        } else if(indexPath.section == 1) {
+            unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+            myUpcomingChore = self.upcomingChores[actualRow];
+        } else {
+            unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
+            myUpcomingChore = self.upcomingChores[actualRow];
+        }
+
+        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+        choreCell.deadlineLabel.hidden = NO;
+       
+    }
+    choreCell.delegate = self;
+    return choreCell;
+    
+
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
