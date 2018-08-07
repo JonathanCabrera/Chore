@@ -20,7 +20,6 @@
 @property (nonatomic, strong) NSString *repeating;
 @property (nonatomic, strong) NSString *weekday;
 @property (nonatomic, strong) NSDateFormatter *formatter;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) UIViewController *addChoreVC;
 
 
@@ -99,10 +98,6 @@ numberOfRowsInComponent:(NSInteger)component {
     } else {
         self.repeating = self.weekday;
     }
-}
-- (IBAction)onTapCancel:(id)sender {
-    //[self presentedViewController];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

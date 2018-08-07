@@ -162,6 +162,20 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
+                                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLx-zu-Zkz">
+                                                <rect key="frame" x="254" y="109" width="111" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="contentStretch" x="0.0" y="0.0" width="0.20000000000000001" height="0.45000000000000001"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <color key="tintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="   Assign chore   ">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapAdd:" destination="sdK-8W-SJO" eventType="touchUpInside" id="1Pm-fX-2z4"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -203,17 +217,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hlx-c5-1G9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gfZ-sa-pVJ">
-                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="didTapAdd:" destination="sdK-8W-SJO" id="2xL-oR-E3A"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="hlx-c5-1G9"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="assignChoreButton" destination="GLx-zu-Zkz" id="Qph-2m-Sal"/>
                         <outlet property="choresDoneLabel" destination="Yx0-ve-y2a" id="unK-Ny-X1B"/>
                         <outlet property="groupProgressView" destination="33H-I9-TKW" id="2Ov-fc-awL"/>
                         <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>

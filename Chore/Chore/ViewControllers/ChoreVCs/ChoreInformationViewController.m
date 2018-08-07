@@ -32,6 +32,7 @@
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
+@property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
@@ -59,14 +60,17 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-    NSString *first = @"This Week";
-    NSString *second = @"Next Week";
-    NSString *third = @"Future";
+    NSString *firstString = @"Overdue";
+    NSString *secondString = @"This Week";
+    NSString *thirdString = @"Future";
     self.sectionTitles = [NSMutableArray new];
-    [self.sectionTitles insertObject:first atIndex:0];
-    [self.sectionTitles insertObject:second atIndex:1];
-    [self.sectionTitles insertObject:third atIndex:2];
+    [self.sectionTitles insertObject:firstString atIndex:0];
+    [self.sectionTitles insertObject:secondString atIndex:1];
+    [self.sectionTitles insertObject:thirdString atIndex:2];
     self.backgroundColor = [UIColor whiteColor];
+    self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.assignChoreButton.titleLabel.numberOfLines = 2;
+    self.assignChoreButton.layer.cornerRadius = 16;
 }
 
 - (void)orderChores {
@@ -101,12 +105,13 @@
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
+    self.overDue = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
     for (Chore *currentChore in self.chores){
-        if ([self daysBetweenDate:today andDate:currentChore.deadline] > 7 && [self daysBetweenDate:today andDate:currentChore.deadline] < 14){
-            [self.nextWeek addObject:currentChore];
-        } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7){
+        if ([self daysBetweenDate:today andDate:currentChore.deadline] < 0){
+            [self.overDue addObject:currentChore];
+        } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7 && [self daysBetweenDate:today andDate:currentChore.deadline] >= 0){
             [self.thisWeek addObject:currentChore];
         } else {
             [self.future addObject:currentChore];
@@ -219,9 +224,9 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     Chore *myUpcomingChore;
     if(indexPath.section == 0) {
-        if([self.thisWeek count] == 0) {
+        if([self.overDue count] == 0) {
             EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores for this week"];
+            [emptyCell setCell:@"No chores Overdue!"];
             return emptyCell;
         } else {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -232,13 +237,13 @@
             return choreCell;
         }
     } else if(indexPath.section == 1) {
-        if([self.nextWeek count] == 0) {
+        if([self.thisWeek count] == 0) {
             EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores for next week"];
+            [emptyCell setCell:@"No chores for this week"];
             return emptyCell;
         } else {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-            unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+            unsigned long actualRow = [self.overDue count] + indexPath.row;
             myUpcomingChore = self.chores[actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
@@ -251,7 +256,7 @@
         return emptyCell;
     } else {
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-        unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
+        unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
         myUpcomingChore = self.chores[actualRow];
         choreCell.delegate = self;
         [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
@@ -302,6 +307,7 @@
         [choreAssignmentQuery whereKey:@"userName" equalTo: myChore.userName];
         choreAssignmentQuery.limit = 1;
         
+        
         [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
                 self.assignment = posts[0];
                 NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
@@ -325,13 +331,13 @@
                 if (object != nil) {
                     if(indexPath.section == 0) {
                         [self.chores removeObjectAtIndex:indexPath.row];
-                        [self.thisWeek removeObjectAtIndex:indexPath.row];
+                        [self.overDue removeObjectAtIndex:indexPath.row];
                     } else if(indexPath.section == 1) {
-                        unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+                        unsigned long actualRow = [self.overDue count] + indexPath.row;
                         [self.chores removeObjectAtIndex:actualRow];
-                        [self.nextWeek removeObjectAtIndex:indexPath.row];
+                        [self.thisWeek removeObjectAtIndex:indexPath.row];
                     } else {
-                        unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
+                        unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
                         [self.chores removeObjectAtIndex:actualRow];
                         [self.future removeObjectAtIndex:indexPath.row];
         
@@ -339,12 +345,9 @@
                     
                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                     [object deleteInBackground];
-
                     [tableView reloadData];
                     [self.groupProgressView reloadInputViews];
-                     
                 }
-            
             }];
     }
 }
@@ -352,9 +355,9 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
         NSInteger sectionCount;
         if (section == 0){
-            sectionCount = [self.thisWeek count];
+            sectionCount = [self.overDue count];
         } else if (section == 1){
-            sectionCount = [self.nextWeek count];
+            sectionCount = [self.thisWeek count];
         } else {
             sectionCount = [self.future count];
         }
@@ -371,10 +374,13 @@
     return 25;
 }
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    if ([self.overDue count] == 0){
+        return 2;
+    } else {
+       return 3;
+    }
+    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -385,7 +391,7 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     [view setBackgroundColor:color];
-    view.layer.cornerRadius = 10;
+//    view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
