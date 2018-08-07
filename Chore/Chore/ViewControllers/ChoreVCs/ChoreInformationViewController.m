@@ -294,10 +294,10 @@
         [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
                 self.assignment = posts[0];
                 NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
-//                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
-//                Chore* removedChore = newUncompleted[removeIndex];
-//                [removedChore fetchIfNeeded];
-//                [newUncompleted removeObjectAtIndex:removeIndex];
+                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
+                Chore* removedChore = newUncompleted[removeIndex];
+                [removedChore fetchIfNeeded];
+                [newUncompleted removeObjectAtIndex:removeIndex];
                 [self.assignment setObject:newUncompleted forKey:@"uncompletedChores"];
                 [self.assignment saveInBackground];
                 [self.groupProgressView reloadInputViews];
@@ -312,17 +312,20 @@
                 if (object != nil) {
                     if(indexPath.section == 0) {
                         [self.chores removeObjectAtIndex:indexPath.row];
+                        [self.thisWeek removeObjectAtIndex:indexPath.row];
                     } else if(indexPath.section == 1) {
                         unsigned long actualRow = [self.thisWeek count] + indexPath.row;
-                        [self.chores removeObjectAtIndex:actualRow - 1];
+                        [self.chores removeObjectAtIndex:actualRow];
+                        [self.nextWeek removeObjectAtIndex:indexPath.row];
                     } else {
                         unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
-                        [self.chores removeObjectAtIndex:actualRow - 1];
+                        [self.chores removeObjectAtIndex:actualRow];
+                        [self.future removeObjectAtIndex:indexPath.row];
         
                     }
                     [tableView beginUpdates];
-                    //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-                    //[object deleteInBackground];
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                    [object deleteInBackground];
                     [tableView reloadData];
                     [self.groupProgressView reloadInputViews];
                     [tableView endUpdates];
