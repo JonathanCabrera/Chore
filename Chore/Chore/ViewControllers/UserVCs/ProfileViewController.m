@@ -238,6 +238,11 @@
     return view;
 }
 
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 25;
+}
+
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
