@@ -14,7 +14,7 @@
         <!--Profile View Controller-->
         <scene sceneID="5p0-zq-Qfk">
             <objects>
-                <viewController id="6mG-8N-NEe" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="6mG-8N-NEe" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4rT-it-zID">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,6 +183,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="I9r-Hg-sAe" id="0sE-zE-0Lh"/>
                         <outlet property="badgesLabel" destination="S26-uO-SYu" id="Xfb-Pg-Nwd"/>
@@ -222,7 +223,7 @@
         <!--Profile-->
         <scene sceneID="fkh-DL-pSA">
             <objects>
-                <navigationController title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="bJB-va-zeB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNavigation" title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="bJB-va-zeB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="housekeeper30" id="GWk-mg-DP2"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -231,6 +232,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="esh-So-g2W">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="6mG-8N-NEe" kind="relationship" relationship="rootViewController" id="cJ1-08-d9Y"/>
                     </connections>

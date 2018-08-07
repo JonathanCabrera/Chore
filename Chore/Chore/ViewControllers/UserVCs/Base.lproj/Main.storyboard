@@ -51,7 +51,7 @@
             </objects>
             <point key="canvasLocation" x="2088" y="-677"/>
         </scene>
-        <!--broom broom-->
+        <!--broombroom-->
         <scene sceneID="42I-OK-CfC">
             <objects>
                 <viewController id="agp-Wa-ws8" customClass="HomeViewController" sceneMemberID="viewController">
@@ -62,70 +62,79 @@
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-PS-hEx">
                                 <rect key="frame" x="8" y="101" width="359" height="226"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
-                                        <rect key="frame" x="21" y="16" width="317" height="195"/>
+                                    <view clipsSubviews="YES" contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdq-QB-XdI" customClass="CircleProgressBar">
+                                        <rect key="frame" x="15" y="16" width="329" height="158"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PS-9F-4if">
-                                                <rect key="frame" x="0.0" y="0.0" width="317" height="195"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PS-9F-4if">
+                                                <rect key="frame" x="0.0" y="0.0" width="329" height="195"/>
                                                 <connections>
                                                     <action selector="onTapProgressButton:" destination="agp-Wa-ws8" eventType="touchUpInside" id="mhs-pu-awE"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6z-xn-U4e">
-                                                <rect key="frame" x="124" y="108" width="70" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <rect key="contentStretch" x="1" y="1" width="0.0" height="0.0"/>
                                         <constraints>
                                             <constraint firstItem="7PS-9F-4if" firstAttribute="leading" secondItem="qdq-QB-XdI" secondAttribute="leading" id="HzG-mI-Qky"/>
                                             <constraint firstItem="7PS-9F-4if" firstAttribute="top" secondItem="qdq-QB-XdI" secondAttribute="top" id="pmK-CM-a1k"/>
-                                            <constraint firstAttribute="bottom" secondItem="7PS-9F-4if" secondAttribute="bottom" id="uFV-ML-XeO"/>
                                             <constraint firstAttribute="trailing" secondItem="7PS-9F-4if" secondAttribute="trailing" id="v9S-3Y-kAH"/>
+                                            <constraint firstAttribute="bottom" secondItem="7PS-9F-4if" secondAttribute="bottom" id="vwf-Fa-SXq"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="v6q-QM-by8"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="progressBarProgressColor">
-                                                <color key="value" red="0.15383914107393531" green="0.38479507393038215" blue="0.23710843429010242" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="progressBarTrackColor">
-                                                <color key="value" red="0.0" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="hintViewBackgroundColor">
-                                                <color key="value" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="hintHidden" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="hintTextColor">
+                                                <color key="value" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6z-xn-U4e">
+                                        <rect key="frame" x="144" y="193" width="70" height="28"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWb-EZ-Atu">
+                                        <rect key="frame" x="107" y="164" width="144" height="21"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="222" id="EMZ-N8-Eh1"/>
+                                    <constraint firstAttribute="bottom" secondItem="c6z-xn-U4e" secondAttribute="bottom" constant="8" id="BPt-IM-Rpn"/>
+                                    <constraint firstAttribute="height" constant="292" id="EMZ-N8-Eh1"/>
+                                    <constraint firstItem="qWb-EZ-Atu" firstAttribute="centerX" secondItem="6Dr-PS-hEx" secondAttribute="centerX" id="MAf-oD-3PS"/>
                                     <constraint firstAttribute="width" constant="359" id="OS6-YU-7KI"/>
                                     <constraint firstItem="qdq-QB-XdI" firstAttribute="leading" secondItem="6Dr-PS-hEx" secondAttribute="leading" constant="15" id="PTF-14-Vb6"/>
-                                    <constraint firstAttribute="bottom" secondItem="qdq-QB-XdI" secondAttribute="bottom" constant="15" id="nih-z4-enW"/>
+                                    <constraint firstItem="qWb-EZ-Atu" firstAttribute="top" secondItem="qdq-QB-XdI" secondAttribute="bottom" constant="8" id="YNy-nC-zNE"/>
+                                    <constraint firstItem="c6z-xn-U4e" firstAttribute="centerX" secondItem="6Dr-PS-hEx" secondAttribute="centerX" id="duz-E3-Qsu"/>
                                     <constraint firstAttribute="trailing" secondItem="qdq-QB-XdI" secondAttribute="trailing" constant="15" id="oUl-rq-o2Q"/>
                                     <constraint firstItem="qdq-QB-XdI" firstAttribute="top" secondItem="6Dr-PS-hEx" secondAttribute="top" constant="15" id="t9J-KW-gCS"/>
+                                    <constraint firstAttribute="bottom" secondItem="qdq-QB-XdI" secondAttribute="bottom" constant="60" id="u4f-r3-xU9"/>
+                                    <constraint firstItem="c6z-xn-U4e" firstAttribute="top" secondItem="qWb-EZ-Atu" secondAttribute="bottom" constant="2" id="uQ4-sy-FJc"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Your progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlH-fA-w6t">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlH-fA-w6t">
                                 <rect key="frame" x="16" y="57" width="166" height="36"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CzO-uV-TCC">
-                                <rect key="frame" x="8" y="392" width="359" height="218"/>
-                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="8" y="470" width="359" height="140"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="218" id="DXv-jg-Lib"/>
+                                    <constraint firstAttribute="height" constant="140" id="DXv-jg-Lib"/>
                                     <constraint firstAttribute="width" constant="359" id="lK5-7I-GmN"/>
                                 </constraints>
-                                <color key="separatorColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="72" id="Em1-oi-7bh" customClass="ProgressCell">
                                         <rect key="frame" x="0.0" y="28" width="359" height="72"/>
@@ -137,45 +146,44 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="y46-JK-l7t">
                                                     <rect key="frame" x="10" y="10" width="91" height="27.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7d-as-zD7">
-                                                    <rect key="frame" x="10" y="42" width="40.5" height="20"/>
+                                                    <rect key="frame" x="10" y="38.5" width="40.5" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100% done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-9x-Gxp">
-                                                    <rect key="frame" x="273" y="25" width="71" height="22"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100% done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-9x-Gxp">
+                                                    <rect key="frame" x="272" y="25.5" width="80" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-Af-Shj">
-                                                    <rect key="frame" x="115" y="32" width="159" height="8"/>
+                                                    <rect key="frame" x="95" y="32" width="167" height="8"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="8" id="SVQ-Be-kJh"/>
                                                     </constraints>
-                                                    <color key="progressTintColor" red="0.15383914109999999" green="0.38479507390000001" blue="0.2371084343" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color key="trackTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="progressTintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="trackTintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="T7d-as-zD7" firstAttribute="top" secondItem="y46-JK-l7t" secondAttribute="bottom" constant="4" id="0cH-9m-Opl"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Tgx-Af-Shj" secondAttribute="trailing" constant="70" id="1bI-aR-H3E"/>
+                                                <constraint firstItem="T7d-as-zD7" firstAttribute="top" secondItem="y46-JK-l7t" secondAttribute="bottom" constant="1" id="0cH-9m-Opl"/>
+                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="80" id="4hf-Iu-gdC"/>
                                                 <constraint firstItem="y46-JK-l7t" firstAttribute="top" secondItem="iwf-lE-VYC" secondAttribute="top" constant="10" id="86P-Oa-Lwa"/>
                                                 <constraint firstItem="T7d-as-zD7" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leading" constant="10" id="94j-xr-f5Q"/>
-                                                <constraint firstItem="Tgx-Af-Shj" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="100" id="JhB-l2-n9a"/>
+                                                <constraint firstItem="ZRG-9x-Gxp" firstAttribute="leading" secondItem="Tgx-Af-Shj" secondAttribute="trailing" constant="10" id="KAu-vz-F6F"/>
                                                 <constraint firstItem="y46-JK-l7t" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leading" constant="10" id="ZkG-wg-fOt"/>
                                                 <constraint firstItem="Tgx-Af-Shj" firstAttribute="centerY" secondItem="iwf-lE-VYC" secondAttribute="centerY" id="bpe-RG-Viw"/>
                                                 <constraint firstAttribute="bottom" secondItem="T7d-as-zD7" secondAttribute="bottom" constant="10" id="fE4-8i-piz"/>
                                                 <constraint firstItem="ZRG-9x-Gxp" firstAttribute="centerY" secondItem="Tgx-Af-Shj" secondAttribute="centerY" id="gme-L7-2Af"/>
-                                                <constraint firstItem="ZRG-9x-Gxp" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="270" id="hdU-TN-bsW"/>
                                                 <constraint firstItem="ZRG-9x-Gxp" firstAttribute="trailing" secondItem="iwf-lE-VYC" secondAttribute="trailingMargin" constant="8" id="o8n-Nt-q2Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="pointsLabel" destination="T7d-as-zD7" id="gkP-2g-gWu"/>
                                             <outlet property="progressLabel" destination="ZRG-9x-Gxp" id="HTd-nc-AVD"/>
@@ -187,8 +195,8 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Your group's progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-gm-Qf9">
                                 <rect key="frame" x="16" y="348" width="264" height="36"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="26"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -210,37 +218,36 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Iom-1h-gTc"/>
                     </view>
-                    <navigationItem key="navigationItem" title="broom broom" id="zTZ-rP-elu">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="lQu-7V-vaa">
-                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <navigationItem key="navigationItem" title="broombroom" id="zTZ-rP-elu">
+                        <barButtonItem key="rightBarButtonItem" image="user" style="plain" id="7IU-sy-jZe">
                             <connections>
-                                <action selector="onTapLogOut:" destination="agp-Wa-ws8" id="Uda-BO-2Rp"/>
+                                <action selector="didTapUser:" destination="agp-Wa-ws8" id="avL-d2-gZp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="logOutButton" destination="lQu-7V-vaa" id="hxc-FZ-FeQ"/>
                         <outlet property="myPointsLabel" destination="c6z-xn-U4e" id="Xrc-uS-EXF"/>
+                        <outlet property="myUsernameLabel" destination="qWb-EZ-Atu" id="oVd-Yd-mop"/>
                         <outlet property="progressBar" destination="qdq-QB-XdI" id="k5b-iB-Egp"/>
                         <outlet property="progressButton" destination="7PS-9F-4if" id="1xg-tg-3Z9"/>
                         <outlet property="tableView" destination="CzO-uV-TCC" id="VNe-iO-rQS"/>
                         <outlet property="titleLabel1" destination="dlH-fA-w6t" id="W9n-Ac-EMy"/>
                         <outlet property="titleLabel2" destination="1RG-gm-Qf9" id="Cuq-UJ-0Jg"/>
                         <outlet property="userView" destination="6Dr-PS-hEx" id="tdG-VC-eEr"/>
-                        <segue destination="niW-u2-LDH" kind="show" identifier="profileSegue" id="QbE-OU-roa"/>
+                        <segue destination="Keb-IM-e0m" kind="show" identifier="profileSegue" id="gYA-Z5-n6R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI3-lL-P0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1905.5" y="-28.5"/>
+            <point key="canvasLocation" x="2082" y="-28"/>
         </scene>
         <!--profile-->
-        <scene sceneID="gVt-JX-tOw">
+        <scene sceneID="LC0-Gy-TJJ">
             <objects>
-                <viewControllerPlaceholder storyboardName="profile" id="niW-u2-LDH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U0w-68-iye" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="profile" id="Keb-IM-e0m" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JMn-m2-gnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3003" y="-172"/>
+            <point key="canvasLocation" x="3411" y="-147"/>
         </scene>
         <!--Home-->
         <scene sceneID="wr5-Gn-pZm">
@@ -251,6 +258,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x5U-pa-jii">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -264,5 +272,6 @@
     </scenes>
     <resources>
         <image name="home" width="30" height="30"/>
+        <image name="user" width="24" height="24"/>
     </resources>
 </document>

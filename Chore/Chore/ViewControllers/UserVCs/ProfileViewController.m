@@ -18,7 +18,7 @@
 
 @protocol profileViewControllerDelegate;
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate,  DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
@@ -50,9 +50,6 @@
     [super viewDidLoad];
     self.upcomingTableView.delegate = self;
     self.upcomingTableView.dataSource = self;
-    self.upcomingTableView.emptyDataSetSource = self;
-    self.upcomingTableView.emptyDataSetDelegate = self;
-    
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
@@ -67,7 +64,6 @@
     [self.sectionTitles insertObject:second atIndex:1];
     [self.sectionTitles insertObject:third atIndex:2];
     [self.sectionTitles insertObject:past atIndex:3];
-
 }
 
 - (void)orderChores {
@@ -93,7 +89,7 @@
     return [difference day];
 }
 
-- (void) countForSections{
+- (void) countForSections {
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
@@ -353,37 +349,6 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
-}
-
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
-
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No chores";
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
-                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
-                      @"There are no chores to be completed at this time." :
-                      @"There are no chores that have been completed at this time.");
-    
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (IBAction)didTapBadge:(id)sender {

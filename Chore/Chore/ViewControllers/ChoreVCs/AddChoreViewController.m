@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectUserButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *choreSearchBar;
-@property (weak, nonatomic) IBOutlet UIButton *repeatButton;
 
 @property (nonatomic, strong) NSMutableArray *userArray;
 @property (nonatomic, strong) NSMutableArray *allChores;
@@ -103,10 +102,6 @@
     self.selectChoreButton.titleLabel.numberOfLines = 1;
     self.selectChoreButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.selectChoreButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
-    self.repeatButton.titleLabel.text = @"Does not repeat";
-    self.repeatButton.titleLabel.numberOfLines = 1;
-    self.repeatButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.repeatButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
 }
 
 - (void)refreshDeadline: (NSDate *)deadline {
@@ -141,7 +136,6 @@
 }
 
 - (void)fetchUsers {
-
     PFQuery *userQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     userQuery.limit = 20;
     [userQuery orderByAscending:@"userName"];
@@ -230,14 +224,6 @@
     [self.userMenu setHidden:YES];
 }
 
-- (IBAction)didTapRepeat:(id)sender {
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"repeatChore" bundle:nil];
-    RepeatChoreViewController *repeatController = [storyboard instantiateViewControllerWithIdentifier:@"RepeatChoreViewController"];
-    repeatController.delegate = self;
-    repeatController.view.frame = CGRectMake(0.0, 0.0, 375, 475);
-    [self lc_presentViewController:repeatController completion:nil];
-}
-
 - (IBAction)didTapCancel:(id)sender {
     [self closeMenus];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -249,11 +235,6 @@
     self.startDate = startDate;
     self.endDate = endDate;
     self.frequency = frequency;
-    if([frequency isEqualToString:@"Daily"]) {
-        self.repeatButton.titleLabel.text = @"Repeats daily";
-    } else {
-        self.repeatButton.titleLabel.text = [NSString stringWithFormat:@"Repeats on %@s", frequency];
-    }
     [self refreshDeadline:self.startDate];
     self.deadlineButton.backgroundColor = self.backgroundColor;
 }
@@ -331,38 +312,11 @@
 
 - (IBAction)onTapDeadline:(id)sender {
     [self closeMenus];
-    if(!self.datePicker)
-        self.datePicker = [THDatePickerViewController datePicker];
-    self.datePicker.date = self.currDate;
-    self.datePicker.delegate = self;
-    [self.datePicker setAllowClearDate:NO];
-    [self.datePicker setClearAsToday:YES];
-    [self.datePicker setAutoCloseOnSelectDate:NO];
-    [self.datePicker setAllowSelectionOfSelectedDate:YES];
-    [self.datePicker setDisableYearSwitch:YES];
-    [self.datePicker setDaysInHistorySelection:0];
-    [self.datePicker setDaysInFutureSelection:0];
-    [self.datePicker setSelectedBackgroundColor:[UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0]];
-    [self.datePicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
-    [self.datePicker setCurrentDateColorSelected:[UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0]];
-    [self presentSemiViewController:self.datePicker withOptions:@{
-                                                                  KNSemiModalOptionKeys.pushParentBack    : @(NO),
-                                                                  KNSemiModalOptionKeys.animationDuration : @(.5),
-                                                                  KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
-                                                                  }];
-}
-
-- (void)datePickerDonePressed:(THDatePickerViewController *)datePicker {
-    self.currDate = datePicker.date;
-    self.deadlineButton.backgroundColor = self.backgroundColor;
-    [self refreshDeadline:self.currDate];
-    self.repeating = NO;
-    self.repeatButton.titleLabel.text = @"Does not repeat";
-    [self dismissSemiModalView];
-}
-
-- (void)datePickerCancelPressed:(THDatePickerViewController *)datePicker {
-    [self dismissSemiModalView];
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"repeatChore" bundle:nil];
+    RepeatChoreViewController *repeatController = [storyboard instantiateViewControllerWithIdentifier:@"RepeatChoreViewController"];
+    repeatController.delegate = self;
+    repeatController.view.frame = CGRectMake(0.0, 0.0, 375, 475);
+    [self lc_presentViewController:repeatController completion:nil];
 }
 
 - (IBAction)didTapCustom:(id)sender {

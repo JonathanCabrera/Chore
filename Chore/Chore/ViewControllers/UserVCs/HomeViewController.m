@@ -26,11 +26,13 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
-    self.tableView.layer.borderWidth = 0.8f;
+    self.tableView.layer.borderWidth = 1;
     self.tableView.layer.borderColor = self.viewColor.CGColor;
-    self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    //self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.tableView.layer.cornerRadius = 10;
     self.userView.layer.cornerRadius = 15;
+    self.userView.layer.borderColor = self.viewColor.CGColor;
+    self.userView.layer.borderWidth = 1;
     [self setDesignAspects];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -77,6 +79,7 @@
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
                     self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.currCompletedChores = [currAssignment.completedChores count];
+                    self.myUsernameLabel.text = currAssignment.userName;
                     self.myPointsLabel.text = [NSString stringWithFormat:@"%d points", currAssignment.points];
                     if(self.currNumberOfChores == 0) {
                         self.increment = 0;
@@ -89,7 +92,7 @@
                             myProgress = @"No chores!";
                         } else {
                             float percentage = (float) weakSelf.currCompletedChores/weakSelf.currNumberOfChores *100;
-                            myProgress = [NSString stringWithFormat:@"%.0f%% done", percentage];
+                            myProgress = [NSString stringWithFormat:@"%.0f%%", percentage];
                         }
                         return myProgress;
                     }];
@@ -157,16 +160,16 @@
 
 - (void)setDesignAspects{
     UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    [_progressBar setProgressBarTrackColor:unfinished];
-    _progressBar.backgroundColor = [UIColor clearColor];
+    //[_progressBar setProgressBarTrackColor:unfinished];
+    _progressBar.backgroundColor = [UIColor whiteColor];
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:20]];
-    [_progressBar setHintTextColor:[UIColor whiteColor]];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:24]];
+    [_progressBar setHintViewBackgroundColor:[UIColor whiteColor]];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ProgressCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"progressCell" forIndexPath:indexPath];
-    [progressCell setCell:self.userNames[indexPath.row] withColor:self.viewColor withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
+    [progressCell setCell:self.userNames[indexPath.row] withColor:[UIColor whiteColor] withProgress:[self.membersProgress[indexPath.row] floatValue] withPoints:self.membersPoints[indexPath.row]];
     progressCell.delegate = self;
     return progressCell;
 }
@@ -180,14 +183,14 @@
     [_progressBar setProgress:self.increment animated:YES duration:1];
 }
 
-- (IBAction)onTapLogOut:(id)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        appDelegate.window.rootViewController = loginViewController;
-    }];
-}
+//- (IBAction)onTapLogOut:(id)sender {
+//    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+//        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+//        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        appDelegate.window.rootViewController = loginViewController;
+//    }];
+//}
 
 - (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName withProgress:(float)progress {
     self.progressToSend = progress;
@@ -201,6 +204,10 @@
                 NSLog(@"%@", error.localizedDescription);
             }
         }];
+}
+
+- (IBAction)didTapUser:(id)sender {
+    self.tabBarController.selectedIndex = 2;
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

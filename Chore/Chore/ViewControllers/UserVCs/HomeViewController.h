@@ -55,7 +55,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
 @property (weak, nonatomic) IBOutlet UIView *userView;
 @property (weak, nonatomic) IBOutlet UILabel *myPointsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myUsernameLabel;
 
-- (IBAction)onTapLogOut:(id)sender;
 - (IBAction)onTapProgressButton:(id)sender;
 @end
