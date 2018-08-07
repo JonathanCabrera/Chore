@@ -24,6 +24,7 @@
 		1E5DBEC7210FA5CC000C1EC3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5DBEC6210FA5CC000C1EC3 /* UserNotifications.framework */; };
 		1E829453210280640086EB80 /* Signup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E829452210280640086EB80 /* Signup.storyboard */; };
 		1E829456210280800086EB80 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E829455210280800086EB80 /* SignupViewController.m */; };
+		1E834836211A09B0002A881F /* EmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E834835211A09B0002A881F /* EmptyCell.m */; };
 		1E89A05E210F7A7900926FD3 /* AssignChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */; };
 		1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A060210F7D8F00926FD3 /* AssignUserCell.m */; };
 		1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */; };
@@ -108,6 +109,8 @@
 		1E829452210280640086EB80 /* Signup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup.storyboard; sourceTree = "<group>"; };
 		1E829454210280800086EB80 /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		1E829455210280800086EB80 /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		1E834834211A09B0002A881F /* EmptyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyCell.h; sourceTree = "<group>"; };
+		1E834835211A09B0002A881F /* EmptyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyCell.m; sourceTree = "<group>"; };
 		1E89A05C210F7A7900926FD3 /* AssignChoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignChoreCell.h; sourceTree = "<group>"; };
 		1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignChoreCell.m; sourceTree = "<group>"; };
 		1E89A05F210F7D8F00926FD3 /* AssignUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignUserCell.h; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				1E89A05D210F7A7900926FD3 /* AssignChoreCell.m */,
 				1E89A05F210F7D8F00926FD3 /* AssignUserCell.h */,
 				1E89A060210F7D8F00926FD3 /* AssignUserCell.m */,
+				1E834834211A09B0002A881F /* EmptyCell.h */,
+				1E834835211A09B0002A881F /* EmptyCell.m */,
 			);
 			path = "Chore Views";
 			sourceTree = "<group>";
@@ -669,6 +674,7 @@
 				1E574417210A3BBB00473C7B /* DefaultChore.m in Sources */,
 				1E5C36B920FD4A10002979BA /* Group.m in Sources */,
 				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
+				1E834836211A09B0002A881F /* EmptyCell.m in Sources */,
 				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
