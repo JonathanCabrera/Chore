@@ -122,6 +122,13 @@
                                     <action selector="didTapBadge:" destination="6mG-8N-NEe" eventType="touchUpInside" id="ObQ-7u-lZR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100% done" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4f-RA-dSt">
+                                <rect key="frame" x="201" y="256" width="125" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wjf-Gw-E9r"/>
                     </view>
@@ -146,6 +153,7 @@
                         <outlet property="editButton" destination="aif-fk-10j" id="Gdx-f9-luU"/>
                         <outlet property="pointsLabel" destination="FTG-fx-wGZ" id="jmU-LU-eHO"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
+                        <outlet property="progressLabel" destination="r4f-RA-dSt" id="Yi6-IX-GZq"/>
                         <outlet property="trophyButton" destination="GY1-6W-Je6" id="yIS-9T-stW"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>
                         <outlet property="userNameLabel" destination="sSH-VM-3rP" id="DeT-OD-JFq"/>

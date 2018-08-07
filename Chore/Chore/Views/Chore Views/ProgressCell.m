@@ -21,6 +21,7 @@
 
 - (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints:(NSNumber *)points{
     _userName = userName;
+    _progress = number;
     self.userNameLabel.text = self.userName;
     self.pointsLabel.text = [NSString stringWithFormat:@"%d points", [points intValue]];
     self.progressLabel.text = [NSString stringWithFormat:@"%0.f%% done", number*100];
@@ -36,7 +37,7 @@
 }
 
 - (void)didTapUser {
-    [self.delegate seeMemberProfile:self withUser:self.userName];
+    [self.delegate seeMemberProfile:self withUser:self.userName withProgress:self.progress];
 }
 
 @end

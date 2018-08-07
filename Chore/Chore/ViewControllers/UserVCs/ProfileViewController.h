@@ -14,6 +14,7 @@
 @interface ProfileViewController : UIViewController
 @property (strong, nonatomic) UIImage *photo;
 @property (strong, nonatomic) PFUser *selectedUser;
+@property (nonatomic) float progress;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 @end

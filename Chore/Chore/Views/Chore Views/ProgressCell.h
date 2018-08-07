@@ -17,6 +17,7 @@
 @property (nonatomic, weak) id<ProgressCellDelegate> delegate;
 @property (strong, nonatomic) Chore *chore;
 @property (strong, nonatomic) NSString *userName;
+@property (nonatomic) float progress;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
@@ -29,7 +30,7 @@
 
 @protocol ProgressCellDelegate
 
-- (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName;
+- (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName withProgress: (float)progress;
 
 @end
 

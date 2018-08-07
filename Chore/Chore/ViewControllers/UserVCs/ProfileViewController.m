@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *trophyButton;
 @property (weak, nonatomic) IBOutlet UIButton *badgesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (strong, nonatomic) NSMutableArray<Chore *> *upcomingChores;
@@ -39,8 +40,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) NSMutableArray *pastTitle;
-
-
 
 @end
 
@@ -106,7 +105,6 @@
     NSDate *today = [NSDate date];
     
     for (Chore *currentChore in self.upcomingChores){
-        
         if ([self daysBetweenDate:today andDate:currentChore.deadline] > 7 && [self daysBetweenDate:today andDate:currentChore.deadline] < 14){
             [self.nextWeek addObject:currentChore];
         } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7){
@@ -114,8 +112,6 @@
         } else {
             [self.future addObject:currentChore];
         }
-        
-        
     }
 }
 
@@ -124,7 +120,6 @@
     [self refresh];
     [self orderChores];
 }
-
 
 - (void)setLayout {
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
@@ -136,16 +131,22 @@
     self.view.backgroundColor = self.backgroundColor;
     self.pointsLabel.textColor = darkGreenColor;
     self.badgesLabel.tintColor = darkGreenColor;
+    self.progressLabel.textColor = darkGreenColor;
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
         [self.trophyButton setValue:@"NO" forKey:@"hidden"];
+        [self.badgesLabel setValue:@"NO" forKey:@"hidden"];
+        [self.progressLabel setValue:@"YES" forKey:@"hidden"];
         [self.backButton setValue:@YES forKey:@"hidden"];
     } else {
         [self.editButton setValue:@YES forKeyPath:@"hidden"];
         [self.trophyButton setValue:@"YES" forKey:@"hidden"];
+        [self.badgesLabel setValue:@"YES" forKey:@"hidden"];
+        [self.progressLabel setValue:@"NO" forKey:@"hidden"];
+        self.progressLabel.text = [NSString stringWithFormat:@"%0.f%% done", self.progress*100];
     }
 }
 

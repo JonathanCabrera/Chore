@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSNumber *memberPoint;
 @property (nonatomic, strong) NSMutableArray *membersProgress;
 @property (nonatomic, strong) NSMutableArray *membersPoints;
+@property (nonatomic) float progressToSend;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *progressButton;
