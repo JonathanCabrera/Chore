@@ -12,6 +12,7 @@
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "EmptyCell.h"
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -30,13 +31,11 @@
 
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *totalChoresLabel;<*Chores>
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) UIColor *backgroundColor;
-
 
 @end
 
@@ -68,7 +67,6 @@
     [self.sectionTitles insertObject:second atIndex:1];
     [self.sectionTitles insertObject:third atIndex:2];
     self.backgroundColor = [UIColor whiteColor];
-
 }
 
 - (void)orderChores {
@@ -100,14 +98,12 @@
 }
 
 - (void) countForSections{
-    
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
     for (Chore *currentChore in self.chores){
-        
         if ([self daysBetweenDate:today andDate:currentChore.deadline] > 7 && [self daysBetweenDate:today andDate:currentChore.deadline] < 14){
             [self.nextWeek addObject:currentChore];
         } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7){
@@ -115,8 +111,6 @@
         } else {
             [self.future addObject:currentChore];
         }
-        
-        
     }
 }
 
@@ -223,30 +217,49 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
     Chore *myUpcomingChore;
     if(indexPath.section == 0) {
-        myUpcomingChore = self.chores[indexPath.row];
+        if([self.thisWeek count] == 0) {
+            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+            [emptyCell setCell:@"No chores for this week"];
+            return emptyCell;
+        } else {
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
+            myUpcomingChore = self.chores[indexPath.row];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
+        }
     } else if(indexPath.section == 1) {
-        unsigned long actualRow = [self.thisWeek count] + indexPath.row;
-        myUpcomingChore = self.chores[actualRow];
-    } else if(indexPath.section ==2){
+        if([self.nextWeek count] == 0) {
+            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+            [emptyCell setCell:@"No chores for next week"];
+            return emptyCell;
+        } else {
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
+            unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+            myUpcomingChore = self.chores[actualRow];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
+        }
+    } else if([self.future count] == 0) {
+        EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+        [emptyCell setCell:@"No chores for the future"];
+        return emptyCell;
+    } else {
+        ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
         unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
         myUpcomingChore = self.chores[actualRow];
-        
-    } else if ([self.thisWeek count] == 0){
-        
-    } else if ([self.nextWeek count] == 0){
-        
-    } else if ([self.future count] == 0){
-        
-    }
-    
-    [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-    choreCell.delegate = self;
-    return choreCell;
-}
+        choreCell.delegate = self;
+        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+        choreCell.deadlineLabel.hidden = NO;
+        return choreCell;
 
+    }
+}
 
 - (void)fetchGroupProgress{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
@@ -271,8 +284,7 @@
     }];
 }
 
--(void) reloadTable
-{
+-(void) reloadTable {
     [self fetchChores];
     [self.tableView reloadData];
     
@@ -281,12 +293,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 28;
 }
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    UIView *headerView = [UIView new];
-//    [headerView setBackgroundColor:[UIColor whiteColor]];
-//    return headerView;
-//}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
@@ -299,16 +305,18 @@
         [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
                 self.assignment = posts[0];
                 NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
+
                 NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
                 Chore* removedChore = newUncompleted[removeIndex];
                 [removedChore fetchIfNeeded];
                 [newUncompleted removeObjectAtIndex:removeIndex];
+
                 [self.assignment setObject:newUncompleted forKey:@"uncompletedChores"];
                 [self.assignment saveInBackground];
                 [self.groupProgressView reloadInputViews];
                 
             }];
-        
+
         PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
         choreQuery.limit = 1;
         [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
@@ -331,6 +339,7 @@
                     
                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                     [object deleteInBackground];
+
                     [tableView reloadData];
                     [self.groupProgressView reloadInputViews];
                      
@@ -349,10 +358,11 @@
         } else {
             sectionCount = [self.future count];
         }
-        
+    if(sectionCount == 0) {
+        return 1;
+    } else {
         return sectionCount;
-        
-    
+    }
 }
 
 
@@ -366,7 +376,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
-
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;
@@ -400,7 +409,6 @@
         addChoreController.currentGroup = sender;
     }
 }
-
 
 @end
 
