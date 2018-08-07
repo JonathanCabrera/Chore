@@ -26,13 +26,9 @@
 @property (weak, nonatomic) IBOutlet PFImageView *userImageView;
 @property (strong, nonatomic) PFFile *userImage;
 
-
 - (void)setCell:(Chore *)chore withColor: (UIColor *)color;
 
-
-
 @end
-
 
 @protocol ChoreInformationCellDelegate
 

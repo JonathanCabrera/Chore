@@ -10,6 +10,7 @@
 
 @interface EmptyCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *noChoreLabel;
+@property (weak, nonatomic) IBOutlet UIView *emptyView;
 
 - (void)setCell: (NSString *)text;
 
