@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) Group *currentGroup;
 @property (nonatomic, strong) NSString *groupName;
+@property (weak, nonatomic) IBOutlet UIButton *assignChoreButton;
 
 @end

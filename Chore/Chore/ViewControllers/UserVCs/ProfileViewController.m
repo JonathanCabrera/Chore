@@ -42,6 +42,8 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) NSMutableArray *pastTitle;
 
+@property (nonatomic) BOOL empty;
+
 @end
 
 @implementation ProfileViewController
@@ -55,15 +57,15 @@
     }
     [self setLayout];
     [self refresh];
-    NSString *first = @"This Week";
-    NSString *second = @"Next Week";
-    NSString *third = @"Future";
-    NSString *past = @"Completed";
+    NSString *overdue = @"Overdue";
+    NSString *weekString = @"This Week";
+    NSString *futureString = @"Future";
+    NSString *pastString = @"Completed";
     self.sectionTitles = [NSMutableArray new];
-    [self.sectionTitles insertObject:first atIndex:0];
-    [self.sectionTitles insertObject:second atIndex:1];
-    [self.sectionTitles insertObject:third atIndex:2];
-    [self.sectionTitles insertObject:past atIndex:3];
+    [self.sectionTitles insertObject:overdue atIndex:0];
+    [self.sectionTitles insertObject:weekString atIndex:1];
+    [self.sectionTitles insertObject:futureString atIndex:2];
+    [self.sectionTitles insertObject:pastString atIndex:3];
 }
 
 - (void)orderChores {
@@ -75,6 +77,8 @@
                                                                                 sortedArrayUsingDescriptors:sortDescriptors]];
     self.upcomingChores = sortedEventArray;
 }
+
+
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
@@ -115,7 +119,7 @@
 - (void)setLayout {
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
     self.upcomingTableView.tableFooterView = [UIView new];
-    self.upcomingTableView.layer.cornerRadius = 10;
+    //self.upcomingTableView.layer.cornerRadius = 10;
     self.upcomingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
@@ -211,7 +215,7 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     [view setBackgroundColor:color];
-    view.layer.cornerRadius = 10;
+    //view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
@@ -225,6 +229,12 @@
     [view addSubview:label];
     return view;
 }
+
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 25;
+}
+
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.choreControl.selectedSegmentIndex == 1) {

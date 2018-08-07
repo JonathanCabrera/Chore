@@ -45,13 +45,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uncompleted Chores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC0-2D-YvJ">
-                                                <rect key="frame" x="20" y="121" width="197" height="27.5"/>
+                                                <rect key="frame" x="20" y="115" width="197" height="27.5"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
-                                                <rect key="frame" x="8" y="152" width="359" height="409"/>
+                                                <rect key="frame" x="8" y="152.5" width="359" height="408.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="118" id="R11-b3-5jg" customClass="ChoreInformationCell">
@@ -157,11 +157,25 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Sf-DJ-vpb">
-                                                <rect key="frame" x="0.0" y="102" width="375" height="2"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hRe-u0-eGx">
+                                                <rect key="frame" x="0.0" y="97" width="375" height="2"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
+                                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLx-zu-Zkz">
+                                                <rect key="frame" x="254" y="109" width="111" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="contentStretch" x="0.0" y="0.0" width="0.20000000000000001" height="0.45000000000000001"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <color key="tintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="   Assign chore   ">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapAdd:" destination="sdK-8W-SJO" eventType="touchUpInside" id="1Pm-fX-2z4"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -171,13 +185,13 @@
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="20" id="7uW-GP-i4V"/>
                                             <constraint firstItem="sWK-yv-glH" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="8" id="9pd-xd-qeu"/>
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="leading" secondItem="qDo-UB-Zos" secondAttribute="leading" id="D8G-cS-geH"/>
-                                            <constraint firstItem="NC0-2D-YvJ" firstAttribute="top" secondItem="33H-I9-TKW" secondAttribute="bottom" constant="45" id="H88-l6-CBl"/>
                                             <constraint firstAttribute="trailing" secondItem="sWK-yv-glH" secondAttribute="trailing" constant="8" id="JBm-Ko-Zl8"/>
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="top" secondItem="Yx0-ve-y2a" secondAttribute="bottom" constant="8" id="JUa-j9-Esf"/>
-                                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="NC0-2D-YvJ" secondAttribute="bottom" constant="3.5" id="LdI-gL-NgT"/>
+                                            <constraint firstItem="NC0-2D-YvJ" firstAttribute="top" secondItem="33H-I9-TKW" secondAttribute="bottom" constant="39" id="Ubd-ZH-Vek"/>
                                             <constraint firstItem="NC0-2D-YvJ" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="20" id="Uf7-99-qvS"/>
                                             <constraint firstItem="Yx0-ve-y2a" firstAttribute="top" secondItem="fha-xK-4bT" secondAttribute="top" constant="20" id="c2z-IE-Wnt"/>
                                             <constraint firstAttribute="height" constant="600" id="cyr-eE-Ot4"/>
+                                            <constraint firstItem="sWK-yv-glH" firstAttribute="top" secondItem="NC0-2D-YvJ" secondAttribute="bottom" constant="10" id="fMI-Um-ub2"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Yx0-ve-y2a" secondAttribute="trailing" constant="56" id="hrp-LX-HIW"/>
                                             <constraint firstItem="33H-I9-TKW" firstAttribute="centerX" secondItem="fha-xK-4bT" secondAttribute="centerX" id="nUY-kB-BG0"/>
                                             <constraint firstItem="qDo-UB-Zos" firstAttribute="top" secondItem="fha-xK-4bT" secondAttribute="top" constant="20" id="vrq-cX-oVZ"/>
@@ -203,17 +217,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tOz-xs-xdk"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hlx-c5-1G9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gfZ-sa-pVJ">
-                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="didTapAdd:" destination="sdK-8W-SJO" id="2xL-oR-E3A"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="hlx-c5-1G9"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="assignChoreButton" destination="GLx-zu-Zkz" id="Qph-2m-Sal"/>
                         <outlet property="choresDoneLabel" destination="Yx0-ve-y2a" id="unK-Ny-X1B"/>
                         <outlet property="groupProgressView" destination="33H-I9-TKW" id="2Ov-fc-awL"/>
                         <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>
