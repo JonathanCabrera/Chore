@@ -7,7 +7,8 @@
 
 #import "SettingTableViewController.h"
 
-@interface SettingTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SettingTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *settingsTableView;
 
 @end
@@ -62,6 +63,36 @@
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         appDelegate.window.rootViewController = loginViewController;
     }];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if(resizedImage != nil) {
+        NSData *imageData = UIImagePNGRepresentation(resizedImage);
+        PFUser *currentUser = [PFUser currentUser];
+        currentUser[@"profilePic"] = [PFFile fileWithData:imageData];
+        [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if(succeeded) {
+                NSLog(@"Saved edits!");
+            } else {
+                NSLog(@"Error: %@", error);
+            }
+        }];
+    }
+}
+
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end

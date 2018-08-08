@@ -100,7 +100,7 @@
 }
 
 - (void) countForSections{
-     self.overDue = [NSMutableArray array];
+    self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
@@ -327,7 +327,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        NSInteger sectionCount;
+    NSInteger sectionCount = 0;
         if (section == 0){
             sectionCount = [self.overDue count];
         } else if (section == 1){
@@ -335,12 +335,6 @@
         } else {
             sectionCount = [self.future count];
         }
-//    if(sectionCount == 0) {
-//        return 1;
-//    } else {
-//        return sectionCount;
-//    }
-    
     return sectionCount;
 }
 
