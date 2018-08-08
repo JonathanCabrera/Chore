@@ -102,10 +102,10 @@
 }
 
 - (void) countForSections{
+     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
-    self.overDue = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
     for (Chore *currentChore in self.chores){
@@ -333,7 +333,7 @@
                         [self.chores removeObjectAtIndex:indexPath.row];
                         [self.overDue removeObjectAtIndex:indexPath.row];
                     } else if(indexPath.section == 1) {
-                        unsigned long actualRow = [self.overDue count] + indexPath.row;
+                        unsigned long actualRow = [self.thisWeek count] + indexPath.row;
                         [self.chores removeObjectAtIndex:actualRow];
                         [self.thisWeek removeObjectAtIndex:indexPath.row];
                     } else {
@@ -342,11 +342,12 @@
                         [self.future removeObjectAtIndex:indexPath.row];
         
                     }
-                    
-                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                    [tableView beginUpdates];
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
                     [object deleteInBackground];
                     [tableView reloadData];
                     [self.groupProgressView reloadInputViews];
+                    [tableView endUpdates];
                 }
             }];
     }
@@ -361,11 +362,13 @@
         } else {
             sectionCount = [self.future count];
         }
-    if(sectionCount == 0) {
-        return 1;
-    } else {
-        return sectionCount;
-    }
+//    if(sectionCount == 0) {
+//        return 1;
+//    } else {
+//        return sectionCount;
+//    }
+    
+    return sectionCount;
 }
 
 
@@ -375,11 +378,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([self.overDue count] == 0){
-        return 2;
-    } else {
-       return 3;
-    }
+    return 3;
     
 }
 
