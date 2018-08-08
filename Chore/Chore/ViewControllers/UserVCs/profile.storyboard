@@ -187,6 +187,9 @@
                                     <action selector="didTapSettings:" destination="6mG-8N-NEe" eventType="touchUpInside" id="Uom-IN-gBJ"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <segue destination="DqT-9Z-w2n" kind="show" identifier="settingsSegue" id="HPE-MD-Kkt"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -217,6 +220,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4u-x9-u6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1083" y="577"/>
+        </scene>
+        <!--settings-->
+        <scene sceneID="jqZ-SB-7LU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="settings" id="DqT-9Z-w2n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTB-c4-Kdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="89"/>
         </scene>
         <!--badge-->
         <scene sceneID="2GY-C4-sDI">

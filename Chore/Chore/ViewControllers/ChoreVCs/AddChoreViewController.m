@@ -17,6 +17,7 @@
 #import "RepeatChoreViewController.h"
 #import "MBProgressHUD.h"
 #import "LoginViewController.h"
+#import "CreateCustomChoreCell.h"
 
 @interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate, RepeatChoreViewControllerDelegate>
 
@@ -321,6 +322,10 @@
     [self lc_presentViewController:repeatController completion:nil];
 }
 
+- (void)cancel {
+        [self lc_dismissViewControllerWithCompletion:nil];
+}
+
 - (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency {
     [self lc_dismissViewControllerWithCompletion:nil];
     if([frequency isEqualToString:@"Does not repeat"]) {
@@ -333,6 +338,12 @@
     self.frequency = frequency;
     [self refreshDeadline];
     self.deadlineButton.backgroundColor = self.backgroundColor;
+}
+
+- (void)createChore {
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"createChore" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateChoreViewController"]];
+    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
+    [popupController presentInViewController:self];
 }
 
 - (IBAction)didTapCustom:(id)sender {

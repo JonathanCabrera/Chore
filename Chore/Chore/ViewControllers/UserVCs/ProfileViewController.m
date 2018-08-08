@@ -333,39 +333,45 @@
 }
 
 - (IBAction)didTapSettings:(id)sender {
-    
+    NSLog(@"Settings Button tapped");
+    [self performSegueWithIdentifier:@"settingsSegue" sender:self];
+
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    self.photo = resizedImage;
-    [self.profilePicture setImage:resizedImage];
-    
-    if(self.photo != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.photo);
-        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
-        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if(succeeded) {
-                NSLog(@"Saved edits!");
-            } else {
-                NSLog(@"Error: %@", error);
-            }
-        }];
-    }
+- (void)setUserProfileImage {
+    self.profilePicture.file = (PFFile *)self.selectedUser[@"profilePic"];
 }
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+//    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+//    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    self.photo = resizedImage;
+//    [self.profilePicture setImage:resizedImage];
+//
+//    if(self.photo != nil) {
+//        NSData *imageData = UIImagePNGRepresentation(self.photo);
+//        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
+//        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//            if(succeeded) {
+//                NSLog(@"Saved edits!");
+//            } else {
+//                NSLog(@"Error: %@", error);
+//            }
+//        }];
+//    }
+//}
+//
+//- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+//    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+//    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+//    resizeImageView.image = image;
+//    UIGraphicsBeginImageContext(size);
+//    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return newImage;
+//}
 
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {

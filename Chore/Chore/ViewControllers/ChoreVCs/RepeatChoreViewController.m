@@ -15,13 +15,13 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
+@property (weak, nonatomic) IBOutlet UILabel *endLabel;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, strong) NSString *repeating;
 @property (nonatomic, strong) NSString *weekday;
 @property (nonatomic, strong) NSDateFormatter *formatter;
 @property (strong, nonatomic) UIViewController *addChoreVC;
-
 
 @end
 
@@ -34,6 +34,8 @@
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
     self.repeating = @"Does not repeat";
+    [self.endDatePicker setHidden:YES];
+    [self.endLabel setHidden:YES];
     self.startDate = [NSDate date];
     self.endDate = [NSDate date];
 }
@@ -59,6 +61,11 @@
     self.weekday = [self.formatter stringFromDate:self.startDate];
     [self.delegate updateDeadline:self.startDate withEndDate:self.endDate withFrequency:self.repeating];
 }
+
+- (IBAction)didTapCancel:(id)sender {
+    [self.delegate cancel];
+}
+
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
@@ -92,10 +99,16 @@ numberOfRowsInComponent:(NSInteger)component {
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if(row == 0) {
         self.repeating = @"Does not repeat";
+        [self.endDatePicker setHidden:YES];
+        [self.endLabel setHidden:YES];
     } else if(row == 1) {
         self.repeating = @"Daily";
+        [self.endDatePicker setHidden:NO];
+        [self.endLabel setHidden:NO];
     } else {
         self.repeating = self.weekday;
+        [self.endDatePicker setHidden:NO];
+        [self.endLabel setHidden:NO];
     }
 }
 

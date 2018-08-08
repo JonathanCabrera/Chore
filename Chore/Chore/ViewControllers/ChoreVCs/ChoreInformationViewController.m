@@ -100,7 +100,7 @@
 }
 
 - (void) countForSections{
-     self.overDue = [NSMutableArray array];
+    self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
@@ -327,7 +327,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        NSInteger sectionCount;
+    NSInteger sectionCount = 0;
         if (section == 0){
             sectionCount = [self.overDue count];
         } else if (section == 1){
@@ -335,12 +335,6 @@
         } else {
             sectionCount = [self.future count];
         }
-//    if(sectionCount == 0) {
-//        return 1;
-//    } else {
-//        return sectionCount;
-//    }
-    
     return sectionCount;
 }
 
@@ -363,7 +357,6 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     [view setBackgroundColor:color];
-//    view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
