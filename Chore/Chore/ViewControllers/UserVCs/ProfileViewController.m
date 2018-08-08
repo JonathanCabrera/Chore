@@ -18,7 +18,7 @@
 
 @protocol profileViewControllerDelegate;
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate,  DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
@@ -56,9 +56,6 @@
     [super viewDidLoad];
     self.upcomingTableView.delegate = self;
     self.upcomingTableView.dataSource = self;
-    self.upcomingTableView.emptyDataSetSource = self;
-    self.upcomingTableView.emptyDataSetDelegate = self;
-    
     if(self.selectedUser == nil) {
         self.selectedUser = [PFUser currentUser];
     }
@@ -73,7 +70,7 @@
     [self.sectionTitles insertObject:weekString atIndex:1];
     [self.sectionTitles insertObject:futureString atIndex:2];
     [self.sectionTitles insertObject:pastString atIndex:3];
-    
+
 }
 
 - (void)orderChores {
@@ -100,7 +97,6 @@
                                                fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
-
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -138,6 +134,7 @@
     self.progressLabel.textColor = darkGreenColor;
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
+
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.editButton setValue:@NO forKeyPath:@"hidden"];
@@ -315,27 +312,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)didTapEdit:(id)sender {
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    UIAlertController *pictureViewController = [UIAlertController alertControllerWithTitle:@"Change profile picture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+- (IBAction)didTapSettings:(id)sender {
     
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Take photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:imagePickerVC animated:YES completion:nil];
-    }];
-    UIAlertAction *galleryAction = [UIAlertAction actionWithTitle:@"Choose from gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:imagePickerVC animated:YES completion:nil];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    
-    [pictureViewController addAction:cameraAction];
-    [pictureViewController addAction:galleryAction];
-    [pictureViewController addAction:cancelAction];
-    [self presentViewController:pictureViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -369,6 +347,7 @@
     return newImage;
 }
 
+
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"broom"];
 }
@@ -399,6 +378,7 @@
                                  NSParagraphStyleAttributeName: paragraph};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
+
 
 - (IBAction)didTapBadge:(id)sender {
     [self performSegueWithIdentifier:@"badgeSegue" sender:nil];

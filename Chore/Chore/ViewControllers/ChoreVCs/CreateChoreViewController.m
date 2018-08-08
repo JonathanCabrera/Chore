@@ -9,6 +9,7 @@
 #import "CreateChoreViewController.h"
 #import "DefaultChore.h"
 #import <STPopup/STPopup.h>
+#import "LoginViewController.h"
 
 @interface CreateChoreViewController ()
 
@@ -33,14 +34,20 @@
 }
 
 - (IBAction)didTapCreate:(id)sender {
-    [DefaultChore makeDefaultChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointsLabel.text intValue] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded) {
-            NSLog(@"saved default chore");
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.nameField.text isEqualToString:@""]) {
+        [LoginViewController presentAlertWithTitle:@"Please enter a chore name" fromViewController:self];
+    } else if ([self.descriptionField.text isEqualToString:@""]) {
+        [LoginViewController presentAlertWithTitle:@"Please enter a chore description" fromViewController:self];
+    } else {
+        [DefaultChore makeDefaultChore:self.nameField.text withDescription:self.descriptionField.text withPoints:[self.pointsLabel.text intValue] withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if(succeeded) {
+                NSLog(@"saved default chore");
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (IBAction)didTapCancel:(id)sender {

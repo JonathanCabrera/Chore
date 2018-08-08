@@ -16,6 +16,7 @@
 @property (strong, nonatomic) PFUser *selectedUser;
 @property (nonatomic) float progress;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 
 @end
 

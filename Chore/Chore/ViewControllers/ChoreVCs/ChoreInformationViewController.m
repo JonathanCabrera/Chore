@@ -14,7 +14,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "EmptyCell.h"
 
-@interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
@@ -46,8 +46,6 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -133,14 +131,6 @@
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
-
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return self.bgColor;
-}
-
 - (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
     for (int i = 0; i < [choreArray count]; i++) {
         Chore *chore = choreArray[i];
@@ -149,25 +139,6 @@
         }
     }
     return -1;
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No chores";
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
-                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"There are no chores to be completed at this time.";
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (void)beginRefresh {
@@ -226,7 +197,7 @@
     if(indexPath.section == 0) {
         if([self.overDue count] == 0) {
             EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores Overdue!"];
+            [emptyCell setCell:@"No chores overdue!"];
             return emptyCell;
         } else {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -300,7 +271,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(editingStyle == UITableViewCellEditingStyleDelete) {
+    //UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    //[currentCell isKindOfClass:ChoreInformationCell] &&
+    if( editingStyle == UITableViewCellEditingStyleDelete) {
         PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
         Chore *myChore = self.chores[indexPath.row];
         [myChore fetchIfNeeded];

@@ -14,7 +14,7 @@
         <!--Profile View Controller-->
         <scene sceneID="5p0-zq-Qfk">
             <objects>
-                <viewController id="6mG-8N-NEe" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="6mG-8N-NEe" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4rT-it-zID">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,21 +176,28 @@
                                 <action selector="didTapBack:" destination="6mG-8N-NEe" id="3Bd-AU-m01"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="aif-fk-10j">
-                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="didTapEdit:" destination="6mG-8N-NEe" id="Sdx-vx-SLH"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="xDN-is-C7O">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nxF-zY-NJi">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapSettings:" destination="6mG-8N-NEe" eventType="touchUpInside" id="Uom-IN-gBJ"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="I9r-Hg-sAe" id="0sE-zE-0Lh"/>
                         <outlet property="badgesLabel" destination="S26-uO-SYu" id="Xfb-Pg-Nwd"/>
                         <outlet property="choreControl" destination="vAu-Fy-0FY" id="52n-nI-tvs"/>
-                        <outlet property="editButton" destination="aif-fk-10j" id="Gdx-f9-luU"/>
                         <outlet property="pointsLabel" destination="FTG-fx-wGZ" id="jmU-LU-eHO"/>
                         <outlet property="profilePicture" destination="bZL-BR-d6k" id="4Ab-a2-8co"/>
                         <outlet property="progressLabel" destination="r4f-RA-dSt" id="Yi6-IX-GZq"/>
+                        <outlet property="settingsButton" destination="nxF-zY-NJi" id="WZn-SK-EtQ"/>
                         <outlet property="trophyButton" destination="GY1-6W-Je6" id="yIS-9T-stW"/>
                         <outlet property="upcomingTableView" destination="f26-Pe-pjD" id="Nj7-E3-Tc0"/>
                         <outlet property="userNameLabel" destination="sSH-VM-3rP" id="DeT-OD-JFq"/>
@@ -217,12 +224,12 @@
                 <viewControllerPlaceholder storyboardName="badge" id="G6k-Vb-hYD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FE-fU-W8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1532" y="581"/>
+            <point key="canvasLocation" x="1654" y="151"/>
         </scene>
         <!--Profile-->
         <scene sceneID="fkh-DL-pSA">
             <objects>
-                <navigationController title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="bJB-va-zeB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNavigation" title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="bJB-va-zeB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="housekeeper30" id="GWk-mg-DP2"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -231,6 +238,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="esh-So-g2W">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="6mG-8N-NEe" kind="relationship" relationship="rootViewController" id="cJ1-08-d9Y"/>
                     </connections>

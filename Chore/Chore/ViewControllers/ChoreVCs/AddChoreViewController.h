@@ -10,10 +10,8 @@
 #import "Group.h"
 #import "THDatePickerViewController.h"
 
-@interface AddChoreViewController : UIViewController <THDatePickerDelegate>
+@interface AddChoreViewController : UIViewController
 
 @property (strong, nonatomic) Group *currentGroup;
-@property (nonatomic, strong) THDatePickerViewController *datePicker;
-@property (nonatomic, retain) NSDate * currDate;
 
 @end
