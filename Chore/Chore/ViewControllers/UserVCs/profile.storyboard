@@ -188,7 +188,7 @@
                                 </connections>
                             </button>
                             <connections>
-                                <segue destination="thN-Ci-pFe" kind="show" identifier="settingsSegue" id="Sej-Rf-yUd"/>
+                                <segue destination="DqT-9Z-w2n" kind="show" identifier="settingsSegue" id="HPE-MD-Kkt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -220,6 +220,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4u-x9-u6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1083" y="577"/>
+        </scene>
+        <!--settings-->
+        <scene sceneID="jqZ-SB-7LU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="settings" id="DqT-9Z-w2n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTB-c4-Kdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="89"/>
         </scene>
         <!--badge-->
         <scene sceneID="2GY-C4-sDI">
