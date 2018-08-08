@@ -215,13 +215,15 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([self.overDue count] == 0){
+    if ([self.sectionTitles objectAtIndex: 0] == self.overDue && [self.overDue count] == 0){
         [self.sectionTitles removeAllObjects];
         [self.sectionTitles insertObject:self.weekString atIndex:0];
         [self.sectionTitles insertObject:self.futureString atIndex:1];
         [self.sectionTitles insertObject:self.pastString atIndex:2];
         [self.sectionTitles insertObject:self.pastString atIndex:3];
         return 2;
+    } else if (self.choreControl.selectedSegmentIndex == 1) {
+        return  1;
         
     } else {
         [self.sectionTitles removeAllObjects];
@@ -249,7 +251,7 @@
     label.font = [UIFont fontWithName:@"Avenir" size:18];
     NSString *string;
     if(self.choreControl.selectedSegmentIndex == 1){
-        string = [self.sectionTitles objectAtIndex:3];
+        string = @"Completed";
     } else {
         string =[self.sectionTitles objectAtIndex:section];
     }
@@ -280,19 +282,14 @@
         }
     } else {
         Chore *myUpcomingChore;
-        if(indexPath.section == 0) {
-            if([self.overDue count] == 0) {
-                EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-                [emptyCell setCell:@"No chores overdue"];
-                return emptyCell;
-            } else {
+        if(indexPath.section == 0 && [self.overDue count] != 0) {
                 ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
                 myUpcomingChore = self.upcomingChores[indexPath.row];
                 choreCell.delegate = self;
                 [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
                 choreCell.deadlineLabel.hidden = NO;
                 return choreCell;
-            }
+        
         } else if(indexPath.section == 1) {
             if([self.thisWeek count] == 0) {
                 EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
@@ -313,7 +310,7 @@
             return emptyCell;
         } else {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-            unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+            unsigned long actualRow = [self.overDue count] + [self.thisWeek count]+ indexPath.row;
             myUpcomingChore = self.upcomingChores[actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];

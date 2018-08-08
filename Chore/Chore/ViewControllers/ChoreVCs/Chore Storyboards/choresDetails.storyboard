@@ -124,6 +124,17 @@
                                     <constraint firstItem="5Jy-nV-LI5" firstAttribute="top" secondItem="Uev-i7-eVJ" secondAttribute="top" id="Xh1-9u-re6"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1b-6S-3Uw">
+                                <rect key="frame" x="249" y="405" width="106" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Delete Chore">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTapDelete:" destination="PpC-AV-sPm" eventType="touchUpInside" id="Z1b-aQ-mHA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -174,6 +185,7 @@
                         <outlet property="chorePic" destination="HNM-5q-4oN" id="qxK-q8-nHK"/>
                         <outlet property="completionStatusLabel" destination="s6O-wk-eYx" id="gkK-hW-me5"/>
                         <outlet property="deadlineLabel" destination="u6K-z2-NwT" id="8nP-3X-3sp"/>
+                        <outlet property="deleteButton" destination="K1b-6S-3Uw" id="eoI-wL-0fK"/>
                         <outlet property="finishedButton" destination="Rz9-XC-UoT" id="0BY-Xo-oB6"/>
                         <outlet property="informationLabel" destination="xiN-CC-KaT" id="T2u-8X-hmt"/>
                         <outlet property="pointLabel" destination="Nhc-To-mMa" id="S7T-qx-ES9"/>

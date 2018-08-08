@@ -273,7 +273,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     //UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
     //[currentCell isKindOfClass:ChoreInformationCell] &&
-    if( editingStyle == UITableViewCellEditingStyleDelete) {
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
         PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
         Chore *myChore = self.chores[indexPath.row];
         [myChore fetchIfNeeded];
@@ -347,7 +347,7 @@
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 25;
+    return 15;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
