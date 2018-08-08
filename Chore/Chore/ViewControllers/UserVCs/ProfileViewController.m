@@ -45,6 +45,7 @@
 @property (strong, nonatomic) NSString *weekString;
 @property (strong, nonatomic) NSString *futureString;
 @property (strong, nonatomic) NSString *overdueString;
+@property (strong, nonatomic) NSString *pastString;
 
 @property (nonatomic) BOOL empty;
 
@@ -61,15 +62,15 @@
     }
     [self setLayout];
     [self refresh];
-    NSString *overdue = @"Overdue";
-    NSString *weekString = @"This Week";
-    NSString *futureString = @"Future";
-    NSString *pastString = @"Completed";
+    self.overdueString = @"Overdue";
+    self.weekString = @"This Week";
+    self.futureString = @"Future";
+    self.pastString = @"Completed";
     self.sectionTitles = [NSMutableArray new];
-    [self.sectionTitles insertObject:overdue atIndex:0];
-    [self.sectionTitles insertObject:weekString atIndex:1];
-    [self.sectionTitles insertObject:futureString atIndex:2];
-    [self.sectionTitles insertObject:pastString atIndex:3];
+    [self.sectionTitles insertObject:self.overdueString atIndex:0];
+    [self.sectionTitles insertObject:self.weekString atIndex:1];
+    [self.sectionTitles insertObject:self.futureString atIndex:2];
+    [self.sectionTitles insertObject:self.pastString atIndex:3];
 
 }
 
@@ -100,7 +101,6 @@
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
-    self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
@@ -191,10 +191,19 @@
     } else {
         NSInteger sectionCount;
         if (section == 0){
+            if ([self.overDue count] == 0){
+                sectionCount = [self.thisWeek count];
+            }
             sectionCount = [self.overDue count];
         } else if (section == 1){
+            if ([self.overDue count] == 0){
+                sectionCount = [self.future count];
+            }
             sectionCount = [self.thisWeek count];
         } else {
+            if ([self.overDue count] == 0){
+                sectionCount = 0;
+            }
             sectionCount = [self.future count];
         }
         if(sectionCount == 0) {
@@ -206,8 +215,23 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([self.overDue count] == 0){
+        [self.sectionTitles removeAllObjects];
+        [self.sectionTitles insertObject:self.weekString atIndex:0];
+        [self.sectionTitles insertObject:self.futureString atIndex:1];
+        [self.sectionTitles insertObject:self.pastString atIndex:2];
+        [self.sectionTitles insertObject:self.pastString atIndex:3];
+        return 2;
+        
+    } else {
+        [self.sectionTitles removeAllObjects];
+        [self.sectionTitles insertObject:self.overdueString atIndex:0];
+        [self.sectionTitles insertObject:self.weekString atIndex:1];
+        [self.sectionTitles insertObject:self.futureString atIndex:2];
+        [self.sectionTitles insertObject:self.pastString atIndex:3];
+        return 3;
+    }
     
-    return 3;
     
     
 }
@@ -220,7 +244,6 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     [view setBackgroundColor:color];
-    //view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
