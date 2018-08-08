@@ -52,9 +52,11 @@
 		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
 		9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC839D621078C4D00CC5491 /* ProgressCell.m */; };
 		B4F10E3B787627A5B3FA34F0 /* libPods-BroombroomUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */; };
+		E80B4401211A49C8004914AB /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8914D41211A40F80043C6C2 /* setting.storyboard */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
 		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
+		E886A4CF211B66F400AF2B50 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +167,9 @@
 		E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationViewController.m; sourceTree = "<group>"; };
 		E8750BFC20FEA5B700D0B13D /* ChoreInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationCell.h; sourceTree = "<group>"; };
 		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		E8914D41211A40F80043C6C2 /* setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = setting.storyboard; path = /Users/noj/Desktop/Chore/Chore/Chore/ViewControllers/UserVCs/setting.storyboard; sourceTree = "<absolute>"; };
 		EBCFDE2BDEA8219B894C2D4C /* Pods-Broombroom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broombroom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -387,6 +392,9 @@
 				1EB471B32118ED69001685AF /* badge.storyboard */,
 				1EB471B52118ED90001685AF /* BadgeViewController.h */,
 				1EB471B62118ED90001685AF /* BadgeViewController.m */,
+				E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */,
+				E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */,
+				E8914D41211A40F80043C6C2 /* setting.storyboard */,
 			);
 			path = UserVCs;
 			sourceTree = "<group>";
@@ -669,6 +677,7 @@
 				E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */,
 				1EB471B72118ED90001685AF /* BadgeViewController.m in Sources */,
 				9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */,
+				E886A4CF211B66F400AF2B50 /* SettingTableViewController.m in Sources */,
 				9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */,
 				1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */,
 				1E574417210A3BBB00473C7B /* DefaultChore.m in Sources */,
