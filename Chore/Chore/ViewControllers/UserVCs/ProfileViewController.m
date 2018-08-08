@@ -41,10 +41,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
-@property (strong, nonatomic) NSMutableArray *pastTitle;
-@property (strong, nonatomic) NSString *weekString;
-@property (strong, nonatomic) NSString *futureString;
-@property (strong, nonatomic) NSString *overdueString;
 
 @property (nonatomic) BOOL empty;
 
@@ -219,13 +215,13 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
-    NSString *string;
+    NSString *sectionLabel;
     if(self.choreControl.selectedSegmentIndex == 1){
-        string = [self.sectionTitles objectAtIndex:3];
+        sectionLabel = [self.sectionTitles objectAtIndex:3];
     } else {
-        string =[self.sectionTitles objectAtIndex:section];
+        sectionLabel =[self.sectionTitles objectAtIndex:section];
     }
-    [label setText:string];
+    [label setText:sectionLabel];
     [view addSubview:label];
     return view;
 }
@@ -312,35 +308,8 @@
 
 }
 
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
-
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No chores";
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
-                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
-                      @"There are no chores to be completed at this time." :
-                      @"There are no chores that have been completed at this time.");
-    
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 
