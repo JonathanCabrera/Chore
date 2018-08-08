@@ -187,6 +187,9 @@
                                     <action selector="didTapSettings:" destination="6mG-8N-NEe" eventType="touchUpInside" id="Uom-IN-gBJ"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <segue destination="thN-Ci-pFe" kind="show" identifier="settingsSegue" id="Sej-Rf-yUd"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

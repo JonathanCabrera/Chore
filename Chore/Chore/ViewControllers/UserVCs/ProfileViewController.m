@@ -313,7 +313,9 @@
 }
 
 - (IBAction)didTapSettings:(id)sender {
-    
+    NSLog(@"Settings Button tapped");
+    [self performSegueWithIdentifier:@"settingsSegue" sender:self];
+
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
