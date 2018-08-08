@@ -185,9 +185,11 @@
                                 </state>
                                 <connections>
                                     <action selector="didTapSettings:" destination="6mG-8N-NEe" eventType="touchUpInside" id="Uom-IN-gBJ"/>
-                                    <segue destination="thN-Ci-pFe" kind="show" identifier="settingsSegue" id="jgc-nH-8Dt"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <segue destination="thN-Ci-pFe" kind="show" identifier="settingsSegue" id="Sej-Rf-yUd"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
