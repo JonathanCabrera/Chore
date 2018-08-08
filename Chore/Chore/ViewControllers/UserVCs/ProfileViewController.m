@@ -37,10 +37,14 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 @property (strong, nonatomic) NSMutableDictionary *weeklyChores;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
+@property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) NSMutableArray *pastTitle;
+@property (strong, nonatomic) NSString *weekString;
+@property (strong, nonatomic) NSString *futureString;
+@property (strong, nonatomic) NSString *overdueString;
 
 @property (nonatomic) BOOL empty;
 
@@ -66,6 +70,7 @@
     [self.sectionTitles insertObject:weekString atIndex:1];
     [self.sectionTitles insertObject:futureString atIndex:2];
     [self.sectionTitles insertObject:pastString atIndex:3];
+
 }
 
 - (void)orderChores {
@@ -92,17 +97,17 @@
                                                fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
-
-- (void) countForSections {
+- (void) countForSections{
+    self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
     self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
     for (Chore *currentChore in self.upcomingChores){
-        if ([self daysBetweenDate:today andDate:currentChore.deadline] > 7 && [self daysBetweenDate:today andDate:currentChore.deadline] < 14){
-            [self.nextWeek addObject:currentChore];
-        } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7){
+        if ([self daysBetweenDate:today andDate:currentChore.deadline] < 0){
+            [self.overDue addObject:currentChore];
+        } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7 && [self daysBetweenDate:today andDate:currentChore.deadline] >= 0){
             [self.thisWeek addObject:currentChore];
         } else {
             [self.future addObject:currentChore];
@@ -173,7 +178,7 @@
             [self.upcomingTableView reloadData];
             [self orderChores];
             [self countForSections];
-
+            
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
@@ -186,9 +191,9 @@
     } else {
         NSInteger sectionCount;
         if (section == 0){
-            sectionCount = [self.thisWeek count];
+            sectionCount = [self.overDue count];
         } else if (section == 1){
-            sectionCount = [self.nextWeek count];
+            sectionCount = [self.thisWeek count];
         } else {
             sectionCount = [self.future count];
         }
@@ -201,11 +206,10 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if(self.choreControl.selectedSegmentIndex == 1) {
-        return 1;
-    } else {
+    
     return 3;
-    }
+    
+    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -254,9 +258,9 @@
     } else {
         Chore *myUpcomingChore;
         if(indexPath.section == 0) {
-            if([self.thisWeek count] == 0) {
+            if([self.overDue count] == 0) {
                 EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-                [emptyCell setCell:@"No chores for this week"];
+                [emptyCell setCell:@"No chores overdue"];
                 return emptyCell;
             } else {
                 ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
@@ -267,13 +271,13 @@
                 return choreCell;
             }
         } else if(indexPath.section == 1) {
-            if([self.nextWeek count] == 0) {
+            if([self.thisWeek count] == 0) {
                 EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-                [emptyCell setCell:@"No chores for next week"];
+                [emptyCell setCell:@"No chores for this week"];
                 return emptyCell;
             } else {
                 ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-                unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+                unsigned long actualRow = [self.overDue count] + indexPath.row;
                 myUpcomingChore = self.upcomingChores[actualRow];
                 choreCell.delegate = self;
                 [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
@@ -286,7 +290,7 @@
             return emptyCell;
         } else {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-            unsigned long actualRow = [self.thisWeek count] + [self.nextWeek count] + indexPath.row;
+            unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
             myUpcomingChore = self.upcomingChores[actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
@@ -309,39 +313,78 @@
 }
 
 - (IBAction)didTapSettings:(id)sender {
-    
+    NSLog(@"Settings Button tapped");
+    [self performSegueWithIdentifier:@"settingsSegue" sender:self];
+
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    self.photo = resizedImage;
-    [self.profilePicture setImage:resizedImage];
-    
-    if(self.photo != nil) {
-        NSData *imageData = UIImagePNGRepresentation(self.photo);
-        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
-        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if(succeeded) {
-                NSLog(@"Saved edits!");
-            } else {
-                NSLog(@"Error: %@", error);
-            }
-        }];
-    }
+- (void)setUserProfileImage {
+    self.profilePicture.file = (PFFile *)self.selectedUser[@"profilePic"];
 }
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+//    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+//    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    self.photo = resizedImage;
+//    [self.profilePicture setImage:resizedImage];
+//
+//    if(self.photo != nil) {
+//        NSData *imageData = UIImagePNGRepresentation(self.photo);
+//        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
+//        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//            if(succeeded) {
+//                NSLog(@"Saved edits!");
+//            } else {
+//                NSLog(@"Error: %@", error);
+//            }
+//        }];
+//    }
+//}
+//
+//- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+//    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+//    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+//    resizeImageView.image = image;
+//    UIGraphicsBeginImageContext(size);
+//    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return newImage;
+//}
+
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"broom"];
 }
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No chores";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
+                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
+                      @"There are no chores to be completed at this time." :
+                      @"There are no chores that have been completed at this time.");
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
 
 - (IBAction)didTapBadge:(id)sender {
     [self performSegueWithIdentifier:@"badgeSegue" sender:nil];

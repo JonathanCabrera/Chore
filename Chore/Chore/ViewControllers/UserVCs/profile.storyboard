@@ -185,9 +185,11 @@
                                 </state>
                                 <connections>
                                     <action selector="didTapSettings:" destination="6mG-8N-NEe" eventType="touchUpInside" id="Uom-IN-gBJ"/>
-                                    <segue destination="thN-Ci-pFe" kind="show" identifier="settingsSegue" id="jgc-nH-8Dt"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <segue destination="DqT-9Z-w2n" kind="show" identifier="settingsSegue" id="HPE-MD-Kkt"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -211,14 +213,6 @@
             </objects>
             <point key="canvasLocation" x="1084" y="132.68365817091455"/>
         </scene>
-        <!--setting-->
-        <scene sceneID="Cvr-4n-s4M">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="settings" storyboardName="setting" id="thN-Ci-pFe" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6ci-hB-gWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1662" y="106"/>
-        </scene>
         <!--choresDetails-->
         <scene sceneID="BUF-qE-bLC">
             <objects>
@@ -226,6 +220,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4u-x9-u6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1083" y="577"/>
+        </scene>
+        <!--settings-->
+        <scene sceneID="jqZ-SB-7LU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="settings" id="DqT-9Z-w2n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTB-c4-Kdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="89"/>
         </scene>
         <!--badge-->
         <scene sceneID="2GY-C4-sDI">
