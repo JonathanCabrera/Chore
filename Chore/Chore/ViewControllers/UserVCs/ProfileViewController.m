@@ -70,7 +70,6 @@
     [self.sectionTitles insertObject:weekString atIndex:1];
     [self.sectionTitles insertObject:futureString atIndex:2];
     [self.sectionTitles insertObject:pastString atIndex:3];
-
 }
 
 - (void)orderChores {
@@ -82,8 +81,6 @@
                                                                                 sortedArrayUsingDescriptors:sortDescriptors]];
     self.upcomingChores = sortedEventArray;
 }
-
-
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
@@ -97,6 +94,7 @@
                                                fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
+
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -206,10 +204,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 3;
-    
-    
+    return (self.choreControl.selectedSegmentIndex == 0) ? 3 : 1;
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -235,8 +230,7 @@
     return view;
 }
 
--(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 25;
 }
 
@@ -317,42 +311,6 @@
     [self performSegueWithIdentifier:@"settingsSegue" sender:self];
 
 }
-
-- (void)setUserProfileImage {
-    self.profilePicture.file = (PFFile *)self.selectedUser[@"profilePic"];
-}
-
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-//    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-//    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//    self.photo = resizedImage;
-//    [self.profilePicture setImage:resizedImage];
-//
-//    if(self.photo != nil) {
-//        NSData *imageData = UIImagePNGRepresentation(self.photo);
-//        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
-//        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//            if(succeeded) {
-//                NSLog(@"Saved edits!");
-//            } else {
-//                NSLog(@"Error: %@", error);
-//            }
-//        }];
-//    }
-//}
-//
-//- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-//    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-//    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    resizeImageView.image = image;
-//    UIGraphicsBeginImageContext(size);
-//    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return newImage;
-//}
-
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"broom"];

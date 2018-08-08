@@ -34,9 +34,12 @@
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
-@property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) UIColor *backgroundColor;
+
+@property (nonatomic) BOOL hasOverDue;
+@property (nonatomic) BOOL hasThisWeek;
+@property (nonatomic) BOOL hasFuture;
 
 @end
 
@@ -102,17 +105,23 @@
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
-    self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
+    
+    self.hasOverDue = NO;
+    self.hasThisWeek = NO;
+    self.hasFuture = NO;
     
     for (Chore *currentChore in self.chores){
         if ([self daysBetweenDate:today andDate:currentChore.deadline] < 0){
             [self.overDue addObject:currentChore];
+            self.hasOverDue = NO;
         } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7 && [self daysBetweenDate:today andDate:currentChore.deadline] >= 0){
             [self.thisWeek addObject:currentChore];
+            self.hasThisWeek = NO;
         } else {
             [self.future addObject:currentChore];
+            self.hasFuture = NO;
         }
     }
 }
@@ -339,14 +348,12 @@
 }
 
 
--(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 25;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
-    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
