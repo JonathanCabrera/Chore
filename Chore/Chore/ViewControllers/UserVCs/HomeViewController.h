@@ -18,19 +18,21 @@
 #import "ChoreAssignment.h"
 #import "ProgressCell.h"
 #import "ProfileViewController.h"
+#import "AddChoreViewController.h"
 
 
 @interface HomeViewController : UIViewController
 @property (strong, nonatomic) Group *currentGroup;
 @property (nonatomic) CGFloat progressBarWidth;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
+@property (weak, nonatomic) IBOutlet UIView *doneView;
+@property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
 @property (nonatomic) UIColor *progressBarProgressColor;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *myProfilePic;
 @property (nonatomic) UIColor *progressBarTrackColor;
 @property (nonatomic) CGFloat startAngle;
-@property (weak, nonatomic) IBOutlet UIButton *incrementButton;
-@property (weak, nonatomic) IBOutlet UIButton *zeroProgressButton;
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;

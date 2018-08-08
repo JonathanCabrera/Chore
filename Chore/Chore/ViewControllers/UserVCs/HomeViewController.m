@@ -23,18 +23,12 @@
     self.tableView.delegate = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
-    self.tableView.layer.borderWidth = 1;
-    self.tableView.layer.borderColor = self.viewColor.CGColor;
-    //self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-    self.tableView.layer.cornerRadius = 10;
-    self.userView.layer.cornerRadius = 15;
-    self.userView.layer.borderColor = self.viewColor.CGColor;
-    self.userView.layer.borderWidth = 1;
     [self setDesignAspects];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    self.profilePic.file = [PFUser currentUser][@"profilePic"];
+    [self.profilePic loadInBackground];
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
+    [self.profilePic addGestureRecognizer:gestureRecognizer];
     
     //fetches the user's current group 
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
@@ -85,6 +79,9 @@
                         self.increment = 0;
                     } else {
                         self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
+                    }
+                    if([currAssignment.uncompletedChores count] == 0) {
+                        [self.doneView setHidden:NO];
                     }
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
                         NSString *myProgress;
@@ -159,8 +156,21 @@
 }
 
 - (void)setDesignAspects{
-    UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
+    //UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     //[_progressBar setProgressBarTrackColor:unfinished];
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
+    self.tableView.layer.borderWidth = 1;
+    self.tableView.layer.borderColor = self.viewColor.CGColor;
+    //self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+    self.tableView.layer.cornerRadius = 10;
+    self.userView.layer.cornerRadius = 15;
+    self.userView.layer.borderColor = self.viewColor.CGColor;
+    self.userView.layer.borderWidth = 1;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.doneView setHidden:YES];
+    self.addChoreButton.layer.cornerRadius = 16;
     _progressBar.backgroundColor = [UIColor whiteColor];
     [_progressBar setStartAngle:270];
     [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:24]];
@@ -210,12 +220,23 @@
     self.tabBarController.selectedIndex = 2;
 }
 
+- (void)didTapProfile {
+    self.tabBarController.selectedIndex = 2;
+}
+
+- (IBAction)didTapAddChore:(id)sender {
+    [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup.name];
+}
+
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *nextController = [segue destinationViewController];
      if([segue.identifier isEqualToString:@"profileSegue"]) {
          ProfileViewController *profileController = (ProfileViewController *)nextController.topViewController;
          profileController.selectedUser = sender;
          profileController.progress = self.progressToSend;
+     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
+         AddChoreViewController *addChoreController = (AddChoreViewController *)nextController.topViewController;
+         addChoreController.currentGroup = sender;
      }
  }
 

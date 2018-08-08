@@ -19,4 +19,6 @@
 
 - (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency;
 
+- (void)cancel;
+
 @end
