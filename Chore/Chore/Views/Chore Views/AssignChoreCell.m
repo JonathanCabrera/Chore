@@ -34,18 +34,9 @@
 }
 
 - (NSString *)formatName: (NSString *)originalName {
-    long i = originalName.length;
-    if (i < 1) {
-        return @"";
-    }
-    else if (i == 1) {
-        return [originalName capitalizedString];
-    }
-    else {
-        NSString *firstChar = [originalName substringToIndex:1];
-        NSString *otherChars = [originalName substringWithRange:NSMakeRange(1, i - 1)];
-        return [NSString stringWithFormat:@"%@%@", [firstChar uppercaseString], [otherChars lowercaseString]];
-    }
+    return[NSString stringWithFormat:@"%@%@",
+           [[originalName substringToIndex:1] uppercaseString],
+           [[originalName substringFromIndex:1] lowercaseString]];
 }
 
 @end

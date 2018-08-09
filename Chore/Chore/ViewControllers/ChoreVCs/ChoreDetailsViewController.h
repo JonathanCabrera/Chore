@@ -18,9 +18,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *completionStatusLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *chorePic;
-@property (weak, nonatomic) IBOutlet UIImageView *completionStatusImage;
 @property (weak, nonatomic) IBOutlet UIButton *addPictureButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishedButton;
+@property (weak, nonatomic) IBOutlet UILabel *assignedToLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deadlineTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pointsTitleLabel;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+
 @property (nonatomic, strong) Chore *chore;
 
 +(void)presentAlertWithTitle:(NSString *)title fromViewController:(UIViewController *)parentViewController;

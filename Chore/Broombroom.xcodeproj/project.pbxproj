@@ -51,8 +51,9 @@
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
 		9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB05F20FE890A003F458E /* ProfileViewController.m */; };
-		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
 		9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC839D621078C4D00CC5491 /* ProgressCell.m */; };
+		9ECF0EE5211CBB05000C8C51 /* HelpPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF0EE4211CBB05000C8C51 /* HelpPopupViewController.m */; };
+		9ECF0EE7211CBBD1000C8C51 /* helpPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ECF0EE6211CBBD1000C8C51 /* helpPopUp.storyboard */; };
 		B4F10E3B787627A5B3FA34F0 /* libPods-BroombroomUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
@@ -163,9 +164,11 @@
 		9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E9FB05E20FE890A003F458E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		9E9FB05F20FE890A003F458E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		9EC839D521078C4D00CC5491 /* ProgressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressCell.h; sourceTree = "<group>"; };
 		9EC839D621078C4D00CC5491 /* ProgressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressCell.m; sourceTree = "<group>"; };
+		9ECF0EE3211CBB05000C8C51 /* HelpPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpPopupViewController.h; sourceTree = "<group>"; };
+		9ECF0EE4211CBB05000C8C51 /* HelpPopupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpPopupViewController.m; sourceTree = "<group>"; };
+		9ECF0EE6211CBBD1000C8C51 /* helpPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = helpPopUp.storyboard; sourceTree = "<group>"; };
 		E8750BED20FE5EF000D0B13D /* ChoreDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreDetailsViewController.h; sourceTree = "<group>"; };
 		E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreDetailsViewController.m; sourceTree = "<group>"; };
 		E8750BF920FEA4BB00D0B13D /* ChoreInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoreInformationViewController.h; sourceTree = "<group>"; };
@@ -309,6 +312,7 @@
 				1E200B312100FA4700945BD6 /* addChore.storyboard */,
 				1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */,
 				1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */,
+				9ECF0EE6211CBBD1000C8C51 /* helpPopUp.storyboard */,
 			);
 			path = "Chore Storyboards";
 			sourceTree = "<group>";
@@ -395,13 +399,10 @@
 				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
 				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
-				9E9FB06120FE8B22003F458E /* profile.storyboard */,
 				1EB471B32118ED69001685AF /* badge.storyboard */,
 				1EB471B52118ED90001685AF /* BadgeViewController.h */,
 				1EB471B62118ED90001685AF /* BadgeViewController.m */,
 				1E9E5D91211BB0060048F285 /* settings.storyboard */,
-				E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */,
-				E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */,
 				E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */,
 				E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */,
 				E886A4D7211BB09E00AF2B50 /* settings.storyboard */,
@@ -447,6 +448,8 @@
 				1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */,
 				1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */,
 				1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */,
+				9ECF0EE3211CBB05000C8C51 /* HelpPopupViewController.h */,
+				9ECF0EE4211CBB05000C8C51 /* HelpPopupViewController.m */,
 			);
 			path = ChoreVCs;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E829453210280640086EB80 /* Signup.storyboard in Resources */,
+				9ECF0EE7211CBBD1000C8C51 /* helpPopUp.storyboard in Resources */,
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
 				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
@@ -569,7 +573,6 @@
 				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
 				1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */,
 				1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */,
-				9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,
@@ -697,6 +700,7 @@
 				1E9E5D90211B94340048F285 /* CreateCustomChoreCell.m in Sources */,
 				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
 				1E834836211A09B0002A881F /* EmptyCell.m in Sources */,
+				9ECF0EE5211CBB05000C8C51 /* HelpPopupViewController.m in Sources */,
 				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
