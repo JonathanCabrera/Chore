@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
+@property (weak, nonatomic) IBOutlet UILabel *startLabel;
 @property (weak, nonatomic) IBOutlet UILabel *endLabel;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
@@ -101,14 +102,17 @@ numberOfRowsInComponent:(NSInteger)component {
         self.repeating = @"Does not repeat";
         [self.endDatePicker setHidden:YES];
         [self.endLabel setHidden:YES];
+        self.startLabel.text = @"Deadline";
     } else if(row == 1) {
         self.repeating = @"Daily";
         [self.endDatePicker setHidden:NO];
         [self.endLabel setHidden:NO];
+        self.startLabel.text = @"Start date";
     } else {
         self.repeating = self.weekday;
         [self.endDatePicker setHidden:NO];
         [self.endLabel setHidden:NO];
+        self.startLabel.text = @"Start date";
     }
 }
 

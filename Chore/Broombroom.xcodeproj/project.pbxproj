@@ -39,8 +39,8 @@
 		1E9738FA20FFF51E00EE46B9 /* AddChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738F920FFF51E00EE46B9 /* AddChoreViewController.m */; };
 		1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */; };
 		1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */; };
-		1E9E5D8D211B576D0048F285 /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9E5D8C211B576D0048F285 /* setting.storyboard */; };
 		1E9E5D90211B94340048F285 /* CreateCustomChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9E5D8F211B94340048F285 /* CreateCustomChoreCell.m */; };
+		1E9E5D92211BB0060048F285 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9E5D91211BB0060048F285 /* settings.storyboard */; };
 		1EB471B42118ED69001685AF /* badge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB471B32118ED69001685AF /* badge.storyboard */; };
 		1EB471B72118ED90001685AF /* BadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB471B62118ED90001685AF /* BadgeViewController.m */; };
 		1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */; };
@@ -54,7 +54,6 @@
 		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
 		9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC839D621078C4D00CC5491 /* ProgressCell.m */; };
 		B4F10E3B787627A5B3FA34F0 /* libPods-BroombroomUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7BB8A850AD20A3EF7A6690 /* libPods-BroombroomUITests.a */; };
-		E80B4401211A49C8004914AB /* setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8914D41211A40F80043C6C2 /* setting.storyboard */; };
 		E8750BEF20FE5EF000D0B13D /* ChoreDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BEE20FE5EF000D0B13D /* ChoreDetailsViewController.m */; };
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
 		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
@@ -136,9 +135,9 @@
 		1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = createChore.storyboard; sourceTree = "<group>"; };
 		1E9738FF20FFF6A400EE46B9 /* CreateChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateChoreViewController.h; sourceTree = "<group>"; };
 		1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateChoreViewController.m; sourceTree = "<group>"; };
-		1E9E5D8C211B576D0048F285 /* setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = setting.storyboard; sourceTree = "<group>"; };
 		1E9E5D8E211B94340048F285 /* CreateCustomChoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateCustomChoreCell.h; sourceTree = "<group>"; };
 		1E9E5D8F211B94340048F285 /* CreateCustomChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateCustomChoreCell.m; sourceTree = "<group>"; };
+		1E9E5D91211BB0060048F285 /* settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = settings.storyboard; sourceTree = "<group>"; };
 		1EB471B32118ED69001685AF /* badge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = badge.storyboard; sourceTree = "<group>"; };
 		1EB471B52118ED90001685AF /* BadgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BadgeViewController.h; sourceTree = "<group>"; };
 		1EB471B62118ED90001685AF /* BadgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeViewController.m; sourceTree = "<group>"; };
@@ -174,7 +173,6 @@
 		E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoreInformationCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
-		E8914D41211A40F80043C6C2 /* setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = setting.storyboard; path = /Users/noj/Desktop/Chore/Chore/Chore/ViewControllers/UserVCs/setting.storyboard; sourceTree = "<absolute>"; };
 		EBCFDE2BDEA8219B894C2D4C /* Pods-Broombroom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broombroom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Broombroom/Pods-Broombroom.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,10 +397,9 @@
 				1EB471B32118ED69001685AF /* badge.storyboard */,
 				1EB471B52118ED90001685AF /* BadgeViewController.h */,
 				1EB471B62118ED90001685AF /* BadgeViewController.m */,
-				1E9E5D8C211B576D0048F285 /* setting.storyboard */,
+				1E9E5D91211BB0060048F285 /* settings.storyboard */,
 				E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */,
 				E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */,
-				E8914D41211A40F80043C6C2 /* setting.storyboard */,
 			);
 			path = UserVCs;
 			sourceTree = "<group>";
@@ -560,9 +557,9 @@
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
 				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
+				1E9E5D92211BB0060048F285 /* settings.storyboard in Resources */,
 				1EB471B42118ED69001685AF /* badge.storyboard in Resources */,
 				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,
-				1E9E5D8D211B576D0048F285 /* setting.storyboard in Resources */,
 				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
 				1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */,
 				1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */,
