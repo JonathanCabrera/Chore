@@ -25,7 +25,7 @@
     newChore.deadline = date;
     newChore.completionStatus = NO;
     newChore.userName = userName;
-    NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"camera"]);
+    NSData *placeholderData = UIImagePNGRepresentation([UIImage imageNamed:@"green-camera"]);
     newChore.photo = [PFFile fileWithData:placeholderData];
     [newChore saveInBackgroundWithBlock:completion];
 }
