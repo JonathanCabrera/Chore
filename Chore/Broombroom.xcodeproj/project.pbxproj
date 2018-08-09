@@ -40,6 +40,7 @@
 		1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738FD20FFF67D00EE46B9 /* createChore.storyboard */; };
 		1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */; };
 		1E9E5D90211B94340048F285 /* CreateCustomChoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9E5D8F211B94340048F285 /* CreateCustomChoreCell.m */; };
+		1E9E5D92211BB0060048F285 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9E5D91211BB0060048F285 /* settings.storyboard */; };
 		1EB471B42118ED69001685AF /* badge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB471B32118ED69001685AF /* badge.storyboard */; };
 		1EB471B72118ED90001685AF /* BadgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EB471B62118ED90001685AF /* BadgeViewController.m */; };
 		1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC1B25C21067FE00049B71A /* LaunchScreen.storyboard */; };
@@ -137,6 +138,7 @@
 		1E97390020FFF6A400EE46B9 /* CreateChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateChoreViewController.m; sourceTree = "<group>"; };
 		1E9E5D8E211B94340048F285 /* CreateCustomChoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateCustomChoreCell.h; sourceTree = "<group>"; };
 		1E9E5D8F211B94340048F285 /* CreateCustomChoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateCustomChoreCell.m; sourceTree = "<group>"; };
+		1E9E5D91211BB0060048F285 /* settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = settings.storyboard; sourceTree = "<group>"; };
 		1EB471B32118ED69001685AF /* badge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = badge.storyboard; sourceTree = "<group>"; };
 		1EB471B52118ED90001685AF /* BadgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BadgeViewController.h; sourceTree = "<group>"; };
 		1EB471B62118ED90001685AF /* BadgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BadgeViewController.m; sourceTree = "<group>"; };
@@ -397,6 +399,9 @@
 				1EB471B32118ED69001685AF /* badge.storyboard */,
 				1EB471B52118ED90001685AF /* BadgeViewController.h */,
 				1EB471B62118ED90001685AF /* BadgeViewController.m */,
+				1E9E5D91211BB0060048F285 /* settings.storyboard */,
+				E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */,
+				E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */,
 				E886A4CE211B66F300AF2B50 /* SettingTableViewController.h */,
 				E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */,
 				E886A4D7211BB09E00AF2B50 /* settings.storyboard */,
@@ -557,6 +562,7 @@
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
 				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
+				1E9E5D92211BB0060048F285 /* settings.storyboard in Resources */,
 				E886A4D8211BB09E00AF2B50 /* settings.storyboard in Resources */,
 				1EB471B42118ED69001685AF /* badge.storyboard in Resources */,
 				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,

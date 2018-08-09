@@ -86,9 +86,12 @@
     NSDate *endDate = self.chore.deadline;
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSInteger start = [gregorianCalendar component:NSCalendarUnitDay fromDate:startDate];
-    NSInteger end = [gregorianCalendar component:NSCalendarUnitDay fromDate:endDate];
-
+    NSInteger start = [gregorianCalendar ordinalityOfUnit:NSCalendarUnitDay
+                                           inUnit:NSCalendarUnitEra
+                                          forDate:startDate];
+    NSInteger end=[gregorianCalendar ordinalityOfUnit:NSCalendarUnitDay
+                                         inUnit:NSCalendarUnitEra
+                                        forDate:endDate];
     NSInteger daysRemaining = end - start;
     NSString *dueMessage = @"";
     if (daysRemaining < 0) {

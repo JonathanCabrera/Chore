@@ -47,8 +47,8 @@
                                     <action selector="onTapAddPic:" destination="PpC-AV-sPm" eventType="touchUpInside" id="cgh-GM-dbz"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-5q-4oN" customClass="PFImageView">
-                                <rect key="frame" x="117" y="94.5" width="140" height="139.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green-camera" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-5q-4oN" customClass="PFImageView">
+                                <rect key="frame" x="117" y="94.5" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="AJ9-GP-JE4"/>
                                     <constraint firstAttribute="width" constant="140" id="vAh-m0-PUC"/>
@@ -216,4 +216,7 @@
             <point key="canvasLocation" x="-3457" y="-2853"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="green-camera" width="256" height="256"/>
+    </resources>
 </document>

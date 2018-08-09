@@ -267,7 +267,7 @@
                         <viewLayoutGuide key="safeArea" id="Iom-1h-gTc"/>
                     </view>
                     <navigationItem key="navigationItem" title="broombroom" id="zTZ-rP-elu">
-                        <barButtonItem key="rightBarButtonItem" image="user" style="plain" id="7IU-sy-jZe">
+                        <barButtonItem key="rightBarButtonItem" image="user" id="7IU-sy-jZe">
                             <connections>
                                 <action selector="didTapUser:" destination="agp-Wa-ws8" id="avL-d2-gZp"/>
                             </connections>
