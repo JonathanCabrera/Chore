@@ -34,9 +34,12 @@
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
-@property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) UIColor *backgroundColor;
+@property (strong, nonatomic) NSString *weekString;
+@property (strong, nonatomic) NSString *futureString;
+@property (strong, nonatomic) NSString *overdueString;
+@property (nonatomic) long actualRow;
 
 @end
 
@@ -58,13 +61,13 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-    NSString *firstString = @"Overdue";
-    NSString *secondString = @"This Week";
-    NSString *thirdString = @"Future";
+    self.overdueString = @"Overdue";
+    self.weekString = @"This Week";
+    self.futureString = @"Future";
     self.sectionTitles = [NSMutableArray new];
-    [self.sectionTitles insertObject:firstString atIndex:0];
-    [self.sectionTitles insertObject:secondString atIndex:1];
-    [self.sectionTitles insertObject:thirdString atIndex:2];
+    [self.sectionTitles insertObject:self.overdueString atIndex:0];
+    [self.sectionTitles insertObject:self.weekString atIndex:1];
+    [self.sectionTitles insertObject:self.futureString atIndex:2];
     self.backgroundColor = [UIColor whiteColor];
     self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.assignChoreButton.titleLabel.numberOfLines = 2;
@@ -102,7 +105,6 @@
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
-    self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
@@ -192,30 +194,31 @@
     }];
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     Chore *myUpcomingChore;
-    if(indexPath.section == 0) {
-        if([self.overDue count] == 0) {
-            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores overdue!"];
-            return emptyCell;
-        } else {
-            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-            myUpcomingChore = self.chores[indexPath.row];
-            choreCell.delegate = self;
-            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
-            return choreCell;
-        }
+    if(indexPath.section == 0 && [self.overDue count] != 0) {
+        ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
+        myUpcomingChore = self.chores[indexPath.row];
+        choreCell.delegate = self;
+        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+        choreCell.deadlineLabel.hidden = NO;
+        return choreCell;
+        
     } else if(indexPath.section == 1) {
         if([self.thisWeek count] == 0) {
             EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
             [emptyCell setCell:@"No chores for this week"];
             return emptyCell;
         } else {
+            if ([self.overDue count] == 0){
+                self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+            } else {
+                self.actualRow = [self.overDue count] + indexPath.row;
+            }
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-            unsigned long actualRow = [self.overDue count] + indexPath.row;
-            myUpcomingChore = self.chores[actualRow];
+            myUpcomingChore = self.chores[self.actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
             choreCell.deadlineLabel.hidden = NO;
@@ -226,15 +229,19 @@
         [emptyCell setCell:@"No chores for the future"];
         return emptyCell;
     } else {
+        if ([self.overDue count] == 0){
+            self.actualRow = [self.overDue count] + indexPath.row;
+        } else {
+            self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+        }
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-        unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
-        myUpcomingChore = self.chores[actualRow];
+        myUpcomingChore = self.chores[self.actualRow];
         choreCell.delegate = self;
         [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
         choreCell.deadlineLabel.hidden = NO;
         return choreCell;
-
     }
+    
 }
 
 - (void)fetchGroupProgress{
@@ -271,8 +278,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    //UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
-    //[currentCell isKindOfClass:ChoreInformationCell] &&
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
         Chore *myChore = self.chores[indexPath.row];
@@ -327,17 +332,32 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger sectionCount = 0;
+        NSInteger sectionCount;
         if (section == 0){
-            sectionCount = [self.overDue count];
+            if ([self.overDue count] == 0){
+                sectionCount = [self.thisWeek count];
+            } else {
+                sectionCount = [self.overDue count];                
+            }
         } else if (section == 1){
-            sectionCount = [self.thisWeek count];
+            if ([self.overDue count] == 0){
+                sectionCount = [self.future count];
+            } else {
+                sectionCount = [self.thisWeek count];
+            }
         } else {
             sectionCount = [self.future count];
         }
-    return sectionCount;
+        
+        return sectionCount;
+        
+        //        if(sectionCount == 0) {
+        //            return 1;
+        //        } else {
+        //            return sectionCount;
+        //        }
+    
 }
-
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -345,7 +365,20 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+  if ([self.overDue count] == 0){
+        [self.sectionTitles removeAllObjects];
+        [self.sectionTitles insertObject:self.weekString atIndex:0];
+        [self.sectionTitles insertObject:self.futureString atIndex:1];
+        return 2;
+    } else {
+        [self.sectionTitles removeAllObjects];
+        [self.sectionTitles insertObject:self.overdueString atIndex:0];
+        [self.sectionTitles insertObject:self.weekString atIndex:1];
+        [self.sectionTitles insertObject:self.futureString atIndex:2];
+        return 3;
+    }
+    
+    
     
 }
 

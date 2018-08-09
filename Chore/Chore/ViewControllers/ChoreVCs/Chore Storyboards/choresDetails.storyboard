@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="75" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rz9-XC-UoT">
-                                <rect key="frame" x="15" y="594" width="345" height="53"/>
+                                <rect key="frame" x="15" y="550" width="345" height="53"/>
                                 <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
                                 <color key="tintColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,14 +125,15 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1b-6S-3Uw">
-                                <rect key="frame" x="249" y="405" width="106" height="39"/>
+                                <rect key="frame" x="29" y="165" width="56" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Delete Chore">
+                                <state key="normal" title="Delete">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onTapDelete:" destination="PpC-AV-sPm" eventType="touchUpInside" id="Z1b-aQ-mHA"/>
+                                    <segue destination="dV4-Aw-dQ0" kind="show" id="Vs0-K8-Sik"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -178,6 +179,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z5K-V5-fRn"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="FinishedButton" destination="Rz9-XC-UoT" id="f8c-lL-YwA"/>
                         <outlet property="addPictureButton" destination="3gx-8f-4ES" id="WAA-3X-vuH"/>
@@ -203,6 +206,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ctv-1w-q7S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3474" y="-2951"/>
+        </scene>
+        <!--choreInformation-->
+        <scene sceneID="7OL-JW-q5z">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="segueToinfo" storyboardName="choreInformation" id="dV4-Aw-dQ0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7qu-2p-cbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3457" y="-2853"/>
         </scene>
     </scenes>
 </document>
