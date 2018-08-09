@@ -51,7 +51,6 @@
 		9E9C172720FD4DD0007F0F31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172620FD4DD0007F0F31 /* UIKit.framework */; };
 		9E9C172B20FD4DE2007F0F31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */; };
 		9E9FB06020FE890A003F458E /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9FB05F20FE890A003F458E /* ProfileViewController.m */; };
-		9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9FB06120FE8B22003F458E /* profile.storyboard */; };
 		9EC839D721078C4D00CC5491 /* ProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC839D621078C4D00CC5491 /* ProgressCell.m */; };
 		9ECF0EE5211CBB05000C8C51 /* HelpPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF0EE4211CBB05000C8C51 /* HelpPopupViewController.m */; };
 		9ECF0EE7211CBBD1000C8C51 /* helpPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ECF0EE6211CBBD1000C8C51 /* helpPopUp.storyboard */; };
@@ -165,7 +164,6 @@
 		9E9C172A20FD4DE2007F0F31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9E9FB05E20FE890A003F458E /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		9E9FB05F20FE890A003F458E /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		9E9FB06120FE8B22003F458E /* profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = profile.storyboard; sourceTree = "<group>"; };
 		9EC839D521078C4D00CC5491 /* ProgressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressCell.h; sourceTree = "<group>"; };
 		9EC839D621078C4D00CC5491 /* ProgressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressCell.m; sourceTree = "<group>"; };
 		9ECF0EE3211CBB05000C8C51 /* HelpPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpPopupViewController.h; sourceTree = "<group>"; };
@@ -401,7 +399,6 @@
 				1E1E3C1720FD40DA003C87B4 /* Main.storyboard */,
 				9E9FB05E20FE890A003F458E /* ProfileViewController.h */,
 				9E9FB05F20FE890A003F458E /* ProfileViewController.m */,
-				9E9FB06120FE8B22003F458E /* profile.storyboard */,
 				1EB471B32118ED69001685AF /* badge.storyboard */,
 				1EB471B52118ED90001685AF /* BadgeViewController.h */,
 				1EB471B62118ED90001685AF /* BadgeViewController.m */,
@@ -576,7 +573,6 @@
 				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
 				1E9738F720FFED3900EE46B9 /* choresDetails.storyboard in Resources */,
 				1E200B322100FA4700945BD6 /* addChore.storyboard in Resources */,
-				9E9FB06220FE8B22003F458E /* profile.storyboard in Resources */,
 				1E1E3C1B20FD40DA003C87B4 /* Assets.xcassets in Resources */,
 				1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */,
 				1E1E3C1920FD40DA003C87B4 /* Main.storyboard in Resources */,

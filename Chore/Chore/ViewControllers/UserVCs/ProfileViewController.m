@@ -1,4 +1,4 @@
-//
+
 //  ProfileViewController.m
 //  Chore
 //
@@ -32,8 +32,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *pastChores;
 @property (nonatomic) int numPoints;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 @property (strong, nonatomic) NSMutableDictionary *weeklyChores;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
@@ -63,15 +61,15 @@
     [self setLayout];
     [self refresh];
     self.overdueString = @"Overdue";
-    self.weekString = @"This Week";
+    self.weekString = @"This week";
     self.futureString = @"Future";
     self.sectionTitles = [NSMutableArray new];
     [self.sectionTitles insertObject:self.overdueString atIndex:0];
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-   
-
+    
+    
 }
 
 - (void)orderChores {
@@ -134,16 +132,15 @@
     self.progressLabel.textColor = darkGreenColor;
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
-
+    
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
-        [self.editButton setValue:@NO forKeyPath:@"hidden"];
+        [self.settingsButton setValue:@NO forKeyPath:@"hidden"];
         [self.trophyButton setValue:@"NO" forKey:@"hidden"];
         [self.badgesLabel setValue:@"NO" forKey:@"hidden"];
         [self.progressLabel setValue:@"YES" forKey:@"hidden"];
-        [self.backButton setValue:@YES forKey:@"hidden"];
     } else {
-        [self.editButton setValue:@YES forKeyPath:@"hidden"];
+        [self.settingsButton setValue:@YES forKeyPath:@"hidden"];
         [self.trophyButton setValue:@"YES" forKey:@"hidden"];
         [self.badgesLabel setValue:@"YES" forKey:@"hidden"];
         [self.progressLabel setValue:@"NO" forKey:@"hidden"];
@@ -200,21 +197,13 @@
             if ([self.overDue count] == 0){
                 sectionCount = [self.future count];
             } else {
-            sectionCount = [self.thisWeek count];
+                sectionCount = [self.thisWeek count];
             }
         } else {
             sectionCount = [self.future count];
         }
-        
         return sectionCount;
-       
-//        if(sectionCount == 0) {
-//            return 1;
-//        } else {
-//            return sectionCount;
-//        }
     }
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -233,7 +222,7 @@
         return 3;
     }
     
-
+    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -287,20 +276,20 @@
             return choreCell;
             
         } else if(indexPath.section == 1) {
-        
-                if ([self.overDue count] == 0){
-                    self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
-                } else {
-                    self.actualRow = [self.overDue count] + indexPath.row;
-                }
-                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-                myUpcomingChore = self.upcomingChores[self.actualRow];
-                choreCell.delegate = self;
-                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
-                return choreCell;
             
-     
+            if ([self.overDue count] == 0){
+                self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+            } else {
+                self.actualRow = [self.overDue count] + indexPath.row;
+            }
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+            myUpcomingChore = self.upcomingChores[self.actualRow];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
+            
+            
         } else {
             if ([self.overDue count] == 0){
                 self.actualRow = [self.overDue count] + indexPath.row;
@@ -338,44 +327,12 @@
 - (IBAction)didTapSettings:(id)sender {
     NSLog(@"Settings Button tapped");
     [self performSegueWithIdentifier:@"settingsSegue" sender:self];
-
+    
 }
 
 - (void)setUserProfileImage {
     self.profilePicture.file = (PFFile *)self.selectedUser[@"profilePic"];
 }
-
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-//    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-//    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//    self.photo = resizedImage;
-//    [self.profilePicture setImage:resizedImage];
-//
-//    if(self.photo != nil) {
-//        NSData *imageData = UIImagePNGRepresentation(self.photo);
-//        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
-//        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//            if(succeeded) {
-//                NSLog(@"Saved edits!");
-//            } else {
-//                NSLog(@"Error: %@", error);
-//            }
-//        }];
-//    }
-//}
-//
-//- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-//    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-//    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    resizeImageView.image = image;
-//    UIGraphicsBeginImageContext(size);
-//    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return newImage;
-//}
-
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIImage imageNamed:@"broom"];
@@ -424,5 +381,4 @@
         detailsController.chore = sender;
     }
 }
-
 @end
