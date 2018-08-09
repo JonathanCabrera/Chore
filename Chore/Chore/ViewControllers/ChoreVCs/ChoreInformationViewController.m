@@ -59,7 +59,7 @@
     _groupProgressView.clipsToBounds = true;
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fetchChores) userInfo:nil repeats:YES];
     self.overdueString = @"Overdue";
-    self.weekString = @"This Week";
+    self.weekString = @"This week";
     self.futureString = @"Future";
     self.sectionTitles = [NSMutableArray new];
     [self.sectionTitles insertObject:self.overdueString atIndex:0];

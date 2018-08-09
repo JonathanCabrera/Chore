@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk0-vE-rK9">
-                                <rect key="frame" x="16" y="295" width="80" height="80"/>
+                                <rect key="frame" x="16" y="305" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="im3-Xp-akJ"/>
                                     <constraint firstAttribute="width" constant="80" id="mCr-wB-v3F"/>
@@ -42,7 +42,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCu-aq-o0Z">
-                                <rect key="frame" x="124" y="317" width="235" height="37"/>
+                                <rect key="frame" x="124" y="327" width="235" height="37"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                 <state key="normal" title="Select a deadline">
                                     <color key="titleColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,10 +74,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JBk-HP-aoz">
-                                <rect key="frame" x="124" y="177" width="235" height="120"/>
+                                <rect key="frame" x="124" y="177" width="235" height="140"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="LUL-zb-Cyv"/>
+                                    <constraint firstAttribute="height" constant="140" id="LUL-zb-Cyv"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssignUserCell" id="W7l-Ed-DLG" customClass="AssignUserCell">
@@ -212,7 +212,7 @@
                             <constraint firstItem="mI2-MD-waR" firstAttribute="trailing" secondItem="JBk-HP-aoz" secondAttribute="trailing" constant="16" id="9rY-dn-sLo"/>
                             <constraint firstItem="pk0-vE-rK9" firstAttribute="leading" secondItem="mI2-MD-waR" secondAttribute="leading" constant="16" id="Bww-mQ-uXd"/>
                             <constraint firstItem="IiO-AC-TjG" firstAttribute="centerY" secondItem="yvT-FH-BrC" secondAttribute="centerY" id="G0J-n3-kT0"/>
-                            <constraint firstItem="pk0-vE-rK9" firstAttribute="top" secondItem="w78-AR-VRI" secondAttribute="bottom" constant="60" id="Khd-wv-jXA"/>
+                            <constraint firstItem="pk0-vE-rK9" firstAttribute="top" secondItem="w78-AR-VRI" secondAttribute="bottom" constant="70" id="Khd-wv-jXA"/>
                             <constraint firstItem="GPa-FL-xhq" firstAttribute="leading" secondItem="yvT-FH-BrC" secondAttribute="trailing" constant="28" id="L8n-Nm-WFv"/>
                             <constraint firstItem="yvT-FH-BrC" firstAttribute="top" secondItem="mI2-MD-waR" secondAttribute="top" constant="15" id="RDD-Jg-736"/>
                             <constraint firstItem="JCu-aq-o0Z" firstAttribute="centerY" secondItem="pk0-vE-rK9" secondAttribute="centerY" id="Ssg-wK-k6F"/>

@@ -32,8 +32,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *pastChores;
 @property (nonatomic) int numPoints;
 @property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
 @property (strong, nonatomic) NSMutableDictionary *weeklyChores;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
@@ -63,7 +61,7 @@
     [self setLayout];
     [self refresh];
     self.overdueString = @"Overdue";
-    self.weekString = @"This Week";
+    self.weekString = @"This week";
     self.futureString = @"Future";
     self.sectionTitles = [NSMutableArray new];
     [self.sectionTitles insertObject:self.overdueString atIndex:0];
@@ -83,8 +81,6 @@
                                                                                 sortedArrayUsingDescriptors:sortDescriptors]];
     self.upcomingChores = sortedEventArray;
 }
-
-
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
@@ -137,13 +133,12 @@
 
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
-        [self.editButton setValue:@NO forKeyPath:@"hidden"];
+        [self.settingsButton setValue:@NO forKeyPath:@"hidden"];
         [self.trophyButton setValue:@"NO" forKey:@"hidden"];
         [self.badgesLabel setValue:@"NO" forKey:@"hidden"];
         [self.progressLabel setValue:@"YES" forKey:@"hidden"];
-        [self.backButton setValue:@YES forKey:@"hidden"];
     } else {
-        [self.editButton setValue:@YES forKeyPath:@"hidden"];
+        [self.settingsButton setValue:@YES forKeyPath:@"hidden"];
         [self.trophyButton setValue:@"YES" forKey:@"hidden"];
         [self.badgesLabel setValue:@"YES" forKey:@"hidden"];
         [self.progressLabel setValue:@"NO" forKey:@"hidden"];

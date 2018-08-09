@@ -158,8 +158,6 @@
 }
 
 - (void)setDesignAspects{
-    //UIColor *unfinished = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    //[_progressBar setProgressBarTrackColor:unfinished];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
@@ -173,9 +171,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.doneView setHidden:YES];
     self.addChoreButton.layer.cornerRadius = 16;
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width/2;
     _progressBar.backgroundColor = [UIColor whiteColor];
     [_progressBar setStartAngle:270];
-    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:24]];
+    [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:30]];
     [_progressBar setHintViewBackgroundColor:[UIColor whiteColor]];
 }
 
@@ -194,15 +193,6 @@
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:self.increment animated:YES duration:1];
 }
-
-//- (IBAction)onTapLogOut:(id)sender {
-//    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-//        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-//        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-//        appDelegate.window.rootViewController = loginViewController;
-//    }];
-//}
 
 - (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName withProgress:(float)progress {
     self.progressToSend = progress;
@@ -233,7 +223,7 @@
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *nextController = [segue destinationViewController];
      if([segue.identifier isEqualToString:@"profileSegue"]) {
-         ProfileViewController *profileController = (ProfileViewController *)nextController.topViewController;
+         ProfileViewController *profileController = (ProfileViewController *)nextController;
          profileController.selectedUser = sender;
          profileController.progress = self.progressToSend;
      } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
