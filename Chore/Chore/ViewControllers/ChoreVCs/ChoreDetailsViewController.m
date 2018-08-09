@@ -30,11 +30,11 @@
 
 - (void)setFinishedButtonProperties {
     if (!([[PFUser currentUser].username isEqualToString: self.chore.userName])){
-        self.finishedButton.hidden = YES;
+        [self hideFinishButton];
     }
     self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.finishedButton.titleLabel.numberOfLines = 2;
-    self.finishedButton.layer.cornerRadius = 10;
+    self.finishedButton.layer.cornerRadius = 16;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,6 +103,10 @@
 
 - (void)setChoreDetails {
     [self setCompletionStatusLabelColor];
+    self.topView.layer.cornerRadius = 10;
+    UIColor *borderColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
+    self.topView.layer.borderColor = borderColor.CGColor;
+    self.topView.layer.borderWidth = 1;
     self.userNameLabel.text = self.chore.userName;
     self.choreNameLabel.text = self.chore.name;
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
@@ -110,11 +114,12 @@
     self.informationLabel.text = self.chore.info;
     [self loadChorePicture];
 }
+
 - (void)setCompletionStatusLabelColor {
     if (self.chore.completionStatus) {
         self.completionStatusLabel.text = @"Complete";
         self.completionStatusLabel.textColor = UIColorWithHexString(@"#468847");
-        self.finishedButton.hidden = YES;
+        [self hideFinishButton];
     } else {
         self.completionStatusLabel.text = @"Incomplete";
         self.completionStatusLabel.textColor = UIColorWithHexString(@"#b94a48");
@@ -126,6 +131,13 @@
     [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
     NSString *dateString = [dateFormatter stringFromDate:deadlineDate];
     return dateString;
+}
+
+- (void)hideFinishButton {
+    self.finishedButton.hidden = YES;
+    CGRect newFrame = self.topView.frame;
+    newFrame.origin.y -= 50;
+    self.topView.frame = newFrame;
 }
 
 - (IBAction)onTapAddPic:(id)sender {
