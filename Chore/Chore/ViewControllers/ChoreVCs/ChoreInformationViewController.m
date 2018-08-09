@@ -57,10 +57,7 @@
     [self fetchChores];
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView insertSubview:refreshControl atIndex:0];
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fetchChores) userInfo:nil repeats:YES];
     self.overdueString = @"Overdue";
     self.weekString = @"This Week";
     self.futureString = @"Future";
@@ -84,8 +81,7 @@
     self.chores = sortedEventArray;
 }
 
-- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-{
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
     NSDate *toDate;
     
@@ -119,14 +115,8 @@
     }
 }
 
-- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    [self orderChores];
-    [self.tableView reloadData];
-    [refreshControl endRefreshing];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
-    [self beginRefresh];
+    [self fetchChores];
 }
 
 - (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
@@ -141,10 +131,6 @@
         }
     }
     return -1;
-}
-
-- (void)beginRefresh {
-    [self fetchChores];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,8 +181,6 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     Chore *myUpcomingChore;
     if(indexPath.section == 0 && [self.overDue count] != 0) {
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -237,7 +221,6 @@
     
 }
 
-
 - (void)fetchGroupProgress{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [query whereKey:@"groupName" equalTo:self.groupName];
@@ -259,12 +242,6 @@
             }
         }
     }];
-}
-
--(void) reloadTable {
-    [self fetchChores];
-    [self.tableView reloadData];
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -371,9 +348,6 @@
         [self.sectionTitles insertObject:self.futureString atIndex:2];
         return 3;
     }
-    
-    
-    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

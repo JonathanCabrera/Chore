@@ -10,6 +10,7 @@
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ChoreInformationCell.h"
 
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
@@ -26,17 +27,18 @@
     [self setChoreDetails];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self loadChorePicture];
-    [self setFinishedButtonProperties];
+    [self setButtonProperties];
     self.deleteButton.layer.cornerRadius = 10;
 }
 
-- (void)setFinishedButtonProperties {
+- (void)setButtonProperties {
     if (!([[PFUser currentUser].username isEqualToString: self.chore.userName])){
         [self hideFinishButton];
     }
     self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.finishedButton.titleLabel.numberOfLines = 2;
     self.finishedButton.layer.cornerRadius = 16;
+    self.deleteButton.layer.cornerRadius = 16;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,7 +105,6 @@
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
                                     [self deleteAction];
-                                    [self dismissViewControllerAnimated:YES completion:nil];
                                 }];
     UIAlertAction* cancelButton = [UIAlertAction
                                actionWithTitle:@"Cancel"
@@ -116,7 +117,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void) deleteAction {
+-(void)deleteAction {
     PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     pastQuery.limit = 1;
     [pastQuery whereKey:@"userName" equalTo:self.chore.userName];
@@ -130,6 +131,7 @@
             [newUncompleted removeObjectAtIndex:removeIndex];
             [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
             [assignment saveInBackground];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];
 }
@@ -151,7 +153,7 @@
     self.topView.layer.borderColor = borderColor.CGColor;
     self.topView.layer.borderWidth = 1;
     self.userNameLabel.text = self.chore.userName;
-    self.choreNameLabel.text = self.chore.name;
+    self.choreNameLabel.text = [self formatName:self.chore.name];
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
@@ -167,6 +169,12 @@
         self.completionStatusLabel.text = @"Incomplete";
         self.completionStatusLabel.textColor = UIColorWithHexString(@"#b94a48");
     }
+}
+
+- (NSString *)formatName: (NSString *)original {
+    return [NSString stringWithFormat:@"%@%@",
+           [[original substringToIndex:1] uppercaseString],
+           [[original substringFromIndex:1] lowercaseString]];
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
