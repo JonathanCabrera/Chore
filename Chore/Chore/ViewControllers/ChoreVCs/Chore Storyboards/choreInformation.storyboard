@@ -176,6 +176,18 @@
                                                     <action selector="didTapAdd:" destination="sdK-8W-SJO" eventType="touchUpInside" id="1Pm-fX-2z4"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IpK-Kt-C05">
+                                                <rect key="frame" x="328" y="19" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.89234536919999996" green="0.89234536919999996" blue="0.89234536919999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="?">
+                                                    <color key="titleColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onTapHelp:" destination="sdK-8W-SJO" eventType="touchUpInside" id="hig-AR-eJO"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -224,6 +236,7 @@
                         <outlet property="assignChoreButton" destination="GLx-zu-Zkz" id="Qph-2m-Sal"/>
                         <outlet property="choresDoneLabel" destination="Yx0-ve-y2a" id="unK-Ny-X1B"/>
                         <outlet property="groupProgressView" destination="33H-I9-TKW" id="2Ov-fc-awL"/>
+                        <outlet property="helpButton" destination="IpK-Kt-C05" id="flg-Ep-wYk"/>
                         <outlet property="tableView" destination="sWK-yv-glH" id="Pll-xC-MXN"/>
                         <segue destination="L4Z-CK-YYS" kind="show" identifier="choreDetailsSegue" id="Z6F-bb-cAp"/>
                         <segue destination="Wir-Hx-zov" kind="presentation" identifier="addChoreSegue" id="orj-Ws-mml"/>
