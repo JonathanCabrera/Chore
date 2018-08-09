@@ -206,10 +206,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 3;
-    
-    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -235,11 +232,9 @@
     return view;
 }
 
--(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
-{
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 25;
 }
-
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.choreControl.selectedSegmentIndex == 1) {
@@ -252,7 +247,6 @@
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
             [choreCell setCell:myPastChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = YES;
             return choreCell;
         }
     } else {
@@ -267,7 +261,6 @@
                 myUpcomingChore = self.upcomingChores[indexPath.row];
                 choreCell.delegate = self;
                 [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
                 return choreCell;
             }
         } else if(indexPath.section == 1) {
@@ -281,7 +274,6 @@
                 myUpcomingChore = self.upcomingChores[actualRow];
                 choreCell.delegate = self;
                 [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
                 return choreCell;
             }
         } else if([self.future count] == 0) {
@@ -294,7 +286,6 @@
             myUpcomingChore = self.upcomingChores[actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
         }
     }

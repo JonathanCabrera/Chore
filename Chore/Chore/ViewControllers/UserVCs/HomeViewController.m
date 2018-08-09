@@ -29,8 +29,13 @@
     [self.profilePic loadInBackground];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
     [self.profilePic addGestureRecognizer:gestureRecognizer];
+    [self fetchUsersGroup];
     
-    //fetches the user's current group 
+    [_progressBar setProgress:0 animated:NO];
+    [_progressBar setProgress:self.increment animated:YES duration:5];
+}
+
+- (void)fetchUsersGroup {
     NSString *usersGroup = [PFUser currentUser][@"groupName"];
     if(usersGroup != nil) {
         PFQuery *query = [PFQuery queryWithClassName:@"Group"];
@@ -48,9 +53,6 @@
     } else {
         NSLog(@"user has no group");
     }
-    
-    [_progressBar setProgress:0 animated:NO];
-    [_progressBar setProgress:self.increment animated:YES duration:5];
 }
 
 /* This method fetches the progress of both the current user and all of the other members in that current user's group */
