@@ -10,11 +10,13 @@
 #import "ChoreInformationViewController.h"
 #import "ChoreAssignment.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ChoreInformationCell.h"
 
-@interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property BOOL myChore;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -25,16 +27,18 @@
     [self setChoreDetails];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self loadChorePicture];
-    [self setFinishedButtonProperties];
+    [self setButtonProperties];
+    self.deleteButton.layer.cornerRadius = 10;
 }
 
-- (void)setFinishedButtonProperties {
+- (void)setButtonProperties {
     if (!([[PFUser currentUser].username isEqualToString: self.chore.userName])){
-        self.finishedButton.hidden = YES;
+        [self hideFinishButton];
     }
     self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.finishedButton.titleLabel.numberOfLines = 2;
-    self.finishedButton.layer.cornerRadius = 10;
+    self.finishedButton.layer.cornerRadius = 16;
+    self.deleteButton.layer.cornerRadius = 16;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -91,6 +95,47 @@
     }];
 }
 
+- (IBAction)onTapDelete:(id)sender {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Delete Chore"
+                                 message:@"Are you sure you want to delete this chore? This action cannot be undone."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* deleteButton = [UIAlertAction
+                                actionWithTitle:@"Delete"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self deleteAction];
+                                }];
+    UIAlertAction* cancelButton = [UIAlertAction
+                               actionWithTitle:@"Cancel"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                               }];
+    
+    [alert addAction:deleteButton];
+    [alert addAction:cancelButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)deleteAction {
+    PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    pastQuery.limit = 1;
+    [pastQuery whereKey:@"userName" equalTo:self.chore.userName];
+    [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil){
+            ChoreAssignment *assignment = posts[0];
+            NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
+            NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
+            Chore* removedChore = newUncompleted[removeIndex];
+            [removedChore fetchIfNeeded];
+            [newUncompleted removeObjectAtIndex:removeIndex];
+            [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
+            [assignment saveInBackground];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
+}
+
 - (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
     for (int i = 0; i < [choreArray count]; i++) {
         Chore *chore = choreArray[i];
@@ -103,22 +148,33 @@
 
 - (void)setChoreDetails {
     [self setCompletionStatusLabelColor];
+    self.topView.layer.cornerRadius = 10;
+    UIColor *borderColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
+    self.topView.layer.borderColor = borderColor.CGColor;
+    self.topView.layer.borderWidth = 1;
     self.userNameLabel.text = self.chore.userName;
-    self.choreNameLabel.text = self.chore.name;
+    self.choreNameLabel.text = [self formatName:self.chore.name];
     self.deadlineLabel.text = [self formatDeadlineDate:self.chore.deadline];
     self.pointLabel.text = [NSString stringWithFormat: @"%d", self.chore.points];
     self.informationLabel.text = self.chore.info;
     [self loadChorePicture];
 }
+
 - (void)setCompletionStatusLabelColor {
     if (self.chore.completionStatus) {
         self.completionStatusLabel.text = @"Complete";
         self.completionStatusLabel.textColor = UIColorWithHexString(@"#468847");
-        self.finishedButton.hidden = YES;
+        [self hideFinishButton];
     } else {
         self.completionStatusLabel.text = @"Incomplete";
         self.completionStatusLabel.textColor = UIColorWithHexString(@"#b94a48");
     }
+}
+
+- (NSString *)formatName: (NSString *)original {
+    return [NSString stringWithFormat:@"%@%@",
+           [[original substringToIndex:1] uppercaseString],
+           [[original substringFromIndex:1] lowercaseString]];
 }
 
 - (NSString *)formatDeadlineDate:(NSDate *)deadlineDate {
@@ -126,6 +182,13 @@
     [dateFormatter setDateStyle:NSDateFormatterLongStyle]; // Month day, year
     NSString *dateString = [dateFormatter stringFromDate:deadlineDate];
     return dateString;
+}
+
+- (void)hideFinishButton {
+    self.finishedButton.hidden = YES;
+    CGRect newFrame = self.topView.frame;
+    newFrame.origin.y -= 50;
+    self.topView.frame = newFrame;
 }
 
 - (IBAction)onTapAddPic:(id)sender {
@@ -192,10 +255,9 @@ static UIColor * UIColorWithHexString(NSString *hex) {
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
-        [segue.identifier isEqualToString:@"segueToMain"];
-     } else {
-        [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
+        [segue.identifier isEqualToString:@"segueToInfo"];
      }
  }
+
 
 @end

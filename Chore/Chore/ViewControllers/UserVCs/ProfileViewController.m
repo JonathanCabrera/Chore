@@ -42,6 +42,12 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 
+@property (strong, nonatomic) NSMutableArray *pastTitle;
+@property (strong, nonatomic) NSString *weekString;
+@property (strong, nonatomic) NSString *futureString;
+@property (strong, nonatomic) NSString *overdueString;
+@property (nonatomic) long actualRow;
+
 @property (nonatomic) BOOL empty;
 
 @end
@@ -57,15 +63,14 @@
     }
     [self setLayout];
     [self refresh];
-    NSString *overdue = @"Overdue";
-    NSString *weekString = @"This Week";
-    NSString *futureString = @"Future";
-    NSString *pastString = @"Completed";
+    self.overdueString = @"Overdue";
+    self.weekString = @"This Week";
+    self.futureString = @"Future";
     self.sectionTitles = [NSMutableArray new];
-    [self.sectionTitles insertObject:overdue atIndex:0];
-    [self.sectionTitles insertObject:weekString atIndex:1];
-    [self.sectionTitles insertObject:futureString atIndex:2];
-    [self.sectionTitles insertObject:pastString atIndex:3];
+    [self.sectionTitles insertObject:self.overdueString atIndex:0];
+    [self.sectionTitles insertObject:self.weekString atIndex:1];
+    [self.sectionTitles insertObject:self.futureString atIndex:2];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
 }
 
 - (void)orderChores {
@@ -94,7 +99,6 @@
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
-    self.nextWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
@@ -172,7 +176,6 @@
             [self.upcomingTableView reloadData];
             [self orderChores];
             [self countForSections];
-            
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
@@ -185,22 +188,42 @@
     } else {
         NSInteger sectionCount;
         if (section == 0){
-            sectionCount = [self.overDue count];
+            if ([self.overDue count] == 0){
+                sectionCount = [self.thisWeek count];
+            } else {
+                sectionCount = [self.overDue count];
+            }
         } else if (section == 1){
+            if ([self.overDue count] == 0){
+                sectionCount = [self.future count];
+            } else {
             sectionCount = [self.thisWeek count];
+            }
         } else {
             sectionCount = [self.future count];
         }
-        if(sectionCount == 0) {
-            return 1;
-        } else {
-            return sectionCount;
-        }
+        
+        return sectionCount;
     }
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (self.choreControl.selectedSegmentIndex == 0) ? 3 : 1;
+
+    if (self.choreControl.selectedSegmentIndex == 1){
+        return 1;
+    } else if ([self.overDue count] == 0){
+        [self.sectionTitles removeAllObjects];
+        [self.sectionTitles insertObject:self.weekString atIndex:0];
+        [self.sectionTitles insertObject:self.futureString atIndex:1];
+        return 2;
+    } else {
+        [self.sectionTitles removeAllObjects];
+        [self.sectionTitles insertObject:self.overdueString atIndex:0];
+        [self.sectionTitles insertObject:self.weekString atIndex:1];
+        [self.sectionTitles insertObject:self.futureString atIndex:2];
+        return 3;
+    }
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -211,7 +234,6 @@
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     [view setBackgroundColor:color];
-    //view.layer.cornerRadius = 10;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
@@ -230,7 +252,6 @@
     return 25;
 }
 
-
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.choreControl.selectedSegmentIndex == 1) {
         if([self.pastChores count] == 0) {
@@ -242,52 +263,47 @@
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
             [choreCell setCell:myPastChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = YES;
             return choreCell;
         }
     } else {
         Chore *myUpcomingChore;
-        if(indexPath.section == 0) {
-            if([self.overDue count] == 0) {
-                EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-                [emptyCell setCell:@"No chores overdue"];
-                return emptyCell;
-            } else {
-                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-                myUpcomingChore = self.upcomingChores[indexPath.row];
-                choreCell.delegate = self;
-                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
-                return choreCell;
-            }
-        } else if(indexPath.section == 1) {
-            if([self.thisWeek count] == 0) {
-                EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-                [emptyCell setCell:@"No chores for this week"];
-                return emptyCell;
-            } else {
-                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-                unsigned long actualRow = [self.overDue count] + indexPath.row;
-                myUpcomingChore = self.upcomingChores[actualRow];
-                choreCell.delegate = self;
-                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
-                return choreCell;
-            }
-        } else if([self.future count] == 0) {
-            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores for the future"];
-            return emptyCell;
-        } else {
+        if(indexPath.section == 0 && [self.overDue count] != 0) {
             ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-            unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
-            myUpcomingChore = self.upcomingChores[actualRow];
+            myUpcomingChore = self.upcomingChores[indexPath.row];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
+        } else if(indexPath.section == 1) {
+        
+                if ([self.overDue count] == 0){
+                    self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+                } else {
+                    self.actualRow = [self.overDue count] + indexPath.row;
+                }
+                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+                myUpcomingChore = self.upcomingChores[self.actualRow];
+                choreCell.delegate = self;
+                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+                return choreCell;
+    } else {
+            if ([self.overDue count] == 0){
+                self.actualRow = [self.overDue count] + indexPath.row;
+            } else {
+                self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+            }
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+            myUpcomingChore = self.upcomingChores[self.actualRow];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
             return choreCell;
         }
     }
+}
+
+-(void) reloadTable {
+    [self fetchChores];
+    [self.upcomingTableView reloadData];
+    
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {

@@ -75,7 +75,7 @@
                                         ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
     NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.chores
-                                                   sortedArrayUsingDescriptors:sortDescriptors]];
+                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
     self.chores = sortedEventArray;
 }
 
@@ -298,7 +298,7 @@
         NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
         [allUncompletedChores addObjectsFromArray:uncompletedChores];
     }
-
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             int totalChores = 0;
@@ -325,7 +325,7 @@
             [self.tableView reloadData];
             [self countForSections];
             [self createSectionTitles];
-
+            
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
@@ -402,4 +402,3 @@
 }
 
 @end
-

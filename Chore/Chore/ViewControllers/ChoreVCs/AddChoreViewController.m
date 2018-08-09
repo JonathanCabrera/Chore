@@ -19,10 +19,9 @@
 #import "LoginViewController.h"
 #import "CreateCustomChoreCell.h"
 
-@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate, RepeatChoreViewControllerDelegate>
+@interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate, RepeatChoreViewControllerDelegate, CreateCustomChoreCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
-@property (weak, nonatomic) IBOutlet UIButton *customChoreButton;
 @property (weak, nonatomic) IBOutlet UITableView *choreMenu;
 @property (weak, nonatomic) IBOutlet UITableView *userMenu;
 @property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
@@ -79,25 +78,22 @@
     self.choreMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.choreMenu.layer.cornerRadius = 20;
     self.userMenu.backgroundColor = self.backgroundColor;
-    self.userMenu.layer.borderWidth = 0.8f;
+    self.userMenu.layer.borderWidth = 1;
     self.userMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.userMenu.layer.cornerRadius = 20;
-    self.customChoreButton.layer.borderWidth = 0.8f;
-    self.customChoreButton.layer.cornerRadius = 20;
-    self.customChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
-    self.deadlineButton.layer.borderWidth = 0.8f;
+    self.deadlineButton.layer.borderWidth = 1;
     self.deadlineButton.layer.cornerRadius = 20;
     self.deadlineButton.layer.borderColor = self.darkGreenColor.CGColor;
     self.deadlineButton.titleLabel.numberOfLines = 1;
     self.deadlineButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.deadlineButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
-    self.selectUserButton.layer.borderWidth = 0.8f;
+    self.selectUserButton.layer.borderWidth = 1;
     self.selectUserButton.layer.cornerRadius = 20;
     self.selectUserButton.layer.borderColor = self.darkGreenColor.CGColor;
     self.selectUserButton.titleLabel.numberOfLines = 1;
     self.selectUserButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.selectUserButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
-    self.selectChoreButton.layer.borderWidth = 0.8f;
+    self.selectChoreButton.layer.borderWidth = 1;
     self.selectChoreButton.layer.cornerRadius = 20;
     self.selectChoreButton.layer.borderColor = self.darkGreenColor.CGColor;
     self.selectChoreButton.titleLabel.numberOfLines = 1;
@@ -164,7 +160,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if([tableView isEqual:self.choreMenu]) {
-        return [self.filteredChores count];
+        long filtered = [self.filteredChores count];
+        if(filtered == [self.allChores count]) {
+            return filtered + 1;
+        } else {
+            return filtered;
+        }
     } else {
         return [self.userArray count];
     }
@@ -172,10 +173,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual:self.choreMenu]) {
-        AssignChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AssignChoreCell" forIndexPath:indexPath];
-        [choreCell setCell:self.filteredChores[indexPath.row]];
-        choreCell.delegate = self;
-        return choreCell;
+        if([self.filteredChores count] == [self.allChores count]) {
+            if(indexPath.row == 0) {
+                CreateCustomChoreCell *customCell = [tableView dequeueReusableCellWithIdentifier:@"CreateCustomChoreCell" forIndexPath:indexPath];
+                customCell.delegate = self;
+                return customCell;
+            } else {
+                AssignChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AssignChoreCell" forIndexPath:indexPath];
+                [choreCell setCell:self.filteredChores[indexPath.row + 1]];
+                choreCell.delegate = self;
+                return choreCell;
+            }
+        } else {
+            AssignChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AssignChoreCell" forIndexPath:indexPath];
+            [choreCell setCell:self.filteredChores[indexPath.row]];
+            choreCell.delegate = self;
+            return choreCell;
+        }
     } else {
         AssignUserCell *userCell = [tableView dequeueReusableCellWithIdentifier:@"AssignUserCell" forIndexPath:indexPath];
         [userCell setCell:self.userArray[indexPath.row]];
@@ -323,7 +337,7 @@
 }
 
 - (void)cancel {
-        [self lc_dismissViewControllerWithCompletion:nil];
+    [self lc_dismissViewControllerWithCompletion:nil];
 }
 
 - (void)updateDeadline:(NSDate *)startDate withEndDate:(NSDate *)endDate withFrequency:(NSString *)frequency {
@@ -340,13 +354,7 @@
     self.deadlineButton.backgroundColor = self.backgroundColor;
 }
 
-- (void)createChore {
-    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"createChore" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateChoreViewController"]];
-    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
-    [popupController presentInViewController:self];
-}
-
-- (IBAction)didTapCustom:(id)sender {
+- (void)createCustomChore {
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"createChore" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateChoreViewController"]];
     [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
     [popupController presentInViewController:self];

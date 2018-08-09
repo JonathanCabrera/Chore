@@ -13,11 +13,12 @@
 @interface CreateCustomChoreCell : UITableViewCell
 
 @property (nonatomic, weak) id<CreateCustomChoreCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *customLabel;
 
 @end
 
 @protocol CreateCustomChoreCellDelegate
 
-- (void)createChore;
+- (void)createCustomChore;
 
 @end
