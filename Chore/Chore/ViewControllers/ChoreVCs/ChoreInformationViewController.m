@@ -108,10 +108,6 @@
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
-    NSLog(@"This week count: %lu", [self.thisWeek count]);
-    NSLog(@"Overdue count: %lu", [self.overDue count]);
-    NSLog(@"Future Count: %lu", [self.future count]);
-    
     for (Chore *currentChore in self.chores){
         if ([self daysBetweenDate:today andDate:currentChore.deadline] < 0){
             [self.overDue addObject:currentChore];
@@ -211,11 +207,7 @@
         return choreCell;
         
     } else if(indexPath.section == 1) {
-        if([self.thisWeek count] == 0) {
-            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores for this week"];
-            return emptyCell;
-        } else {
+     
             if ([self.overDue count] == 0){
                 self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
             } else {
@@ -227,13 +219,9 @@
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
             choreCell.deadlineLabel.hidden = NO;
             return choreCell;
-        }
-    } else if([self.future count] == 0) {
-        EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-        [emptyCell setCell:@"No chores for the future"];
-        return emptyCell;
+        
+   
     } else {
-      
         if ([self.overDue count] == 0){
             self.actualRow = [self.overDue count] + indexPath.row;
         } else {
@@ -247,9 +235,8 @@
         return choreCell;
     }
     
-    
-    
 }
+
 
 - (void)fetchGroupProgress{
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
