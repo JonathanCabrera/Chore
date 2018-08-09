@@ -39,6 +39,7 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
+
 @property (strong, nonatomic) NSMutableArray *pastTitle;
 @property (strong, nonatomic) NSString *weekString;
 @property (strong, nonatomic) NSString *futureString;
@@ -68,8 +69,6 @@
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-   
-
 }
 
 - (void)orderChores {
@@ -94,6 +93,7 @@
                                                fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
+
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -206,6 +206,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
     if (self.choreControl.selectedSegmentIndex == 1){
         return 1;
     } else if ([self.overDue count] == 0){
@@ -220,8 +221,6 @@
         [self.sectionTitles insertObject:self.futureString atIndex:2];
         return 3;
     }
-    
-
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -235,13 +234,13 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
-    NSString *string;
+    NSString *sectionLabel;
     if(self.choreControl.selectedSegmentIndex == 1){
-        string = @"Completed";
+        sectionLabel = [self.sectionTitles objectAtIndex:3];
     } else {
-        string =[self.sectionTitles objectAtIndex:section];
+        sectionLabel =[self.sectionTitles objectAtIndex:section];
     }
-    [label setText:string];
+    [label setText:sectionLabel];
     [view addSubview:label];
     return view;
 }
@@ -322,71 +321,8 @@
 
 }
 
-- (void)setUserProfileImage {
-    self.profilePicture.file = (PFFile *)self.selectedUser[@"profilePic"];
-}
-
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-//    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-//    UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//    self.photo = resizedImage;
-//    [self.profilePicture setImage:resizedImage];
-//
-//    if(self.photo != nil) {
-//        NSData *imageData = UIImagePNGRepresentation(self.photo);
-//        self.selectedUser[@"profilePic"] = [PFFile fileWithData:imageData];
-//        [self.selectedUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//            if(succeeded) {
-//                NSLog(@"Saved edits!");
-//            } else {
-//                NSLog(@"Error: %@", error);
-//            }
-//        }];
-//    }
-//}
-//
-//- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-//    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-//    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    resizeImageView.image = image;
-//    UIGraphicsBeginImageContext(size);
-//    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return newImage;
-//}
-
-
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
-
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No chores";
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
-                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
-                      @"There are no chores to be completed at this time." :
-                      @"There are no chores that have been completed at this time.");
-    
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 
