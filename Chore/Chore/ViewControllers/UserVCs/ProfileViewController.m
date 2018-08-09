@@ -178,7 +178,6 @@
             [self.upcomingTableView reloadData];
             [self orderChores];
             [self countForSections];
-            
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
@@ -207,12 +206,6 @@
         }
         
         return sectionCount;
-       
-//        if(sectionCount == 0) {
-//            return 1;
-//        } else {
-//            return sectionCount;
-//        }
     }
     
 }
@@ -273,7 +266,6 @@
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
             [choreCell setCell:myPastChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = YES;
             return choreCell;
         }
     } else {
@@ -283,9 +275,7 @@
             myUpcomingChore = self.upcomingChores[indexPath.row];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
-            
         } else if(indexPath.section == 1) {
         
                 if ([self.overDue count] == 0){
@@ -297,11 +287,8 @@
                 myUpcomingChore = self.upcomingChores[self.actualRow];
                 choreCell.delegate = self;
                 [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                choreCell.deadlineLabel.hidden = NO;
                 return choreCell;
-            
-     
-        } else {
+    } else {
             if ([self.overDue count] == 0){
                 self.actualRow = [self.overDue count] + indexPath.row;
             } else {
@@ -311,7 +298,6 @@
             myUpcomingChore = self.upcomingChores[self.actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
         }
     }

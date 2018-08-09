@@ -98,9 +98,6 @@
                                  alertControllerWithTitle:@"Delete Chore"
                                  message:@"Are you sure you want to delete this chore? This action cannot be undone."
                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-    //Add Buttons
-    
     UIAlertAction* deleteButton = [UIAlertAction
                                 actionWithTitle:@"Delete"
                                 style:UIAlertActionStyleDefault
@@ -108,7 +105,6 @@
                                     [self deleteAction];
                                     [self dismissViewControllerAnimated:YES completion:nil];
                                 }];
-    
     UIAlertAction* cancelButton = [UIAlertAction
                                actionWithTitle:@"Cancel"
                                style:UIAlertActionStyleDefault
@@ -117,11 +113,7 @@
     
     [alert addAction:deleteButton];
     [alert addAction:cancelButton];
-    
     [self presentViewController:alert animated:YES completion:nil];
-    
-    
-    
 }
 
 -(void) deleteAction {
@@ -130,7 +122,6 @@
     [pastQuery whereKey:@"userName" equalTo:self.chore.userName];
     [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil){
-            //TODO: typecast posts[0]
             ChoreAssignment *assignment = posts[0];
             NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
             NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
@@ -139,10 +130,8 @@
             [newUncompleted removeObjectAtIndex:removeIndex];
             [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
             [assignment saveInBackground];
-            
         }
     }];
-   
 }
 
 - (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
