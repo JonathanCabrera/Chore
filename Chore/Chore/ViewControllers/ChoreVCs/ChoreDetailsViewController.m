@@ -11,10 +11,11 @@
 #import "ChoreAssignment.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property BOOL myChore;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -26,6 +27,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self loadChorePicture];
     [self setFinishedButtonProperties];
+    self.deleteButton.layer.cornerRadius = 10;
 }
 
 - (void)setFinishedButtonProperties {
@@ -89,6 +91,58 @@
             }
         }
     }];
+}
+
+- (IBAction)onTapDelete:(id)sender {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Delete Chore"
+                                 message:@"Are you sure you want to delete this chore? This action cannot be undone."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    //Add Buttons
+    
+    UIAlertAction* deleteButton = [UIAlertAction
+                                actionWithTitle:@"Delete"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self deleteAction];
+                                    [self dismissViewControllerAnimated:YES completion:nil];
+                                }];
+    
+    UIAlertAction* cancelButton = [UIAlertAction
+                               actionWithTitle:@"Cancel"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                               }];
+    
+    [alert addAction:deleteButton];
+    [alert addAction:cancelButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    
+}
+
+-(void) deleteAction {
+    PFQuery *pastQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+    pastQuery.limit = 1;
+    [pastQuery whereKey:@"userName" equalTo:self.chore.userName];
+    [pastQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil){
+            //TODO: typecast posts[0]
+            ChoreAssignment *assignment = posts[0];
+            NSMutableArray<Chore *> *newUncompleted = assignment.uncompletedChores;
+            NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:self.chore.objectId];
+            Chore* removedChore = newUncompleted[removeIndex];
+            [removedChore fetchIfNeeded];
+            [newUncompleted removeObjectAtIndex:removeIndex];
+            [assignment setObject:newUncompleted forKey:@"uncompletedChores"];
+            [assignment saveInBackground];
+            
+        }
+    }];
+   
 }
 
 - (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
@@ -204,10 +258,9 @@ static UIColor * UIColorWithHexString(NSString *hex) {
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
-        [segue.identifier isEqualToString:@"segueToMain"];
-     } else {
-        [ChoreDetailsViewController presentAlertWithTitle:@"Error: This is not your chore to complete" fromViewController:self];
+        [segue.identifier isEqualToString:@"segueToInfo"];
      }
  }
+
 
 @end
