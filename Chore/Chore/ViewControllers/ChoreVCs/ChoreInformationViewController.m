@@ -41,6 +41,8 @@
 @property (nonatomic) BOOL hasThisWeek;
 @property (nonatomic) BOOL hasFuture;
 
+@property (nonatomic) NSMutableArray *sectionsCreated;
+
 @end
 
 @implementation ChoreInformationViewController
@@ -61,13 +63,6 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-    NSString *firstString = @"Overdue";
-    NSString *secondString = @"This Week";
-    NSString *thirdString = @"Future";
-    self.sectionTitles = [NSMutableArray new];
-    [self.sectionTitles insertObject:firstString atIndex:0];
-    [self.sectionTitles insertObject:secondString atIndex:1];
-    [self.sectionTitles insertObject:thirdString atIndex:2];
     self.backgroundColor = [UIColor whiteColor];
     self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.assignChoreButton.titleLabel.numberOfLines = 2;
@@ -102,28 +97,162 @@
     return [difference day];
 }
 
-- (void) countForSections{
+
+//working
+- (void) countForSections {
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
-    self.hasOverDue = NO;
-    self.hasThisWeek = NO;
-    self.hasFuture = NO;
-    
-    for (Chore *currentChore in self.chores){
-        if ([self daysBetweenDate:today andDate:currentChore.deadline] < 0){
-            [self.overDue addObject:currentChore];
-            self.hasOverDue = NO;
-        } else if ([self daysBetweenDate:today andDate:currentChore.deadline] < 7 && [self daysBetweenDate:today andDate:currentChore.deadline] >= 0){
-            [self.thisWeek addObject:currentChore];
-            self.hasThisWeek = NO;
+    for (Chore *chore in self.chores){
+        if ([self daysBetweenDate:today andDate:chore.deadline] < 0){
+            [self.overDue addObject:chore];
+        } else if ([self daysBetweenDate:today andDate:chore.deadline] < 7 && [self daysBetweenDate:today andDate:chore.deadline] >= 0){
+            [self.thisWeek addObject:chore];
         } else {
-            [self.future addObject:currentChore];
-            self.hasFuture = NO;
+            [self.future addObject:chore];
         }
     }
+}
+
+//WORKING
+- (void) createSectionTitles {
+    self.sectionTitles = [NSMutableArray new];
+    if (self.overDue.count != 0) {
+        [self.sectionTitles addObject:@"Overdue"];
+    }
+    if (self.thisWeek.count != 0) {
+        [self.sectionTitles addObject:@"This Week"];
+    }
+    if (self.future.count != 0) {
+        [self.sectionTitles addObject:@"Future"];
+    }
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        NSString *title = self.sectionTitles[0];
+        if ([title isEqualToString: @"Overdue"]) {
+            return self.overDue.count;
+        } else if ([title isEqualToString:@"This Week"]) {
+            return self.thisWeek.count;
+        } else if ([title isEqualToString:@"Future"]) {
+            return self.future.count;
+        }
+    } else if (section == 1) {
+        NSString *title = self.sectionTitles[1];
+        if ([title isEqualToString: @"Overdue"]) {
+            return self.overDue.count;
+        } else if ([title isEqualToString:@"This Week"]) {
+            return self.thisWeek.count;
+        } else if ([title isEqualToString:@"Future"]) {
+            return self.future.count;
+        }
+    } else if (section == 2) {
+        NSString *title = self.sectionTitles[2];
+        if ([title isEqualToString: @"Overdue"]) {
+            return self.overDue.count;
+        } else if ([title isEqualToString:@"This Week"]) {
+            return self.thisWeek.count;
+        } else if ([title isEqualToString:@"Future"]) {
+            return self.future.count;
+        }
+    }
+    return 0;
+}
+
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
+    Chore *myUpcomingChore;
+    unsigned long actualRow = 0;
+    
+    if(indexPath.section == 0) {
+        actualRow = [self getActualRow:0 withIndexPath:indexPath];
+    } else if(indexPath.section == 1) {
+        actualRow = [self getActualRow:1 withIndexPath:indexPath];
+    } else if(indexPath.section == 2) {
+        actualRow = [self getActualRow:2 withIndexPath:indexPath];
+    }
+    myUpcomingChore = self.chores[actualRow];
+    [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+    choreCell.delegate = self;
+    choreCell.deadlineLabel.hidden = NO;
+    return choreCell;
+    
+}
+- (unsigned long)getActualRow:(unsigned long)index withIndexPath:(nonnull NSIndexPath *)indexPath {
+    NSString *title = self.sectionTitles[index];
+    
+    if ([title isEqualToString:@"Overdue"]) {
+        return indexPath.row;
+    } else if ([title isEqualToString:@"This Week"]) {
+        return self.overDue.count + indexPath.row;
+        return indexPath.row;
+    } else if ([title isEqualToString:@"Future"]) {
+        return self.overDue.count + self.thisWeek.count + indexPath.row;
+    }
+    return 0;
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
+        Chore *myChore = self.chores[indexPath.row];
+        [myChore fetchIfNeeded];
+        [choreAssignmentQuery whereKey:@"userName" equalTo: myChore.userName];
+        choreAssignmentQuery.limit = 1;
+        
+        [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
+            self.assignment = posts[0];
+            NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
+            
+            NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
+            Chore* removedChore = newUncompleted[removeIndex];
+            [removedChore fetchIfNeeded];
+            [newUncompleted removeObjectAtIndex:removeIndex];
+            
+            [self.assignment setObject:newUncompleted forKey:@"uncompletedChores"];
+            [self.assignment saveInBackground];
+            [self.groupProgressView reloadInputViews];
+            
+        }];
+        
+        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
+        choreQuery.limit = 1;
+        [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
+        [choreQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            
+            if (object != nil) {
+                if(indexPath.section == 0) {
+                    [self.chores removeObjectAtIndex:indexPath.row];
+                    [self.overDue removeObjectAtIndex:indexPath.row];
+                } else if(indexPath.section == 1) {
+                    unsigned long actualRow = [self.thisWeek count] + indexPath.row;
+                    [self.chores removeObjectAtIndex:actualRow];
+                    [self.thisWeek removeObjectAtIndex:indexPath.row];
+                } else {
+                    unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+                    [self.chores removeObjectAtIndex:actualRow];
+                    [self.future removeObjectAtIndex:indexPath.row];
+                    
+                }
+                [tableView beginUpdates];
+                [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
+                [object deleteInBackground];
+                [tableView reloadData];
+                [self.groupProgressView reloadInputViews];
+                [tableView endUpdates];
+            }
+        }];
+    }
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.sectionTitles.count;
 }
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
@@ -195,58 +324,15 @@
             [self orderChores];
             [self.tableView reloadData];
             [self countForSections];
+            [self createSectionTitles];
+
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    Chore *myUpcomingChore;
-    if(indexPath.section == 0) {
-        if([self.overDue count] == 0) {
-            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores overdue!"];
-            return emptyCell;
-        } else {
-            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-            myUpcomingChore = self.chores[indexPath.row];
-            choreCell.delegate = self;
-            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
-            return choreCell;
-        }
-    } else if(indexPath.section == 1) {
-        if([self.thisWeek count] == 0) {
-            EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-            [emptyCell setCell:@"No chores for this week"];
-            return emptyCell;
-        } else {
-            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-            unsigned long actualRow = [self.overDue count] + indexPath.row;
-            myUpcomingChore = self.chores[actualRow];
-            choreCell.delegate = self;
-            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
-            return choreCell;
-        }
-    } else if([self.future count] == 0) {
-        EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
-        [emptyCell setCell:@"No chores for the future"];
-        return emptyCell;
-    } else {
-        ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
-        unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
-        myUpcomingChore = self.chores[actualRow];
-        choreCell.delegate = self;
-        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-        choreCell.deadlineLabel.hidden = NO;
-        return choreCell;
-
-    }
-}
-
-- (void)fetchGroupProgress{
+- (void)fetchGroupProgress {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
@@ -269,7 +355,7 @@
     }];
 }
 
--(void) reloadTable {
+- (void) reloadTable {
     [self fetchChores];
     [self.tableView reloadData];
     
@@ -279,81 +365,8 @@
     return 28;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    //UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
-    //[currentCell isKindOfClass:ChoreInformationCell] &&
-    if( editingStyle == UITableViewCellEditingStyleDelete) {
-        PFQuery *choreAssignmentQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
-        Chore *myChore = self.chores[indexPath.row];
-        [myChore fetchIfNeeded];
-        [choreAssignmentQuery whereKey:@"userName" equalTo: myChore.userName];
-        choreAssignmentQuery.limit = 1;
-        
-        
-        [choreAssignmentQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error)  {
-                self.assignment = posts[0];
-                NSMutableArray<Chore *> *newUncompleted = self.assignment.uncompletedChores;
-
-                NSUInteger removeIndex = [self findItemIndexToRemove:newUncompleted withChoreObjectId:myChore.objectId];
-                Chore* removedChore = newUncompleted[removeIndex];
-                [removedChore fetchIfNeeded];
-                [newUncompleted removeObjectAtIndex:removeIndex];
-
-                [self.assignment setObject:newUncompleted forKey:@"uncompletedChores"];
-                [self.assignment saveInBackground];
-                [self.groupProgressView reloadInputViews];
-                
-            }];
-
-        PFQuery *choreQuery = [PFQuery queryWithClassName:@"Chore"];
-        choreQuery.limit = 1;
-        [choreQuery whereKey:@"objectId" equalTo:myChore.objectId];
-        [choreQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            
-                if (object != nil) {
-                    if(indexPath.section == 0) {
-                        [self.chores removeObjectAtIndex:indexPath.row];
-                        [self.overDue removeObjectAtIndex:indexPath.row];
-                    } else if(indexPath.section == 1) {
-                        unsigned long actualRow = [self.thisWeek count] + indexPath.row;
-                        [self.chores removeObjectAtIndex:actualRow];
-                        [self.thisWeek removeObjectAtIndex:indexPath.row];
-                    } else {
-                        unsigned long actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
-                        [self.chores removeObjectAtIndex:actualRow];
-                        [self.future removeObjectAtIndex:indexPath.row];
-        
-                    }
-                    [tableView beginUpdates];
-                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationLeft];
-                    [object deleteInBackground];
-                    [tableView reloadData];
-                    [self.groupProgressView reloadInputViews];
-                    [tableView endUpdates];
-                }
-            }];
-    }
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger sectionCount = 0;
-        if (section == 0){
-            sectionCount = [self.overDue count];
-        } else if (section == 1){
-            sectionCount = [self.thisWeek count];
-        } else {
-            sectionCount = [self.future count];
-        }
-    return sectionCount;
-}
-
-
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 25;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
