@@ -1,4 +1,4 @@
-//
+
 //  ProfileViewController.m
 //  Chore
 //
@@ -39,7 +39,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *nextWeek;
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
-
 @property (strong, nonatomic) NSMutableArray *pastTitle;
 @property (strong, nonatomic) NSString *weekString;
 @property (strong, nonatomic) NSString *futureString;
@@ -69,6 +68,8 @@
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
+    
+    
 }
 
 - (void)orderChores {
@@ -80,6 +81,8 @@
                                                                                 sortedArrayUsingDescriptors:sortDescriptors]];
     self.upcomingChores = sortedEventArray;
 }
+
+
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
@@ -93,7 +96,6 @@
                                                fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
-
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -130,7 +132,7 @@
     self.progressLabel.textColor = darkGreenColor;
     self.userNameLabel.text = self.selectedUser.username;
     self.navigationItem.title = self.selectedUser.username;
-
+    
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
         [self.settingsButton setValue:@NO forKeyPath:@"hidden"];
@@ -173,6 +175,7 @@
             [self.upcomingTableView reloadData];
             [self orderChores];
             [self countForSections];
+            
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
@@ -194,19 +197,16 @@
             if ([self.overDue count] == 0){
                 sectionCount = [self.future count];
             } else {
-            sectionCount = [self.thisWeek count];
+                sectionCount = [self.thisWeek count];
             }
         } else {
             sectionCount = [self.future count];
         }
-        
         return sectionCount;
     }
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     if (self.choreControl.selectedSegmentIndex == 1){
         return 1;
     } else if ([self.overDue count] == 0){
@@ -221,6 +221,8 @@
         [self.sectionTitles insertObject:self.futureString atIndex:2];
         return 3;
     }
+    
+    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -234,13 +236,13 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
     label.font = [UIFont fontWithName:@"Avenir" size:18];
-    NSString *sectionLabel;
+    NSString *string;
     if(self.choreControl.selectedSegmentIndex == 1){
-        sectionLabel = [self.sectionTitles objectAtIndex:3];
+        string = @"Completed";
     } else {
-        sectionLabel =[self.sectionTitles objectAtIndex:section];
+        string =[self.sectionTitles objectAtIndex:section];
     }
-    [label setText:sectionLabel];
+    [label setText:string];
     [view addSubview:label];
     return view;
 }
@@ -260,6 +262,7 @@
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
             [choreCell setCell:myPastChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = YES;
             return choreCell;
         }
     } else {
@@ -269,20 +272,25 @@
             myUpcomingChore = self.upcomingChores[indexPath.row];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
+            
         } else if(indexPath.section == 1) {
-        
-                if ([self.overDue count] == 0){
-                    self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
-                } else {
-                    self.actualRow = [self.overDue count] + indexPath.row;
-                }
-                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-                myUpcomingChore = self.upcomingChores[self.actualRow];
-                choreCell.delegate = self;
-                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                return choreCell;
-    } else {
+            
+            if ([self.overDue count] == 0){
+                self.actualRow = [self.overDue count] + [self.thisWeek count] + indexPath.row;
+            } else {
+                self.actualRow = [self.overDue count] + indexPath.row;
+            }
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+            myUpcomingChore = self.upcomingChores[self.actualRow];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
+            
+            
+        } else {
             if ([self.overDue count] == 0){
                 self.actualRow = [self.overDue count] + indexPath.row;
             } else {
@@ -292,6 +300,7 @@
             myUpcomingChore = self.upcomingChores[self.actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
         }
     }
@@ -318,11 +327,42 @@
 - (IBAction)didTapSettings:(id)sender {
     NSLog(@"Settings Button tapped");
     [self performSegueWithIdentifier:@"settingsSegue" sender:self];
+    
+}
 
+- (void)setUserProfileImage {
+    self.profilePicture.file = (PFFile *)self.selectedUser[@"profilePic"];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"broom"];
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"No chores";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
+                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
+                      @"There are no chores to be completed at this time." :
+                      @"There are no chores that have been completed at this time.");
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 
@@ -341,5 +381,4 @@
         detailsController.chore = sender;
     }
 }
-
 @end
