@@ -261,10 +261,7 @@
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return 25;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> test3
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(self.choreControl.selectedSegmentIndex == 1) {
         if([self.pastChores count] == 0) {
@@ -276,17 +273,19 @@
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
             [choreCell setCell:myPastChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = YES;
             return choreCell;
         }
     } else {
         Chore *myUpcomingChore;
         if(indexPath.section == 0 && [self.overDue count] != 0) {
-                ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
-                myUpcomingChore = self.upcomingChores[indexPath.row];
-                choreCell.delegate = self;
-                [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-                return choreCell;
-        
+            ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreCell" forIndexPath:indexPath];
+            myUpcomingChore = self.upcomingChores[indexPath.row];
+            choreCell.delegate = self;
+            [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
+            return choreCell;
+            
         } else if(indexPath.section == 1) {
             if([self.thisWeek count] == 0) {
                 EmptyCell *emptyCell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
@@ -302,6 +301,7 @@
                 myUpcomingChore = self.upcomingChores[self.actualRow];
                 choreCell.delegate = self;
                 [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+                choreCell.deadlineLabel.hidden = NO;
                 return choreCell;
             }
         } else if([self.future count] == 0) {
@@ -318,6 +318,7 @@
             myUpcomingChore = self.upcomingChores[self.actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
         }
     }

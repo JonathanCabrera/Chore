@@ -108,6 +108,10 @@
     self.future = [NSMutableArray array];
     NSDate *today = [NSDate date];
     
+    NSLog(@"This week count: %lu", [self.thisWeek count]);
+    NSLog(@"Overdue count: %lu", [self.overDue count]);
+    NSLog(@"Future Count: %lu", [self.future count]);
+    
     for (Chore *currentChore in self.chores){
         if ([self daysBetweenDate:today andDate:currentChore.deadline] < 0){
             [self.overDue addObject:currentChore];
@@ -229,6 +233,7 @@
         [emptyCell setCell:@"No chores for the future"];
         return emptyCell;
     } else {
+      
         if ([self.overDue count] == 0){
             self.actualRow = [self.overDue count] + indexPath.row;
         } else {
@@ -241,6 +246,8 @@
         choreCell.deadlineLabel.hidden = NO;
         return choreCell;
     }
+    
+    
     
 }
 
