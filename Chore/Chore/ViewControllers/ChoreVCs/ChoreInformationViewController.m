@@ -13,6 +13,9 @@
 #import "ChoreAssignment.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "EmptyCell.h"
+#import "HelpPopupViewController.h"
+#import <STPopup/STPopup.h>
+
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
@@ -40,6 +43,7 @@
 @property (strong, nonatomic) NSString *futureString;
 @property (strong, nonatomic) NSString *overdueString;
 @property (nonatomic) long actualRow;
+@property (weak, nonatomic) IBOutlet UIButton *helpButton;
 
 @end
 
@@ -72,6 +76,8 @@
     self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
+    self.helpButton.layer.cornerRadius = 16;
+    
 }
 
 - (void)orderChores {
@@ -407,6 +413,18 @@
         addChoreController.currentGroup = sender;
     }
 }
+- (IBAction)onTapHelp:(id)sender {
+    STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"helpPopUp" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpPopupViewController"]];
+    [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
+    [popupController presentInViewController:self];
+
+}
+
+- (void)didTapBackground {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end
 
