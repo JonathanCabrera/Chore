@@ -12,7 +12,6 @@
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "EmptyCell.h"
 #import "HelpPopupViewController.h"
 #import <STPopup/STPopup.h>
 
@@ -69,7 +68,6 @@
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
-    
 }
 
 - (void)orderChores {
@@ -126,7 +124,7 @@
         [self.sectionTitles addObject:@"Overdue"];
     }
     if (self.thisWeek.count != 0) {
-        [self.sectionTitles addObject:@"This Week"];
+        [self.sectionTitles addObject:@"This week"];
     }
     if (self.future.count != 0) {
         [self.sectionTitles addObject:@"Future"];
@@ -138,7 +136,7 @@
         NSString *title = self.sectionTitles[0];
         if ([title isEqualToString: @"Overdue"]) {
             return self.overDue.count;
-        } else if ([title isEqualToString:@"This Week"]) {
+        } else if ([title isEqualToString:@"This week"]) {
             return self.thisWeek.count;
         } else if ([title isEqualToString:@"Future"]) {
             return self.future.count;
@@ -147,7 +145,7 @@
         NSString *title = self.sectionTitles[1];
         if ([title isEqualToString: @"Overdue"]) {
             return self.overDue.count;
-        } else if ([title isEqualToString:@"This Week"]) {
+        } else if ([title isEqualToString:@"This week"]) {
             return self.thisWeek.count;
         } else if ([title isEqualToString:@"Future"]) {
             return self.future.count;
@@ -156,7 +154,7 @@
         NSString *title = self.sectionTitles[2];
         if ([title isEqualToString: @"Overdue"]) {
             return self.overDue.count;
-        } else if ([title isEqualToString:@"This Week"]) {
+        } else if ([title isEqualToString:@"This week"]) {
             return self.thisWeek.count;
         } else if ([title isEqualToString:@"Future"]) {
             return self.future.count;
@@ -164,7 +162,6 @@
     }
     return 0;
 }
-
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -190,7 +187,7 @@
     
     if ([title isEqualToString:@"Overdue"]) {
         return indexPath.row;
-    } else if ([title isEqualToString:@"This Week"]) {
+    } else if ([title isEqualToString:@"This week"]) {
         return self.overDue.count + indexPath.row;
         return indexPath.row;
     } else if ([title isEqualToString:@"Future"]) {
@@ -198,7 +195,6 @@
     }
     return 0;
 }
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle == UITableViewCellEditingStyleDelete) {

@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forgotLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noAccountLabel;
+
 
 @end
 
@@ -45,6 +48,8 @@
     self.titleLabel.textColor = lightGreenColor;
     self.usernameLabel.textColor = lightGreenColor;
     self.passwordLabel.textColor = lightGreenColor;
+    self.forgotLabel.textColor = lightGreenColor;
+    self.noAccountLabel.textColor = lightGreenColor;
 }
 
 - (void)dismissKB {

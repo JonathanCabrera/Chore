@@ -186,9 +186,11 @@
 
 - (void)hideFinishButton {
     self.finishedButton.hidden = YES;
-    CGRect newFrame = self.topView.frame;
-    newFrame.origin.y -= 50;
-    self.topView.frame = newFrame;
+    if(self.chore.completionStatus == NO) {
+        CGRect newFrame = self.topView.frame;
+        newFrame.origin.y -= 50;
+        self.topView.frame = newFrame;
+    }
 }
 
 - (IBAction)onTapAddPic:(id)sender {
