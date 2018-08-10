@@ -82,7 +82,7 @@
                     } else {
                         self.increment = (float) self.currCompletedChores/self.currNumberOfChores;
                     }
-                    if([currAssignment.uncompletedChores count] == 0) {
+                    if([currAssignment.uncompletedChores count] == 0 && [currAssignment.completedChores count] != 0) {
                         [self.doneView setHidden:NO];
                     }
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {

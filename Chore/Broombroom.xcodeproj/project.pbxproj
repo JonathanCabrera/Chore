@@ -29,8 +29,6 @@
 		1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A060210F7D8F00926FD3 /* AssignUserCell.m */; };
 		1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */; };
 		1E8CC2702110E54600C3E742 /* repeatChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */; };
-		1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */; };
-		1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738E420FFA53300EE46B9 /* addMember.storyboard */; };
 		1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E920FFA69400EE46B9 /* AddUserCell.m */; };
 		1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */; };
 		1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F120FFED2F00EE46B9 /* login.storyboard */; };
@@ -123,9 +121,6 @@
 		1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepeatChoreViewController.h; sourceTree = "<group>"; };
 		1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepeatChoreViewController.m; sourceTree = "<group>"; };
 		1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = repeatChore.storyboard; sourceTree = "<group>"; };
-		1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
-		1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
-		1E9738E420FFA53300EE46B9 /* addMember.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addMember.storyboard; sourceTree = "<group>"; };
 		1E9738E820FFA69400EE46B9 /* AddUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUserCell.h; sourceTree = "<group>"; };
 		1E9738E920FFA69400EE46B9 /* AddUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUserCell.m; sourceTree = "<group>"; };
 		1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = createGroup.storyboard; sourceTree = "<group>"; };
@@ -284,16 +279,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		1E5C36CB20FE822A002979BA /* GroupVCs */ = {
-			isa = PBXGroup;
-			children = (
-				1E9738E420FFA53300EE46B9 /* addMember.storyboard */,
-				1E9738E120FFA52400EE46B9 /* AddMemberViewController.h */,
-				1E9738E220FFA52400EE46B9 /* AddMemberViewController.m */,
-			);
-			path = GroupVCs;
-			sourceTree = "<group>";
-		};
 		1E5C36CC20FE82EF002979BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,7 +401,6 @@
 				9E7535C22108F3C000E14E83 /* UserVCs */,
 				1E9738E020FFA3E200EE46B9 /* LoginVCs */,
 				E8750BF020FEA37C00D0B13D /* ChoreVCs */,
-				1E5C36CB20FE822A002979BA /* GroupVCs */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -564,7 +548,6 @@
 				1E829453210280640086EB80 /* Signup.storyboard in Resources */,
 				9ECF0EE7211CBBD1000C8C51 /* helpPopUp.storyboard in Resources */,
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
-				1E9738E520FFA53300EE46B9 /* addMember.storyboard in Resources */,
 				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
 				1E9E5D92211BB0060048F285 /* settings.storyboard in Resources */,
 				E886A4D8211BB09E00AF2B50 /* settings.storyboard in Resources */,
@@ -706,7 +689,6 @@
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,
 				1E97390120FFF6A400EE46B9 /* CreateChoreViewController.m in Sources */,
-				1E9738E320FFA52400EE46B9 /* AddMemberViewController.m in Sources */,
 				E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */,
 				1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */,
 				1E1E3C4520FD43A3003C87B4 /* Chore.m in Sources */,

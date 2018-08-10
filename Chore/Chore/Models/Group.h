@@ -12,7 +12,6 @@
 @interface Group : PFObject <PFSubclassing>
 
 @property (nonatomic, strong, nonnull) NSString *name;
-@property (nonatomic, strong, nonnull) NSMutableArray *members;
 
 + (Group  *_Nullable) makeGroup: (NSString * _Nullable)name withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
