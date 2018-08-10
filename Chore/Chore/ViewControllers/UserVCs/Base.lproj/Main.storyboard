@@ -498,7 +498,7 @@
                         <outlet property="upcomingTableView" destination="KQR-Im-xL6" id="4Qg-6E-Nox"/>
                         <outlet property="userNameLabel" destination="XBD-YL-Tq2" id="1Mz-ik-gfL"/>
                         <outlet property="view" destination="dZI-kk-hsK" id="iTY-st-3EW"/>
-                        <segue destination="FcX-NA-fAU" kind="show" identifier="profileToDetailsSegue" id="9qF-xW-smx"/>
+                        <segue destination="FcX-NA-fAU" kind="show" identifier="profileToDetails" id="9qF-xW-smx"/>
                         <segue destination="r8N-5y-vd5" kind="presentation" identifier="badgeSegue" id="ae1-sh-ZQn"/>
                     </connections>
                 </viewController>
