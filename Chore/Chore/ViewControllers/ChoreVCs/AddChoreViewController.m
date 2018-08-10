@@ -223,15 +223,21 @@
 - (void)selectChore:(AssignChoreCell *)choreCell withChore:(DefaultChore *)chore {
     self.choreToAssign = chore;
     self.selectChoreButton.backgroundColor = self.backgroundColor;
-    self.selectChoreButton.titleLabel.text = self.choreToAssign.name;
+    self.selectChoreButton.titleLabel.text = [self toUpperFirstChar:self.choreToAssign.name];
     [self performSelector:@selector(closeMenus) withObject:nil afterDelay:0.2];
 }
 
 - (void)selectUser:(AssignUserCell *)userCell withUserName:(NSString *)userName {
     self.userToAssign = userName;
     self.selectUserButton.backgroundColor = self.backgroundColor;
-    self.selectUserButton.titleLabel.text = self.userToAssign;
+    self.selectUserButton.titleLabel.text = [self toUpperFirstChar:self.userToAssign];
     [self performSelector:@selector(closeMenus) withObject:nil afterDelay:0.2];
+}
+
+- (NSString *)toUpperFirstChar:(NSString *)text {
+    return [NSString stringWithFormat:@"%@%@",
+           [[text substringToIndex:1] uppercaseString],
+           [[text substringFromIndex:1] lowercaseString]];
 }
 
 - (void)closeMenus {

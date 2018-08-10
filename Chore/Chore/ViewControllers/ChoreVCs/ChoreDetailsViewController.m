@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property BOOL myChore;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewConstraint;
 
 @end
 
@@ -32,7 +33,7 @@
 }
 
 - (void)setButtonProperties {
-    if (!([[PFUser currentUser].username isEqualToString: self.chore.userName])){
+    if (!([[PFUser currentUser].username isEqualToString: self.chore.userName]) || self.chore.completionStatus == YES){
         [self hideFinishButton];
     }
 
@@ -187,11 +188,7 @@
 
 - (void)hideFinishButton {
     self.finishedButton.hidden = YES;
-    if(self.chore.completionStatus == NO) {
-        CGRect newFrame = self.topView.frame;
-        newFrame.origin.y -= 50;
-        self.topView.frame = newFrame;
-    }
+    self.viewConstraint.constant = 13;
 }
 
 - (IBAction)onTapAddPic:(id)sender {
