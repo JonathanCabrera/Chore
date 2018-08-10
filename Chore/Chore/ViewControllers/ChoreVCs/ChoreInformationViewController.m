@@ -33,7 +33,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
-<<<<<<< HEAD
 @property (strong, nonatomic) NSMutableArray *allUsers;
 @property (nonatomic) int numberOfUsers;
 @property (weak, nonatomic) IBOutlet UILabel *uncompletedChoreLabel;
@@ -46,8 +45,6 @@
 @property (nonatomic) BOOL hasFuture;
 @property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
 
-=======
->>>>>>> test3
 @property (nonatomic) NSMutableArray *sectionsCreated;
 
 @end
