@@ -39,6 +39,8 @@
 @property (nonatomic) long currNumberOfChores;
 @property (nonatomic) long currCompletedChores;
 @property (nonatomic) long memberNumberOfChores;
+@property (weak, nonatomic) IBOutlet UIButton *middleChoreButton;
+
 @property (nonatomic) long memberCompletedChores;
 @property (nonatomic) float increment;
 @property (nonatomic) float memberIncrement;

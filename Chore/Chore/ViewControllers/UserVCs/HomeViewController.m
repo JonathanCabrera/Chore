@@ -33,6 +33,8 @@
     
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:self.increment animated:YES duration:4];
+  
+    
 }
 
 - (void)fetchUsersGroup {
@@ -66,6 +68,7 @@
     self.memberIncrementNSNum = [NSNumber new];
     self.membersPoints = [NSMutableArray array];
     self.memberPoint = [NSNumber new];
+    
     [choreQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
@@ -86,14 +89,23 @@
                     }
                     [self.progressBar setHintTextGenerationBlock:^NSString *(CGFloat progress) {
                         NSString *myProgress;
+                        
                         if(self.currNumberOfChores == 0) {
-                            myProgress = @"No chores!";
+                            myProgress = @"";
                         } else {
                             float percentage = (float) weakSelf.currCompletedChores/weakSelf.currNumberOfChores *100;
                             myProgress = [NSString stringWithFormat:@"%.0f%%", percentage];
+                       
+                            
                         }
                         return myProgress;
+                       
+                        
+                        
+                       
                     }];
+                    
+                    
                     [weakSelf.progressBar setProgress:0 animated:NO];
                     [weakSelf.progressBar setProgress:self.increment animated:YES duration:2];
                 } else {
@@ -110,12 +122,21 @@
                     self.memberPoint = [NSNumber numberWithInt:currAssignment.points];
                     [self.membersPoints addObject:self.memberPoint];
                     [self.tableView reloadData];
+                    [self hideTheChoreButton];
                 }
             }
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+-(void) hideTheChoreButton{
+    if (self.currNumberOfChores == 0){
+        self.middleChoreButton.hidden = NO;
+    } else {
+        self.middleChoreButton.hidden = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -166,11 +187,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.doneView setHidden:YES];
     self.addChoreButton.layer.cornerRadius = 16;
+    self.middleChoreButton.layer.cornerRadius = 16;
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width/2;
     _progressBar.backgroundColor = [UIColor whiteColor];
     [_progressBar setStartAngle:270];
     [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:30]];
     [_progressBar setHintViewBackgroundColor:[UIColor whiteColor]];
+    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -215,13 +238,18 @@
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup.name];
 }
 
+- (IBAction)didTapMiddle:(id)sender {
+    [self performSegueWithIdentifier:@"middle" sender:self.currentGroup.name];
+}
+
+
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *nextController = [segue destinationViewController];
      if([segue.identifier isEqualToString:@"profileSegue"]) {
          ProfileViewController *profileController = (ProfileViewController *)nextController;
          profileController.selectedUser = sender;
          profileController.progress = self.progressToSend;
-     } else if([segue.identifier isEqualToString:@"addChoreSegue"]) {
+     } else if([segue.identifier isEqualToString:@"addChoreSegue"] || [segue.identifier isEqualToString:@"middle"]) {
          AddChoreViewController *addChoreController = (AddChoreViewController *)nextController.topViewController;
          addChoreController.currentGroup = sender;
      }

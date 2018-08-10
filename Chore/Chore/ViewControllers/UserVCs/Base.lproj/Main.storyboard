@@ -61,6 +61,18 @@
                                                     <action selector="onTapProgressButton:" destination="agp-Wa-ws8" eventType="touchUpInside" id="mhs-pu-awE"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXm-kp-4Wo">
+                                                <rect key="frame" x="115" y="83" width="99" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="  Add a chore  ">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapMiddle:" destination="agp-Wa-ws8" eventType="touchUpInside" id="wzz-IM-VT3"/>
+                                                    <segue destination="xh7-yf-r8a" kind="presentation" identifier="middle" id="yAD-wa-Nkp"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <rect key="contentStretch" x="1" y="1" width="0.0" height="0.0"/>
@@ -264,8 +276,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addChoreButton" destination="t4N-Zz-lXm" id="KXh-Jn-OFG"/>
                         <outlet property="doneView" destination="EA1-k7-Qk1" id="Lbw-xz-EWM"/>
+                        <outlet property="middleChoreButton" destination="lXm-kp-4Wo" id="fhK-Qa-P1n"/>
                         <outlet property="myPointsLabel" destination="c6z-xn-U4e" id="Xrc-uS-EXF"/>
                         <outlet property="myUsernameLabel" destination="qWb-EZ-Atu" id="oVd-Yd-mop"/>
                         <outlet property="profilePic" destination="FK7-bd-L8Z" id="qPj-aV-x9G"/>
@@ -290,6 +302,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSw-cf-OEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2833" y="-286"/>
+        </scene>
+        <!--addChore-->
+        <scene sceneID="dXe-Yy-8Dh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="addChore" id="xh7-yf-r8a" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NU3-0c-pqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2839" y="-158"/>
         </scene>
         <!--Home-->
         <scene sceneID="wr5-Gn-pZm">
