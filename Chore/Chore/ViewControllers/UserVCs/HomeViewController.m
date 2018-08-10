@@ -32,7 +32,7 @@
     [self fetchUsersGroup];
     
     [_progressBar setProgress:0 animated:NO];
-    [_progressBar setProgress:self.increment animated:YES duration:5];
+    [_progressBar setProgress:self.increment animated:YES duration:4];
 }
 
 - (void)fetchUsersGroup {
@@ -55,7 +55,6 @@
     }
 }
 
-/* This method fetches the progress of both the current user and all of the other members in that current user's group */
 - (void) fetchChores {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
     [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
@@ -125,7 +124,6 @@
     }
 }
 
-
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     return self.bgColor;
 }
@@ -151,7 +149,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setDesignAspects{
@@ -160,7 +157,6 @@
     self.viewColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     self.tableView.layer.borderWidth = 1;
     self.tableView.layer.borderColor = self.viewColor.CGColor;
-    //self.backgroundColor = [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
     self.tableView.layer.cornerRadius = 10;
     self.userView.layer.cornerRadius = 15;
     self.userView.layer.borderColor = self.viewColor.CGColor;

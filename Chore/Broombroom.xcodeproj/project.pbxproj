@@ -29,7 +29,6 @@
 		1E89A061210F7D8F00926FD3 /* AssignUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E89A060210F7D8F00926FD3 /* AssignUserCell.m */; };
 		1E8CC26E2110E53E00C3E742 /* RepeatChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */; };
 		1E8CC2702110E54600C3E742 /* repeatChore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */; };
-		1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9738E920FFA69400EE46B9 /* AddUserCell.m */; };
 		1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */; };
 		1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F120FFED2F00EE46B9 /* login.storyboard */; };
 		1E9738F620FFED3900EE46B9 /* choreInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */; };
@@ -121,8 +120,6 @@
 		1E8CC26C2110E53E00C3E742 /* RepeatChoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RepeatChoreViewController.h; sourceTree = "<group>"; };
 		1E8CC26D2110E53E00C3E742 /* RepeatChoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RepeatChoreViewController.m; sourceTree = "<group>"; };
 		1E8CC26F2110E54600C3E742 /* repeatChore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = repeatChore.storyboard; sourceTree = "<group>"; };
-		1E9738E820FFA69400EE46B9 /* AddUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddUserCell.h; sourceTree = "<group>"; };
-		1E9738E920FFA69400EE46B9 /* AddUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddUserCell.m; sourceTree = "<group>"; };
 		1E9738F020FFED2F00EE46B9 /* createGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = createGroup.storyboard; sourceTree = "<group>"; };
 		1E9738F120FFED2F00EE46B9 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		1E9738F420FFED3900EE46B9 /* choreInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = choreInformation.storyboard; sourceTree = "<group>"; };
@@ -284,7 +281,6 @@
 			children = (
 				1E9738EB20FFA88D00EE46B9 /* Login Views */,
 				1E9738E720FFA62B00EE46B9 /* Chore Views */,
-				1E9738E620FFA61800EE46B9 /* Group Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,15 +312,6 @@
 				1E829455210280800086EB80 /* SignupViewController.m */,
 			);
 			path = LoginVCs;
-			sourceTree = "<group>";
-		};
-		1E9738E620FFA61800EE46B9 /* Group Views */ = {
-			isa = PBXGroup;
-			children = (
-				1E9738E820FFA69400EE46B9 /* AddUserCell.h */,
-				1E9738E920FFA69400EE46B9 /* AddUserCell.m */,
-			);
-			path = "Group Views";
 			sourceTree = "<group>";
 		};
 		1E9738E720FFA62B00EE46B9 /* Chore Views */ = {
@@ -684,7 +671,6 @@
 				1E5C36D720FE93F5002979BA /* GroupCell.m in Sources */,
 				1E834836211A09B0002A881F /* EmptyCell.m in Sources */,
 				9ECF0EE5211CBB05000C8C51 /* HelpPopupViewController.m in Sources */,
-				1E9738EA20FFA69400EE46B9 /* AddUserCell.m in Sources */,
 				1E1E3C1320FD40DA003C87B4 /* AppDelegate.m in Sources */,
 				1E5C36C320FD51F2002979BA /* LoginViewController.m in Sources */,
 				9E9C172420FD4646007F0F31 /* HomeViewController.m in Sources */,

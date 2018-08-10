@@ -44,7 +44,6 @@
 @property (strong, nonatomic) NSString *futureString;
 @property (strong, nonatomic) NSString *overdueString;
 @property (nonatomic) long actualRow;
-
 @property (nonatomic) BOOL empty;
 
 @end
@@ -80,8 +79,6 @@
     self.upcomingChores = sortedEventArray;
 }
 
-
-
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
     NSDate *toDate;
@@ -94,6 +91,7 @@
                                                fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
+
 - (void) countForSections{
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -120,7 +118,6 @@
 - (void)setLayout {
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
     self.upcomingTableView.tableFooterView = [UIView new];
-    //self.upcomingTableView.layer.cornerRadius = 10;
     self.upcomingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
@@ -219,8 +216,6 @@
         [self.sectionTitles insertObject:self.futureString atIndex:2];
         return 3;
     }
-    
-    
 }
 
 - (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -297,22 +292,12 @@
     }
 }
 
--(void) reloadTable {
-    [self fetchChores];
-    [self.upcomingTableView reloadData];
-    
-}
-
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
     [self performSegueWithIdentifier:@"profileToDetails" sender:chore];
 }
 
 - (IBAction)didTapControl:(id)sender {
     [self.upcomingTableView reloadData];
-}
-
-- (IBAction)didTapBack:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapSettings:(id)sender {
@@ -356,7 +341,6 @@
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
-
 - (IBAction)didTapBadge:(id)sender {
     [self performSegueWithIdentifier:@"badgeSegue" sender:nil];
 }
@@ -372,4 +356,5 @@
         detailsController.chore = sender;
     }
 }
+
 @end

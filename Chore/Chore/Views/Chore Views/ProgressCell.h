@@ -33,4 +33,3 @@
 - (void)seeMemberProfile: (ProgressCell *)cell withUser: (NSString *)userName withProgress: (float)progress;
 
 @end
-

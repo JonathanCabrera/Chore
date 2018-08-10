@@ -69,7 +69,6 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     UIImage *resizedImage = [self resizeImage:editedImage withSize:CGSizeMake(1024, 768)];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
     if(resizedImage != nil) {
         NSData *imageData = UIImagePNGRepresentation(resizedImage);
         PFUser *currentUser = [PFUser currentUser];

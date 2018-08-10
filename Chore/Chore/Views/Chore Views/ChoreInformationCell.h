@@ -35,10 +35,3 @@
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName;
 
 @end
-
-
-    
-    
-    
-    
-

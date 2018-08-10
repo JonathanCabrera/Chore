@@ -20,7 +20,6 @@
 #import "ProfileViewController.h"
 #import "AddChoreViewController.h"
 
-
 @interface HomeViewController : UIViewController
 @property (strong, nonatomic) Group *currentGroup;
 @property (nonatomic) CGFloat progressBarWidth;
@@ -30,13 +29,11 @@
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
 @property (nonatomic) UIColor *progressBarProgressColor;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIButton *myProfilePic;
 @property (nonatomic) UIColor *progressBarTrackColor;
 @property (nonatomic) CGFloat startAngle;
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (strong, nonatomic) ChoreAssignment *assignment;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) NSMutableArray *userNames;
 @property (strong, nonatomic) NSString *username;
 @property (nonatomic) long currNumberOfChores;
