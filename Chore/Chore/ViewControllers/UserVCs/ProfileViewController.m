@@ -66,7 +66,7 @@
     [self.sectionTitles insertObject:self.overdueString atIndex:0];
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fetchChores) userInfo:nil repeats:YES];
 }
 
 - (void)orderChores {
@@ -241,7 +241,17 @@
 }
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
-    return 25;
+    if (section == [self.sectionTitles count] - 1) {
+        return 0;
+    } else {
+        return 25;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    [view setBackgroundColor:[UIColor whiteColor]];
+    return view;
 }
 
 - (nonnull UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

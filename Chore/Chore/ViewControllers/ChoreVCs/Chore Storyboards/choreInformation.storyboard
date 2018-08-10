@@ -51,7 +51,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-yv-glH">
-                                                <rect key="frame" x="10" y="159" width="355" height="402"/>
+                                                <rect key="frame" x="10" y="159" width="355" height="441"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="118" id="R11-b3-5jg" customClass="ChoreInformationCell">
@@ -156,7 +156,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="sWK-yv-glH" secondAttribute="bottom" constant="39" id="13a-KG-YQ7"/>
+                                            <constraint firstAttribute="bottom" secondItem="sWK-yv-glH" secondAttribute="bottom" id="13a-KG-YQ7"/>
                                             <constraint firstItem="qDo-UB-Zos" firstAttribute="leading" secondItem="fha-xK-4bT" secondAttribute="leading" constant="10" id="58N-wV-UJp"/>
                                             <constraint firstAttribute="trailing" secondItem="33H-I9-TKW" secondAttribute="trailing" constant="10" id="5aA-PZ-lc6"/>
                                             <constraint firstItem="GLx-zu-Zkz" firstAttribute="top" secondItem="hRe-u0-eGx" secondAttribute="bottom" constant="17" id="7ch-ed-ort"/>
