@@ -221,6 +221,7 @@
 }
 
 - (void)selectChore:(AssignChoreCell *)choreCell withChore:(DefaultChore *)chore {
+    [self.choreSearchBar resignFirstResponder];
     self.choreToAssign = chore;
     self.selectChoreButton.backgroundColor = self.backgroundColor;
     self.selectChoreButton.titleLabel.text = [self toUpperFirstChar:self.choreToAssign.name];
