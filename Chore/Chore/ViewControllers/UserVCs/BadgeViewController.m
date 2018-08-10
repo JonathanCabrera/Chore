@@ -122,12 +122,15 @@
     [query includeKey:@"uncompletedChores"];
     NSArray *list = [query findObjects];
     NSMutableArray *allUncompletedChores = [NSMutableArray array];
+    NSMutableArray *allCompletedChores = [NSMutableArray array];
     for (PFObject *object in list) {
         NSArray *uncompletedChores = [object objectForKey:@"uncompletedChores"];
         [allUncompletedChores addObjectsFromArray:uncompletedChores];
+        NSArray *completedChores = [object objectForKey:@"completedChores"];
+        [allCompletedChores addObjectsFromArray:completedChores];
     }
     
-    if([allUncompletedChores count] == 0) {
+    if([allUncompletedChores count] == 0 && [allCompletedChores count] != 0) {
         [self.groupButton setBackgroundImage:self.groupImage forState:UIControlStateNormal];
     } else {
         [self.groupButton setBackgroundImage:self.lockImage forState:UIControlStateNormal];
