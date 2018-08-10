@@ -240,7 +240,7 @@
     return newImage;
 }
 
-// From stackover flow :O so cool
+
 static UIColor * UIColorWithHexString(NSString *hex) {
     unsigned int rgb = 0;
     [[NSScanner scannerWithString:
@@ -258,10 +258,7 @@ static UIColor * UIColorWithHexString(NSString *hex) {
      if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
         [segue.identifier isEqualToString:@"segueToInfo"];
      }
-     
-     
-    
- }
 
+ }
 
 @end
