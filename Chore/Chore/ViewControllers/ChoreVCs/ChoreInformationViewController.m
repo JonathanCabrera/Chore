@@ -1,10 +1,6 @@
-//
 //  ChoreInformationViewController.m
-//  Chore
-//
 //  Created by Jonathan Cabrera on 7/17/18.
 //  Copyright © 2018 JAK. All rights reserved.
-//  blash
 
 #import "ChoreInformationViewController.h"
 #import "ChoreDetailsViewController.h"
@@ -15,22 +11,20 @@
 #import "HelpPopupViewController.h"
 #import <STPopup/STPopup.h>
 
-
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
+@property (weak, nonatomic) IBOutlet UILabel *groupProgressStaticLabel;
 @property (strong, nonatomic) ChoreAssignment *assignment;
 @property (strong, nonatomic) UIColor *bgColor;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) ChoreInformationCell *choreCell;
 @property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
-
 @property (nonatomic) int points;
 @property (nonatomic) long totalChores;
 @property (nonatomic) long choresDone;
 @property (nonatomic) float memberIncrement;
-
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
@@ -39,11 +33,17 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
+@property (strong, nonatomic) NSMutableArray *allUsers;
+@property (nonatomic) int numberOfUsers;
+@property (weak, nonatomic) IBOutlet UILabel *uncompletedChoreLabel;
+@property (weak, nonatomic) IBOutlet UIButton *assignButton;
+@property (weak, nonatomic) IBOutlet UIView *separator;
+@property (weak, nonatomic) IBOutlet UIImageView *placeHolderImage;
 
 @property (nonatomic) BOOL hasOverDue;
 @property (nonatomic) BOOL hasThisWeek;
 @property (nonatomic) BOOL hasFuture;
-
+@property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
 @property (nonatomic) NSMutableArray *sectionsCreated;
 
 @end
@@ -58,6 +58,7 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.groupName = [PFUser currentUser][@"groupName"];
+    
     self.navigationItem.title = self.groupName;
     [self fetchChores];
     _groupProgressView.layer.cornerRadius = 8;
@@ -68,6 +69,7 @@
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
+    [self hideProgress];
 }
 
 - (void)orderChores {
@@ -80,8 +82,7 @@
     self.chores = sortedEventArray;
 }
 
-- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-{
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
     NSDate *toDate;
     
@@ -98,8 +99,6 @@
     return [difference day];
 }
 
-
-//working
 - (void) countForSections {
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -117,7 +116,6 @@
     }
 }
 
-//WORKING
 - (void) createSectionTitles {
     self.sectionTitles = [NSMutableArray new];
     if (self.overDue.count != 0) {
@@ -184,7 +182,6 @@
 
 - (unsigned long)getActualRow:(unsigned long)index withIndexPath:(nonnull NSIndexPath *)indexPath {
     NSString *title = self.sectionTitles[index];
-    
     if ([title isEqualToString:@"Overdue"]) {
         return indexPath.row;
     } else if ([title isEqualToString:@"This week"]) {
@@ -243,7 +240,6 @@
         NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
         [allUncompletedChores addObjectsFromArray:uncompletedChores];
     }
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             int totalChores = 0;
@@ -275,6 +271,50 @@
             NSLog(@" %@", error.localizedDescription);
         }
     }];
+}
+
+-(void) hideProgress {
+    PFQuery* query = [PFQuery queryWithClassName:@"_User"];
+    [query whereKey:@"groupName" equalTo:self.groupName];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
+        if (posts != nil){
+            self.allUsers = (NSMutableArray *)posts;
+            for (PFUser *user in self.allUsers){
+                if ([user[@"groupName"] isEqualToString:self.groupName]){
+                    self.numberOfUsers += 1;
+                }
+                
+                if (self.numberOfUsers == 1){
+                    self.groupProgressView.hidden = YES;
+                    self.choresDoneLabel.hidden = YES;
+                    self.groupProgressStaticLabel.hidden = YES;
+                    self.helpButton.hidden = YES;
+                    self.uncompletedChoreLabel.hidden = YES;
+                    self.assignButton.hidden = YES;
+                    self.separator.hidden = YES;
+                    self.noChoresLabel.hidden = NO;
+                    self.placeHolderImage.hidden = NO;
+                    
+                    
+                } else {
+                    self.groupProgressView.hidden = NO;
+                    self.choresDoneLabel.hidden = NO;
+                    self.groupProgressStaticLabel.hidden = NO;
+                    self.helpButton.hidden = NO;
+                    self.uncompletedChoreLabel.hidden = NO;
+                    self.assignButton.hidden = NO;
+                    self.separator.hidden = NO;
+                    self.noChoresLabel.hidden = YES;
+                    self.placeHolderImage.hidden = YES;
+                    
+                }
+            }
+        }
+        }];
+    
+    
+  
+
 }
 
 - (void)fetchGroupProgress {
@@ -351,17 +391,15 @@
         addChoreController.currentGroup = sender;
     }
 }
+
 - (IBAction)onTapHelp:(id)sender {
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"helpPopUp" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpPopupViewController"]];
     [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
     [popupController presentInViewController:self];
-
 }
 
 - (void)didTapBackground {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 @end
