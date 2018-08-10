@@ -122,6 +122,8 @@
     if(self.currentGroup != nil) {
         [self fetchChores];
     }
+    
+    
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
