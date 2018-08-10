@@ -13,12 +13,11 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    //[super setSelected:selected animated:animated];
+    [super setSelected:selected animated:animated];
 }
 
 - (void)setCell:(Chore *)chore withColor:(UIColor *)color{
     _chore = chore;
-//    self.choreView.layer.cornerRadius = 8;
     self.choreView.layer.borderWidth = 0.7f;
     UIColor *borderColor = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
     self.choreView.layer.borderColor = borderColor.CGColor;
@@ -117,7 +116,6 @@
             [[text substringFromIndex:1] lowercaseString]];
 }
 
-// From stackover flow :O so cool
 static UIColor * UIColorWithHexString(NSString *hex) {
     unsigned int rgb = 0;
     [[NSScanner scannerWithString:
@@ -129,6 +127,5 @@ static UIColor * UIColorWithHexString(NSString *hex) {
                             blue:((CGFloat)(rgb & 0xFF)) / 255.0
                            alpha:1.0];
 }
-
 
 @end

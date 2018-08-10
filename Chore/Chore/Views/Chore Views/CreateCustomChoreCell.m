@@ -19,7 +19,7 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    //[super setSelected:selected animated:animated];
+    [super setSelected:selected animated:animated];
 }
 
 - (void)didTapCreate {

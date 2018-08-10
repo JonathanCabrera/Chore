@@ -15,7 +15,6 @@
 @interface NewUserViewController () <UITableViewDelegate, UITableViewDataSource, GroupCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *groupArray;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UIButton *enterButton;
