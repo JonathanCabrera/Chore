@@ -16,11 +16,11 @@
             <objects>
                 <viewController id="sdK-8W-SJO" customClass="ChoreInformationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CU2-me-kKh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2h-iP-y5T">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fha-xK-4bT">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
@@ -215,7 +215,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="hlx-c5-1G9"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="assignButton" destination="GLx-zu-Zkz" id="W6j-2J-JhL"/>
                         <outlet property="assignChoreButton" destination="GLx-zu-Zkz" id="Qph-2m-Sal"/>
@@ -234,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sp6-Gi-PHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="121.4392803598201"/>
+            <point key="canvasLocation" x="1164" y="120.98950524737631"/>
         </scene>
         <!--choresDetails-->
         <scene sceneID="3ya-Td-Oi9">

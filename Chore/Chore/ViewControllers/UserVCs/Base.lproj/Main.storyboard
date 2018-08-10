@@ -339,27 +339,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30 points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPy-k4-aN1">
-                                <rect key="frame" x="77" y="256" width="96" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPy-k4-aN1">
+                                <rect key="frame" x="90.5" y="256" width="86" height="27.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KQR-Im-xL6">
-                                <rect key="frame" x="16" y="348" width="343" height="270"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KQR-Im-xL6">
+                                <rect key="frame" x="10" y="346" width="355" height="321"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreCell" rowHeight="88" id="jAK-nX-Luh" customClass="ChoreInformationCell">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="88" id="jAK-nX-Luh" customClass="ChoreInformationCell">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jAK-nX-Luh" id="Yth-Et-gcO">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="87.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EF8-n3-iL9">
-                                                    <rect key="frame" x="284" y="13.5" width="44" height="22"/>
+                                                    <rect key="frame" x="296" y="13.5" width="44" height="22"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -397,52 +395,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-9v-Zdj" customClass="PFImageView">
-                                <rect key="frame" x="127" y="73" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tj0-9v-Zdj" customClass="PFImageView">
+                                <rect key="frame" x="127" y="74" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="IAE-DW-6pN"/>
+                                    <constraint firstAttribute="width" constant="120" id="kBS-kS-Kh0"/>
+                                </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uz4-X5-Mb5">
-                                <rect key="frame" x="106" y="308" width="162" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uz4-X5-Mb5">
+                                <rect key="frame" x="110" y="303" width="153" height="29"/>
                                 <segments>
                                     <segment title="Upcoming"/>
                                     <segment title="Past"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="didTapControl:" destination="vSA-85-K6v" eventType="valueChanged" id="U9S-Hu-f4e"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-YL-Tq2">
-                                <rect key="frame" x="112" y="201" width="150" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-YL-Tq2">
+                                <rect key="frame" x="112" y="202" width="150" height="38.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="28"/>
                                 <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USA-wK-oUe">
-                                <rect key="frame" x="207" y="249" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="trophy-button"/>
-                                <connections>
-                                    <action selector="didTapBadge:" destination="vSA-85-K6v" eventType="touchUpInside" id="KNv-qw-2s8"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OOH-A3-Sdc">
-                                <rect key="frame" x="187" y="247" width="1" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOH-A3-Sdc">
+                                <rect key="frame" x="186.5" y="247" width="1" height="45"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="6HF-sV-plc"/>
+                                    <constraint firstAttribute="height" constant="45" id="wf3-Qn-xwt"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTV-dP-bg3">
-                                <rect key="frame" x="253" y="254" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="badges"/>
-                                <connections>
-                                    <action selector="didTapBadge:" destination="vSA-85-K6v" eventType="touchUpInside" id="frV-g4-1ap"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100% done" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgV-7y-oC9">
                                 <rect key="frame" x="201" y="256" width="125" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -450,7 +435,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YfO-rF-zm6">
+                                <rect key="frame" x="197.5" y="251" width="117.5" height="37"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-Qs-eDX">
+                                        <rect key="frame" x="45" y="7" width="59" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white-trophy" translatesAutoresizingMaskIntoConstraints="NO" id="Qjq-hh-2G1">
+                                        <rect key="frame" x="9" y="7" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="YfO-rF-zm6" firstAttribute="centerY" secondItem="HPy-k4-aN1" secondAttribute="centerY" id="3uB-mR-g7r"/>
+                            <constraint firstItem="YfO-rF-zm6" firstAttribute="centerY" secondItem="OOH-A3-Sdc" secondAttribute="centerY" id="AOY-SQ-ZZE"/>
+                            <constraint firstItem="Uz4-X5-Mb5" firstAttribute="top" secondItem="YfO-rF-zm6" secondAttribute="bottom" constant="15" id="BSf-gp-2V1"/>
+                            <constraint firstItem="tj0-9v-Zdj" firstAttribute="top" secondItem="qYS-3M-Bfc" secondAttribute="top" constant="10" id="G4r-E4-WNk"/>
+                            <constraint firstItem="OOH-A3-Sdc" firstAttribute="centerX" secondItem="XBD-YL-Tq2" secondAttribute="centerX" id="KFz-Dr-1BI"/>
+                            <constraint firstItem="qYS-3M-Bfc" firstAttribute="trailing" secondItem="XBD-YL-Tq2" secondAttribute="trailing" constant="113" id="LeP-Lw-gv2"/>
+                            <constraint firstItem="KQR-Im-xL6" firstAttribute="leading" secondItem="qYS-3M-Bfc" secondAttribute="leading" constant="10" id="LvY-ko-KZU"/>
+                            <constraint firstItem="qYS-3M-Bfc" firstAttribute="trailing" secondItem="KQR-Im-xL6" secondAttribute="trailing" constant="10" id="U88-qZ-dbM"/>
+                            <constraint firstItem="qYS-3M-Bfc" firstAttribute="trailing" secondItem="YfO-rF-zm6" secondAttribute="trailing" constant="60" id="V4a-Kt-DO4"/>
+                            <constraint firstItem="Uz4-X5-Mb5" firstAttribute="centerX" secondItem="OOH-A3-Sdc" secondAttribute="centerX" id="bzD-oa-zS7"/>
+                            <constraint firstItem="HPy-k4-aN1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qYS-3M-Bfc" secondAttribute="leading" constant="70" id="daS-Kg-oZo"/>
+                            <constraint firstItem="qYS-3M-Bfc" firstAttribute="trailing" secondItem="tj0-9v-Zdj" secondAttribute="trailing" constant="128" id="h9k-Wf-YhL"/>
+                            <constraint firstItem="KQR-Im-xL6" firstAttribute="top" secondItem="Uz4-X5-Mb5" secondAttribute="bottom" constant="15" id="iZ3-4u-cEJ"/>
+                            <constraint firstItem="OOH-A3-Sdc" firstAttribute="leading" secondItem="HPy-k4-aN1" secondAttribute="trailing" constant="10" id="jCk-Zw-6dN"/>
+                            <constraint firstItem="XBD-YL-Tq2" firstAttribute="top" secondItem="tj0-9v-Zdj" secondAttribute="bottom" constant="8" id="lOf-4G-yBa"/>
+                            <constraint firstAttribute="bottom" secondItem="KQR-Im-xL6" secondAttribute="bottom" id="met-Nu-FIn"/>
+                            <constraint firstItem="HPy-k4-aN1" firstAttribute="top" secondItem="XBD-YL-Tq2" secondAttribute="bottom" constant="15.5" id="oht-z2-Y2a"/>
+                            <constraint firstItem="YfO-rF-zm6" firstAttribute="leading" secondItem="OOH-A3-Sdc" secondAttribute="trailing" constant="10" id="pPk-Fa-0N2"/>
+                            <constraint firstItem="YfO-rF-zm6" firstAttribute="top" secondItem="XBD-YL-Tq2" secondAttribute="bottom" constant="10.5" id="ukp-FT-9Cj"/>
+                            <constraint firstItem="tj0-9v-Zdj" firstAttribute="leading" secondItem="qYS-3M-Bfc" secondAttribute="leading" constant="127" id="v2K-7P-F0x"/>
+                            <constraint firstItem="XBD-YL-Tq2" firstAttribute="leading" secondItem="qYS-3M-Bfc" secondAttribute="leading" constant="112" id="xAR-6h-rFm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qYS-3M-Bfc"/>
                     </view>
                     <navigationItem key="navigationItem" id="tsU-2t-w91">
@@ -472,13 +497,12 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="badgesLabel" destination="QTV-dP-bg3" id="pQW-cf-ky0"/>
+                        <outlet property="badgeView" destination="YfO-rF-zm6" id="dsC-SD-c7a"/>
                         <outlet property="choreControl" destination="Uz4-X5-Mb5" id="nwC-wt-bMs"/>
                         <outlet property="pointsLabel" destination="HPy-k4-aN1" id="UpG-wY-rHp"/>
                         <outlet property="profilePicture" destination="tj0-9v-Zdj" id="ifm-Rw-uZn"/>
                         <outlet property="progressLabel" destination="kgV-7y-oC9" id="jHa-Pf-DvX"/>
                         <outlet property="settingsButton" destination="cth-wO-pzv" id="Zto-UA-Lwo"/>
-                        <outlet property="trophyButton" destination="USA-wK-oUe" id="xwb-Dx-myj"/>
                         <outlet property="upcomingTableView" destination="KQR-Im-xL6" id="4Qg-6E-Nox"/>
                         <outlet property="userNameLabel" destination="XBD-YL-Tq2" id="1Mz-ik-gfL"/>
                         <outlet property="view" destination="dZI-kk-hsK" id="iTY-st-3EW"/>
@@ -544,8 +568,8 @@
         <image name="home" width="30" height="30"/>
         <image name="housekeeper30" width="30" height="30"/>
         <image name="medal-64" width="64" height="64"/>
-        <image name="trophy-button" width="48" height="48"/>
         <image name="user" width="24" height="24"/>
+        <image name="white-trophy" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6pC-mq-0DA"/>

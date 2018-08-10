@@ -44,7 +44,6 @@
 @property (nonatomic) BOOL hasThisWeek;
 @property (nonatomic) BOOL hasFuture;
 @property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
-
 @property (nonatomic) NSMutableArray *sectionsCreated;
 
 @end
@@ -71,7 +70,6 @@
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
     [self hideProgress];
-
 }
 
 - (void)orderChores {
@@ -180,8 +178,8 @@
     choreCell.delegate = self;
     choreCell.deadlineLabel.hidden = NO;
     return choreCell;
-    
 }
+
 - (unsigned long)getActualRow:(unsigned long)index withIndexPath:(nonnull NSIndexPath *)indexPath {
     NSString *title = self.sectionTitles[index];
     if ([title isEqualToString:@"Overdue"]) {
@@ -349,7 +347,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 28;
+    return 25;
 }
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
@@ -361,14 +359,14 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 25)];
     [view setBackgroundColor:[UIColor whiteColor]];
     return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIColor *color = [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 25)];
     [view setBackgroundColor:color];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setTextColor:[UIColor whiteColor]];
