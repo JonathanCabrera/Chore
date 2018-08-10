@@ -180,7 +180,7 @@
                 return customCell;
             } else {
                 AssignChoreCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"AssignChoreCell" forIndexPath:indexPath];
-                [choreCell setCell:self.filteredChores[indexPath.row + 1]];
+                [choreCell setCell:self.filteredChores[indexPath.row - 1]];
                 choreCell.delegate = self;
                 return choreCell;
             }

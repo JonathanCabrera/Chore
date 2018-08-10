@@ -68,8 +68,6 @@
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(reloadTable) userInfo:nil repeats:YES];
-    
-    
 }
 
 - (void)orderChores {
@@ -262,7 +260,6 @@
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
             [choreCell setCell:myPastChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = YES;
             return choreCell;
         }
     } else {
@@ -272,9 +269,7 @@
             myUpcomingChore = self.upcomingChores[indexPath.row];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
-            
         } else if(indexPath.section == 1) {
             
             if ([self.overDue count] == 0){
@@ -286,10 +281,7 @@
             myUpcomingChore = self.upcomingChores[self.actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
-            
-            
         } else {
             if ([self.overDue count] == 0){
                 self.actualRow = [self.overDue count] + indexPath.row;
@@ -300,7 +292,6 @@
             myUpcomingChore = self.upcomingChores[self.actualRow];
             choreCell.delegate = self;
             [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
-            choreCell.deadlineLabel.hidden = NO;
             return choreCell;
         }
     }

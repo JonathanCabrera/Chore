@@ -193,32 +193,32 @@
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100% done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-9x-Gxp">
-                                                    <rect key="frame" x="272" y="25.5" width="80" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-Af-Shj">
-                                                    <rect key="frame" x="95" y="32" width="167" height="8"/>
+                                                    <rect key="frame" x="95" y="32" width="200" height="8"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="8" id="SVQ-Be-kJh"/>
-                                                        <constraint firstAttribute="width" constant="167" id="mm4-fK-qJG"/>
+                                                        <constraint firstAttribute="width" constant="200" id="mm4-fK-qJG"/>
                                                     </constraints>
                                                     <color key="progressTintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="trackTintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-9x-Gxp">
+                                                    <rect key="frame" x="294" y="25.5" width="40" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="T7d-as-zD7" firstAttribute="top" secondItem="y46-JK-l7t" secondAttribute="bottom" constant="1" id="0cH-9m-Opl"/>
                                                 <constraint firstItem="Tgx-Af-Shj" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leadingMargin" constant="80" id="4hf-Iu-gdC"/>
                                                 <constraint firstItem="y46-JK-l7t" firstAttribute="top" secondItem="iwf-lE-VYC" secondAttribute="top" constant="10" id="86P-Oa-Lwa"/>
                                                 <constraint firstItem="T7d-as-zD7" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leading" constant="10" id="94j-xr-f5Q"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZRG-9x-Gxp" secondAttribute="trailing" constant="2" id="UBI-OI-yxo"/>
                                                 <constraint firstItem="y46-JK-l7t" firstAttribute="leading" secondItem="iwf-lE-VYC" secondAttribute="leading" constant="10" id="ZkG-wg-fOt"/>
                                                 <constraint firstItem="Tgx-Af-Shj" firstAttribute="centerY" secondItem="iwf-lE-VYC" secondAttribute="centerY" id="bpe-RG-Viw"/>
                                                 <constraint firstAttribute="bottom" secondItem="T7d-as-zD7" secondAttribute="bottom" constant="10" id="fE4-8i-piz"/>
                                                 <constraint firstItem="ZRG-9x-Gxp" firstAttribute="centerY" secondItem="Tgx-Af-Shj" secondAttribute="centerY" id="gme-L7-2Af"/>
-                                                <constraint firstItem="ZRG-9x-Gxp" firstAttribute="trailing" secondItem="iwf-lE-VYC" secondAttribute="trailingMargin" constant="8" id="o8n-Nt-q2Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -281,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qI3-lL-P0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2162" y="-287"/>
+            <point key="canvasLocation" x="2160.8000000000002" y="-287.40629685157421"/>
         </scene>
         <!--addChore-->
         <scene sceneID="lXJ-sN-PYO">
@@ -327,7 +327,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KQR-Im-xL6">
-                                <rect key="frame" x="16" y="348" width="343" height="259"/>
+                                <rect key="frame" x="16" y="348" width="343" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -504,7 +504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSE-sg-4ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="935" y="576"/>
+            <point key="canvasLocation" x="933.60000000000002" y="575.26236881559225"/>
         </scene>
         <!--choresDetails-->
         <scene sceneID="cI3-pG-qVr">
