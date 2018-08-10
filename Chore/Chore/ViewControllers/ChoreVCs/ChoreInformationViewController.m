@@ -68,6 +68,8 @@
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
+    //self.tableView.head
+
 }
 
 - (void)orderChores {
@@ -312,11 +314,17 @@
 }
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
-    return 25;
+    if (section == [self.sectionTitles count] -1) {
+        return 0;
+    } else {
+        return 25;
+    }
 }
 
-- (CGFloat):(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50;
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
+    [view setBackgroundColor:[UIColor whiteColor]];
+    return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
