@@ -106,7 +106,7 @@
     }
 }
 
-- (void) createSectionTitles {
+- (void)createSectionTitles {
     self.sectionTitles = [NSMutableArray new];
     if (self.overDue.count != 0) {
         [self.sectionTitles addObject:@"Overdue"];
@@ -254,10 +254,14 @@
 }
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == [self.sectionTitles count] - 1) {
-        return 0;
+    if(self.choreControl.selectedSegmentIndex == 0) {
+        if (section == [self.sectionTitles count] - 1) {
+            return 0;
+        } else {
+            return 25;
+        }
     } else {
-        return 25;
+        return 0;
     }
 }
 
