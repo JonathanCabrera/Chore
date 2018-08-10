@@ -125,9 +125,6 @@
     }
 }
 
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
     return self.bgColor;

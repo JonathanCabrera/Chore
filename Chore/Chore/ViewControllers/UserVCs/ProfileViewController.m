@@ -304,7 +304,7 @@
 }
 
 - (void)seeChore: (ChoreInformationCell *)cell withChore: (Chore *)chore withName:(NSString *)userName {
-    [self performSegueWithIdentifier:@"profileToDetailsSegue" sender:chore];
+    [self performSegueWithIdentifier:@"profileToDetails" sender:chore];
 }
 
 - (IBAction)didTapControl:(id)sender {
@@ -367,7 +367,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *controller = [segue destinationViewController];
-    if([segue.identifier isEqualToString:@"profileToDetailsSegue"]){
+    if([segue.identifier isEqualToString:@"profileToDetails"]){
         ChoreDetailsViewController *detailsController = (ChoreDetailsViewController *)controller;
         detailsController.chore = sender;
     }

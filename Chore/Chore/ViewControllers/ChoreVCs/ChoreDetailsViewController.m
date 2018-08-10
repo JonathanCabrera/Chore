@@ -36,6 +36,7 @@
     if (!([[PFUser currentUser].username isEqualToString: self.chore.userName]) || self.chore.completionStatus == YES){
         [self hideFinishButton];
     }
+
     self.finishedButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.finishedButton.titleLabel.numberOfLines = 2;
     self.finishedButton.layer.cornerRadius = 16;
@@ -253,9 +254,13 @@ static UIColor * UIColorWithHexString(NSString *hex) {
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
      if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
         [segue.identifier isEqualToString:@"segueToInfo"];
      }
+     
+     
+    
  }
 
 
