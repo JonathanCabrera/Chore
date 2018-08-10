@@ -1,10 +1,6 @@
-//
 //  ChoreInformationViewController.m
-//  Chore
-//
 //  Created by Jonathan Cabrera on 7/17/18.
 //  Copyright © 2018 JAK. All rights reserved.
-//  blash
 
 #import "ChoreInformationViewController.h"
 #import "ChoreDetailsViewController.h"
@@ -15,7 +11,6 @@
 #import "HelpPopupViewController.h"
 #import <STPopup/STPopup.h>
 
-
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
@@ -25,12 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) ChoreInformationCell *choreCell;
 @property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
-
 @property (nonatomic) int points;
 @property (nonatomic) long totalChores;
 @property (nonatomic) long choresDone;
 @property (nonatomic) float memberIncrement;
-
 @property (nonatomic) NSInteger *indexToDelete;
 @property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
@@ -39,11 +32,6 @@
 @property (strong, nonatomic) NSMutableArray<Chore *> *future;
 @property (strong, nonatomic) UIColor *backgroundColor;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
-
-@property (nonatomic) BOOL hasOverDue;
-@property (nonatomic) BOOL hasThisWeek;
-@property (nonatomic) BOOL hasFuture;
-
 @property (nonatomic) NSMutableArray *sectionsCreated;
 
 @end
@@ -68,8 +56,6 @@
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
-    //self.tableView.head
-
 }
 
 - (void)orderChores {
@@ -82,8 +68,7 @@
     self.chores = sortedEventArray;
 }
 
-- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
-{
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
     NSDate *fromDate;
     NSDate *toDate;
     
@@ -100,8 +85,6 @@
     return [difference day];
 }
 
-
-//working
 - (void) countForSections {
     self.overDue = [NSMutableArray array];
     self.thisWeek = [NSMutableArray array];
@@ -119,7 +102,6 @@
     }
 }
 
-//WORKING
 - (void) createSectionTitles {
     self.sectionTitles = [NSMutableArray new];
     if (self.overDue.count != 0) {
@@ -186,7 +168,6 @@
 }
 - (unsigned long)getActualRow:(unsigned long)index withIndexPath:(nonnull NSIndexPath *)indexPath {
     NSString *title = self.sectionTitles[index];
-    
     if ([title isEqualToString:@"Overdue"]) {
         return indexPath.row;
     } else if ([title isEqualToString:@"This week"]) {
@@ -197,7 +178,6 @@
     }
     return 0;
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.sectionTitles.count;
@@ -246,7 +226,6 @@
         NSArray* uncompletedChores = [object objectForKey:@"uncompletedChores"];
         [allUncompletedChores addObjectsFromArray:uncompletedChores];
     }
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             int totalChores = 0;
@@ -354,17 +333,15 @@
         addChoreController.currentGroup = sender;
     }
 }
+
 - (IBAction)onTapHelp:(id)sender {
     STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[[UIStoryboard storyboardWithName:@"helpPopUp" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpPopupViewController"]];
     [popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackground)]];
     [popupController presentInViewController:self];
-
 }
 
 - (void)didTapBackground {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 @end
