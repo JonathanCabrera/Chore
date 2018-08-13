@@ -64,6 +64,7 @@
     [self.sectionTitles insertObject:self.overdueString atIndex:0];
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
+
 }
 
 - (void)orderChores {
@@ -128,7 +129,6 @@
 - (void)setLayout {
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
     self.upcomingTableView.tableFooterView = [UIView new];
-    self.upcomingTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = self.backgroundColor;
@@ -254,6 +254,7 @@
 }
 
 -(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
+    self.upcomingTableView.contentInset = UIEdgeInsetsMake(0, 0, -25, 0);
     if(self.choreControl.selectedSegmentIndex == 0) {
         if (section == [self.sectionTitles count] - 1) {
             return 0;
@@ -267,7 +268,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 25)];
-    [view setBackgroundColor:[UIColor greenColor]];
+    [view setBackgroundColor:[UIColor whiteColor]];
     return view;
 }
 
