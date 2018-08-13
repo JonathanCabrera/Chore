@@ -12,7 +12,6 @@
 #import <STPopup/STPopup.h>
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
-
 @end
 
 @implementation ChoreInformationViewController
@@ -24,60 +23,56 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.groupName = [PFUser currentUser][@"groupName"];
     
-    self.navigationItem.title = self.groupName;
+    [self setUpBasicFeatures];
     [self fetchChores];
+    [self hideProgress];
+}
+
+- (void)setUpBasicFeatures {
+    self.groupName = [PFUser currentUser][@"groupName"];
+    self.navigationItem.title = self.groupName;
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
-    self.backgroundColor = [UIColor whiteColor];
+    [self setButtonDesign];
+}
+
+- (void)setButtonDesign {
     self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
-    [self hideProgress];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    performSelector:withObject:afterDelay:
     [super viewWillAppear:animated];
-    [self performSelector:@selector(reloadTable)
-               withObject:(self)
-               afterDelay:1];
+    [self performSelector:@selector(emptySelector) withObject:self afterDelay:1];
     [self.tableView reloadData];
-    NSLog(@"reload table view");
     [self fetchChores];
 }
 
--(void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
     [self.tableView reloadData];
 }
 
 - (void)orderChores {
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"deadline"
-                                        ascending:YES];
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.chores
-                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
+    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.chores sortedArrayUsingDescriptors:sortDescriptors]];
     self.chores = sortedEventArray;
 }
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *fromDate;
     NSDate *toDate;
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
     
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&fromDate
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
                  interval:NULL forDate:toDateTime];
-    
-    NSDateComponents *difference = [calendar components:NSCalendarUnitDay
-                                               fromDate:fromDate toDate:toDate options:0];
-    
+
+    NSDateComponents *difference = [calendar components:NSCalendarUnitDay                              fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
 
@@ -112,35 +107,24 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString *title;
     if (section == 0) {
-        NSString *title = self.sectionTitles[0];
-        if ([title isEqualToString: @"Overdue"]) {
-            return self.overDue.count;
-        } else if ([title isEqualToString:@"This week"]) {
-            return self.thisWeek.count;
-        } else if ([title isEqualToString:@"Future"]) {
-            return self.future.count;
-        }
+       title = self.sectionTitles[0];
     } else if (section == 1) {
-        NSString *title = self.sectionTitles[1];
-        if ([title isEqualToString: @"Overdue"]) {
-            return self.overDue.count;
-        } else if ([title isEqualToString:@"This week"]) {
-            return self.thisWeek.count;
-        } else if ([title isEqualToString:@"Future"]) {
-            return self.future.count;
-        }
+        title = self.sectionTitles[1];
     } else if (section == 2) {
-        NSString *title = self.sectionTitles[2];
-        if ([title isEqualToString: @"Overdue"]) {
-            return self.overDue.count;
-        } else if ([title isEqualToString:@"This week"]) {
-            return self.thisWeek.count;
-        } else if ([title isEqualToString:@"Future"]) {
-            return self.future.count;
-        }
+        title = self.sectionTitles[2];
     }
-    return 0;
+    
+    if ([title isEqualToString: @"Overdue"]) {
+        return self.overDue.count;
+    } else if ([title isEqualToString:@"This week"]) {
+        return self.thisWeek.count;
+    } else if ([title isEqualToString:@"Future"]) {
+        return self.future.count;
+    } else {
+        return 0;
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -156,7 +140,7 @@
         actualRow = [self getActualRow:2 withIndexPath:indexPath];
     }
     myUpcomingChore = self.chores[actualRow];
-    [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+    [choreCell setCell:myUpcomingChore withColor:[UIColor whiteColor]];
     choreCell.delegate = self;
     choreCell.deadlineLabel.hidden = NO;
     return choreCell;
@@ -179,29 +163,8 @@
     return self.sectionTitles.count;
 }
 
-- (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    [self orderChores];
-    [self.tableView reloadData];
-    [refreshControl endRefreshing];
-}
-
-
 - (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
-}
-
-- (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
-    for (int i = 0; i < [choreArray count]; i++) {
-        Chore *chore = choreArray[i];
-        if ([chore.objectId isEqualToString:removableObjectId]) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-- (void)beginRefresh {
-    [self fetchChores];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -221,37 +184,24 @@
     }
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
-            int totalChores = 0;
-            int choresDone = 0;
-            float memberIncrement = 0;
             self.allAssignments = (NSMutableArray *)posts;
-            self.chores = [NSMutableArray array];
-            for (ChoreAssignment *currAssignment in self.allAssignments) {
-                totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
-                choresDone += [currAssignment.completedChores count];
-                if (totalChores == 0){
-                    memberIncrement = 0;
-                } else {
-                    memberIncrement = ((float) choresDone)/totalChores;
-                }
-            }
-            for (Chore *chore in allUncompletedChores) {
-                [self.chores addObject:chore];
-            }
-            [self.tableView reloadData];
-            [self->_groupProgressView setProgress:memberIncrement animated:YES];
-            self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement*100];
-            [self orderChores];
-            [self.tableView reloadData];
-            [self countForSections];
-            [self createSectionTitles];
-            
+            [self setGroupProgress:self.allAssignments];
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
+    
+    self.chores = [NSMutableArray array];
+    for (Chore *chore in allUncompletedChores) {
+        [self.chores addObject:chore];
+    }
+    [self orderChores];
+    [self.tableView reloadData];
+    [self countForSections];
+    [self createSectionTitles];
 }
 
+<<<<<<< HEAD
 -(void) hideProgress {
     PFQuery* query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"groupName" equalTo:self.groupName];
@@ -286,33 +236,64 @@
             }
         }
         }];
+=======
+- (void)setGroupProgress:(NSMutableArray<ChoreAssignment *> *)assignments {
+    int totalChores = 0;
+    int choresDone = 0;
+    double memberIncrement = 0;
+    
+    NSLog(@"%@", assignments);
+    for (ChoreAssignment *currAssignment in assignments) {
+        totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+        choresDone += [currAssignment.completedChores count];
+        if (totalChores == 0){
+            memberIncrement = 0;
+        } else {
+            memberIncrement = ((float) choresDone) / totalChores;
+        }
+    }
+    NSLog(@"member increment: %f", memberIncrement);
+    [self.groupProgressView setProgress:memberIncrement animated:YES];
+    self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement * 100];
+>>>>>>> 34a0d6431354bea2b5241490f2afefc15f798a5d
 }
 
-- (void)fetchGroupProgress {
-    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
+- (void)hideProgress {
+    PFQuery* query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
         if (posts != nil){
-            self.allAssignments = (NSMutableArray *)posts;
-            self.chores = [NSMutableArray array];
-            for (ChoreAssignment *currAssignment in self.allAssignments) {
-                self.totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
-                self.choresDone += [currAssignment.completedChores count];
-                if (self.totalChores == 0){
-                    self.memberIncrement = 0;
-                } else {
-                    self.memberIncrement = (float) self.choresDone/self.totalChores;
-                }
-                
-                [self.groupProgressView setProgress:self.memberIncrement animated:YES];
-                self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", self.memberIncrement*100];
-            }
+            self.allUsers = (NSMutableArray *)posts;
         }
     }];
+    for (PFUser *user in self.allUsers){
+        if ([user[@"groupName"] isEqualToString:self.groupName]){
+            self.numberOfUsers += 1;
+        }
+    }
+    if (self.numberOfUsers == 1) {
+        self.groupProgressView.hidden = YES;
+        self.choresDoneLabel.hidden = YES;
+        self.groupProgressStaticLabel.hidden = YES;
+        self.helpButton.hidden = YES;
+        self.uncompletedChoreLabel.hidden = YES;
+        self.separator.hidden = YES;
+        self.noChoresLabel.hidden = NO;
+        self.placeHolderImage.hidden = NO;
+    } else {
+        self.groupProgressView.hidden = NO;
+        self.choresDoneLabel.hidden = NO;
+        self.groupProgressStaticLabel.hidden = NO;
+        self.helpButton.hidden = NO;
+        self.uncompletedChoreLabel.hidden = NO;
+        self.assignButton.hidden = NO;
+        self.separator.hidden = NO;
+        self.noChoresLabel.hidden = YES;
+        self.placeHolderImage.hidden = YES;
+    }
 }
 
-- (void) reloadTable {
-    [self fetchChores];
+- (void) emptySelector {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

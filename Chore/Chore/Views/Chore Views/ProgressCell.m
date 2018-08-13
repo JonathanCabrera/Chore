@@ -21,7 +21,7 @@
 - (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints:(NSNumber *)points {
     _userName = userName;
     _progress = number;
-    self.userNameLabel.text = self.userName;
+    self.userNameLabel.text = [self.userName capitalizedString];
     self.pointsLabel.text = [NSString stringWithFormat:@"%d points", [points intValue]];
     self.progressLabel.text = [NSString stringWithFormat:@"%0.f%%", number*100];
     [_progressView setProgress:number animated:YES];
