@@ -12,6 +12,22 @@
 #import <STPopup/STPopup.h>
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
+
+@property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
+@property (strong, nonatomic) NSMutableArray<Chore *> *chores;
+@property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
+@property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
+@property (strong, nonatomic) NSMutableArray<Chore *> *future;
+@property (strong, nonatomic) NSMutableArray *allUsers;
+@property (strong, nonatomic) NSMutableArray *sectionTitles;
+
+@property (weak, nonatomic) IBOutlet UIView *separator;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
+
+@property (nonatomic) int points;
+@property (nonatomic) int numberOfUsers;
+
 @end
 
 @implementation ChoreInformationViewController
@@ -71,7 +87,7 @@
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
                  interval:NULL forDate:toDateTime];
-
+    
     NSDateComponents *difference = [calendar components:NSCalendarUnitDay                              fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
@@ -109,7 +125,7 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *title;
     if (section == 0) {
-       title = self.sectionTitles[0];
+        title = self.sectionTitles[0];
     } else if (section == 1) {
         title = self.sectionTitles[1];
     } else if (section == 2) {
@@ -201,42 +217,6 @@
     [self createSectionTitles];
 }
 
-<<<<<<< HEAD
--(void) hideProgress {
-    PFQuery* query = [PFQuery queryWithClassName:@"_User"];
-    [query whereKey:@"groupName" equalTo:self.groupName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
-        if (posts != nil){
-            self.allUsers = (NSMutableArray *)posts;
-            for (PFUser *user in self.allUsers){
-                if ([user[@"groupName"] isEqualToString:self.groupName]){
-                    self.numberOfUsers += 1;
-                }
-                if (self.numberOfUsers == 1){
-                    self.groupProgressView.hidden = YES;
-                    self.choresDoneLabel.hidden = YES;
-                    self.groupProgressStaticLabel.hidden = YES;
-                    self.helpButton.hidden = YES;
-                    self.uncompletedChoreLabel.hidden = YES;
-                    self.separator.hidden = YES;
-                    self.noChoresLabel.hidden = NO;
-                    self.placeHolderImage.hidden = NO;
-                } else {
-                    self.groupProgressView.hidden = NO;
-                    self.choresDoneLabel.hidden = NO;
-                    self.groupProgressStaticLabel.hidden = NO;
-                    self.helpButton.hidden = NO;
-                    self.uncompletedChoreLabel.hidden = NO;
-                    self.assignButton.hidden = NO;
-                    self.separator.hidden = NO;
-                    self.noChoresLabel.hidden = YES;
-                    self.placeHolderImage.hidden = YES;
-                    
-                }
-            }
-        }
-        }];
-=======
 - (void)setGroupProgress:(NSMutableArray<ChoreAssignment *> *)assignments {
     int totalChores = 0;
     int choresDone = 0;
@@ -255,7 +235,6 @@
     NSLog(@"member increment: %f", memberIncrement);
     [self.groupProgressView setProgress:memberIncrement animated:YES];
     self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement * 100];
->>>>>>> 34a0d6431354bea2b5241490f2afefc15f798a5d
 }
 
 - (void)hideProgress {
