@@ -46,6 +46,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
 @property (nonatomic) NSMutableArray *sectionsCreated;
 
+@property (nonatomic) BOOL hasReloaded;
+
 @end
 
 @implementation ChoreInformationViewController
@@ -63,13 +65,24 @@
     [self fetchChores];
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fetchChores) userInfo:nil repeats:YES];
     self.backgroundColor = [UIColor whiteColor];
     self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.assignChoreButton.titleLabel.numberOfLines = 2;
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
     [self hideProgress];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    performSelector:withObject:afterDelay:
+    [super viewWillAppear:animated];
+    [self performSelector:@selector(reloadTable)
+               withObject:(self)
+               afterDelay:1];
+    [self.tableView reloadData];
+    NSLog(@"reload table view");
+    [self fetchChores];
 }
 
 - (void)orderChores {
@@ -201,10 +214,6 @@
     [self orderChores];
     [self.tableView reloadData];
     [refreshControl endRefreshing];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self beginRefresh];
 }
 
 - (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
@@ -342,8 +351,6 @@
 
 - (void) reloadTable {
     [self fetchChores];
-    [self.tableView reloadData];
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
