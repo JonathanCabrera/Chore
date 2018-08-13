@@ -7,9 +7,8 @@
 //
 
 #import "HomeViewController.h"
-#import "UIScrollView+EmptyDataSet.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate>
 
 @end
 
@@ -19,8 +18,6 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
     [self setDesignAspects];
 
     self.profilePic.file = [PFUser currentUser][@"profilePic"];

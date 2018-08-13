@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-
 @interface Chore : PFObject <PFSubclassing>
 
 @property (nonatomic, strong, nonnull) NSString *name;
