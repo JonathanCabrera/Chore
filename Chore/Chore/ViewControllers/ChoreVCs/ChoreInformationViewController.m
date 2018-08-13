@@ -12,6 +12,22 @@
 #import <STPopup/STPopup.h>
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
+
+@property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
+@property (strong, nonatomic) NSMutableArray<Chore *> *chores;
+@property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
+@property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
+@property (strong, nonatomic) NSMutableArray<Chore *> *future;
+@property (strong, nonatomic) NSMutableArray *allUsers;
+@property (strong, nonatomic) NSMutableArray *sectionTitles;
+
+@property (weak, nonatomic) IBOutlet UIView *separator;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
+
+@property (nonatomic) int points;
+@property (nonatomic) int numberOfUsers;
+
 @end
 
 @implementation ChoreInformationViewController
@@ -71,7 +87,7 @@
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
                  interval:NULL forDate:toDateTime];
-
+    
     NSDateComponents *difference = [calendar components:NSCalendarUnitDay                              fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
@@ -109,7 +125,7 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSString *title;
     if (section == 0) {
-       title = self.sectionTitles[0];
+        title = self.sectionTitles[0];
     } else if (section == 1) {
         title = self.sectionTitles[1];
     } else if (section == 2) {
@@ -201,7 +217,6 @@
     [self createSectionTitles];
 }
 
-
 - (void)setGroupProgress:(NSMutableArray<ChoreAssignment *> *)assignments {
     int totalChores = 0;
     int choresDone = 0;
@@ -220,7 +235,6 @@
     NSLog(@"member increment: %f", memberIncrement);
     [self.groupProgressView setProgress:memberIncrement animated:YES];
     self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement * 100];
-
 }
 
 - (void)hideProgress {
