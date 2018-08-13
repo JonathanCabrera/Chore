@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) UIColor *bgColor;
 
+
 @end
 
 @implementation HomeViewController 
@@ -72,7 +73,7 @@
                         NSString *myProgress;
                         
                         if(self.currNumberOfChores == 0) {
-                            myProgress = @"";
+                            myProgress = @"0%";
                         } else {
                             float percentage = (float) weakSelf.currCompletedChores/weakSelf.currNumberOfChores *100;
                             myProgress = [NSString stringWithFormat:@"%.0f%%", percentage];
@@ -103,7 +104,7 @@
                     self.memberPoint = [NSNumber numberWithInt:currAssignment.points];
                     [self.membersPoints addObject:self.memberPoint];
                     [self.tableView reloadData];
-                    [self hideTheChoreButton];
+            
                 }
             }
         } else {
@@ -112,13 +113,6 @@
     }];
 }
 
--(void) hideTheChoreButton{
-    if (self.currNumberOfChores == 0){
-        self.middleChoreButton.hidden = NO;
-    } else {
-        self.middleChoreButton.hidden = YES;
-    }
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     if(self.currentGroup != nil) {
@@ -166,7 +160,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.doneView setHidden:YES];
     self.addChoreButton.layer.cornerRadius = 16;
-    self.middleChoreButton.layer.cornerRadius = 16;
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width/2;
     _progressBar.backgroundColor = [UIColor whiteColor];
     [_progressBar setStartAngle:270];

@@ -84,6 +84,12 @@
     [self fetchChores];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
+
+
 - (void)orderChores {
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
                                         sortDescriptorWithKey:@"deadline"
@@ -127,6 +133,8 @@
         }
     }
 }
+
+
 
 - (void) createSectionTitles {
     self.sectionTitles = [NSMutableArray new];
@@ -215,6 +223,7 @@
     [refreshControl endRefreshing];
 }
 
+
 - (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
@@ -298,10 +307,10 @@
                     self.groupProgressStaticLabel.hidden = YES;
                     self.helpButton.hidden = YES;
                     self.uncompletedChoreLabel.hidden = YES;
-                    self.assignButton.hidden = YES;
                     self.separator.hidden = YES;
                     self.noChoresLabel.hidden = NO;
                     self.placeHolderImage.hidden = NO;
+                    
                     
                     
                 } else {
