@@ -46,7 +46,7 @@
             <objects>
                 <viewController id="agp-Wa-ws8" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uCI-4s-wsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-PS-hEx">
@@ -302,14 +302,6 @@
             </objects>
             <point key="canvasLocation" x="2833" y="-286"/>
         </scene>
-        <!--addChore-->
-        <scene sceneID="dXe-Yy-8Dh">
-            <objects>
-                <viewControllerPlaceholder storyboardName="addChore" id="xh7-yf-r8a" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NU3-0c-pqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2839" y="-158"/>
-        </scene>
         <!--Home-->
         <scene sceneID="wr5-Gn-pZm">
             <objects>
@@ -345,7 +337,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KQR-Im-xL6">
-                                <rect key="frame" x="10" y="346" width="355" height="321"/>
+                                <rect key="frame" x="10" y="344.5" width="355" height="322.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoreInformationCell" rowHeight="88" id="jAK-nX-Luh" customClass="ChoreInformationCell">
@@ -382,7 +374,7 @@
                                                 <constraint firstItem="EF8-n3-iL9" firstAttribute="centerY" secondItem="A62-1r-IwZ" secondAttribute="centerY" id="XW7-ow-Smz"/>
                                                 <constraint firstItem="A62-1r-IwZ" firstAttribute="leading" secondItem="Yth-Et-gcO" secondAttribute="leading" constant="15" id="gXH-CN-Bep"/>
                                                 <constraint firstItem="LrA-JF-e7v" firstAttribute="top" relation="greaterThanOrEqual" secondItem="A62-1r-IwZ" secondAttribute="bottom" priority="999" constant="5" id="oKb-uT-0eb"/>
-                                                <constraint firstItem="EF8-n3-iL9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A62-1r-IwZ" secondAttribute="trailing" constant="170" id="pKW-qg-Gbx"/>
+                                                <constraint firstItem="EF8-n3-iL9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A62-1r-IwZ" secondAttribute="trailing" priority="999" constant="10" id="p9Y-o7-Hrg"/>
                                                 <constraint firstAttribute="trailing" secondItem="EF8-n3-iL9" secondAttribute="trailing" constant="15" id="v6b-nr-VFH"/>
                                                 <constraint firstAttribute="bottom" secondItem="LrA-JF-e7v" secondAttribute="bottom" priority="999" constant="12" id="xsB-8E-91I"/>
                                             </constraints>
@@ -404,7 +396,7 @@
                                 </constraints>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Uz4-X5-Mb5">
-                                <rect key="frame" x="110" y="303" width="153" height="29"/>
+                                <rect key="frame" x="110" y="301.5" width="153" height="29"/>
                                 <segments>
                                     <segment title="Upcoming"/>
                                     <segment title="Past"/>
@@ -437,17 +429,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YfO-rF-zm6">
-                                <rect key="frame" x="197.5" y="251" width="117.5" height="37"/>
+                                <rect key="frame" x="197.5" y="252.5" width="117.5" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="badges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-Qs-eDX">
-                                        <rect key="frame" x="45" y="7" width="59" height="24"/>
+                                        <rect key="frame" x="47" y="5" width="59" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white-trophy" translatesAutoresizingMaskIntoConstraints="NO" id="Qjq-hh-2G1">
-                                        <rect key="frame" x="9" y="7" width="24" height="24"/>
+                                        <rect key="frame" x="11" y="5" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -473,7 +465,7 @@
                             <constraint firstAttribute="bottom" secondItem="KQR-Im-xL6" secondAttribute="bottom" id="met-Nu-FIn"/>
                             <constraint firstItem="HPy-k4-aN1" firstAttribute="top" secondItem="XBD-YL-Tq2" secondAttribute="bottom" constant="15.5" id="oht-z2-Y2a"/>
                             <constraint firstItem="YfO-rF-zm6" firstAttribute="leading" secondItem="OOH-A3-Sdc" secondAttribute="trailing" constant="10" id="pPk-Fa-0N2"/>
-                            <constraint firstItem="YfO-rF-zm6" firstAttribute="top" secondItem="XBD-YL-Tq2" secondAttribute="bottom" constant="10.5" id="ukp-FT-9Cj"/>
+                            <constraint firstItem="YfO-rF-zm6" firstAttribute="top" secondItem="XBD-YL-Tq2" secondAttribute="bottom" constant="12" id="ukp-FT-9Cj"/>
                             <constraint firstItem="tj0-9v-Zdj" firstAttribute="leading" secondItem="qYS-3M-Bfc" secondAttribute="leading" constant="127" id="v2K-7P-F0x"/>
                             <constraint firstItem="XBD-YL-Tq2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="qYS-3M-Bfc" secondAttribute="leading" constant="112" id="xAR-6h-rFm"/>
                         </constraints>

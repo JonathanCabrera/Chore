@@ -24,7 +24,6 @@
 @property (strong, nonatomic) NSString *currentGroup;
 @property (nonatomic) CGFloat progressBarWidth;
 @property (weak, nonatomic) IBOutlet UIView *doneView;
-@property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (strong, nonatomic) IBOutlet CircleProgressBar *progressBar;
 @property (nonatomic) UIColor *progressBarProgressColor;
@@ -39,8 +38,6 @@
 @property (nonatomic) long currNumberOfChores;
 @property (nonatomic) long currCompletedChores;
 @property (nonatomic) long memberNumberOfChores;
-@property (weak, nonatomic) IBOutlet UIButton *middleChoreButton;
-
 @property (nonatomic) long memberCompletedChores;
 @property (nonatomic) float increment;
 @property (nonatomic) float memberIncrement;
