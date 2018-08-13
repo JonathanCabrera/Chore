@@ -6,44 +6,8 @@
 //  Copyright © 2018 JAK. All rights reserved.
 
 #import "ProfileViewController.h"
-#import "Parse.h"
-#import "ParseUI.h"
-#import "ChoreInformationCell.h"
-#import "ChoreAssignment.h"
-#import "GroupCell.h"
-#import "HomeViewController.h"
-#import "ChoreDetailsViewController.h"
-#import "UIScrollView+EmptyDataSet.h"
-#import "EmptyCell.h"
-
-@protocol profileViewControllerDelegate;
 
 @interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChoreInformationCellDelegate>
-
-@property (weak, nonatomic) IBOutlet UITableView *upcomingTableView;
-@property (weak, nonatomic) IBOutlet PFImageView *profilePicture;
-@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
-@property (weak, nonatomic) IBOutlet UIView *badgeView;
-@property (strong, nonatomic) ChoreAssignment *assignment;
-@property (strong, nonatomic) UIColor *backgroundColor;
-@property (strong, nonatomic) NSMutableArray<Chore *> *upcomingChores;
-@property (strong, nonatomic) NSMutableArray<Chore *> *pastChores;
-@property (nonatomic) int numPoints;
-@property (nonatomic, weak) id<profileViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *choreControl;
-@property (strong, nonatomic) NSMutableDictionary *weeklyChores;
-@property (strong, nonatomic) NSMutableArray *sectionTitles;
-@property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
-@property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
-@property (strong, nonatomic) NSMutableArray<Chore *> *future;
-@property (strong, nonatomic) NSMutableArray *pastTitle;
-@property (strong, nonatomic) NSString *weekString;
-@property (strong, nonatomic) NSString *futureString;
-@property (strong, nonatomic) NSString *overdueString;
-@property (nonatomic) long actualRow;
-@property (nonatomic) BOOL empty;
-
 @end
 
 @implementation ProfileViewController
@@ -57,23 +21,16 @@
     }
     [self setLayout];
     [self refresh];
-    self.overdueString = @"Overdue";
-    self.weekString = @"This week";
-    self.futureString = @"Future";
     self.sectionTitles = [NSMutableArray new];
     [self.sectionTitles insertObject:self.overdueString atIndex:0];
     [self.sectionTitles insertObject:self.weekString atIndex:1];
     [self.sectionTitles insertObject:self.futureString atIndex:2];
-
 }
 
 - (void)orderChores {
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"deadline"
-                                        ascending:YES];
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.upcomingChores
-                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
+    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.upcomingChores sortedArrayUsingDescriptors:sortDescriptors]];
     self.upcomingChores = sortedEventArray;
 }
 
@@ -85,8 +42,7 @@
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
                  interval:NULL forDate:toDateTime];
-    NSDateComponents *difference = [calendar components:NSCalendarUnitDay
-                                               fromDate:fromDate toDate:toDate options:0];
+    NSDateComponents *difference = [calendar components:NSCalendarUnitDay fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
 
@@ -123,19 +79,20 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.choreControl.selectedSegmentIndex = 0;
     [self refresh];
-    [self orderChores];
 }
 
 - (void)setLayout {
+    self.overdueString = @"Overdue";
+    self.weekString = @"This week";
+    self.futureString = @"Future";
     self.upcomingTableView.rowHeight = UITableViewAutomaticDimension;
     self.upcomingTableView.tableFooterView = [UIView new];
-    self.backgroundColor = [UIColor whiteColor];
     UIColor *darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
-    self.view.backgroundColor = self.backgroundColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.pointsLabel.textColor = darkGreenColor;
     self.progressLabel.textColor = darkGreenColor;
-    self.userNameLabel.text = self.selectedUser.username;
-    self.navigationItem.title = self.selectedUser.username;
+    self.userNameLabel.text = [self.selectedUser.username capitalizedString];
+    self.navigationItem.title = [self.selectedUser.username capitalizedString];
     
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width /2;
     if([self.selectedUser.username isEqualToString:[PFUser currentUser].username]) {
@@ -155,17 +112,17 @@
 
 - (void)refresh {
     [self fetchChores];
+    [self orderChores];
     self.profilePicture.file = self.selectedUser[@"profilePic"];
     [self.profilePicture loadInBackground];
 }
 
-- (void)fetchChores{
+- (void)fetchChores {
     PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
     query.limit = 1;
     [query whereKey:@"userName" equalTo:self.selectedUser.username];
     [query includeKey:@"uncompletedChores"];
     [query includeKey:@"completedChores"];
-    
     PFObject* list = [query getFirstObject];
     NSMutableArray* uncompletedChores = [list objectForKey:@"uncompletedChores"];
     NSMutableArray* completedChores = [list objectForKey:@"completedChores"];
@@ -188,7 +145,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.choreControl.selectedSegmentIndex == 1) {
+    if (self.choreControl.selectedSegmentIndex == 1) {
         return [self.pastChores count];
     } else {
         if (section == 0) {
@@ -274,7 +231,6 @@
 
 - (unsigned long)getActualRow:(unsigned long)index withIndexPath:(nonnull NSIndexPath *)indexPath {
     NSString *title = self.sectionTitles[index];
-    
     if ([title isEqualToString:@"Overdue"]) {
         return indexPath.row;
     } else if ([title isEqualToString:@"This week"]) {
@@ -291,7 +247,7 @@
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
             choreCell.delegate = self;
             Chore *myPastChore = self.pastChores[indexPath.row];
-            [choreCell setCell:myPastChore withColor:self.backgroundColor];
+            [choreCell setCell:myPastChore withColor:[UIColor whiteColor]];
             return choreCell;
     } else {
         ChoreInformationCell *choreCell = [tableView dequeueReusableCellWithIdentifier:@"ChoreInformationCell" forIndexPath:indexPath];
@@ -305,7 +261,7 @@
             actualRow = [self getActualRow:2 withIndexPath:indexPath];
         }
         myUpcomingChore = self.upcomingChores[actualRow];
-        [choreCell setCell:myUpcomingChore withColor:self.backgroundColor];
+        [choreCell setCell:myUpcomingChore withColor:[UIColor whiteColor]];
         choreCell.delegate = self;
         choreCell.deadlineLabel.hidden = NO;
         return choreCell;
@@ -322,37 +278,6 @@
 
 - (IBAction)didTapSettings:(id)sender {
     [self performSegueWithIdentifier:@"settingsSegue" sender:self];
-}
-
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIImage imageNamed:@"broom"];
-}
-
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
-    return [UIColor colorWithRed:0.78 green:0.92 blue:0.75 alpha:1.0];
-}
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"No chores";
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:20],
-                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.00 green:0.60 blue:0.40 alpha:1.0]};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = ((self.choreControl.selectedSegmentIndex == 0) ?
-                      @"There are no chores to be completed at this time." :
-                      @"There are no chores that have been completed at this time.");
-    
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-    
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Avenir Next" size:16],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor],
-                                 NSParagraphStyleAttributeName: paragraph};
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (void)didTapBadge {

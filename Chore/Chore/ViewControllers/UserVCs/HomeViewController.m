@@ -59,7 +59,7 @@
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
                     self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
                     self.currCompletedChores = [currAssignment.completedChores count];
-                    self.myUsernameLabel.text = currAssignment.userName;
+                    self.myUsernameLabel.text = [currAssignment.userName capitalizedString];
                     self.myPointsLabel.text = [NSString stringWithFormat:@"%d points", currAssignment.points];
                     if(self.currNumberOfChores == 0) {
                         self.increment = 0;

@@ -7,41 +7,8 @@
 //
 
 #import "AddChoreViewController.h"
-#import "ChoreAssignment.h"
-#import "DefaultChore.h"
-#import <STPopup/STPopup.h>
-#import "CreateChoreViewController.h"
-#import "AssignChoreCell.h"
-#import "AssignUserCell.h"
-#import "UIViewController+LCModal.h"
-#import "RepeatChoreViewController.h"
-#import "MBProgressHUD.h"
-#import "LoginViewController.h"
-#import "CreateCustomChoreCell.h"
 
 @interface AddChoreViewController () <UITableViewDelegate, UITableViewDataSource, AssignUserCellDelegate, AssignChoreCellDelegate, UISearchBarDelegate, RepeatChoreViewControllerDelegate, CreateCustomChoreCellDelegate>
-
-@property (weak, nonatomic) IBOutlet UIButton *deadlineButton;
-@property (weak, nonatomic) IBOutlet UITableView *choreMenu;
-@property (weak, nonatomic) IBOutlet UITableView *userMenu;
-@property (weak, nonatomic) IBOutlet UIButton *selectChoreButton;
-@property (weak, nonatomic) IBOutlet UIButton *selectUserButton;
-@property (weak, nonatomic) IBOutlet UISearchBar *choreSearchBar;
-
-@property (nonatomic, strong) NSMutableArray *userArray;
-@property (nonatomic, strong) NSMutableArray *allChores;
-@property (nonatomic, strong) NSMutableArray *filteredChores;
-@property (nonatomic, strong) NSString *userToAssign;
-@property (nonatomic, strong) DefaultChore *choreToAssign;
-@property (nonatomic, strong) UIColor *backgroundColor;
-@property (nonatomic, strong) UIColor *darkGreenColor;
-@property (nonatomic) BOOL repeating;
-@property (nonatomic, strong) NSDate *startDate;
-@property (nonatomic, strong) NSDate *endDate;
-@property (nonatomic, strong) NSString *frequency;
-@property (nonatomic) BOOL doneSaving;
-@property (nonatomic) BOOL doneCreating;
-
 @end
 
 @implementation AddChoreViewController
@@ -52,27 +19,22 @@
     self.choreMenu.delegate = self;
     self.userMenu.dataSource = self;
     self.userMenu.delegate = self;
-    [self.choreMenu setHidden:YES];
-    [self.userMenu setHidden:YES];
-    self.choreMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.choreSearchBar.delegate = self;
     self.repeating = NO;
     self.doneSaving = YES;
     self.doneCreating = NO;
-    
-    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
-    [self.view addGestureRecognizer:hideTapGestureRecognizer];
-    
     [self setLayout];
     [self fetchDefaultChores];
     [self fetchUsers];
 }
 
 - (void)setLayout {
-    self.backgroundColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.view.backgroundColor = [UIColor whiteColor];
+    UITapGestureRecognizer *hideTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeMenus)];
+    [self.view addGestureRecognizer:hideTapGestureRecognizer];
+    [self.choreMenu setHidden:YES];
+    [self.userMenu setHidden:YES];
+    self.choreMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.choreMenu.backgroundColor = self.backgroundColor;
     self.choreMenu.layer.borderWidth = 0.8f;
     self.choreMenu.layer.borderColor = self.darkGreenColor.CGColor;
@@ -81,6 +43,9 @@
     self.userMenu.layer.borderWidth = 1;
     self.userMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.userMenu.layer.cornerRadius = 20;
+    self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.backgroundColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
+    self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.deadlineButton.layer.borderWidth = 1;
     self.deadlineButton.layer.cornerRadius = 20;
     self.deadlineButton.layer.borderColor = self.darkGreenColor.CGColor;

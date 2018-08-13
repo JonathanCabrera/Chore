@@ -121,6 +121,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="V16-C1-w7m">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="qdK-aN-pMT">
+                            <color key="tintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="didTapBack:" destination="zid-JS-3VS" id="04D-om-tnI"/>
                             </connections>
