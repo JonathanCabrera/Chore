@@ -201,42 +201,7 @@
     [self createSectionTitles];
 }
 
-<<<<<<< HEAD
--(void) hideProgress {
-    PFQuery* query = [PFQuery queryWithClassName:@"_User"];
-    [query whereKey:@"groupName" equalTo:self.groupName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
-        if (posts != nil){
-            self.allUsers = (NSMutableArray *)posts;
-            for (PFUser *user in self.allUsers){
-                if ([user[@"groupName"] isEqualToString:self.groupName]){
-                    self.numberOfUsers += 1;
-                }
-                if (self.numberOfUsers == 1){
-                    self.groupProgressView.hidden = YES;
-                    self.choresDoneLabel.hidden = YES;
-                    self.groupProgressStaticLabel.hidden = YES;
-                    self.helpButton.hidden = YES;
-                    self.uncompletedChoreLabel.hidden = YES;
-                    self.separator.hidden = YES;
-                    self.noChoresLabel.hidden = NO;
-                    self.placeHolderImage.hidden = NO;
-                } else {
-                    self.groupProgressView.hidden = NO;
-                    self.choresDoneLabel.hidden = NO;
-                    self.groupProgressStaticLabel.hidden = NO;
-                    self.helpButton.hidden = NO;
-                    self.uncompletedChoreLabel.hidden = NO;
-                    self.assignButton.hidden = NO;
-                    self.separator.hidden = NO;
-                    self.noChoresLabel.hidden = YES;
-                    self.placeHolderImage.hidden = YES;
-                    
-                }
-            }
-        }
-        }];
-=======
+
 - (void)setGroupProgress:(NSMutableArray<ChoreAssignment *> *)assignments {
     int totalChores = 0;
     int choresDone = 0;
@@ -255,7 +220,7 @@
     NSLog(@"member increment: %f", memberIncrement);
     [self.groupProgressView setProgress:memberIncrement animated:YES];
     self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement * 100];
->>>>>>> 34a0d6431354bea2b5241490f2afefc15f798a5d
+
 }
 
 - (void)hideProgress {

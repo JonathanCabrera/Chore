@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *placeHolderImage;
 
 @property (weak, nonatomic) IBOutlet UIButton *assignChoreButton;
-<<<<<<< HEAD
 @property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
 @property (strong, nonatomic) NSMutableArray<Chore *> *chores;
 @property (weak, nonatomic) IBOutlet UILabel *groupProgressStaticLabel;
@@ -47,21 +46,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *uncompletedChoreLabel;
 @property (weak, nonatomic) IBOutlet UIButton *assignButton;
 @property (weak, nonatomic) IBOutlet UIView *separator;
-@property (weak, nonatomic) IBOutlet UIImageView *placeHolderImage;
 @property (nonatomic) BOOL hasOverDue;
 @property (nonatomic) BOOL hasThisWeek;
 @property (nonatomic) BOOL hasFuture;
 @property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
 @property (nonatomic) NSMutableArray *sectionsCreated;
 @property (nonatomic) BOOL hasReloaded;
-=======
-@property (weak, nonatomic) IBOutlet UIButton *assignButton;
-@property (weak, nonatomic) IBOutlet UIButton *helpButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
-@property (weak, nonatomic) IBOutlet UILabel *uncompletedChoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *groupProgressStaticLabel;
-@property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
->>>>>>> 34a0d6431354bea2b5241490f2afefc15f798a5d
+
 
 @end
