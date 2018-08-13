@@ -331,6 +331,12 @@
             }
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self performSelector:@selector(dismissAssignView)
+               withObject:(self)
+               afterDelay:1.3];
+}
+
+-(void) dismissAssignView {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

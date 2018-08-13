@@ -18,7 +18,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints:(NSNumber *)points{
+- (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints:(NSNumber *)points {
     _userName = userName;
     _progress = number;
     self.userNameLabel.text = self.userName;
@@ -29,6 +29,21 @@
     _progressView.clipsToBounds = true;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUser)];
     [self addGestureRecognizer:tapRecognizer];
+    [self fetchUserPic:userName];
+    self.userProfilePic.layer.cornerRadius = self.userProfilePic.frame.size.width/2;
+}
+
+- (void)fetchUserPic:(NSString *)username {
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query whereKey:@"username" equalTo:username];
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(objects != nil) {
+            PFUser *currUser = objects[0];
+            self.userProfilePic.file = currUser[@"profilePic"];
+            [self.userProfilePic loadInBackground];
+        }
+    }];
 }
 
 - (void)didTapUser {
