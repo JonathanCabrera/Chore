@@ -54,7 +54,6 @@
     self.assignChoreButton.layer.cornerRadius = 16;
     self.helpButton.layer.cornerRadius = 16;
     [self hideProgress];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {

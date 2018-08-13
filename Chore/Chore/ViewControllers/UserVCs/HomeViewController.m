@@ -159,13 +159,11 @@
     self.userView.layer.borderWidth = 1;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.doneView setHidden:YES];
-    self.addChoreButton.layer.cornerRadius = 16;
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width/2;
     _progressBar.backgroundColor = [UIColor whiteColor];
     [_progressBar setStartAngle:270];
     [_progressBar setHintTextFont:[UIFont fontWithName:@"Avenir Next" size:30]];
     [_progressBar setHintViewBackgroundColor:[UIColor whiteColor]];
-    
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -209,11 +207,6 @@
 - (IBAction)didTapAddChore:(id)sender {
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
 }
-
-- (IBAction)didTapMiddle:(id)sender {
-    [self performSegueWithIdentifier:@"middle" sender:self.currentGroup];
-}
-
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *nextController = [segue destinationViewController];
