@@ -9,8 +9,6 @@
 
 @interface SettingTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *settingsTableView;
-
 @end
 
 @implementation SettingTableViewController

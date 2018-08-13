@@ -14,11 +14,6 @@
 
 @interface ChoreDetailsViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property BOOL myChore;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewConstraint;
-
 @end
 
 @implementation ChoreDetailsViewController

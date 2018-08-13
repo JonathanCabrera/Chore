@@ -12,6 +12,17 @@
 
 @interface RepeatChoreViewController : UIViewController
 @property (nonatomic, weak) id<RepeatChoreViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *endDatePicker;
+@property (weak, nonatomic) IBOutlet UILabel *startLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endLabel;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSString *repeating;
+@property (nonatomic, strong) NSString *weekday;
+@property (nonatomic, strong) NSDateFormatter *formatter;
+@property (strong, nonatomic) UIViewController *addChoreVC;
 
 @end
 

@@ -11,9 +11,6 @@
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (strong, nonatomic) UIColor *bgColor;
-
-
 @end
 
 @implementation HomeViewController 
@@ -81,9 +78,7 @@
                             
                         }
                         return myProgress;
-                       
-                        
-                        
+            
                        
                     }];
                     
@@ -208,10 +203,6 @@
 
 - (IBAction)didTapAddChore:(id)sender {
     [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
-}
-
-- (IBAction)didTapMiddle:(id)sender {
-    [self performSegueWithIdentifier:@"middle" sender:self.currentGroup.name];
 }
 
 

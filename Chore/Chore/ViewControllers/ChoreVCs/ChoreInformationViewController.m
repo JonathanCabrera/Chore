@@ -13,41 +13,6 @@
 
 @interface ChoreInformationViewController () <UITableViewDelegate, UITableViewDataSource, ChoreInformationCellDelegate>
 
-@property (strong, nonatomic) NSMutableArray<ChoreAssignment *> *allAssignments;
-@property (strong, nonatomic) NSMutableArray<Chore *> *chores;
-@property (weak, nonatomic) IBOutlet UILabel *groupProgressStaticLabel;
-@property (strong, nonatomic) ChoreAssignment *assignment;
-@property (strong, nonatomic) UIColor *bgColor;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) ChoreInformationCell *choreCell;
-@property (weak, nonatomic) IBOutlet UIProgressView *groupProgressView;
-@property (nonatomic) int points;
-@property (nonatomic) long totalChores;
-@property (nonatomic) long choresDone;
-@property (nonatomic) float memberIncrement;
-@property (nonatomic) NSInteger *indexToDelete;
-@property (weak, nonatomic) IBOutlet UILabel *choresDoneLabel;
-@property (strong, nonatomic) NSMutableArray *sectionTitles;
-@property (strong, nonatomic) NSMutableArray<Chore *> *overDue;
-@property (strong, nonatomic) NSMutableArray<Chore *> *thisWeek;
-@property (strong, nonatomic) NSMutableArray<Chore *> *future;
-@property (strong, nonatomic) UIColor *backgroundColor;
-@property (weak, nonatomic) IBOutlet UIButton *helpButton;
-@property (strong, nonatomic) NSMutableArray *allUsers;
-@property (nonatomic) int numberOfUsers;
-@property (weak, nonatomic) IBOutlet UILabel *uncompletedChoreLabel;
-@property (weak, nonatomic) IBOutlet UIButton *assignButton;
-@property (weak, nonatomic) IBOutlet UIView *separator;
-@property (weak, nonatomic) IBOutlet UIImageView *placeHolderImage;
-
-@property (nonatomic) BOOL hasOverDue;
-@property (nonatomic) BOOL hasThisWeek;
-@property (nonatomic) BOOL hasFuture;
-@property (weak, nonatomic) IBOutlet UILabel *noChoresLabel;
-@property (nonatomic) NSMutableArray *sectionsCreated;
-
-@property (nonatomic) BOOL hasReloaded;
-
 @end
 
 @implementation ChoreInformationViewController
@@ -88,8 +53,6 @@
 -(void)viewDidAppear:(BOOL)animated{
     [self.tableView reloadData];
 }
-
-
 
 - (void)orderChores {
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
@@ -134,8 +97,6 @@
         }
     }
 }
-
-
 
 - (void) createSectionTitles {
     self.sectionTitles = [NSMutableArray new];
@@ -301,7 +262,6 @@
                 if ([user[@"groupName"] isEqualToString:self.groupName]){
                     self.numberOfUsers += 1;
                 }
-                
                 if (self.numberOfUsers == 1){
                     self.groupProgressView.hidden = YES;
                     self.choresDoneLabel.hidden = YES;
@@ -311,9 +271,6 @@
                     self.separator.hidden = YES;
                     self.noChoresLabel.hidden = NO;
                     self.placeHolderImage.hidden = NO;
-                    
-                    
-                    
                 } else {
                     self.groupProgressView.hidden = NO;
                     self.choresDoneLabel.hidden = NO;
@@ -329,10 +286,6 @@
             }
         }
         }];
-    
-    
-  
-
 }
 
 - (void)fetchGroupProgress {
