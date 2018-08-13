@@ -63,7 +63,7 @@
     [self fetchChores];
     _groupProgressView.layer.cornerRadius = 8;
     _groupProgressView.clipsToBounds = true;
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fetchChores) userInfo:nil repeats:YES];
+    //[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(fetchChores) userInfo:nil repeats:YES];
     self.backgroundColor = [UIColor whiteColor];
     self.assignChoreButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.assignChoreButton.titleLabel.numberOfLines = 2;
@@ -71,6 +71,17 @@
     self.helpButton.layer.cornerRadius = 16;
     [self hideProgress];
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated]; // this prevented my viewDidAppear method to be called
+    [self beginRefresh];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
+
 
 - (void)orderChores {
     NSSortDescriptor *dateDescriptor = [NSSortDescriptor
@@ -115,6 +126,8 @@
         }
     }
 }
+
+
 
 - (void) createSectionTitles {
     self.sectionTitles = [NSMutableArray new];
@@ -203,9 +216,6 @@
     [refreshControl endRefreshing];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self beginRefresh];
-}
 
 - (void)seeChore:(ChoreInformationCell *)cell withChore: (Chore *)chore withName: (NSString *)userName {
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
@@ -290,10 +300,10 @@
                     self.groupProgressStaticLabel.hidden = YES;
                     self.helpButton.hidden = YES;
                     self.uncompletedChoreLabel.hidden = YES;
-                    self.assignButton.hidden = YES;
                     self.separator.hidden = YES;
                     self.noChoresLabel.hidden = NO;
                     self.placeHolderImage.hidden = NO;
+                    
                     
                     
                 } else {
