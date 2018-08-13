@@ -401,7 +401,7 @@
                                     <segment title="Upcoming"/>
                                     <segment title="Past"/>
                                 </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <connections>
                                     <action selector="didTapControl:" destination="vSA-85-K6v" eventType="valueChanged" id="U9S-Hu-f4e"/>
                                 </connections>
