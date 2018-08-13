@@ -186,16 +186,6 @@
     [self performSegueWithIdentifier:@"choreDetailsSegue" sender:chore];
 }
 
-- (NSUInteger)findItemIndexToRemove:(NSMutableArray<Chore*>*)choreArray withChoreObjectId:(NSString*)removableObjectId {
-    for (int i = 0; i < [choreArray count]; i++) {
-        Chore *chore = choreArray[i];
-        if ([chore.objectId isEqualToString:removableObjectId]) {
-            return i;
-        }
-    }
-    return -1;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -214,38 +204,43 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
+            [self setGroupProgress:self.allAssignments];
         } else {
             NSLog(@" %@", error.localizedDescription);
         }
     }];
     
-    int totalChores = 0;
-    int choresDone = 0;
-    float memberIncrement = 0;
-    
     self.chores = [NSMutableArray array];
-    for (ChoreAssignment *currAssignment in self.allAssignments) {
-        totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
-        choresDone += [currAssignment.completedChores count];
-        if (totalChores == 0){
-            memberIncrement = 0;
-        } else {
-            memberIncrement = ((float) choresDone)/totalChores;
-        }
-    }
     for (Chore *chore in allUncompletedChores) {
         [self.chores addObject:chore];
     }
-    [self.tableView reloadData];
-    [self->_groupProgressView setProgress:memberIncrement animated:YES];
-    self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement*100];
     [self orderChores];
     [self.tableView reloadData];
     [self countForSections];
     [self createSectionTitles];
 }
 
--(void) hideProgress {
+- (void)setGroupProgress:(NSMutableArray<ChoreAssignment *> *)assignments {
+    int totalChores = 0;
+    int choresDone = 0;
+    double memberIncrement = 0;
+    
+    NSLog(@"%@", assignments);
+    for (ChoreAssignment *currAssignment in assignments) {
+        totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
+        choresDone += [currAssignment.completedChores count];
+        if (totalChores == 0){
+            memberIncrement = 0;
+        } else {
+            memberIncrement = ((float) choresDone) / totalChores;
+        }
+    }
+    NSLog(@"member increment: %f", memberIncrement);
+    [self.groupProgressView setProgress:memberIncrement animated:YES];
+    self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement * 100];
+}
+
+- (void)hideProgress {
     PFQuery* query = [PFQuery queryWithClassName:@"_User"];
     [query whereKey:@"groupName" equalTo:self.groupName];
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
@@ -258,7 +253,7 @@
             self.numberOfUsers += 1;
         }
     }
-    if (self.numberOfUsers == 1){
+    if (self.numberOfUsers == 1) {
         self.groupProgressView.hidden = YES;
         self.choresDoneLabel.hidden = YES;
         self.groupProgressStaticLabel.hidden = YES;
@@ -277,29 +272,6 @@
         self.separator.hidden = NO;
         self.noChoresLabel.hidden = YES;
         self.placeHolderImage.hidden = YES;
-    }
-}
-
-- (void)fetchGroupProgress {
-    PFQuery *query = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    [query whereKey:@"groupName" equalTo:self.groupName];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error){
-        if (posts != nil){
-            self.allAssignments = (NSMutableArray *)posts;
-        }
-    }];
-    self.chores = [NSMutableArray array];
-    for (ChoreAssignment *currAssignment in self.allAssignments) {
-        self.totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
-        self.choresDone += [currAssignment.completedChores count];
-        if (self.totalChores == 0){
-            self.memberIncrement = 0;
-        } else {
-            self.memberIncrement = (float) self.choresDone/self.totalChores;
-        }
-        
-        [self.groupProgressView setProgress:self.memberIncrement animated:YES];
-        self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", self.memberIncrement*100];
     }
 }
 
