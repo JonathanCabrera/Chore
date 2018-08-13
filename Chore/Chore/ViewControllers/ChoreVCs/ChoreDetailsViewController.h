@@ -24,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *deadlineTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsTitleLabel;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property BOOL myChore;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewConstraint;
 
 @property (nonatomic, strong) Chore *chore;
 

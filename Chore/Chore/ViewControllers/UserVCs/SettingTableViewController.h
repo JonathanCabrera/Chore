@@ -13,4 +13,6 @@
 
 @interface SettingTableViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *settingsTableView;
+
 @end

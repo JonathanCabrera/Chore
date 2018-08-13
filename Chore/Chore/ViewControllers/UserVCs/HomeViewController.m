@@ -11,9 +11,6 @@
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, ProgressCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
-@property (strong, nonatomic) UIColor *bgColor;
-
-
 @end
 
 @implementation HomeViewController 
@@ -81,9 +78,7 @@
                             
                         }
                         return myProgress;
-                       
-                        
-                        
+            
                        
                     }];
                     

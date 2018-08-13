@@ -13,12 +13,6 @@
 
 @interface CreateChoreViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionField;
-@property (weak, nonatomic) IBOutlet UISlider *pointSlider;
-@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
-- (IBAction)onSlide:(id)sender;
-
 @end
 
 @implementation CreateChoreViewController

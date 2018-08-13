@@ -10,7 +10,6 @@
 #import <STPopup/STPopup.h>
 
 @interface HelpPopupViewController ()
-
 @end
 
 @implementation HelpPopupViewController
