@@ -29,39 +29,19 @@
     [self.profilePic loadInBackground];
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
     [self.profilePic addGestureRecognizer:gestureRecognizer];
-    [self fetchUsersGroup];
+    self.currentGroup = [PFUser currentUser][@"groupName"];
+    [self fetchChores];
     
     [_progressBar setProgress:0 animated:NO];
     [_progressBar setProgress:self.increment animated:YES duration:4];
 }
 
-- (void)fetchUsersGroup {
-    NSString *usersGroup = [PFUser currentUser][@"groupName"];
-    if(usersGroup != nil) {
-        PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-        query.limit = 1;
-        [query whereKey:@"name" equalTo:usersGroup];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts != nil) {
-                self.currentGroup = posts[0];
-                NSLog(@"current group: %@", self.currentGroup.name);
-                [self fetchChores];
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-    } else {
-        NSLog(@"user has no group");
-    }
-}
-
 - (void) fetchChores {
     PFQuery *choreQuery = [PFQuery queryWithClassName:@"ChoreAssignment"];
-    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup.name];
+    [choreQuery whereKey:@"groupName" equalTo:self.currentGroup];
     [choreQuery orderByAscending:@"userName"];
     choreQuery.limit = 20;
     __weak typeof(self) weakSelf = self;
-    self.userNames = [NSMutableArray array];
     self.membersProgress = [NSMutableArray array];
     self.memberIncrementNSNum = [NSNumber new];
     self.membersPoints = [NSMutableArray array];
@@ -70,6 +50,7 @@
         if (posts != nil) {
             self.allAssignments = (NSMutableArray *)posts;
             self.chores = [NSMutableArray array];
+            self.userNames = [NSMutableArray array];
             for (ChoreAssignment *currAssignment in self.allAssignments) {
                 if ([[PFUser currentUser].username isEqualToString:currAssignment.userName]){
                     self.currNumberOfChores = [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
@@ -122,8 +103,6 @@
     if(self.currentGroup != nil) {
         [self fetchChores];
     }
-    
-    
 }
 
 - (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView {
@@ -212,7 +191,7 @@
 }
 
 - (IBAction)didTapAddChore:(id)sender {
-    [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup.name];
+    [self performSegueWithIdentifier:@"addChoreSegue" sender:self.currentGroup];
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

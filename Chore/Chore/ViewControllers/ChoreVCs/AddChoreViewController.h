@@ -12,6 +12,6 @@
 
 @interface AddChoreViewController : UIViewController
 
-@property (strong, nonatomic) Group *currentGroup;
+@property (strong, nonatomic) NSString *currentGroup;
 
 @end

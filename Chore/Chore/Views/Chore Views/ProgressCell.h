@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Chore.h"
-
+#import <Parse/Parse.h>
+#import "ParseUI.h"
 
 @protocol ProgressCellDelegate;
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *userProfilePic;
 
 
 - (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints: (NSNumber *)points;

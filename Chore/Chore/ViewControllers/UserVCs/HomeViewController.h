@@ -21,7 +21,7 @@
 #import "AddChoreViewController.h"
 
 @interface HomeViewController : UIViewController
-@property (strong, nonatomic) Group *currentGroup;
+@property (strong, nonatomic) NSString *currentGroup;
 @property (nonatomic) CGFloat progressBarWidth;
 @property (weak, nonatomic) IBOutlet UIView *doneView;
 @property (weak, nonatomic) IBOutlet UIButton *addChoreButton;
