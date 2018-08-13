@@ -218,9 +218,8 @@
 }
 
 - (IBAction)didTapMiddle:(id)sender {
-    [self performSegueWithIdentifier:@"middle" sender:self.currentGroup.name];
+    [self performSegueWithIdentifier:@"middle" sender:self.currentGroup];
 }
-
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      UINavigationController *nextController = [segue destinationViewController];
