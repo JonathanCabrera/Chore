@@ -7,7 +7,6 @@
 //
 
 #import "Chore.h"
-#import "ChoreAssignment.h"
 
 @implementation Chore
 

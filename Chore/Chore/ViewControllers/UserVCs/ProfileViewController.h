@@ -14,7 +14,6 @@
 #import "GroupCell.h"
 #import "HomeViewController.h"
 #import "ChoreDetailsViewController.h"
-#import "EmptyCell.h"
 
 @interface ProfileViewController : UIViewController
 @property (strong, nonatomic) ChoreAssignment *assignment;
