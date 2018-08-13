@@ -75,29 +75,23 @@
 }
 
 - (void)orderChores {
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
-                                        sortDescriptorWithKey:@"deadline"
-                                        ascending:YES];
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"deadline" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.chores
-                                                                                sortedArrayUsingDescriptors:sortDescriptors]];
+    NSMutableArray<Chore *> *sortedEventArray = [NSMutableArray arrayWithArray:[self.chores sortedArrayUsingDescriptors:sortDescriptors]];
     self.chores = sortedEventArray;
 }
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *fromDate;
     NSDate *toDate;
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
     
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&fromDate
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSCalendarUnitDay startDate:&toDate
                  interval:NULL forDate:toDateTime];
-    
-    NSDateComponents *difference = [calendar components:NSCalendarUnitDay
-                                               fromDate:fromDate toDate:toDate options:0];
-    
+
+    NSDateComponents *difference = [calendar components:NSCalendarUnitDay                              fromDate:fromDate toDate:toDate options:0];
     return [difference day];
 }
 
