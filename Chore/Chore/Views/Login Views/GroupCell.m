@@ -31,7 +31,6 @@
             NSLog(@"Error adding user to group: %@", error.localizedDescription);
         }
     }];
-    
     [self.delegate selectCell:self didSelect:self.currentGroup];
 }
 

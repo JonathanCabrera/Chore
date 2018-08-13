@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *userProfilePic;
 
-
 - (void)setCell:(NSString *)userName withColor: (UIColor *)color withProgress: (float)number withPoints: (NSNumber *)points;
 
 @end
