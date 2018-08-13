@@ -55,7 +55,6 @@
 		E8750BFB20FEA4BB00D0B13D /* ChoreInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFA20FEA4BB00D0B13D /* ChoreInformationViewController.m */; };
 		E8750BFE20FEA5B700D0B13D /* ChoreInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8750BFD20FEA5B700D0B13D /* ChoreInformationCell.m */; };
 		E886A4CF211B66F400AF2B50 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E886A4CD211B66F300AF2B50 /* SettingTableViewController.m */; };
-		E886A4D8211BB09E00AF2B50 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E886A4D7211BB09E00AF2B50 /* settings.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -532,7 +531,6 @@
 				1E9738F320FFED2F00EE46B9 /* login.storyboard in Resources */,
 				1EC1B25D21067FE00049B71A /* LaunchScreen.storyboard in Resources */,
 				1E9E5D92211BB0060048F285 /* settings.storyboard in Resources */,
-				E886A4D8211BB09E00AF2B50 /* settings.storyboard in Resources */,
 				1EB471B42118ED69001685AF /* badge.storyboard in Resources */,
 				1E9738F220FFED2F00EE46B9 /* createGroup.storyboard in Resources */,
 				1E9738FE20FFF67D00EE46B9 /* createChore.storyboard in Resources */,
@@ -609,9 +607,6 @@
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj",
-				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib",
-				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib",
-				"${PODS_ROOT}/THCalendarDatePicker/THCalendarDatePicker/Images.xcassets",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -619,9 +614,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pt-BR.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDateDay.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/THDatePickerViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

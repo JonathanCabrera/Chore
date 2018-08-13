@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "THDatePickerViewController.h"
 #import "ChoreAssignment.h"
 #import "DefaultChore.h"
 #import <STPopup/STPopup.h>

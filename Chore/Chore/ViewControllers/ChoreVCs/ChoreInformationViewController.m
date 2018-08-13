@@ -7,7 +7,6 @@
 #import "ChoreInformationCell.h"
 #import "AddChoreViewController.h"
 #import "ChoreAssignment.h"
-#import "UIScrollView+EmptyDataSet.h"
 #import "HelpPopupViewController.h"
 #import <STPopup/STPopup.h>
 
@@ -222,7 +221,6 @@
     int choresDone = 0;
     double memberIncrement = 0;
     
-    NSLog(@"%@", assignments);
     for (ChoreAssignment *currAssignment in assignments) {
         totalChores += [currAssignment.uncompletedChores count] + [currAssignment.completedChores count];
         choresDone += [currAssignment.completedChores count];
@@ -232,7 +230,6 @@
             memberIncrement = ((float) choresDone) / totalChores;
         }
     }
-    NSLog(@"member increment: %f", memberIncrement);
     [self.groupProgressView setProgress:memberIncrement animated:YES];
     self.choresDoneLabel.text = [NSString stringWithFormat:@"%.0f%% done", memberIncrement * 100];
 }

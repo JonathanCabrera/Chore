@@ -7,7 +7,6 @@
 //
 
 #import "RepeatChoreViewController.h"
-#import "UIViewController+KNSemiModal.h"
 #import "LoginViewController.h"
 #import "AddChoreViewController.h"
 
