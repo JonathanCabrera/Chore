@@ -249,11 +249,9 @@ static UIColor * UIColorWithHexString(NSString *hex) {
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
      if ([[PFUser currentUser].username isEqualToString: self.chore.userName]){
         [segue.identifier isEqualToString:@"segueToInfo"];
      }
-
  }
 
 @end

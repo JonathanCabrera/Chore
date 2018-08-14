@@ -34,6 +34,8 @@
     [self.view addGestureRecognizer:hideTapGestureRecognizer];
     [self.choreMenu setHidden:YES];
     [self.userMenu setHidden:YES];
+    self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
+    self.backgroundColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
     self.choreMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.choreMenu.backgroundColor = self.backgroundColor;
     self.choreMenu.layer.borderWidth = 0.8f;
@@ -44,8 +46,6 @@
     self.userMenu.layer.borderColor = self.darkGreenColor.CGColor;
     self.userMenu.layer.cornerRadius = 20;
     self.userMenu.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.backgroundColor = [UIColor colorWithRed:0.90 green:0.96 blue:0.85 alpha:1.0];
-    self.darkGreenColor = [UIColor colorWithRed:0.47 green:0.72 blue:0.57 alpha:1.0];
     self.deadlineButton.layer.borderWidth = 1;
     self.deadlineButton.layer.cornerRadius = 20;
     self.deadlineButton.layer.borderColor = self.darkGreenColor.CGColor;
