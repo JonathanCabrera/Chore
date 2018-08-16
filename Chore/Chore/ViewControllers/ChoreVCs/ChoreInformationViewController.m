@@ -270,6 +270,7 @@
 }
 
 - (void) emptySelector {
+    NSLog(@"empty text");
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
